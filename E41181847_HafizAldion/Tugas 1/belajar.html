@@ -1,24 +1,60 @@
 <!DOCTYPE html> <!--menunjukkan pada browser bahwa tipe dokumen yg digunakan adalah html-->
 <html lang="en">
 <head>
-    <meta charset="UTF-8"> 
+    <meta charset="utf-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>KORAN GA LAKU</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        a:link{
+            color:black;
+        }
+        a:hover{
+            color:black;
+        }
+        a:visited{
+            color:white;
+        }
+        a:active{
+            color:gray;
+        }
+        *{
+            margin:0;
+            padding: 0;
+        }
+        header{
+            background-color:black;
+            padding:10px;
+        }
+        section{
+            background-color:blanchedalmond;
+            padding:10px;
+            background:rgba(255, 255, 255, 0.8);
+        }
+        footer{
+            background-color:black;
+            padding:10px; 
+        }
+    </style>
 </head>
-<body> 
+<body background="background.jpg"> 
     <header>
     <!--ini adalah konten untuk header-->
-        <h1>POKOK KORAN</h1>
+    <div>    
+    <h1 style="color: #FFFFFF">POKOK KORAN</h1>
+    <p style="text-align: right; font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', serif;">
+ <input type="text" id="pencarian" placeholder="Pencarian">
+        
+            <a href="coba.html">About US</a>
+            <a href="coba2.html">Contact Us</a>
+        </p>
+        </div>
     </header>
 
     <nav>
     <!--ini adalah konten untuk navigasi-->
         <ul> <!--konten ini digunakan untuk bullet -->
-            <li>Home</li> <!-- li = untuk membuat list kebawah-->
-            <li><a href="coba.html">About US</a></li>
-            <li><a href="coba2.html">Contact Us</a></li>
-            <li>Blog</li>
         </ul>
     </nav>
 
@@ -26,6 +62,11 @@
     <!--ini adalah konten untuk section-->
         <article>
         <!--ini adalah konten untuk membuat artikel-->
+        <div>
+            <p id="aku">
+                Hello
+            </p>
+        </div>
             <h2>Aliansi Kucing Indonesia melakukan Aksi DEMO di Jakarta</h2>
             <h3>Ditemukan 100 Kucing mengalami luka ringan</h3>
             <p>Minggu, 22 September 2019</p>
@@ -47,7 +88,7 @@
 
     <footer>
     <!--ini adalah konten untuk footer-->
-        <p>Copyright &copy; - Powered by KORAN SEMESTA KUCING</p>
+        <p style="color:white">Copyright &copy; - Powered by KORAN SEMESTA KUCING</p>
     </footer>
 
 </body>
