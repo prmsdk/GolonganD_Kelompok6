@@ -14,8 +14,18 @@ header{
     padding: 15px;
     overflow: hidden;
     clear: both;
+    border-bottom: 7px solid #770f0f;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 9;
 }
 
+#container{
+    position: relative;
+    margin-top: 130px;
+}
 
 a{
     text-decoration: none;
@@ -50,6 +60,8 @@ nav ul{
 nav li{
     display: inline-block;
     padding: 20px 30px 20px 30px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
 }
 
 nav li:hover{
@@ -63,7 +75,7 @@ nav{
     float: right;
 }
 
-/* SECTION */
+/* SECTION HOME */
 
 .konten1{
     margin-top: 20px;
@@ -85,13 +97,15 @@ nav{
     display: inline-block;
     width: 33%;
     text-align: center;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
 }
 
 .konten1 li:hover{
     display: inline-block;
     width: 33%;
     text-align: center;
-    -webkit-transform-origin-y: -5px;
+    transform: scale(1.1);
     -webkit-transform: scale(1.1);
 }
 
@@ -107,33 +121,101 @@ nav{
 /* SECTION ABOUT */
 
 .konten2{
-    margin-top: 60px;
-    margin-left: 30px;
+
+    overflow: hidden;
     padding: 20px;
+    margin-top: 50px;
 }
 
-.konten2 ul{
+.k2{
     width: 80%;
     margin: auto;
 }
 
-.konten2 li{
-    display: inline-block;
-    width: 33%;
-}
-
-.konten2 img{
-    width: 300px;
-}
-
-.konten2 h3{
-    color:gray;
-    font-size: 25px;
-}
-
-.konten2 img{
-    width: 200px;
+.logo_about{
     float: left;
+    width: 25%;
+    padding-top: 50px;
+    text-align: right;
+}
+
+.logo_about img{
+    padding-right: 30px;
+    width: 200px;
+}
+
+.about{
+    float: left;
+    width: 65%;
+    height: 250px;
+    padding: 50px 0px 0px 50px;
+    border-left: 4px solid #aaaaaa;
+}
+
+.about h3{
+    margin: 5px 0px 15px 0px;
+    font-size: 26px;
+}
+
+.about p{
+    line-height: 25px;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* SECTION CONTACT*/
+
+.konten3{
+    display: inline-block;
+    overflow: hidden;
+    padding: 20px;
+    margin-top: 20px;
+    box-sizing: border-box;
+}
+
+.k3{
+    width: 90%;
+    margin: auto;
+}
+
+.konten3 h3{
+    font-size: 22px;
+    margin: 5px 0px 15px 0px;
+}
+
+.logo_contact{
+    float: left;
+    padding: 25px 0px 0px 40px;
+}
+
+.logo_contact li{
+    display: inline-block;
+}
+
+.logo_contact img{
+    width: 40px;
+    margin-right: 7px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+}
+
+.logo_contact img:hover{
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    margin-right: 7px;
+}
+
+.contact{
+    float: left;
+    width: 65%;
+    padding: 25px 50px 0px 20px;
+    border-right: 4px solid #aaaaaa;
+}
+
+.contact p{
+    text-align: justify;
+    line-height: 25px;
+    margin-bottom: 20px;
 }
 
 /*FOOTER*/
@@ -150,15 +232,23 @@ footer ul{
 
 footer li{
     display: inline-block;
-    padding: 10px;
+    padding: 4px;
 }
 
-.about img{
+.about_footer img{
     width: 40px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+}
+
+.about_footer img:hover{
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
 }
 
 footer p{
     color: gray;
     text-align: center;
+    margin-top: -10px;
     padding: 10px;
 }
