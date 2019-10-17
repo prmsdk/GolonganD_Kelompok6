@@ -42,16 +42,12 @@ header h2{
     color: white;
     font-weight: normal;
 }
-
 #logo{
     float: left;
     margin-left: 40px;
 }
 
-nav a{
-    color: white;
-    font-size: 20px;
-}
+
 
 nav ul{
     list-style: none;
