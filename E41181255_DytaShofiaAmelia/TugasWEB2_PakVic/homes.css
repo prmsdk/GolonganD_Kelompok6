@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    font-family: 'Roboto Slab', serif;
+}
+/* HOME */
+/* bagian header */
+header{
+    background-color: #a71c1c;
+    border-bottom: firebrick;
+    position : fixed;
+    clear: both;
+    margin: 0px;
+    padding: 10px;
+    float: left;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 80px;
+    z-index: 2;
+    }
+#logo{
+    float: left;
+    margin-left: 30px;
+}
+header h1{
+    color: white;
+    font-size: 45px;
+    margin: -5px;
+}
+header h2{
+    color: white;
+    font-size: 20px;
+    margin: -5px;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+nav ul{ 
+   list-style: none;
+   float: right;
+   margin-top: 15px;
+   text-align: center;
+}
+nav li{
+    display: inline-block;
+    padding: 10px 20px 10px 20px;
+    transition: 0.5s; 
+    -webkit-transition: 0.5s;
+}
+nav li img{
+    width: 150px;
+}
+
+nav li:hover{
+    display: inline-block;
+    padding: 10px 40px 10px 40px;
+    background-color: tomato;
+    transform: scale(1.5);
+    -webkit-transform: scale(1);
+}   
+
+
+/* bagian sectionn */
+#Container{
+    margin: 120px;
+    position: relative;
+}
+.konten-1{
+    margin-top: 100px;
+    padding: 20px;
+}
+
+ul{
+    text-decoration: none;
+}
+ul li{
+    list-style: none;   
+}
+.konten-1 li{
+  display: inline-block;  
+  padding: 20px 30px 30px 20px;
+  margin: 5%;
+}
+.konten-1 :hover {
+  padding: 10px 20px 10px 20px;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+}
+.konten-1 p{
+    color: black;
+    text-align: center;
+    
+}
+.konten-1 img{
+    width: 250px;
+}
+
+
+/* bagian footer */
+.bagian_footer{
+    margin-top: 10px;
+    padding: 50px 0 10px;
+    list-style: none;
+    margin: auto;
+}
+footer ul{
+    text-align: center;
+    list-style: none;
+}
+footer li{
+    /* padding-right: 30px;
+    padding-left: 100px; */
+    display: inline-block;
+    overflow: hidden;
+    margin: auto;
+}
+p{
+    text-align: center;
+}
+
+.bagian_footer img{
+    width: 50px;
+    text-align: center;
+    padding: 0;
+    margin: auto;
+}
+
+
+/* ABOUT */
+/* section */
+.konten-2{
+    margin-top: 100px;
+    padding: 20px; 
+}
+.kon-2{
+    margin-top: 50px;
+    padding: 20px;
+}
+.untuk_logo li{
+    display: inline-block;
+    text-decoration: none;
+    list-style: none;
+   }
+
+/* CONTACT */
+/* section */
+.konten-3{
+    margin-top: 50px;
+    padding: 20px;
+    display: inline-block;
+    overflow: hidden;
+}
+.kon-3
+{
+margin-top: 50px;
+padding: 20px;
+margin: auto;
+
+}
+.kontak{
+    border-right: 3px solid black;
+    padding-right: 10px;
+    width: 60%;
+    float: left;
+}
+.kontak h3{
+    color: black;
+}
+.kontak p{
+    color: black;
+    padding: 0;
+    text-align: justify;
+}
+.untuk_gambar li{
+    list-style: none;
+    display: inline-block;
+    
+}
+
+.untuk_gambar img{
+    width: 40px;
+    float: left;
+    padding: 5px 10px 5px;
+}
+
+
+
