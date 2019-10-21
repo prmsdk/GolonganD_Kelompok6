@@ -1,0 +1,364 @@
+@font-face {
+    font-family: 'montserratsemibold';
+    src: url('../fonts/montserrat-semibold-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ============= CSS RESET INI GUUYSSS ============== */
+
+* {
+    margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body {
+    line-height: 1;
+    font-family: 'montserratsemibold', Verdana, sans-serif;
+    background: #fff;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+/* ================= BATAS CSS RESET ================ */
+
+@media (min-width: 1098px) {
+
+    header{
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 5px 15px;
+        overflow: hidden;
+        clear: both;
+        border-bottom: 7px solid rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        z-index: 9;
+        text-transform: uppercase;
+    }
+
+    header h1{
+        color: white;
+        font-size: 30px;
+        margin-top: 7px;
+        color: #F69322;
+    }
+
+    header h2{
+        font-size: 20px;
+        letter-spacing: 4px;
+        color: white;
+        font-weight: normal;
+        color: #25A8E0;
+    }
+
+    #logo{
+        float: left;
+        margin-left: 40px;
+    }
+
+    nav a{
+        color: white;
+        font-size: 20px;
+    }
+
+    nav ul{
+        list-style: none;
+        display: inline-block;
+    }
+
+    nav li{
+        display: inline-block;
+        padding: 20px 5px 20px 5px;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+    }
+
+    nav li:hover{
+        display: inline-block;
+        padding: 20px 15px 20px 15px;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    nav{
+        margin-right: 20px;
+        float: right;
+    }
+
+    .akunmasuk{
+        margin-left: 20px;
+    }
+
+    /* ================ CARA KERJA ============== */
+
+    #carakerja{
+        text-align: center;
+        margin: 0 0 100px 0;
+    }
+
+    #carakerja div{
+        width: 32%;
+        overflow: hidden;
+        box-sizing: border-box;
+        padding: 6px;
+        display: inline-block;
+    }
+
+    #carakerja h2{
+        font-size: 40px;
+        margin: 100px auto 25px;
+    }
+
+    #carakerja img{
+        width: 150px;
+        float: left;
+    }
+
+    #carakerja p{
+        text-align: left;
+        font-size: 24px;
+        padding: 25px 0 0 0;
+    }
+
+}
+
+@media (min-width: 842px) and (max-width: 1098px) {
+
+    header{
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 5px 15px;
+        overflow: hidden;
+        clear: both;
+        border-bottom: 7px solid rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        z-index: 9;
+        text-transform: uppercase;
+    }
+    
+    header h1{
+        display: inline;
+        font-size: 30px;
+        color: #F69322;
+    }
+    
+    header h2{
+        display: inline;
+        font-size: 30px;
+        color: #25A8E0;
+    }
+    
+    #logo{
+        margin: 7px auto;
+        text-align: center;
+    }
+    
+    nav a{
+        color: white;
+        font-size: 20px;
+    }
+    
+    nav ul{
+        list-style: none;
+        display: inline-block;
+    }
+    
+    nav li{
+        display: inline-block;
+        padding: 5px 5px 5px 5px;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+    }
+    
+    nav li:hover{
+        display: inline-block;
+        padding: 5px 15px 5px 15px;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    
+    nav{
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .akunmasuk{
+        margin-left: 20px;
+    }
+
+    /* ================ CARA KERJA ============== */
+
+    #carakerja{
+        text-align: center;
+        margin: 0 0 100px 0;
+    }
+
+    #carakerja div{
+        width: 450px;
+        overflow: hidden;
+        box-sizing: border-box;
+        padding: 30px 15px 30px 40px;
+        display: block;
+        margin: auto;
+    }
+
+    #carakerja h2{
+        font-size: 40px;
+        margin: 130px auto 25px;
+    }
+
+    #carakerja img{
+        width: 150px;
+        float: left;
+    }
+
+    #carakerja p{
+        text-align: left;
+        font-size: 24px;
+        padding: 25px 0 0 0;
+    }
+
+}
+
+
+@media only screen and (min-width: 480px) and (max-width: 842px) {
+
+    header{
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 5px 15px;
+        overflow: hidden;
+        clear: both;
+        border-bottom: 7px solid rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        z-index: 9;
+        text-transform: uppercase;
+    }
+    
+    header h1{
+        display: inline;
+        font-size: 30px;
+        color: #F69322;
+    }
+    
+    header h2{
+        display: inline;
+        font-size: 30px;
+        color: #25A8E0;
+    }
+    
+    #logo{
+        margin: 7px auto;
+        text-align: center;
+    }
+    
+    nav a{
+        color: white;
+        font-size: 20px;
+    }
+    
+    nav ul{
+        list-style: none;
+        display: inline-block;
+    }
+    
+    nav li{
+        display: inline-block;
+        padding: 5px 5px 5px 5px;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+    }
+    
+    nav li:hover{
+        display: inline-block;
+        padding: 5px 5px 5px 5px;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    
+    nav{
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .akunmasuk{
+        margin-left: 20px;
+        display: block;
+    }
+
+    /* ================ CARA KERJA ============== */
+
+    #carakerja{
+        text-align: center;
+        margin: 0 0 100px 0;
+    }
+
+    #carakerja div{
+        width: 450px;
+        overflow: hidden;
+        box-sizing: border-box;
+        padding: 30px 15px 30px 40px;
+        display: block;
+        margin: auto;
+    }
+
+    #carakerja h2{
+        font-size: 40px;
+        margin: 170px auto 25px;
+    }
+
+    #carakerja img{
+        width: 150px;
+        float: left;
+    }
+
+    #carakerja p{
+        text-align: left;
+        font-size: 24px;
+        padding: 25px 0 0 0;
+    }
+
+}
+
+/* ================ SLIDER ============== */
+
+
+
+/* ============ PRODUK ============= */
+
+#produk{
+    height: 500px;
+}
+

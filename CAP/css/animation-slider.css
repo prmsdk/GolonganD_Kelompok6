@@ -1,0 +1,53 @@
+#slidercontainer { 
+    overflow: hidden; 
+    background: rgba(0, 0, 0, 0.6); 
+}
+
+#slidercontainer { 
+    width: 1280px;
+    height: 500px; 
+}
+
+#css3slider img { 
+    width: 1280px;
+    height: 500px; 
+    float: left;
+}
+
+#css3slider { 
+    position: absolute;
+    width:3840px;  
+    -webkit-animation-name:slider;
+    -webkit-animation-duration:5s;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count:infinite;
+    -moz-animation-name:slider;
+    -moz-animation-duration:5s;
+    -moz-animation-timing-function: ease-in-out;
+    -moz-animation-iteration-count:infinite;
+    -o-animation-name:slider;
+    -o-animation-duration:5s;
+    -o-animation-timing-function: ease-in-out;
+    -o-animation-iteration-count:infinite;
+    animation-name:slider;
+    animation-duration:5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count:infinite;
+}
+
+@keyframes slider {     
+    0% { left: 0; opacity: 1; }     
+    2% { opacity: 1; }     
+    20% { left: 0; opacity: 1; }     
+    21% { opacity: 0; }     
+    24% { opacity: 0; }     
+    25% { left: -1280px; opacity: 1; }     
+    45% { left: -1280px; opacity: 1; }     
+    46% { opacity: 0; }     
+    48% { opacity: 0; }     
+    50% { left: -2569px; opacity: 1; }     
+    80% { left: -2569px; opacity: 1; }       	
+    98%  { opacity: 1; }   	
+    100% { left: 0; opacity: 1; }
+}
+
