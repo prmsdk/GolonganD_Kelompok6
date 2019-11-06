@@ -1,6 +1,6 @@
 <?php
 
-    require 'includes/header.php';
+    require 'includes/header_home.php';
     require 'slider.php';
     require 'pilih_produk.php';
 
@@ -178,6 +178,7 @@
 
 <?php 
 
+    require 'login_user.php';
     require 'includes/footer.php';
 
 ?>

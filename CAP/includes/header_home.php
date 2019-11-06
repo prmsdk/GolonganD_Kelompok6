@@ -24,8 +24,8 @@
 
   <div class="container-fluid-lg">
   <header id="navbar">
-    <nav id="logo" class="m-0 navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand logo" href="index.php" style="color:#F69322;">CAHAYA ABADI PERKASA</a>
+    <nav id="logo" class="m-0 navbar navbar-expand-lg navbar-dark nav-tr">
+      <a class="navbar-brand logo" href="#slidercontainer" style="color:#F69322;">CAHAYA ABADI PERKASA</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -39,7 +39,7 @@
           <button type="button" class="btn rounded-0 nav-item nav-custom" data-toggle="modal" data-target="#login_user" style="color: #25A8E0">
           MASUK
           </button>
-          <a class="nav-item nav-link nav-custom" style="color:#F69322;" href="#daftar-user">DAFTAR</a>
+          <a class="nav-item nav-link nav-custom" style="color:#F69322;" href="register_user.php">DAFTAR</a>
         </div>
       </div>
     </nav>

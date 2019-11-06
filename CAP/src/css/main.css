@@ -170,6 +170,31 @@ html {
     background-color: rgb(15, 14, 22);
 }
 
+/* ============ LOGIN =========== */
+
+.login-bg{
+    z-index: 10;
+}
+
+.text-login{
+    color: #25A8E0;
+}
+
+.modal-header h5{
+    margin-left: auto;
+    font-size: 30px;
+}
+
+.bg-daftar{
+    background-image: url('../img/stuff/doodle.jpg');
+    background-repeat: repeat;
+    background-size: 200px 200px;
+}
+
+.bg-form-daftar{
+    border-top: 2px solid #F69322;
+}
+
 @media (min-width: 768px) { 
     .nav-tr{
         position: absolute;
