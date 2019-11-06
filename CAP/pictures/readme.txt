@@ -1,0 +1,1 @@
+Ini Tempat segala file gambar milik database disimpan
