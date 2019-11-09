@@ -20,7 +20,7 @@
 
 .banner-absolute1{
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   top: 40%;
   left: 0;
   right: 0;
@@ -28,7 +28,7 @@
 
 .banner-absolute2{
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   top: 35%;
   left: 10%;
   right: 10%;
@@ -36,7 +36,7 @@
 
 .banner-absolute3{
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   top: 35%;
   left: 10%;
   right: 10%;

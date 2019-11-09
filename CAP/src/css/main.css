@@ -103,6 +103,14 @@ html {
     color: #25A8E0;
 }
 
+.icon-custom:hover{
+    border-bottom: 0px solid #F69322;
+}
+
+.notif-custom p{
+    margin-bottom: 0;
+}
+
 /* ======= CARA KERJA ======= */
 
 #carakerja, #testimoni{
@@ -153,6 +161,7 @@ html {
     z-index: 0;
 }
 
+
 /* ======= FOOTER ======== */
 
 #footer{
@@ -180,6 +189,15 @@ html {
     color: #25A8E0;
 }
 
+.alert-login{
+    top: 100px;
+    left: 0;
+    right: 0;
+    z-index: 19;
+    width: 50%;
+    text-align: center;
+}
+
 .modal-header h5{
     margin-left: auto;
     font-size: 30px;
@@ -195,6 +213,14 @@ html {
     border-top: 2px solid #F69322;
 }
 
+.regis-success p{
+    line-height: 15px;
+}
+
+.regis-success{
+    height: 60vh;
+}
+
 @media (min-width: 768px) { 
     .nav-tr{
         position: absolute;
@@ -205,4 +231,35 @@ html {
     .col-lg-3{
         text-align: left;
     }
+}
+
+/* Utility */
+
+.bg-biru{
+    background-color: #25A8E0;
+}
+.bg-oren{
+    background-color: #F69322;
+}
+.text-biru{
+    color: #25A8E0;
+}
+.text-oren{
+    color: #F69322;
+}
+.btn-biru{
+    background-color: #25A8E0;
+    color: white;
+}
+.btn-biru:hover{
+    background-color: #1698cf;
+    color: white;
+}
+.btn-oren{
+    background-color: #F69322;
+    color: white;
+}
+.btn-oren:hover{
+    background-color: #da7c11;
+    color: white;
 }

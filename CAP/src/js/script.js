@@ -1,34 +1,20 @@
-$(function() {
-  
-  $('.tampilModalTambah').on('click', function(){
-    
-    $('#judulModalLabel').html('Tambah Data Mahasiswa');
-    $('.modal-footer button[type=submit]').html('Tambah Data');
+/* SCRIPT UNTUK MENGHILANGKAN ALERT SECARA OTOMATIS SELAMA 2 DETIK */
 
-  });
-
-  $('.tampilModalUbah').on('click', function(){
-    
-    $('#judulModalLabel').html('Ubah Data Mahasiswa');
-    $('.modal-footer button[type=submit]').html('Ubah Data');
-    $('.modal-body form').attr('action', 'http://localhost/MencobaRepo/Pak%20Victor/phpmvc/public/mahasiswa/ubah')
-
-    const id = $(this).data('id');
-    
-    $.ajax({
-      url: 'http://localhost/MencobaRepo/Pak%20Victor/phpmvc/public/mahasiswa/getubah',
-      data: {id : id},
-      method: 'post',
-      dataType: 'json',
-      success: function(data) {
-        $('#nama').val(data.nama);
-        $('#nim').val(data.nim);
-        $('#email').val(data.email);
-        $('#jurusan').val(data.jurusan);
-        $('#id').val(data.id_mhs);
-      }
-    });
-
-  });
-
+$("#alert-login").fadeTo(2000, 500).slideUp(500, function(){
+  $("#alert-login").slideUp(500);
+  history.pushState(null, null, window.location.href.split('#')[0]);
+  window.location.hash = '';
 });
+
+/* SCRIPT UNUTUK MENAMPILKAN KATA SANDI KETIKA DICENTANG */
+
+$(document).ready(function(){		
+  $('#tampil-sandi').click(function(){
+    if($(this).is(':checked')){
+      $('.tampil-sandi').attr('type','text');
+    }else{
+      $('.tampil-sandi').attr('type','password');
+    }
+  });
+});
+

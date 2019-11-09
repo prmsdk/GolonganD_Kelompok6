@@ -12,29 +12,30 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                  <form class="font-m-light" action="cek_login.php" method="post">
+                <div class="modal-body row justify-content-center">
+                  <form class="font-m-light col-11 mt-3" action="cek_login.php" method="post">
                     <div class="form-group">
                       <label for="username-user" class="font-m-med">Username</label>
-                      <input type="text" class="form-control" id="username-user" name="username-user" aria-describedby="usernameHelp" placeholder="Enter username">
-                      <small id="usernameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                      <input type="text" class="form-control" id="username-user" name="username-user" aria-describedby="usernameHelp" placeholder="Enter username" required>
+                      
                     </div>
                     <div class="form-group">
                       <label for="password-user" class="font-m-med">Password</label>
-                      <input type="password" class="form-control" id="password-user" name="password-user" placeholder="Password">
-                      <small id="passwordHelp" class="form-text text-muted">Masukkan 8 - 32 Karakter.</small>
+                      <input type="password" class="form-control tampil-sandi" id="password-user" name="password-user" placeholder="Password" required>
+                      <small id="passwordHelp" class="form-text float-right"><a href="#">Lupa password?</a></small>
+                      <div class="form-group form-check float-left">
+                        <input type="checkbox" class="form-check-input" id="tampil-sandi">
+                        <label class="form-check-label" for="tampil-sandi"><small>Tampilkan Sandi</small></label>
+                      </div>
                     </div>
-                    <div class="form-group form-check">
-                      <input type="checkbox" class="form-check-input" id="tampil-sandi">
-                      <label class="form-check-label" for="tampil-sandi">Tampilkan Sandi</label>
-                    </div>
-                    <div class="text-center">
-                      <small><a href="daftar_user" class="text-dark">Belum ada akun?</a></small>
+                    
+                    <div class="text-center pt-4">
+                      <a href="register_user.php" class="text-dark">Belum ada akun?</a>
                     </div>
                   
                 </div>
                 <div class="modal-footer text-center">
-                    <button type="submit" class="btn btn-primary" name="login_user">Save changes</button>
+                    <input type="submit" class="btn btn-primary" name="login_user" value="Login">
                 </div>
               </div>
               </form>
