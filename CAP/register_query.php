@@ -8,7 +8,7 @@
     $nama_user = $_POST['nama_user'];
     $email_user = $_POST['email_user'];
     $no_hp_user = $_POST['no_hp_user'];
-    $usename_user = $_POST['username_user'];
+    $usename_user = '@'.$_POST['username_user'];
     $password_user = $_POST['password_user'];
     $repassword_user = $_POST['repassword_user'];
     $hash = md5( rand(0,1000) );
@@ -45,7 +45,7 @@
       
       ------------------------
       Your Name        : '.$nama_user.'
-      Your Username : @'.$usename_user.'
+      Your Username : '.$usename_user.'
       ------------------------
       
       Please click this link to activate your account:
