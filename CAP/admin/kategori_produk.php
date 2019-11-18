@@ -48,10 +48,6 @@
                 <a href="query/master_kategori_produk_query.php?action=delete&id_kategori_produk=<?=$id_kategori_produk?>" class="btn btn-danger btn-circle btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data?');">
                   <i class="fas fa-trash"></i>
                 </a>
-                <a href="kategori_produk_ubah.php?id_kategori_produk=<?=$id_kategori_produk?>" class="btn btn-primary btn-circle btn-sm">
-                  <i class="fas fa-pencil-alt"></i>
-                </a>
-              </div>
             </td>
           </tr>
           <?php } ?>
