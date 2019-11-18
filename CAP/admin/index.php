@@ -1,6 +1,7 @@
 <?php
   session_start();
-  $active_link = 'dashboard';
+  $_SESSION['active_link'] = 'dashboard';
+  include 'includes/config.php';
   require 'includes/header.php';
   if(isset($_SESSION['admin_login'])){
   ?>

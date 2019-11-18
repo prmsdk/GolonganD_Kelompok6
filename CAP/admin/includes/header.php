@@ -1,3 +1,14 @@
+<?php
+  if(isset($_SESSION['admin_login'])){
+    $username = $_SESSION['username'];
+  $data = mysqli_query($con, "SELECT * FROM admin WHERE ADM_USERNAME = '$username'");
+  $data_admin = mysqli_fetch_assoc($data);
+
+  $nama_admin = $data_admin['ADM_NAMA_USAHA_ADM'];
+  $profil_admin = $data_admin['ADM_PROFIL'];
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +20,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Admini - CAP</title>
+  <title>Admin - CAP</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -18,6 +29,7 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/sb-admin-2.css">
+  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -188,14 +200,14 @@
             </li>
 
             <div class="topbar-divider d-none d-sm-block"></div>
-
-            <!-- Nav Item - User Information -->
+            
+            <!-- Nav Item - ADMIN Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?=$nama_admin?></span>
+                <img class="img-profile rounded-circle" src="img/profil/<?=$profil_admin?>">
               </a>
-              <!-- Dropdown - User Information -->
+              <!-- Dropdown - ADMIN Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -207,7 +219,11 @@
                 </a>
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
+                  Antrian
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-clock fa-sm fa-fw mr-2 text-gray-400"></i>
+                  History
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">

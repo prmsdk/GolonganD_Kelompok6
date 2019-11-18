@@ -176,6 +176,71 @@
     </iframe>
 </section>
 
+<div class="container">
+<section id="contact" class="my-5 font-m-light text-center">
+    <h2 class="font-m-bold">HUBUNGI KAMI</h2>
+    <h5 class="w-75 mx-auto">Isi formulir dibawah untuk memberi saran, menanyakan ketersediaan produk yang tak tersedia di Website kami, atau menghubungi kami.</h5>
+    
+    <form action="contact_us.php" method="post">
+    <div class="row text-left mt-5">
+        <div class="col-6">
+            <div class="form-group">
+                <input type="text" class="form-control" id="nama_admin" name="nama_admin" aria-describedby="usernameHelp" placeholder="Masukkan Nama" required>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" id="nama_email" name="nama_email" aria-describedby="usernameHelp" placeholder="Masukkan Email" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="nama_telepon" name="nama_telepon" aria-describedby="usernameHelp" placeholder="Masukkan Telepon/HP" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="nama_subject" name="nama_subject" aria-describedby="usernameHelp" placeholder="Masukkan Subject" required>
+            </div>
+            <div class="form-group">
+                <textarea name="alamat_admin" id="alamat_admin" class="form-control" placeholder="Alamat Anda" required></textarea>
+            </div>
+            <div class="form-froup text-right">
+                <input type="sumbit" class="btn btn-primary" value="KIRIM">
+            </div>
+            </form>
+        </div>
+        <div class="col-6 text-center">
+            <h2>KONTAK KAMI</h2>
+            <div class="row text-left justify-content-center mt-3">
+                <div class="col-1 text-right">
+                    <p><i class="fa fa-tag fa-1x"></i></p>
+                </div>
+                <div class="col-8">
+                    <p>
+                    CV. CAHAYA ABADI PERKASAKarang Miuwo, Mangli, Kec. Kaliwates, Kabupaten Jember, Jawa Timur <br>68131
+                    </p>
+                </div>
+            </div>
+            <div class="row text-left justify-content-center">
+                <div class="col-1 text-right">
+                    <p><i class="fa fa-phone fa-1x"></i></p>
+                </div>
+                <div class="col-8">
+                    <p>
+                    +62 81 249 882 52 (Hp) <br> (0331) 412990 (Telp)
+                    </p>
+                </div>
+            </div>
+            <div class="row text-left justify-content-center">
+                <div class="col-1 text-right">
+                    <p><i class="fa fa-envelope fa-1x"></i></p>
+                </div>
+                <div class="col-8">
+                    <p>
+                    admin@cahayaabadi.com
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+
 <?php 
 
     require 'login_user.php';

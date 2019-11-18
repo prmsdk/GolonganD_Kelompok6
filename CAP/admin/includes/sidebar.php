@@ -16,7 +16,7 @@
         if(isset($_SESSION['admin_login'])){
       ?>
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item <?php if($active_link==='dashboard'){echo "active";}?>">
+      <li class="nav-item <?php if($_SESSION['active_link']==='dashboard'){echo "active";}?>">
         <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
@@ -31,9 +31,9 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item <?php if($active_link==='pemesanan'){echo "active";}?>">
+      <li class="nav-item <?php if($_SESSION['active_link']==='pemesanan'){echo "active";}?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-wrench"></i>
+          <i class="fas fa-fw fa-clipboard-list"></i>
           <span>Pemesanan</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -47,7 +47,7 @@
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item <?php if($active_link==='setting'){echo "active";}?>">
+      <li class="nav-item <?php if($_SESSION['active_link']==='setting'){echo "active";}?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-cog"></i>
           <span>Setting</span>
@@ -70,7 +70,7 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item <?php if($active_link==='master'){echo "active";}?>">
+      <li class="nav-item <?php if($_SESSION['active_link']==='master'){echo "active";}?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Master</span>
@@ -87,17 +87,24 @@
             <a class="collapse-item" href="#">Kategori Produk</a>
             <a class="collapse-item" href="#">Kategori Bahan</a>
             <a class="collapse-item" href="#">Kategori Ukuran</a>
-            <h6 class="collapse-header">Form Akun:</h6>
-            <a class="collapse-item" href="#">Admin</a>
-            <a class="collapse-item" href="master_user.php">User</a>
+            <?php 
+            if(isset($_SESSION['admin_status'])){
+              if($_SESSION['admin_status']==1){?>
+              <h6 class="collapse-header">Form Akun:</h6>
+              <a class="collapse-item" href="master_admin.php">Admin</a>
+              <a class="collapse-item" href="master_user.php">User</a>
+            <?php
+              }
+            }
+            ?>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Charts -->
-      <li class="nav-item <?php if($active_link==='laporan'){echo "active";}?>">
+      <li class="nav-item <?php if($_SESSION['active_link']==='laporan'){echo "active";}?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLaporan" aria-expanded="true" aria-controls="collapseLaporan">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw fa-print"></i>
           <span>Laporan</span>
         </a>
         <div id="collapseLaporan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">

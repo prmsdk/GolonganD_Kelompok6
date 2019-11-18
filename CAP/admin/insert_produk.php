@@ -1,7 +1,11 @@
 <?php
     session_start();
-    require 'includes/header.php';
+    
     include 'includes/config.php';
+    require 'includes/header.php';
+    if(!isset($_SESSION['admin_login'])){
+        header("location:index.php");
+    }
 ?>
     <div class="continer">
         <h2 class="alert alert-primary text-center mt-3">PRODUK</h2>

@@ -4,7 +4,7 @@
   session_start();
   $usr_id = $_SESSION['id_user'];
 
-  $data = mysqli_query($con, "select * from user where USER_IDN='$usr_id'");
+  $data = mysqli_query($con, "select * from user where USER_ID='$usr_id'");
   while($user_data = mysqli_fetch_array($data)){
     $nama_user = $user_data['USER_NAMA_LENGKAP'];
     $email_user = $user_data['USER_EMAIL'];
