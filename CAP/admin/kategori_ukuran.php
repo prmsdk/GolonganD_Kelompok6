@@ -35,8 +35,8 @@
                 </thead>
                 <tbody>
                 <?php $i =0;
-                while($data_kategori_ukuran = mysqli_fect_assoc($result)){
-                $id_kategori_ukuran = $data_kategori_ukuran['ID_KATEGORI'];
+                while($data_kategori_ukuran = mysqli_fetch_assoc($result)){
+                $id_kategori_ukuran = $data_kategori_ukuran['ID_KAT_UKURAN'];
                 $nama_kategori_ukuran =$data_kategori_ukuran['NAMA_KAT_UKURAN'];
                 $i+=1;
                 ?>
@@ -45,12 +45,15 @@
                     <td><p><?=$nama_kategori_ukuran?></p></td>
                     <td style="width:100px">
                         <div class="block">
-                            <a href="query/master_kategori_ukuran.php?action=delete&id_kategori_ukuran=<?=id_kategori_ukuran?>" class="btn btn-danger btn-circle btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data?');">
-                                <i class="fas fas-trash"></i>
-                             </a>
+                            <a href="query/master_kategori_ukuran_query.php?action=delete&id_kategori_ukuran=<?=$id_kategori_ukuran?>" class="btn btn-danger btn-circle btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data?');">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                            <a href="kategori_ukuran_ubah.php?id_kategori_ukuran=<?=$id_kategori_ukuran?>" class="btn btn-primary btn-circle btn-sm">
+                              <i class="fas fa-pencil-alt"></i>
+                            </a>
                             </td>
                           </tr> 
-                         <?php } ?>
+                        <?php } ?>
                         </tbody>
                       </table>
                     </div>
@@ -71,19 +74,19 @@
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header bg-biru-tua">
-                    <h5 class="modal-title text-light font-m-bold ml-3" id="editLabel">Tambah Data Admin</h5>
+                    <h5 class="modal-title text-light font-m-bold ml-3" id="editLabel">Tambah Data Kategori Ukuran</h5>
                     <button type="button" class="close btn bg-biru-tua" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body row justify-content-center">
+                <div class="modal-body justify-content-center">
                   <form action="query/master_kategori_ukuran_query.php" method="POST">
                     <div class="form-group">
                       <label>Nama Kategori</label>
-                      <input type="text" name="nama_kategori" class="form-control" placeholder="Masukkan Nama Kategori" required>
+                      <input type="text" name="nama_kategori_ukuran" class="form-control" placeholder="Masukkan Nama Kategori Ukuran" required>
                     </div>
                 <div class="modal-footer text-center">
-                    <input type="submit" class="btn btn-primary" name="tambah_kategori_ukuran" value="Upload">
+                    <input type="submit" class="btn btn-primary" name="tambah_kategori_ukuran" value="Simpan">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
               </form>

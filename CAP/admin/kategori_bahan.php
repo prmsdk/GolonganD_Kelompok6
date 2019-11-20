@@ -6,7 +6,6 @@
     include 'includes/header.php';
 
     if(!isset($_SESSION['admin_login'])){
-        header_remove();
         header("location:index.php");
     }
 
@@ -35,8 +34,8 @@
                 </thead>
                 <tbody>
                 <?php $i =0;
-                while($data_kategori_bahan = mysqli_fect_assoc($result)){
-                $id_kategori_bahan = $data_kategori_bahan['ID_KATEGORI'];
+                while($data_kategori_bahan = mysqli_fetch_assoc($result)){
+                $id_kategori_bahan = $data_kategori_bahan['ID_KAT_BAHAN'];
                 $nama_kategori_bahan =$data_kategori_bahan['NAMA_KAT_BAHAN'];
                 $i+=1;
                 ?>
@@ -45,12 +44,15 @@
                     <td><p><?=$nama_kategori_bahan?></p></td>
                     <td style="width:100px">
                         <div class="block">
-                            <a href="query/master_kategori_bahan.php?action=delete&id_kategori_bahan=<?=id_kategori_bahan?>" class="btn btn-danger btn-circle btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data?');">
-                                <i class="fas fas-trash"></i>
-                             </a>
+                            <a href="query/master_kategori_bahan_query.php?action=delete&id_kategori_bahan=<?=$id_kategori_bahan?>" class="btn btn-danger btn-circle btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data?');">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                            <a href="kategori_bahan_ubah.php?id_kategori_bahan=<?=$id_kategori_bahan?>" class="btn btn-primary btn-circle btn-sm">
+                              <i class="fas fa-pencil-alt"></i>
+                            </a>
                             </td>
                           </tr> 
-                         <?php } ?>
+                        <?php } ?>
                         </tbody>
                       </table>
                     </div>
@@ -65,30 +67,32 @@
 
 <!-- Modal Tambah -->
 <div class="login-bg">
-    <div class="row">
-      <div class="col-5">
-        <div class="modal fade" id="tambah_kategori_bahan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header bg-biru-tua">
-                    <h5 class="modal-title text-light font-m-bold ml-3" id="editLabel">Tambah Data Admin</h5>
-                    <button type="button" class="close btn bg-biru-tua" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
+  <div class="row">
+    <div class="col-5">
+      <div class="modal fade" id="tambah_kategori_bahan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header bg-biru-tua">
+                <h5 class="modal-title text-light font-m-bold ml-3" id="editLabel">Tambah Data Kategori Bahan</h5>
+                <button type="button" class="close btn bg-biru-tua" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body justify-content-center">
+              <form action="query/master_kategori_bahan_query.php" method="POST">
+                <div class="form-group">
+                  <label>Nama Kategori Bahan</label>
+                  <input type="text" name="nama_kategori_bahan" class="form-control" placeholder="Masukkan Nama Kategori Bahan" required>
                 </div>
-                <div class="modal-body row justify-content-center">
-                  <form action="query/master_kategori_bahan_query.php" method="POST">
-                    <div class="form-group">
-                      <label>Nama Kategori</label>
-                      <input type="text" name="nama_kategori" class="form-control" placeholder="Masukkan Nama Kategori" required>
-                    </div>
                 <div class="modal-footer text-center">
-                    <input type="submit" class="btn btn-primary" name="tambah_kategori_bahan" value="Upload">
+                    <input type="submit" class="btn btn-primary" name="tambah_kategori_bahan" value="Simpan">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
               </form>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
     </div>
   </div>
 </div>

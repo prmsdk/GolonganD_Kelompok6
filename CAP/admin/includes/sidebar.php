@@ -78,15 +78,15 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Form Master:</h6>
-            <a class="collapse-item" href="insert_produk.php">Produk</a>
-            <a class="collapse-item" href="#">Bahan</a>
-            <a class="collapse-item" href="#">Ukuran</a>
-            <a class="collapse-item" href="#">Warna</a>
+            <a class="collapse-item" href="master_produk.php">Produk</a>
+            <a class="collapse-item" href="master_bahan.php">Bahan</a>
+            <a class="collapse-item" href="master_ukuran.php">Ukuran</a>
+            <a class="collapse-item" href="master_warna.php">Warna</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Form Kategori:</h6>
-            <a class="collapse-item" href="#">Kategori Produk</a>
-            <a class="collapse-item" href="#">Kategori Bahan</a>
-            <a class="collapse-item" href="#">Kategori Ukuran</a>
+            <a class="collapse-item" href="kategori_produk.php">Kategori Produk</a>
+            <a class="collapse-item" href="kategori_bahan.php">Kategori Bahan</a>
+            <a class="collapse-item" href="kategori_ukuran.php">Kategori Ukuran</a>
             <?php 
             if(isset($_SESSION['admin_status'])){
               if($_SESSION['admin_status']==1){?>

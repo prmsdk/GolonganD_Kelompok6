@@ -11,7 +11,7 @@ if(!isset($_SESSION['admin_login'])){
 if(isset($_GET['id_kategori_ukuran'])){
   $id_kategori_ukuran = $_GET['id_kategori_ukuran'];
 
-  $data = mysqli_query($con, "SELECT * FROM kategori_ukuran WHERE ID_KATEGORI='$id_kategori_ukuran'");
+  $data = mysqli_query($con, "SELECT * FROM kategori_ukuran WHERE ID_KAT_UKURAN='$id_kategori_ukuran'");
   $data_kategori_ukuran = mysqli_fetch_assoc($data);
   $nama_kategori_ukuran = $data_kategori_ukuran['NAMA_KAT_UKURAN'];
 
@@ -21,7 +21,7 @@ if(isset($_GET['id_kategori_ukuran'])){
 
 <div class="container my-4">
     <div class="title text-center">
-    <h2>Ubah Data Admin</h2>
+    <h2>Ubah Data Kategori Ukuran</h2>
     </div>
     <div class="row justify-content-center">
     <div class="col-6">

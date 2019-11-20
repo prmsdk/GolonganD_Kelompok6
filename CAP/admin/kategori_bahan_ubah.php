@@ -11,7 +11,7 @@ if(!isset($_SESSION['admin_login'])){
 if(isset($_GET['id_kategori_bahan'])){
   $id_kategori_bahan = $_GET['id_kategori_bahan'];
 
-  $data = mysqli_query($con, "SELECT * FROM kategori_bahan WHERE ID_KATEGORI='$id_kategori_bahan'");
+  $data = mysqli_query($con, "SELECT * FROM kategori_bahan WHERE ID_KAT_BAHAN='$id_kategori_bahan'");
   $data_kategori_bahan = mysqli_fetch_assoc($data);
   $nama_kategori_bahan = $data_kategori_bahan['NAMA_KAT_BAHAN'];
 
@@ -21,7 +21,7 @@ if(isset($_GET['id_kategori_bahan'])){
 
 <div class="container my-4">
     <div class="title text-center">
-    <h2>Ubah Data Admin</h2>
+    <h2>Ubah Data Kategori Bahan</h2>
     </div>
     <div class="row justify-content-center">
     <div class="col-6">

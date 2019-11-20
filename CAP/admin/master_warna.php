@@ -13,7 +13,7 @@
     }
 
     //SELECT WARNA
-    $result = mysqli_query($con, "SELECT * FROM user");
+    $result = mysqli_query($con, "SELECT * FROM warna");
 ?>
 
 <!-- Begin Page Content -->
@@ -22,38 +22,42 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-2">
-    <h3 class="mt-2 font-weight-bold float-left text-primary">Warna</h3>
-    <button class="mt-2 btn btn-primary float-right ml-auto" data-toggle="modal" data-target="#tambah_user">Tambah Data</button>
+    <h3 class="mt-2 font-weight-bold float-left text-primary">Daftar Tabel Warna</h3>
+    <button class="mt-2 btn btn-primary float-right ml-auto" data-toggle="modal" data-target="#tambah_warna">Tambah Data</button>
   </div>
   <div class="card-body">
     <div class="table-responsive">
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
-          <tr>
+        <tr>
+            <th>No.</th>
             <th>Jenis Warna</th>
-            <th width="100px">Aksi</th>
+            <th>Deskripsi Warna</th>
+            <th>Harga Warna</th>
+            <th>Aksi</th>
           </tr>
         </thead>
         <tbody>
           <?php $i = 0;
             while($data_warna = mysqli_fetch_assoc($result)){
-            $id_warna = $data_warna['warna_ID'];
+            $id_warna = $data_warna['ID_WARNA'];
+            $jenis_warna = $data_warna['JENIS_WARNA']; 
+            $desc_warna = $data_warna['WARNA_DESC'];
+            $harga_warna = $data_warna['HARGA_WARNA'];
             $i+=1;
           ?>
           <tr>
-            <td class="text-center"><?=$i?></td>
-            <td ><p style="width: 200px;"><?=$jenis_warna?></p></td>
-              echo '<span class="badge badge-pill badge-danger px-3">Tidak Aktif</span>';
-            }else{
-              echo '<span class="badge badge-pill badge-success px-3">Aktif</span>';
-            }?></td>
-            <td>
-              <div class="block" style="width:65px;">
-                <a href="master_warna_ubah.php?id_warna=<?=$id_warna?>" class="btn btn-primary btn-circle btn-sm">
-                  <i class="fas fa-pencil-alt"></i>
-                </a>
+            <td class="text-center" style="width:50px"><?=$i?></td>
+            <td style="width:200px;"><?=$jenis_warna?></td>
+            <td class="text-justify"><?=$desc_warna?></td>
+            <td style="width:110px;">Rp. <?=$harga_warna?>,00</td>
+            <td style="width:67px;">
+              <div class="block ml-auto">
                 <a href="query/master_warna_query.php?action=delete&id_warna=<?=$id_warna?>" class="btn btn-danger btn-circle btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data?');">
                   <i class="fas fa-trash"></i>
+                </a>
+                <a href="master_warna_ubah.php?id_warna=<?=$id_warna?>" class="btn btn-primary btn-circle btn-sm">
+                  <i class="fas fa-pencil-alt"></i>
                 </a>
               </div>
             </td>
@@ -75,7 +79,7 @@
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header bg-biru-tua">
-                    <h5 class="modal-title text-light font-m-bold ml-3" id="editLabel">Tambah Data warna</h5>
+                    <h5 class="modal-title text-light font-m-bold ml-3" id="editLabel">Tambah Data Warna</h5>
                     <button type="button" class="close btn bg-biru-tua" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -83,36 +87,16 @@
                 <div class="modal-body row justify-content-center">
                   <form class="font-m-light col-11 mt-3" action="query/master_warna_query.php" method="post">
                     <div class="form-group">
-                      <label for="nama_warna" class="font-m-med">Nama</label>
-                      <input type="text" class="form-control" id="nama_warna" name="nama_warna" aria-describedby="warnanameHelp" placeholder="Masukkan Nama" required>
-                    </div>
-                    
-                    <div class="form-group">
-                      <label for="warnaname_warna" class="font-m-semi">warnaname</label>
-                      <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text">@</div>
-                        </div>
-                        <input type="text" class="form-control" id="warnaname_warna" name="warnaname_warna" placeholder="Isikan warnaname" required>
-                      </div>
+                      <label for="jenis_warna" class="font-m-med">Jenis Warna</label>
+                      <input type="text" class="form-control" id="jenis_warna" name="jenis_warna" aria-describedby="usernameHelp" placeholder="Masukkan Jenis warna" required>
                     </div>
                     <div class="form-group">
-                      <label for="password_warna" class="font-m-med">Password</label>
-                      <input type="password" class="form-control" id="password_warna" name="password_warna" aria-describedby="warnanameHelp" placeholder="Masukkan warnaname" required>
+                      <label for="harga_warna" class="font-m-med">Deskripsi Warna</label>
+                      <textarea name="desc_warna" id="desc_warna" class="form-control" placeholder="Masukkan Deskripsi Warna . ." required></textarea>
                     </div>
                     <div class="form-group">
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" id="status_radio1" name="status_warna" value="1">
-                        <label class="form-check-label" for="status_radio1">
-                          Aktif
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" id="status_radio2" name="status_warna" value="0">
-                        <label class="form-check-label" for="status_radio2">
-                          Tidak Aktif
-                        </label>
-                      </div>
+                      <label for="harga_warna" class="font-m-med">Harga Warna</label>
+                      <input type="text" class="form-control" id="harga_warna" name="harga_warna" aria-describedby="usernameHelp" placeholder="Masukkan Harga Warna" required>
                     </div>
                   </div>
                 <div class="modal-footer text-center">
