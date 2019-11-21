@@ -2,25 +2,40 @@
 <?php
 require 'includes/config.php';
 require 'includes/header.php';
+
+if (isset($_GET['id_user'])){
+  $id_user = $_GET['id_user'];
+  $query = mysqli_query ($con, "SELECT * FROM user  WHERE USER_ID = '$id_user'");
+  // var_dump($query);
+  $result = mysqli_fetch_assoc($query);
+  $nama_user = $result['USER_NAMA_LENGKAP'];
+  $email_user = $result['USER_EMAIL'];
+  $no_hp = $result['USER_NO_HP'];
+  $alamat = $result['USER_ALAMAT'];
+  $profil = $result['USER_PROFIL'];
+  $cover = $result['USER_COVER'];
+  $username = $result['USER_NAMA'];
+  $active = $result["USER_ACTIVE"];
+}
 ?>
 
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>CSS</title>
 </head>
 
 <body>
-<div class="container container-fluid-md">
+<div class="container container-fluid-md pb-4">
 <!-- Cover -->
       <div class="cover">
-          <form action="update_cover.php" method="POST" enctype="multipart/form-data">
-              <img src="betak.jpg" alt="background">
+          <form action="update_cover_user.php" method="POST" enctype="multipart/form-data">
+              <img src="file_upload/<?=$cover?>" alt="background">
               <div class="btn-absolute">   
                   <a class="btn btn-primary px-2" data-toggle="modal" data-target="#Modal-Cover" role="button"><i class="fa fa-edit"></i></a>   
               </div> 
@@ -29,45 +44,48 @@ require 'includes/header.php';
 
       <!-- Foto -->
       <div class="foto position-relative ">
-          <form action="update_fotoprofil.php" method="POST" enctype="multipart/form-data">
-              <img src="foto.jpg" class="img-fluid" alt="foto">
+          <form action="update_fotoprofil_user.php" method="POST" enctype="multipart/form-data">
+              <img src="file_upload/<?=$profil?>" class="img-fluid" alt="foto">
               <div class="btn-foto">   
                   <a class="btn btn-primary px-2" data-toggle="modal" data-target="#Modal-foto-profil" role="button"><i class="fa fa-edit"></i></a>   
               </div> 
           </form>
       </div>
-      <form>
-        <a href="select_profil2.php"><button type="button" class="btn btn-primary m-2">Edit Profil</button></a>
+
+      <!-- Form untuk Edit -->
+      <form action="update_profil.php" method="post"> 
         <div class="form-row">
+          <input type="hidden" name="id_user" id="id_user" value="<?=$id_user?>">
             <div class="form-group col-md-6">
               <label for="inputName">Nama Lengkap</label>
-              <input type="text" class="form-control" id="inputName" placeholder="Nama Lengkap">
+              <input type="text" name="nama_user" class="form-control" id="inputName" placeholder="Nama Lengkap" value="<?= $nama_user?>">
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
               <label for="inputEmail4">Email</label>
-              <input type="email" class="form-control" id="inputEmail4" placeholder="xxxx@email.com">
+              <input type="email" name="email_user" class="form-control" id="inputEmail4" placeholder="xxxx@email.com" value="<?= $email_user?>">
             </div>
         </div>
         <div class="form-group">
             <label for="inputAddress">Nomor HP</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="+68 ">
-        </div>
-         <div class="form-group">
-            <label for="inputAddress">Nomor Telepon</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="+68 ">
+            <input type="text" name="no_hp" class="form-control" id="inputAddress" placeholder="+68" value="<?= $no_hp?>">
         </div>
         <div class="form-group">
             <label for="inputAddress2">Alamat</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+            <input type="text" name="alamat" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" value="<?= $alamat?>">
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputCity">Username</label>
-              <input type="text" class="form-control" id="inputCity">
+              <input type="text" name="username" class="form-control" id="inputCity" value="<?= $username?>">
             </div>
-        </div>  
-        <input type="submit" value="Save" class="btn btn-primary m-2">
-    </form>
+        </div> 
+        <div class="form-group">
+          <span class="badge badge-<?php if($active == 1 ){echo "success";}else{echo "danger";}?> p-2"><?php if($active == 1 ){echo "Active";}else{echo "Not Active";}?></span>
+        </div>
+        <div class="text-right">
+        <input type="submit" value="Simpan" name="edit_profil_user" class="btn btn-primary w-25">
+        </div>
+      </form>
 </div>
 
 
@@ -89,14 +107,15 @@ require 'includes/footer.php';
         </div>
 
         <div class="modal-body">
-        <img src="http://placehold.it/200x200" class="rounded mx-auto d-block m-3">
+        <img src="file_upload/<?=$profil?>" width="200" class="rounded mx-auto d-block m-3">
         <p>Format file .jpg/.png/.jpeg</p> <p>Ukuran Maksimum 3mb</p>
         
-          <form action="update_fotoprofil.php" method="POST" enctype="multipart/form-data">
+          <form action="update_fotoprofil_user.php" method="POST" enctype="multipart/form-data">
               <div class="input-group mb-3">
-                  <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="inputGroupFile02" name="file">
-                  <label class="custom-file-label" for="inputGroupFile02"  aria-describedby="inputGroupFileAddon02" >Choose file</label>
+                  <input type="hidden" name="id_user" value="<?=$id_user?>">
+                  <div >
+                  <input type="file" id="inputGroupFile02" name="file">
+                  <label for="inputGroupFile02"  aria-describedby="inputGroupFileAddon02" ></label>
                   <!-- <div class="modal-footer"> -->
                   </div>
               </div>
@@ -123,25 +142,25 @@ require 'includes/footer.php';
         </div>
 
         <div class="modal-body">
-        <img src="http://placehold.it/370x117" class="rounded mx-auto d-block m-3">
+        <img src="file_upload/<?=$cover?>" width="480" height="400" class="rounded mx-auto d-block m-3">
         <p>Format file .jpg/.png/.jpeg</p> <p>Ukuran Maksimum 3mb</p>
         
-          <form action="update_cover.php" method="POST" enctype="multipart/form-data">
+          <form action="update_cover_user.php" method="POST" enctype="multipart/form-data">
               <div class="input-group mb-3">
+              <input type="hidden" name="id_user" value="<?=$id_user?>">
                   <div class="custom-file">
                   <input type="file" class="custom-file-input" id="inputGroupFile02" name="file">
                   <label class="custom-file-label" for="inputGroupFile02"  aria-describedby="inputGroupFileAddon02" >Choose file</label>
-                  <!-- <div class="modal-footer"> -->
-                  </div>
+                  <!-- <div class="modal-footer">
+                  </div> -->
               </div>
               <br>
               <div class="modal-footer">
                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
                <input type="submit"  class="btn btn-primary" name="post_cover" value="Upload">
-               </div>
+              </div>
           </form>    
-        </div>  
-        
+        </div>          
     </div>
   </div>
 </div>
