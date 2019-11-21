@@ -18,3 +18,42 @@ $(document).ready(function(){
   });
 });
 
+// MENAMPILAKN UPLOAD GAMBAR SAAT DI PILIH
+
+$(document).ready(function() {
+  // Kondisi saat Form di-load
+  if($('input[id="pilihdesain1"]:radio:checked').val()=="Y"){
+      $('#uploadfile').removeAttr('disabled');
+  } else {
+      $('#uploadfile').attr('disabled','disabled'); 
+  }
+  // Kondisi saat Radio Button diklik
+  // $('input[type="radio"]').click(function(){
+  $('input[id="pilihdesain1"]:radio').click(function(){
+      if($(this).attr("value")=="N"){
+          $('#uploadfile').attr('disabled','disabled'); 
+      } else {
+          $('#uploadfile').removeAttr('disabled');
+          $('#uploadfile').focus();
+      } 
+  });
+}); 
+
+$(document).ready(function() {
+  // Kondisi saat Form di-load
+  if($('input[id="pilihdesain2"]:radio:checked').val()=="Y"){
+      $('#uploadfile').attr('disabled','disabled'); 
+  } else {
+      $('#uploadfile').attr('disabled','disabled'); 
+  }
+  // Kondisi saat Radio Button diklik
+  // $('input[type="radio"]').click(function(){
+  $('input[id="pilihdesain2"]:radio').click(function(){
+      if($(this).attr("value")=="N"){
+          $('#uploadfile').attr('disabled','disabled'); 
+      } else {
+          $('#uploadfile').attr('disabled','disabled');
+          $('#uploadfile').focus();
+      } 
+  });
+}); 
