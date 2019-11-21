@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="src/css/owl.carousel.css">
         <link rel="stylesheet" href="src/css/animate.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-
+    <link rel="icon" type="image/png" href="src/img/icons/cap.png">
     <title>Cahaya Abadi Perkasa</title>
 </head>
 <body>
@@ -32,10 +32,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
-          <a class="nav-item nav-link nav-custom" href="#produkbtn">PRODUK <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link nav-custom" href="#carakerjabtn">CARA KERJA</a>
-          <a class="nav-item nav-link nav-custom" href="#portfoliobtn">PORTOFOLIO</a>
-          <a class="nav-item nav-link nav-custom" href="#contuctusbtn">CONTACT US</a>
+          <a class="nav-item nav-link nav-custom" href="index.php#produkbtn">PRODUK <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link nav-custom" href="index.php#carakerjabtn">CARA KERJA</a>
+          <a class="nav-item nav-link nav-custom" href="index.php#portfoliobtn">PORTOFOLIO</a>
+          <a class="nav-item nav-link nav-custom" href="index.php#contuctusbtn">CONTACT US</a>
           <?php
               session_start();
               error_reporting(0);

@@ -124,7 +124,7 @@ nav{
     overflow: hidden;
     background-image:url('img/bg.jpg');
     background-attachment: fixed;
-    background-size: 1700px;
+    background-size: cover;
     color: white;
     padding: 0;
     margin-top: 110px;
@@ -181,7 +181,7 @@ iframe{
 /* SECTION CONTACT*/
 
 #Contact{
-    display: inline-block;
+    /* display: inline-block; */
     overflow: hidden;
     padding: 20px;
     margin-top: 45px;
