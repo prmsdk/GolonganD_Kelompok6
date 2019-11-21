@@ -22,7 +22,7 @@
                     <div class="form-group">
                       <label for="password-user" class="font-m-med">Password</label>
                       <input type="password" class="form-control tampil-sandi" id="password-user" name="password-user" placeholder="Password" required>
-                      <small id="passwordHelp" class="form-text float-right"><a href="#">Lupa password?</a></small>
+                      <small id="passwordHelp" class="form-text float-right"><a href="forgot_password.php">Lupa password?</a></small>
                       <div class="form-group form-check float-left">
                         <input type="checkbox" class="form-check-input" id="tampil-sandi">
                         <label class="form-check-label" for="tampil-sandi"><small>Tampilkan Sandi</small></label>

@@ -19,5 +19,6 @@
   </div>
 </div>
 <?php
+  require 'login_user.php';
   require 'includes/footer.php';
 ?>

@@ -56,11 +56,11 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
-          <a class="nav-item nav-link nav-custom" href="#produkbtn">PRODUK <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link nav-custom" href="#carakerjabtn">CARA KERJA</a>
-          <a class="nav-item nav-link nav-custom" href="#portfoliobtn">PORTOFOLIO</a>
-          <a class="nav-item nav-link nav-custom" href="#testimonibtn">TESTIMONI</a>
-          <a class="nav-item nav-link nav-custom" href="#contuctusbtn">CONTACT US</a>
+          <a class="nav-item nav-link nav-custom" href="index.php#produkbtn">PRODUK <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link nav-custom" href="index.php#carakerjabtn">CARA KERJA</a>
+          <a class="nav-item nav-link nav-custom" href="index.php#portfoliobtn">PORTOFOLIO</a>
+          <a class="nav-item nav-link nav-custom" href="index.php#testimonibtn">TESTIMONI</a>
+          <a class="nav-item nav-link nav-custom" href="index.php#contuctusbtn">CONTACT US</a>
           <?php
               session_start();
               error_reporting(0);

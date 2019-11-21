@@ -210,11 +210,11 @@ html {
 }
 
 .bg-form-daftar{
-    border-top: 2px solid #F69322;
+    border-bottom: 2px solid #F69322;
 }
 
 .regis-success p{
-    line-height: 15px;
+    line-height: 18px;
 }
 
 .regis-success{
