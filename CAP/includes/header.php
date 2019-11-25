@@ -162,7 +162,7 @@
                   </div><?php
               }else if($_SESSION['status']!='login'){
                   // header("location:../index.php?=belum login");
-                  echo '<button type="button" class="btn rounded-0 nav-item nav-custom mr-auto" data-toggle="modal" data-target="#login_user" style="color: #25A8E0">
+                  echo '<button type="button" class="btn rounded-0 nav-item nav-custom mr-auto login" data-toggle="modal" data-target="#login_user" style="color: #25A8E0">
                   MASUK
                   </button>
                   <a class="nav-item nav-link nav-custom" style="color:#F69322;" href="register_user.php">DAFTAR</a>';
