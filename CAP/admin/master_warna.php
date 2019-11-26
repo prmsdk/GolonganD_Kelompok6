@@ -1,14 +1,10 @@
 <?php
     session_start();
-    if($_SESSION['admin_status']==2){
-        header("location:index.php");
-    }
 
     $_SESSION['active_link']= 'master';
     include 'includes/config.php';
     include 'includes/header.php';
     if(!isset($_SESSION['admin_login'])){
-        header_remove();
         header("location:index.php");
     }
 

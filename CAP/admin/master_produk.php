@@ -9,7 +9,8 @@
   }
 
   //SELECT PRODUK
-  $result = mysqli_query($con, "SELECT * FROM produk, kategori_produk WHERE produk.ID_KATEGORI = kategori_produk.ID_KATEGORI");
+  $result = mysqli_query($con, "SELECT * FROM tampil_produk, kategori_produk 
+  WHERE tampil_produk.ID_KATEGORI = kategori_produk.ID_KATEGORI");
 ?>
 
 <!-- Begin Page Content -->
@@ -19,7 +20,7 @@
 <div class="card shadow mb-4">
   <div class="card-header py-2">
     <h3 class="mt-2 font-weight-bold float-left text-primary">Tabel Daftar Produk</h3>
-    <button class="mt-2 btn btn-primary float-right ml-auto" data-toggle="modal" data-target="#tambah_produk">Tambah Data</button>
+    <a class="mt-2 btn btn-primary float-right ml-auto" href="master_produk_tambah.php">Tambah Data</a>
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -38,10 +39,11 @@
         <tbody>
           <?php $i = 0;
             while($data_produk = mysqli_fetch_assoc($result)){
-            $id_produk = $data_produk['ID_PRODUK'];
-            $nama_produk = $data_produk['NAMA_PRODUK']; 
-            $desc_produk = $data_produk['DESC_PRODUK'];
-            $ket_produk = $data_produk['KET_HARGA'];
+            $id_produk = $data_produk['ID_TAMPIL_PRODUK'];
+            $nama_produk = $data_produk['NAMA_TAMPIL_PRODUK']; 
+            $desc_produk = $data_produk['DESC_TAMPIL_PRODUK'];
+            $ket_produk = $data_produk['KET_TAMPIL_PRODUK'];
+            $status_produk = $data_produk['STATUS_TAMPIL_PRODUK'];
             $kategori_produk = $data_produk['NAMA_KAT_PRODUK'];
             $i+=1;
           ?>
@@ -55,6 +57,15 @@
               <a href="master_produk_detail.php?id_produk=<?=$id_produk?>" class="btn btn-success btn-circle btn-sm">
                 <i class="fas fa-info-circle"></i>
               </a>
+              <?php if($status_produk == 1){ echo
+              '<span href="" class="btn btn-success btn-circle btn-sm">
+                <i class="fas fa-check"></i>
+              </span>';
+              }else if($status_produk == 0){ echo
+                '<span href="" class="btn btn-danger btn-circle btn-sm">
+                  <i class="fas fa-times"></i>
+                </span>';
+              } ?>
             </td>
             <td style="width:67px;">
               <div class="block ml-auto">

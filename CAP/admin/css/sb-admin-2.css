@@ -11033,3 +11033,11 @@ body.sidebar-toggled footer.sticky-footer {
   background-color: #da7c11;
   color: white;
 }
+
+.box_bahan{
+  display: none;
+}
+
+.box_ukuran{
+  display: none;
+}

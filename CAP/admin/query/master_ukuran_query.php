@@ -6,7 +6,7 @@ if(isset($_GET['id_ukuran'])){
   if(isset($_GET['action'])){
     if($_GET['action']=='delete'){
       $result = mysqli_query($con, "DELETE FROM ukuran WHERE ID_UKURAN='$id_ukuran'");
-      header("location:../ukuran.php");
+      header("location:../master_ukuran.php");
     }
   }
 }
