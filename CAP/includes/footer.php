@@ -31,6 +31,8 @@
   </footer>
 
   </div>
+  
+  <?php require 'login_user.php';?>
 
   <?php require 'login_user.php';?>
 
