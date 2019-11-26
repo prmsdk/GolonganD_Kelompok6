@@ -16,6 +16,30 @@ $(document).ready(function(){
       $('.tampil-sandi').attr('type','password');
     }
   });
+
+  $("#select_bahan").change(function(){
+    $(this).find("option:selected").each(function(){
+        var optionValue = $(this).attr("value");
+        if(optionValue){
+            $(".box_bahan").not("#" + optionValue).hide();
+            $("#" + optionValue).show();
+        } else{
+            $(".box_bahan").hide();
+        }
+    });
+  }).change();
+
+  $("#select_ukuran").change(function(){
+    $(this).find("option:selected").each(function(){
+        var optionValue = $(this).attr("value");
+        if(optionValue){
+            $(".box_ukuran").not("#" + optionValue).hide();
+            $("#" + optionValue).show();
+        } else{
+            $(".box_ukuran").hide();
+        }
+    });
+  }).change();
 });
 
 // MENAMPILAKN UPLOAD GAMBAR SAAT DI PILIH

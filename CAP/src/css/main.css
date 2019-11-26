@@ -263,3 +263,7 @@ html {
     background-color: #da7c11;
     color: white;
 }
+
+.box{
+    display: none;
+}
