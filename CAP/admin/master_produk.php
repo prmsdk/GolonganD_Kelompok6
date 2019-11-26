@@ -53,7 +53,7 @@
             <td class="text-justify"><?=$desc_produk?></td>
             <td><?=$ket_produk?></td>
             <td><?=$kategori_produk?></td>
-            <td class="text-center">
+            <td style="width: 67px;" class="text-center">
               <a href="master_produk_detail.php?id_produk=<?=$id_produk?>" class="btn btn-success btn-circle btn-sm">
                 <i class="fas fa-info-circle"></i>
               </a>

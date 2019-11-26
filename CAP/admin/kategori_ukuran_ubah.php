@@ -39,3 +39,6 @@ if(isset($_GET['id_kategori_ukuran'])){
       </form>
     </div>
     </div>
+<?php
+  require 'includes/footer.php';
+?>

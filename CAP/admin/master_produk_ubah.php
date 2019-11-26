@@ -33,25 +33,26 @@ if(isset($_GET['id_produk'])){
     <div class="col-lg-8">
       <div class="card shadow mb-4">
         <div class="card-header py-2 text-center">
-          <h3 class="mt-2 font-weight-bold text-primary">Tambah Produk</h3>
+          <h3 class="mt-2 font-weight-bold text-primary">Ubah Data Produk</h3>
         </div>
 
 <!-- INI SELECT TAMPIL PRODUK PRODUK PRODUK -->
 
         <div class="card-body">
           <form action="query/master_produk_query.php" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="id_produk" id="id_produk" value="<?=$id_produk?>">
           <div class="form-group">
             <label for="nama_produk" class="font-m-med">Nama produk</label>
-            <input type="text" class="form-control" id="nama_produk" name="nama_produk" aria-describedby="usernameHelp" placeholder="Masukkan Nama produk" required>
+            <input type="text" class="form-control" id="nama_produk" name="nama_produk" aria-describedby="usernameHelp" placeholder="Masukkan Nama produk" value="<?=$nama_produk?>" required>
           </div>
           <div class="form-group">
             <label for="desc_produk" class="font-m-med">Deskripsi produk</label>
-            <textarea name="desc_produk" id="desc_produk" class="form-control" placeholder="Masukkan Deskripsi Produk . ." required></textarea>
+            <textarea name="desc_produk" id="desc_produk" class="form-control" placeholder="Masukkan Deskripsi Produk . ." required><?=$desc_produk?></textarea>
           </div>
           <div class="form-group text-center">
             <div><label for="ket_produk" class="font-m-med">Keterangan Harga</label></div>
-            <div class="mt-2 mb-3 overflow-auto"><?php include "ket_produk/$ket_produk";?></div>
-            <input type="file" id="ket_produk" name="ket_produk" required>
+            <div class="mt-2 mb-3 overflow-auto"><?php include "../src/file/$ket_produk";?></div>
+            <input accept=".htm" type="file" id="ket_produk" name="ket_produk">
           </div>
           <div class="form-group">
             <label for="kategori_produk">Kategori Produk</label>
@@ -248,14 +249,17 @@ if(isset($_GET['id_produk'])){
               $id_gambar = $select_produk['GBR_ID'];
               $gambar_produk = $select_produk['GBR_FILE_NAME'];
             ?>
-                <div class="col-md-4">
-                  <img class="img-fluid my-2" src="../src/img/produk/<?=$gambar_produk?>" alt="gambar_<?=$id_gambar?>" srcset="">
-                </div>
+            <div class="col-md-4">
+              <img class="img-fluid my-2" src="../pictures/produk_thumb/<?=$gambar_produk?>" alt="gambar_<?=$id_gambar?>" srcset="">
+            </div>
             <?php }?>
             </div>
-            <div class="my-2"><input type="file" id="gambar_produk_1" name="gambar_produk[]"></div>
-            <div class="my-2"><input type="file" id="gambar_produk_2" name="gambar_produk[]"></div>
-            <div class="my-2"><input type="file" id="gambar_produk_3" name="gambar_produk[]"></div>
+            <div class=" mb-4 mt-2">
+            <a href="master_produk_gambar.php" class="btn btn-primary">Ubah Gambar Produk</a>
+            </div>
+            <!-- <div class="my-2"><input accept=".jpg,.png,.jpeg" type="file" id="gambar_produk_1" name="gambar_produk[]"></div>
+            <div class="my-2"><input accept=".jpg,.png,.jpeg" type="file" id="gambar_produk_2" name="gambar_produk[]"></div>
+            <div class="my-2"><input accept=".jpg,.png,.jpeg" type="file" id="gambar_produk_3" name="gambar_produk[]"></div> -->
           </div>
           <div class="form-group">
             <div class="form-check">
@@ -272,7 +276,8 @@ if(isset($_GET['id_produk'])){
             </div>
           </div>
           <div class="form-group text-center">
-            <input type="submit" name="tambah_produk" class="btn btn-primary w-25" value="SIMPAN">
+            <a href="master_produk.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i></a>
+            <input type="submit" name="edit_produk" class="btn btn-primary w-25" value="UBAH DATA">
           </div>
           </form>
           </div>

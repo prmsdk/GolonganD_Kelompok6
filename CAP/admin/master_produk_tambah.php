@@ -199,8 +199,8 @@ if(!isset($_SESSION['admin_login'])){
             </div>
           </div>
           <div class="form-group text-center">
-            <input type="submit" name="tambah_produk" class="btn btn-primary w-25" value="SIMPAN">
-            <a class="btn btn-secondary" href="master_produk.php">Close</a>
+            <a href="master_produk.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i></a>
+            <input type="submit" name="tambah_produk" class="btn btn-primary w-25" value="TAMBAH DATA">
           </div>
           </form>
           </div>

@@ -14,7 +14,7 @@ if($_POST['edit_profil_user']){
     USER_EMAIL = '$email_user', 
     USER_NO_HP = '$no_hp', 
     USER_ALAMAT = '$alamat',
-    USER_NAMA = '$username' where USER_ID = '$id_user'");
+    USER_USERNAME = '$username' where USER_ID = '$id_user'");
 
     if($query){
         header("location:user_profil.php?id_user=$id_user");

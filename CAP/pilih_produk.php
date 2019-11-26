@@ -27,7 +27,7 @@
                         $data_gambar = mysqli_fetch_assoc($result_gambar);
                         $gambar_produk = $data_gambar['GBR_FILE_NAME'];
                         ?>
-                        <img src="src/img/produk/<?=$gambar_produk?>" class="card-img-top " alt="...">
+                        <img src="pictures/produk_thumb/<?=$gambar_produk?>" class="card-img-top " alt="...">
                         </a>
                         <div class="card-body text-center">
                             <h5 class="card-title font-m-semi"><?=$produk_nama;?></h5>

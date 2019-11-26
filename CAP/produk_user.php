@@ -28,7 +28,7 @@
         <?php
             $output = '';
             $count = 0;
-            $result = mysqli_query($con, "select * from gambar_produk where ID_TAMPIL_PRODUK = '$produk_id'");
+            $result = mysqli_query($con, "select * from gambar_produk where ID_TAMPIL_PRODUK = '$produk_id' LIMIT 3");
             while($data_gambar = mysqli_fetch_array($result))
             {
                 if($count == 0){
@@ -39,7 +39,7 @@
                 }
                 echo '
                 <div class="carousel-item '.$output.'">
-                <img src="src/img/produk/'.$data_gambar['GBR_FILE_NAME'].'" class="d-block w-100" alt="...">
+                <img src="pictures/produk_thumb/'.$data_gambar['GBR_FILE_NAME'].'" class="d-block w-100 img-fluid" alt="...">
                 </div>';  
                 $count+=1;
             }
@@ -70,7 +70,7 @@
                 $result = mysqli_query($con, "select * from gambar_produk where ID_TAMPIL_PRODUK = '$produk_id'");
                 while($data_gambar = mysqli_fetch_assoc($result)){
                     $gambar_produk = $data_gambar['GBR_FILE_NAME'];
-                    echo '<img src="src/img/produk/'.$gambar_produk.'" data-target="#carouselExampleIndicators" class="p-2 mb-5" data-slide-to="'.$i.'" style="width: 33%;" >';
+                    echo '<img src="pictures/produk_thumb/'.$gambar_produk.'" data-target="#carouselExampleIndicators" class="p-2 mb-5" data-slide-to="'.$i.'" style="width: 33%;" >';
                     $i+=1;
                 }
             }
