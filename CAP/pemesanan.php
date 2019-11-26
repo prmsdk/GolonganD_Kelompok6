@@ -2,16 +2,10 @@
     require 'includes/header.php';
     include 'includes/config.php';
 
-    if(isset($_GET['modal_user'])){?>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $(".login").click();
-            });
-        </script>
-    <?php
+    if(isset($_SESSION['id_user'])){
+        $id_user = $_SESSION['id_user'];
     }
 
-    $id_user = $_SESSION['id_user'];
     if(isset($_GET['produk_id'])){
         $produk_id = $_GET['produk_id'];
         $data = mysqli_query($con, "select * from tampil_produk where ID_TAMPIL_PRODUK = '$produk_id'");
@@ -22,14 +16,14 @@
 ?>
 
 <div class="container container-fluid-md">
-    <div class="row ">
-        <div class="col-lg pt-4">
-            <div class="card shadow p-4">
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-9 pt-4">
+            <div class="card shadow p-5">
             <form action="pemesanan_query.php" method="post" enctype="multipart/form-data">
             <input type="hidden" value="<?=$produk_id?>" name="id_produk">
             <input type="hidden" value="<?=$nama_produk?>" name="nama_produk">
             <input type="hidden" value="<?=$id_user?>" name="id_user">
-            <div class="border-bottom border-warning font-m-semi">
+            <div class="border-bottom text-center border-warning font-m-semi">
             <h2><?=$nama_produk?></h2>
             </div>
             <p class="pt-3 font-m-semi">Pilih Warna :</p>
@@ -42,7 +36,7 @@
                         $nama_warna = $data_warnad['JENIS_WARNA'];
                         $harga_warna = $data_warnad['HARGA_WARNA'];
                         echo '<div class="custom-control custom-radio custom-control-inline mb-3 pl-5">
-                        <input type="radio" aria-describedby="'.$harga_warna.'" id="pilihwarna'.$i.'" name="pilihwarna" value="'.$detail_warna.'" class="custom-control-input">
+                        <input type="radio" aria-describedby="'.$harga_warna.'" id="pilihwarna'.$i.'" name="pilihwarna" value="'.$detail_warna.'" class="custom-control-input" required>
                         <label class="custom-control-label" for="pilihwarna'.$i.'">'.$nama_warna.'</label>
                         <input type="hidden" id="">
                         </div>';
@@ -50,13 +44,37 @@
                 }   
             ?>
                 <div id="WRN000002" class="box_warna">
-                <input type="text" class=" form-control mb-4 w-50" placeholder="Warna yang diinginkan">           
+                    <select class="form-control w-50" id="warna_khusus">
+                        <option value="Cyan">Cyan</option>
+                        <option value="Magenta">Magenta</option>
+                        <option value="Yellow">Yellow</option>
+                        <option value="Black">Black</option>
+                        <option value="Redn">Red</option>
+                        <option value="Green">Green</option>
+                        <option value="Blue">Blue</option>
+                    </select>
                 </div>
                 <div id="WRN000004" class="box_warna">
-                <input type="text" class="form-control mb-4 w-50" placeholder="Warna yang diinginkan">           
+                    <select class="form-control w-50" id="warna_khusus">
+                        <option value="Cyan">Cyan</option>
+                        <option value="Magenta">Magenta</option>
+                        <option value="Yellow">Yellow</option>
+                        <option value="Black">Black</option>
+                        <option value="Redn">Red</option>
+                        <option value="Green">Green</option>
+                        <option value="Blue">Blue</option>
+                    </select>
                 </div>
                 <div id="WRN000005" class="box_warna">
-                <input type="text" class="form-control mb-4 w-50" placeholder="Warna yang diinginkan">           
+                    <select class="form-control w-50" id="warna_khusus">
+                        <option value="Cyan">Cyan</option>
+                        <option value="Magenta">Magenta</option>
+                        <option value="Yellow">Yellow</option>
+                        <option value="Black">Black</option>
+                        <option value="Redn">Red</option>
+                        <option value="Green">Green</option>
+                        <option value="Blue">Blue</option>
+                    </select>  
                 </div>
             </div>
             <p class="pt-3 font-m-semi">Pilih Bahan :</p>
@@ -70,7 +88,7 @@
                         $harga_bahan = $data_bahan['HARGA_BAHAN'];
                         $satuan_bahan = $data_bahan['JUMLAH_SATUAN'];
                         echo '<div class="custom-control custom-radio custom-control-inline mb-3 pl-5">
-                        <input type="radio" placeholder="'.$satuan_bahan.'" aria-describedby="'.$harga_bahan.'" id="pilihbahan'.$i.'" name="pilihbahan" value="'.$detail_bahan.'" class="custom-control-input">
+                        <input type="radio" placeholder="'.$satuan_bahan.'" aria-describedby="'.$harga_bahan.'" id="pilihbahan'.$i.'" name="pilihbahan" value="'.$detail_bahan.'" class="custom-control-input" required>
                         <label class="custom-control-label" for="pilihbahan'.$i.'">'.$nama_bahan.'</label>
                         </div>';
                         $i+=1;
@@ -87,7 +105,7 @@
                         $nama_ukuran = $data_ukuran['JENIS_UKURAN'];
                         $harga_ukuran = $data_ukuran['HARGA_UKURAN'];
                         echo '<div class="custom-control custom-radio custom-control-inline mb-3 pl-5">
-                        <input type="radio" aria-describedby="'.$harga_ukuran.'" id="pilihukuran'.$i.'" name="pilihukuran" value="'.$detail_ukuran.'" class="custom-control-input">
+                        <input type="radio" aria-describedby="'.$harga_ukuran.'" id="pilihukuran'.$i.'" name="pilihukuran" value="'.$detail_ukuran.'" class="custom-control-input" required>
                         <label class="custom-control-label" for="pilihukuran'.$i.'">'.$nama_ukuran.'</label>
                         </div>';
                         $i+=1;
@@ -98,35 +116,43 @@
             <p class="font-m-semi">Desain</p>
             <div id="pilihan_desain" class="pl-4 mb-3">
                 <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="pilihdesain1" name="pilihdesain" class="custom-control-input" value="0">
+                    <input type="radio" id="pilihdesain1" name="pilihdesain" class="custom-control-input" value="0" required>
                     <label class="custom-control-label" for="pilihdesain1">Upload Desain</label>
                 </div>
                 <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="pilihdesain2" name="pilihdesain" class="custom-control-input" value="1" checked>
+                    <input type="radio" id="pilihdesain2" name="pilihdesain" class="custom-control-input" value="1" checked required>
                     <label class="custom-control-label" for="pilihdesain2">Belum punya Desain</label>
                 </div>
             </div>
             <div class="custom-file ">
-                <input type="file" id="uploadfile" name="desain" readonly> 
+                <input type="file" id="uploadfile" name="desain" readonly required> 
                 <label for="uploadfile">Unggah file anda dalam format .zip (max ukuran file 30mb) Jika ukuran file anda melebihi batas silahkan kirim file melalui <a href="mailto:aldion819@gmail.com">email ini.</a></label>
             </div>
             <p class="font-m-semi mt-3">Jumlah</p>
-            <input id="jumlah_produk" type="number" class="form-control mb-4 w-50" placeholder="Masukkan Jumlah Cetak" name="jumlah_produk">
+            <input id="jumlah_produk" type="number" class="form-control mb-4 w-50" placeholder="Masukkan Jumlah Cetak" name="jumlah_produk" required min="1">
             <p class="font-m-semi">TOTAL</p>
             <div id="pembayaran"  class="pl-4 mb-3">
                 <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="total1" name="total" class="custom-control-input" value="2">
+                    <input type="radio" id="total1" name="total" class="custom-control-input" value="2" required>
                     <label class="custom-control-label" for="total1">Uang muka</label>
                 </div>
                 <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="total2" name="total" class="custom-control-input" value="1">
+                    <input type="radio" id="total2" name="total" class="custom-control-input" value="1" required>
                     <label class="custom-control-label" for="total2">Lunas</label>
                 </div>
             </div>
             <input type="number" id="sub_total" class="form-control mb-4 w-50" placeholder="Total Pembayaran" name="sub_total" pattern="(^\d+(\.|\,)\d{2}$)" readonly>
             <div class="cutom-inline text-center">
+                <?php
+                    if(!isset($_SESSION['id_user'])){
+                ?>
+                <button type="button" class="btn btn-primary" data-target="#login_user" data-toggle="modal">Keranjang</button>
+                <button type="button" class="btn btn-primary" data-target="#login_user" data-toggle="modal">Bayar</button>
+                <?php }else{?>
                 <input type="submit" name="pemesanan_produk" value="Keranjang" class="btn btn-primary font-m-med">
                 <input type="submit" name="pemesanan_produk" value="Bayar" class="btn btn-primary font-m-med">
+                <?php }?>
+                <a class="btn btn-secondary" href="produk_user.php?produk_id=<?=$produk_id?>">Kembali</a>
             </div>
             </form>
             </div>

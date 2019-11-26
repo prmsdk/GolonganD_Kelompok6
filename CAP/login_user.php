@@ -16,7 +16,7 @@
                   <form class="font-m-light col-11 mt-3" action="cek_login.php" method="post">
                     <div class="form-group">
                       <label for="username-user" class="font-m-med">Username</label>
-                      <input type="text" class="form-control" id="username-user" name="username-user" aria-describedby="usernameHelp" placeholder="Enter username" autofocus required>
+                      <input type="text" class="form-control" id="username-user" name="username-user" aria-describedby="usernameHelp" placeholder="Enter username" autofocus required pattern="^(?=.*[@])[A-Za-z0-9 @_.]+$" title="Username Format: huruf, angka, ._ dan harus menyertakan @">
                       
                     </div>
                     <div class="form-group">

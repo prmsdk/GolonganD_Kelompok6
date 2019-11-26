@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="src/css/animation-slider.css">
     <link rel="stylesheet" href="src/css/kategori.css">
     <link rel="stylesheet" href="src/css/bootstrap.css">
@@ -63,6 +64,9 @@
           <a class="nav-item nav-link nav-custom" href="index.php#contuctusbtn">CONTACT US</a>
           <?php
               session_start();
+              if(isset($_SESSION['id_user'])){
+                $id_user = $_SESSION['id_user'];
+              }
               error_reporting(0);
               if($_SESSION['status']=='login'){
                 ?><div class="dropdown notif-custom">
@@ -178,7 +182,7 @@
                       <span class="caret"></span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right text-right">
-                      <a class="dropdown-item" href="#">Setting Profile</a>
+                      <a class="dropdown-item" href="user_profil.php?id_user=<?=$id_user?>">Setting Profile</a>
                       <a class="dropdown-item" href="#">Bantuan</a>
                       <a class="dropdown-item" href="#">Keamanan</a>
                       <div class="dropdown-divider"></div>

@@ -87,9 +87,9 @@ $("#select_warna").change(function () {
     var optionValue = $(this).attr("value");
     if (optionValue) {
       $(".box_warna").not("#" + optionValue).hide();
-      $(".box_warna").not("#" + optionValue).attr('required', '');
+      $(".box_warna").not("#" + optionValue).find("#warna_khusus").attr('required', '');
       $("#" + optionValue).show();
-      $("#" + optionValue).attr('required', 'required');
+      $("#" + optionValue).find("#warna_khusus").attr('required', 'required');
     } else {
       $(".box_warna").hide();
     }

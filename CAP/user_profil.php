@@ -14,7 +14,7 @@ if (isset($_GET['id_user'])){
   $alamat = $result['USER_ALAMAT'];
   $profil = $result['USER_PROFIL'];
   $cover = $result['USER_COVER'];
-  $username = $result['USER_NAMA'];
+  $username = $result['USER_USERNAME'];
   $active = $result["USER_ACTIVE"];
 }
 ?>
@@ -35,9 +35,9 @@ if (isset($_GET['id_user'])){
 <!-- Cover -->
       <div class="cover">
           <form action="update_cover_user.php" method="POST" enctype="multipart/form-data">
-              <img src="file_upload/<?=$cover?>" alt="background">
+              <img src="file_upload/<?=$cover?>" alt="background" class="w-100" style="height: 450px;">
               <div class="btn-absolute">   
-                  <a class="btn btn-primary px-2" data-toggle="modal" data-target="#Modal-Cover" role="button"><i class="fa fa-edit"></i></a>   
+                  <a class="btn btn-light px-2" data-toggle="modal" data-target="#Modal-Cover" role="button"><i class="fa fa-edit"></i></a>   
               </div> 
           </form>
       </div> 
@@ -47,36 +47,36 @@ if (isset($_GET['id_user'])){
           <form action="update_fotoprofil_user.php" method="POST" enctype="multipart/form-data">
               <img src="file_upload/<?=$profil?>" class="img-fluid" alt="foto">
               <div class="btn-foto">   
-                  <a class="btn btn-primary px-2" data-toggle="modal" data-target="#Modal-foto-profil" role="button"><i class="fa fa-edit"></i></a>   
+                  <a class="btn btn-light px-1" data-toggle="modal" data-target="#Modal-foto-profil" role="button"><i class="fa fa-edit"></i></a>   
               </div> 
           </form>
       </div>
 
       <!-- Form untuk Edit -->
       <form action="update_profil.php" method="post"> 
-        <div class="form-row">
+        <div class="form-row mt-4">
           <input type="hidden" name="id_user" id="id_user" value="<?=$id_user?>">
             <div class="form-group col-md-6">
               <label for="inputName">Nama Lengkap</label>
-              <input type="text" name="nama_user" class="form-control" id="inputName" placeholder="Nama Lengkap" value="<?= $nama_user?>">
+              <input type="text" name="nama_user" class="form-control" id="inputName" placeholder="Nama Lengkap" value="<?= $nama_user?>" required pattern="^[A-Za-z -.]+$" title="Mohon masukkan hanya huruf">
             </div>
             <div class="form-group col-md-6">
               <label for="inputEmail4">Email</label>
-              <input type="email" name="email_user" class="form-control" id="inputEmail4" placeholder="xxxx@email.com" value="<?= $email_user?>">
+              <input type="email" name="email_user" class="form-control" id="inputEmail4" placeholder="xxxx@email.com" value="<?= $email_user?>" required title="Mohon masukkan Email Valid">
             </div>
         </div>
         <div class="form-group">
             <label for="inputAddress">Nomor HP</label>
-            <input type="text" name="no_hp" class="form-control" id="inputAddress" placeholder="+68" value="<?= $no_hp?>">
+            <input type="text" name="no_hp" class="form-control" id="inputAddress" placeholder="+68" value="<?= $no_hp?>" required pattern="[0-9]{9,13}" title="Mohon masukkan hanya angka, 9 - 13 digit">
         </div>
         <div class="form-group">
             <label for="inputAddress2">Alamat</label>
-            <input type="text" name="alamat" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" value="<?= $alamat?>">
+            <textarea name="alamat" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" required minlength=20 title="Mohon masukkan lebih dari 20 character"><?= $alamat?></textarea>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputCity">Username</label>
-              <input type="text" name="username" class="form-control" id="inputCity" value="<?= $username?>">
+              <input type="text" name="username" class="form-control" id="inputCity" value="<?=$username?>" required pattern="^(?=.*[@])[A-Za-z0-9 @_.]+$" title="Username Format: huruf, angka, ._ dan harus menyertakan @">
             </div>
         </div> 
         <div class="form-group">
@@ -111,19 +111,11 @@ require 'includes/footer.php';
         <p>Format file .jpg/.png/.jpeg</p> <p>Ukuran Maksimum 3mb</p>
         
           <form action="update_fotoprofil_user.php" method="POST" enctype="multipart/form-data">
-              <div class="input-group mb-3">
-                  <input type="hidden" name="id_user" value="<?=$id_user?>">
-                  <div >
-                  <input type="file" id="inputGroupFile02" name="file">
-                  <label for="inputGroupFile02"  aria-describedby="inputGroupFileAddon02" ></label>
-                  <!-- <div class="modal-footer"> -->
-                  </div>
-              </div>
-              <br>
+              <input type="hidden" class="mb-3" name="id_user" value="<?=$id_user?>">
               <div class="modal-footer">
-               <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-               <input type="submit"  class="btn btn-primary" name="post_profile" value="Upload">
-               </div>
+              <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+              <input type="submit"  class="btn btn-primary" name="post_profile" value="Upload">
+              </div>
           </form>    
         </div>  
     </div>
@@ -142,22 +134,18 @@ require 'includes/footer.php';
         </div>
 
         <div class="modal-body">
-        <img src="file_upload/<?=$cover?>" width="480" height="400" class="rounded mx-auto d-block m-3">
+        <img src="file_upload/<?=$cover?>" width="450" height="200" class="rounded mx-auto d-block m-3">
         <p>Format file .jpg/.png/.jpeg</p> <p>Ukuran Maksimum 3mb</p>
         
           <form action="update_cover_user.php" method="POST" enctype="multipart/form-data">
-              <div class="input-group mb-3">
               <input type="hidden" name="id_user" value="<?=$id_user?>">
-                  <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="inputGroupFile02" name="file">
-                  <label class="custom-file-label" for="inputGroupFile02"  aria-describedby="inputGroupFileAddon02" >Choose file</label>
+                  
+                  <input type="file" class="mb-3" id="inputGroupFile02" name="file">
                   <!-- <div class="modal-footer">
                   </div> -->
-              </div>
-              <br>
               <div class="modal-footer">
-               <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-               <input type="submit"  class="btn btn-primary" name="post_cover" value="Upload">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                <input type="submit"  class="btn btn-primary" name="post_cover" value="Upload">
               </div>
           </form>    
         </div>          
