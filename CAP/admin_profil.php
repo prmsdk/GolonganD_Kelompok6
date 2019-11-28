@@ -9,12 +9,13 @@ require 'includes/config.php';
   $result = mysqli_fetch_assoc($query);
   $nama_admin = $result['ADM_NAMA_USAHA_ADM'];
   $email_admin = $result['ADM_EMAIL'];
-  $no_hp = $result['ADM_NO_HP'];
-  $alamat = $result['ADM_ALAMAT'];
+  $adm_no_hp = $result['ADM_NO_HP'];
+  $adm_no_telp = $result['ADM_NO_TELP'];
+  $adm_alamat = $result['ADM_ALAMAT'];
   $adm_profil = $result['ADM_PROFIL'];
   $adm_cover = $result['ADM_COVER'];
-  $desc = $result['ADM_DESC'];
-  $adminname = $result['ADM_NAMA'];
+  $adm_desc = $result['ADM_DESC'];
+  $adminname = $result['ADM_USERNAME'];
   $adm_status = $result["ADM_STATUS"];
 }
 ?>
@@ -34,7 +35,7 @@ require 'includes/config.php';
 <!-- Cover -->
       <div class="cover">
           <form action="update_cover_admin.php" method="POST" enctype="multipart/form-data">
-              <img src="file_upload/<?=$adm_cover?>" alt="background" height="500">
+              <img src="file_upload/<?=$adm_cover?>" alt="background" height="600">
               <div class="btn-absolute">   
                   <a class="btn btn-primary px-2" data-toggle="modal" data-target="#Modal-Cover" role="button"><i class="fa fa-edit"></i></a>   
               </div> 
@@ -52,12 +53,12 @@ require 'includes/config.php';
       </div>
 
 <!-- form untuk edit -->
-<form action="update_admin.php" method="POST">
+    <form action="admin_profil.php" method="post"> 
         <div class="form-row">
-          <input type="hidden" name="id_admin" id="id_admin" value="<?= $id_admin?>">
+          <input type="hidden" name="id_admin" id="id_admin" value="<?=$id_admin?>">
             <div class="form-group col-md-6">
               <label for="inputName">Nama Usaha</label>
-              <input type="text" name="nama_admin" class="form-control" id="inputName" placeholder="Nama Lengkap" value="<?= $nama_admin?>">
+              <input type="text" name="nama_admin" class="form-control" id="inputName" placeholder="Nama Usaha" value="<?= $nama_admin?>">
             </div>
             <div class="form-group col-md-6">
               <label for="inputEmail4">Email</label>
@@ -66,29 +67,31 @@ require 'includes/config.php';
         </div>
         <div class="form-group">
             <label for="inputAddress">Nomor HP</label>
-            <input type="text" name="no_hp" class="form-control" id="inputAddress" placeholder="+68" value="<?= $no_hp?>">
+            <input type="text" name="no_hp" class="form-control" id="inputAddress" placeholder="+68" value="<?= $adm_no_hp?>">
         </div>
         <div class="form-group">
             <label for="inputAddress2">Alamat</label>
-            <input type="text" name="alamat" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" value="<?= $alamat?>">
+            <input type="text" name="alamat" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" value="<?= $adm_alamat?>">
         </div>
-        <div class="form-group">
+          <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputCity">Deskripsi</label>
-              <input type="text" name="adm_desc" class="form-control" id="inputCity" value="<?= $desc?>">
+              <input type="text" name="adm_desc" class="form-control" id="inputCity" value="<?= $adm_desc?>">
             </div>
+        </div> 
+        <div class="form-row">
             <div class="form-group col-md-6">
-            <label for="inputCity">Admin Name</label>
-            <input type="text" name="adminname" class="form-control" id="inputCity" value="<?= $adminname?>">
+              <label for="inputCity">Admin Name</label>
+              <input type="text" name="adminname" class="form-control" id="inputCity" value="<?= $adminname?>">
             </div>
-        </div>
-         <div class="form-group">
-          <span class="badge badge-<?php if($adm_status == 1 ){echo "success";}else{echo "primary";}?> p-2"><?php if($adm_status == 1 ){echo "Super Admin";}else{echo "Admin";}?></span>
+        </div> 
+        <div class="form-group">
+          <span class="badge badge-<?php if($active == 1 ){echo "success";}else{echo "primary";}?> p-2"><?php if($active == 1 ){echo "Admin";}else{echo "Super Admin";}?></span>
         </div>
         <div class="text-right">
         <input type="submit" value="Simpan" name="edit_profil_admin" class="btn btn-primary w-25">
         </div>
-</form>
+      </form>
 
 <!-- Modal Cover -->
 <div class="modal fade" id="Modal-Cover" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

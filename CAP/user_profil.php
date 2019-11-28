@@ -14,7 +14,7 @@ if (isset($_GET['id_user'])){
   $alamat = $result['USER_ALAMAT'];
   $profil = $result['USER_PROFIL'];
   $cover = $result['USER_COVER'];
-  $username = $result['USER_NAMA'];
+  $username = $result['USER_USERNAME'];
   $active = $result["USER_ACTIVE"];
 }
 ?>
@@ -148,13 +148,13 @@ require 'includes/footer.php';
           <form action="update_cover_user.php" method="POST" enctype="multipart/form-data">
               <div class="input-group mb-3">
               <input type="hidden" name="id_user" value="<?=$id_user?>">
-                  <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="inputGroupFile02" name="file">
-                  <label class="custom-file-label" for="inputGroupFile02"  aria-describedby="inputGroupFileAddon02" >Choose file</label>
-                  <!-- <div class="modal-footer">
-                  </div> -->
+                  <div>
+                  <input type="file" id="inputGroupFile02" name="file">
+                  <label for="inputGroupFile02"  aria-describedby="inputGroupFileAddon02" ></label>
+                  <!-- <div class="modal-footer"> -->
+                  </div>
               </div>
-              <br>
+
               <div class="modal-footer">
                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
                <input type="submit"  class="btn btn-primary" name="post_cover" value="Upload">

@@ -1,5 +1,5 @@
 <?php
-$koneksi = mysqli_connect("localhost","root","","db_cap");
+$koneksi = mysqli_connect("localhost","root","","db_cap_coba");
 
 // Untuk cek koneksi
 if (mysqli_connect_errno()) {
