@@ -171,13 +171,6 @@
     </div>
 </section>
 
-<section id="maps" class="text-center mt-5 font-m-semi">
-    <h2>TEMUKAN KAMI DISINI</h2>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15796.320951698634!2d113.6504616!3d-8.1946722!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa1b14bf0a02f1256!2sCV.%20Cahaya%20Abadi%20Perkasa!5e0!3m2!1sid!2sid!4v1571834460966!5m2!1sid!2sid" frameborder="0" style="border:0;" allowfullscreen="" width="100%" height="300px">
-
-    </iframe>
-</section>
-
 <div class="container">
 <section id="contact" class="my-5 font-m-light text-center">
     <h2 class="font-m-bold">HUBUNGI KAMI</h2>
@@ -245,7 +238,6 @@
 
 <?php 
 
-    require 'login_user.php';
     require 'includes/footer.php';
 
 ?>

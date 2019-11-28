@@ -6,7 +6,7 @@
         $data = mysqli_query($con, "select * from tampil_produk where ID_TAMPIL_PRODUK = '$produk_id'");
         while($data_produk = mysqli_fetch_assoc($data)){
             $nama_produk = $data_produk['NAMA_TAMPIL_PRODUK'];
-            $deskirpsi_produk = $data_produk['DECS_TAMPIL_PRODUK'];
+            $deskirpsi_produk = $data_produk['DESC_TAMPIL_PRODUK'];
             $tabel_produk = $data_produk['KET_TAMPIL_PRODUK'];
         }
     function gambar_slide($con){
@@ -14,11 +14,11 @@
     }
 ?>
 
-<div class="bg-light pt-3">
- <div class="p-2 mb-4 bg-secondary cutom-inline">
-    <h5 class="text-white pl-3">Cetak <?=$nama_produk?></h5>
+<div class="bg-light">
+<div class="p-2 mb-4 bg-secondary text-center cutom-inline">
+    <h1 class="text-white font-m-bold pt-2">Cetak <?=$nama_produk?></h1>
 </div>
-<div class="container ">
+<div class="container pt-4">
         <div class="row">
             <div class="col-lg-6">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -28,7 +28,7 @@
         <?php
             $output = '';
             $count = 0;
-            $result = mysqli_query($con, "select * from gambar_produk where ID_TAMPIL_PRODUK = '$produk_id'");
+            $result = mysqli_query($con, "select * from gambar_produk where ID_TAMPIL_PRODUK = '$produk_id' LIMIT 3");
             while($data_gambar = mysqli_fetch_array($result))
             {
                 if($count == 0){
@@ -39,7 +39,7 @@
                 }
                 echo '
                 <div class="carousel-item '.$output.'">
-                <img src="src/img/produk/'.$data_gambar['GBR_FILE_NAME'].'" class="d-block w-100" alt="...">
+                <img src="pictures/produk_thumb/'.$data_gambar['GBR_FILE_NAME'].'" class="d-block w-100 img-fluid" alt="...">
                 </div>';  
                 $count+=1;
             }
@@ -70,7 +70,7 @@
                 $result = mysqli_query($con, "select * from gambar_produk where ID_TAMPIL_PRODUK = '$produk_id'");
                 while($data_gambar = mysqli_fetch_assoc($result)){
                     $gambar_produk = $data_gambar['GBR_FILE_NAME'];
-                    echo '<img src="src/img/produk/'.$gambar_produk.'" data-target="#carouselExampleIndicators" class="p-2 mb-5" data-slide-to="'.$i.'" style="width: 33%;" >';
+                    echo '<img src="pictures/produk_thumb/'.$gambar_produk.'" data-target="#carouselExampleIndicators" class="p-2 mb-5" data-slide-to="'.$i.'" style="width: 33%;" >';
                     $i+=1;
                 }
             }
@@ -81,13 +81,16 @@
             <div class="font-m-semi border-bottom mb-3">
             <h2><?=$nama_produk?></h2>
             </div>
-            <p class="text-justify mb-3"><?=$deskirpsi_produk?></p>
-            <div class="overflow-auto mb-3">
+            <p class="text-justify my-4"><?=$deskirpsi_produk?></p>
+            <div class="overflow-auto mb-4">
             <?php
                 require 'src/file/'.$tabel_produk;
             ?>
             </div>
-            <a href="pemesanan.php?produk_id=<?=$produk_id?>" class="btn btn-primary font-m-med float-right mb-5">Pesan Sekarang</a>
+            <div class="text-center">
+            <a href="pemesanan.php?produk_id=<?=$produk_id?>" class="btn btn-primary mr-1 font-m-med mb-5">Pesan Sekarang</a>
+            <a href="index.php" class="btn btn-secondary font-m-med mb-5">Kembali</a>
+            </div>
         </div>
     </div>
 </div>

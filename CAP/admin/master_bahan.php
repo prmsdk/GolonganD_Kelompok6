@@ -9,7 +9,9 @@
   }
 
   //SELECT BAHAN
-  $result = mysqli_query($con, "SELECT * FROM bahan, kategori_bahan WHERE bahan.ID_KAT_bahan = kategori_bahan.ID_KAT_bahan");
+  $result = mysqli_query($con, "SELECT * FROM bahan, kategori_bahan, satuan_bahan 
+  WHERE bahan.ID_KAT_bahan = kategori_bahan.ID_KAT_bahan AND
+  bahan.ID_SATUAN = satuan_bahan.ID_SATUAN");
 ?>
 
 <!-- Begin Page Content -->

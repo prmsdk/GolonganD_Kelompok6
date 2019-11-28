@@ -108,31 +108,31 @@
                   <form class="font-m-light col-11 mt-3" action="query/master_admin_query.php" method="post">
                     <div class="form-group">
                       <label for="nama_admin" class="font-m-med">Nama</label>
-                      <input type="text" class="form-control" id="nama_admin" name="nama_admin" aria-describedby="usernameHelp" placeholder="Masukkan Nama" required>
+                      <input type="text" class="form-control" id="nama_admin" name="nama_admin" aria-describedby="usernameHelp" placeholder="Masukkan Nama" required pattern="^[A-Za-z -.]+$" title="Mohon masukkan hanya huruf">
                     </div>
                     <div class="form-group">
                       <label for="email_admin" class="font-m-med">Email</label>
-                      <input type="email" class="form-control" id="email_admin" name="email_admin" aria-describedby="usernameHelp" placeholder="Masukkan Email" required>
+                      <input type="email" class="form-control" id="email_admin" name="email_admin" aria-describedby="usernameHelp" placeholder="Masukkan Email" required title="Mohon masukkan Email Valid">
                     </div>
                     <div class="form-group">
                       <label for="no_telp_admin" class="font-m-med">Nomor Telepon</label>
-                      <input type="text" class="form-control" id="no_telp_admin" name="no_telp_admin" aria-describedby="usernameHelp" placeholder="(0331) xxx">
+                      <input type="text" class="form-control" id="no_telp_admin" name="no_telp_admin" aria-describedby="usernameHelp" placeholder="(0331) xxx" pattern="[0-9 ()]{12,13}" title="Mohon masukkan hanya angka dan ( ), 12 - 13 digit">
                     </div>
                     <div class="form-group">
                       <label for="no_hp_admin" class="font-m-med">Nomor Handphone</label>
-                      <input type="text" class="form-control" id="no_hp_admin" name="no_hp_admin" aria-describedby="usernameHelp" placeholder="08xx" onkeypress='validate(event)' required>
+                      <input type="text" class="form-control" id="no_hp_admin" name="no_hp_admin" aria-describedby="usernameHelp" placeholder="08xx" onkeypress='validate(event)' required pattern="[0-9]{12,13}" title="Mohon masukkan hanya angka, 12 - 13 digit">
                     </div>
                     <div class="form-group">
                       <label for="alamat_admin" class="font-m-med">Alamat</label>
-                      <textarea name="alamat_admin" id="alamat_admin" class="form-control" placeholder="Alamat..." required></textarea>
+                      <textarea name="alamat_admin" id="alamat_admin" class="form-control" placeholder="Alamat..." required minlength=20 title="Mohon masukkan lebih dari 20 character"></textarea>
                     </div>
                     <div class="form-group">
                       <label for="username_admin" class="font-m-med">Username</label>
-                      <input type="text" class="form-control" id="username_admin" name="username_admin" aria-describedby="usernameHelp" placeholder="Masukkan Username" required>
+                      <input type="text" class="form-control" id="username_admin" name="username_admin" aria-describedby="usernameHelp" placeholder="Masukkan Username" required pattern="^[A-Za-z0-9@_.]+$" title="Username Format: huruf, angka, ._@">
                     </div>
                     <div class="form-group">
                       <label for="password_admin" class="font-m-med">Password</label>
-                      <input type="password" class="form-control" id="password_admin" name="password_admin" aria-describedby="usernameHelp" placeholder="Masukkan Username" required>
+                      <input type="password" class="form-control" id="password_admin" name="password_admin" aria-describedby="usernameHelp" placeholder="Masukkan Username" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}" title="Password harus memiliki 1 huruf hapital, 1 huruf kecil dan 1 Angka minimal 8 karakter dan maksimal 32 karakter">
                     </div>
                     <div class="form-group">
                       <div class="form-check">

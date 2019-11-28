@@ -1,7 +1,7 @@
 <?php 
-include 'koneksi.php';
+include 'includes/config.php';
 
-if($_POST['post_foto_admin']) {
+if($_POST['post_cover_admin']) {
     $id_admin = $_POST['id_admin'];
     $ekstensi_boleh = array('png','jpg','jpeg'); //ekstensi file yang boleh diupload
     $nama = $_FILES['file']['name']; //menunjukkan letak dan nama file yang akan di upload
@@ -11,10 +11,10 @@ if($_POST['post_foto_admin']) {
     $file_temporary = $_FILES['file']['tmp_name']; //untuk mendapatkan temporary file yang di upload
         if(in_array($ekstensi,$ekstensi_boleh)===true){
             if($ukuran < 3132210){ 
-                move_uploaded_file($file_temporary, 'file_upload/'.$nama); //untuk upload file
-                $query = mysqli_query ($koneksi, "UPDATE admin SET ADM_PROFIL ='$nama' WHERE ADM_ID='$id_admin'");
+                move_uploaded_file($file_temporary, 'img/profil/'.$nama); //untuk upload file
+                $query = mysqli_query ($con, "UPDATE admin SET ADM_COVER ='$nama' WHERE ADM_ID ='$id_admin'");
                     if($query) {
-                       header("location:admin_profil.php?id_admin=$id_admin");
+                        // header("location:admin_profil.php?id_admin=$id_admin");
                     }else{
                         echo "MAAF...., UPLOAD GAGAL";
                     }

@@ -16,6 +16,30 @@ $(document).ready(function(){
       $('.tampil-sandi').attr('type','password');
     }
   });
+
+  $("#select_bahan").change(function(){
+    $(this).find("option:selected").each(function(){
+        var optionValue = $(this).attr("value");
+        if(optionValue){
+            $(".box_bahan").not("#" + optionValue).hide();
+            $("#" + optionValue).show();
+        } else{
+            $(".box_bahan").hide();
+        }
+    });
+  }).change();
+
+  $("#select_ukuran").change(function(){
+    $(this).find("option:selected").each(function(){
+        var optionValue = $(this).attr("value");
+        if(optionValue){
+            $(".box_ukuran").not("#" + optionValue).hide();
+            $("#" + optionValue).show();
+        } else{
+            $(".box_ukuran").hide();
+        }
+    });
+  }).change();
 });
 
 // MENAMPILAKN UPLOAD GAMBAR SAAT DI PILIH
@@ -57,6 +81,80 @@ $(document).ready(function() {
       } 
   });
 }); 
+
+$("#select_warna").change(function () {
+  $(this).find("input:checked").each(function () {
+    var optionValue = $(this).attr("value");
+    if (optionValue) {
+      $(".box_warna").not("#" + optionValue).hide();
+      $(".box_warna").not("#" + optionValue).find("#warna_khusus").attr('required', '');
+      $("#" + optionValue).show();
+      $("#" + optionValue).find("#warna_khusus").attr('required', 'required');
+    } else {
+      $(".box_warna").hide();
+    }
+  });
+}).change();
+
+// TOTAL HARGA PRODUK
+
+$(document).on('click', 'body *', function () {
+
+  var TotHarga = 0;
+  var HrgWarna = 0;
+  var HrgBahan = 0;
+  var SatBahan = 0;
+  var IsiBahan = 1;
+  var HrgUkuran = 0;
+  var ValDesain = 0;
+  var HrgDesain = 50000;
+  var ValPembayaran = 0;
+  var JmlCetak = document.getElementById('jumlah_produk').value;
+
+  $("#select_warna").change(function () {
+    $(this).find("input:checked").each(function () {
+      HrgWarna = parseInt($(this).attr("aria-describedby"));
+    });
+  }).change();
+
+  $("#select_bahan").change(function () {
+    $(this).find("input:checked").each(function () {
+      HrgBahan = parseInt($(this).attr("aria-describedby"));
+    });
+  }).change();
+
+  $("#select_bahan").change(function () {
+    $(this).find("input:checked").each(function () {
+      SatBahan = parseInt($(this).attr("placeholder"));
+    });
+  }).change();
+
+  $("#select_ukuran").change(function () {
+    $(this).find("input:checked").each(function () {
+      HrgUkuran = parseInt($(this).attr("aria-describedby"));
+    });
+  }).change();
+
+  $("#pilihan_desain").change(function () {
+    $(this).find("input:checked").each(function () {
+      ValDesain = parseInt($(this).attr("value"));
+    });
+  }).change();
+
+  $("#pembayaran").change(function () {
+    $(this).find("input:checked").each(function () {
+      ValPembayaran = parseInt($(this).attr("value"));
+    });
+  }).change();
+
+
+  TotHarga = ((HrgDesain * ValDesain) + (HrgWarna + HrgUkuran) + IsiBahan * (HrgBahan * (JmlCetak / SatBahan))) / ValPembayaran;
+
+
+  $("#sub_total").prop('value', TotHarga);
+
+});
+
 
 function validate(evt) {
   var theEvent = evt || window.event;

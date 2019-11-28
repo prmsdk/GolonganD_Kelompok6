@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/animation-slider.css">
-    <link rel="stylesheet" href="css/kategori.css">
+    <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="src/css/animation-slider.css">
+    <link rel="stylesheet" href="src/css/kategori.css">
 
     <!--
     <style type="text/css">

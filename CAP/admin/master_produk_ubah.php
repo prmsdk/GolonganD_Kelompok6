@@ -8,6 +8,24 @@ include 'includes/header.php';
 if(!isset($_SESSION['admin_login'])){
   header("location:index.php");
 }
+
+if(isset($_GET['id_produk'])){
+  $id_produk = $_GET['id_produk'];
+
+  $result_produk = mysqli_query($con, "SELECT * FROM tampil_produk, kategori_produk
+  WHERE tampil_produk.ID_KATEGORI = kategori_produk.ID_KATEGORI AND
+  tampil_produk.ID_TAMPIL_PRODUK = '$id_produk'
+  ");
+
+  while($select_produk = mysqli_fetch_assoc($result_produk)){
+    $nama_produk = $select_produk['NAMA_TAMPIL_PRODUK'];
+    $desc_produk = $select_produk['DESC_TAMPIL_PRODUK'];
+    $ket_produk = $select_produk['KET_TAMPIL_PRODUK'];
+    $status_produk = $select_produk['STATUS_TAMPIL_PRODUK'];
+    $kat_produk = $select_produk['ID_KATEGORI'];
+  }
+
+}
 ?>
 
 <div class="container-fluid">
@@ -15,38 +33,42 @@ if(!isset($_SESSION['admin_login'])){
     <div class="col-lg-8">
       <div class="card shadow mb-4">
         <div class="card-header py-2 text-center">
-          <h3 class="mt-2 font-weight-bold text-primary">Tambah Produk</h3>
+          <h3 class="mt-2 font-weight-bold text-primary">Ubah Data Produk</h3>
         </div>
 
+<!-- INI SELECT TAMPIL PRODUK PRODUK PRODUK -->
 
         <div class="card-body">
           <form action="query/master_produk_query.php" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="id_produk" id="id_produk" value="<?=$id_produk?>">
           <div class="form-group">
             <label for="nama_produk" class="font-m-med">Nama produk</label>
-            <input type="text" class="form-control" id="nama_produk" name="nama_produk" aria-describedby="usernameHelp" placeholder="Masukkan Nama produk" required>
+            <input type="text" class="form-control" id="nama_produk" name="nama_produk" aria-describedby="usernameHelp" placeholder="Masukkan Nama produk" value="<?=$nama_produk?>" required>
           </div>
           <div class="form-group">
             <label for="desc_produk" class="font-m-med">Deskripsi produk</label>
-            <textarea name="desc_produk" id="desc_produk" class="form-control" placeholder="Masukkan Deskripsi Produk . ." required></textarea>
+            <textarea name="desc_produk" id="desc_produk" class="form-control" placeholder="Masukkan Deskripsi Produk . ." required><?=$desc_produk?></textarea>
           </div>
-          <div class="form-group">
+          <div class="form-group text-center">
             <div><label for="ket_produk" class="font-m-med">Keterangan Harga</label></div>
-            <input type="file" id="ket_produk" name="ket_produk" required>
+            <div class="mt-2 mb-3 overflow-auto"><?php include "../src/file/$ket_produk";?></div>
+            <input accept=".htm" type="file" id="ket_produk" name="ket_produk">
           </div>
           <div class="form-group">
             <label for="kategori_produk">Kategori Produk</label>
             <select class="form-control w-50" id="kategori_produk" name="kategori_produk">
               <?php 
-                $data = mysqli_query($con, "SELECT * FROM kategori_produk");
+                $data = mysqli_query($con, "SELECT ID_KATEGORI, NAMA_KAT_PRODUK FROM kategori_produk");
                 while($data_kat_produk = mysqli_fetch_assoc($data)){
                 $id_kategori_produk = $data_kat_produk['ID_KATEGORI'];
                 $nama_kategori_produk = $data_kat_produk['NAMA_KAT_PRODUK'];
               ?>
-              <option value="<?=$id_kategori_produk?>"><?=$nama_kategori_produk?></option>
+              <option value="<?=$id_kategori_produk?>" <?php if($id_kategori_produk==$kat_produk){echo "selected";}?>><?=$nama_kategori_produk?></option>
               <?php } ?>
             </select>
           </div>
 
+<!-- INI SELECT WARNA WARNA WARNA WARNA -->
 
           <div class="form-group">
             <h5 class="pt-1" for="warna">Warna</h5>
@@ -65,7 +87,18 @@ if(!isset($_SESSION['admin_login'])){
               <?php }?>
 
               <div class="custom-control custom-checkbox col-lg-6 px-0 mb-2">
-                <input type="checkbox" name="check_warna[]" value="<?=$id_warna?>" class="custom-control-input" id="check_warna_<?=$id_warna."_".$j?>">
+                <input 
+                <?php
+                $ambil_warna = mysqli_query($con, "SELECT * FROM warna, tampil_warna, tampil_produk
+                WHERE warna.ID_WARNA = tampil_warna.ID_WARNA AND
+                tampil_warna.ID_TAMPIL_PRODUK = tampil_produk.ID_TAMPIL_PRODUK AND
+                tampil_produk.ID_TAMPIL_PRODUK = '$id_produk' ");
+                while($select_warna = mysqli_fetch_assoc($ambil_warna)){
+                  $id_warna_select = $select_warna['ID_WARNA'];
+                  if($id_warna == $id_warna_select){echo "checked";}
+                }
+                ?>
+                type="checkbox" name="check_warna[]" value="<?=$id_warna?>" class="custom-control-input" id="check_warna_<?=$id_warna."_".$j?>">
                 <label class="custom-control-label" for="check_warna_<?=$id_warna."_".$j?>"><?=$jenis_warna?></label>
               </div>
 
@@ -78,6 +111,7 @@ if(!isset($_SESSION['admin_login'])){
             ?>
           </div>
 
+<!-- INI SELECT BAHAN BAHAN BAHAN BAHAN -->
 
           <div class="form-group">
             <h5 class="pt-1" for="bahan">Bahan</h5>
@@ -115,7 +149,18 @@ if(!isset($_SESSION['admin_login'])){
                   ?>
               
                 <div class="custom-control custom-checkbox col-lg-5 px-4 mb-2">
-                  <input type="checkbox" name="check_bahan[]" value="<?=$id_bahan?>" class="custom-control-input" id="check_bahan_<?=$id_bahan."_".$j?>">
+                  <input 
+                  <?php
+                  $ambil_bahan = mysqli_query($con, "SELECT * FROM bahan, tampil_bahan, tampil_produk
+                  WHERE bahan.ID_BAHAN = tampil_bahan.ID_BAHAN AND
+                  tampil_bahan.ID_TAMPIL_PRODUK = tampil_produk.ID_TAMPIL_PRODUK AND
+                  tampil_produk.ID_TAMPIL_PRODUK = '$id_produk' ");
+                  while($select_bahan = mysqli_fetch_assoc($ambil_bahan)){
+                    $id_bahan_select = $select_bahan['ID_BAHAN'];
+                    if($id_bahan == $id_bahan_select){echo "checked";}
+                  }
+                  ?>
+                  type="checkbox" name="check_bahan[]" value="<?=$id_bahan?>" class="custom-control-input" id="check_bahan_<?=$id_bahan."_".$j?>">
                   <label class="custom-control-label" for="check_bahan_<?=$id_bahan."_".$j?>"><?=$nama_bahan?></label>
                 </div>
 
@@ -127,6 +172,8 @@ if(!isset($_SESSION['admin_login'])){
             <?php }?>
                 
           </div> 
+
+<!-- INI SELECT UKURAN UKURAN UKURAN -->
           
           <div class="form-group">
             <h5 class="pt-1" for="ukuran">Ukuran</h5>
@@ -165,7 +212,18 @@ if(!isset($_SESSION['admin_login'])){
                   ?>
 
                 <div class="custom-control custom-checkbox col-lg-12 px-4 mb-2">
-                  <input type="checkbox" name="check_ukuran[]" value="<?=$id_ukuran?>" class="custom-control-input" id="check_ukuran_<?=$id_ukuran."_".$j?>">
+                  <input 
+                  <?php
+                  $ambil_ukuran = mysqli_query($con, "SELECT * FROM ukuran, tampil_ukuran, tampil_produk
+                  WHERE ukuran.ID_UKURAN = tampil_ukuran.ID_UKURAN AND
+                  tampil_ukuran.ID_TAMPIL_PRODUK = tampil_produk.ID_TAMPIL_PRODUK AND
+                  tampil_produk.ID_TAMPIL_PRODUK = '$id_produk' ");
+                  while($select_ukuran = mysqli_fetch_assoc($ambil_ukuran)){
+                    $id_ukuran_select = $select_ukuran['ID_UKURAN'];
+                    if($id_ukuran == $id_ukuran_select){echo "checked";}
+                  }
+                  ?>
+                  type="checkbox" name="check_ukuran[]" value="<?=$id_ukuran?>" class="custom-control-input" id="check_ukuran_<?=$id_ukuran."_".$j?>">
                   <label class="custom-control-label" for="check_ukuran_<?=$id_ukuran."_".$j?>"><?=$nama_ukuran?></label>
                 </div>
 
@@ -180,19 +238,38 @@ if(!isset($_SESSION['admin_login'])){
           
           <div class="form-group">
             <h5>Gambar Produk</h5>
-            <div class="my-2"><input type="file" id="gambar_produk_1" name="gambar_produk[]"></div>
-            <div class="my-2"><input type="file" id="gambar_produk_2" name="gambar_produk[]"></div>
-            <div class="my-2"><input type="file" id="gambar_produk_3" name="gambar_produk[]"></div>
+            <div class="row">
+            <?php
+            $result_gambar = mysqli_query($con, "SELECT * FROM tampil_produk, gambar_produk
+            WHERE tampil_produk.ID_TAMPIL_PRODUK = gambar_produk.ID_TAMPIL_PRODUK AND
+            tampil_produk.ID_TAMPIL_PRODUK = '$id_produk'
+            ");
+          
+            while($select_produk = mysqli_fetch_assoc($result_gambar)){
+              $id_gambar = $select_produk['GBR_ID'];
+              $gambar_produk = $select_produk['GBR_FILE_NAME'];
+            ?>
+            <div class="col-md-4">
+              <img class="img-fluid my-2" src="../pictures/produk_thumb/<?=$gambar_produk?>" alt="gambar_<?=$id_gambar?>" srcset="">
+            </div>
+            <?php }?>
+            </div>
+            <div class=" mb-4 mt-2">
+            <a href="master_produk_gambar.php" class="btn btn-primary">Ubah Gambar Produk</a>
+            </div>
+            <!-- <div class="my-2"><input accept=".jpg,.png,.jpeg" type="file" id="gambar_produk_1" name="gambar_produk[]"></div>
+            <div class="my-2"><input accept=".jpg,.png,.jpeg" type="file" id="gambar_produk_2" name="gambar_produk[]"></div>
+            <div class="my-2"><input accept=".jpg,.png,.jpeg" type="file" id="gambar_produk_3" name="gambar_produk[]"></div> -->
           </div>
           <div class="form-group">
             <div class="form-check">
-              <input class="form-check-input" type="radio" id="status_radio1" name="status_produk" value="1" required checked>
+              <input class="form-check-input" type="radio" id="status_radio1" name="status_produk" value="1" <?php if($status_produk==1){echo "checked";}?>>
               <label class="form-check-label" for="status_radio1">
                 Produk Tersedia
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" id="status_radio2" name="status_produk" value="0" required>
+              <input class="form-check-input" type="radio" id="status_radio2" name="status_produk" value="0" <?php if($status_produk==0){echo "checked";}?>>
               <label class="form-check-label" for="status_radio2">
                 Produk Tidak Tersedia
               </label>
@@ -200,7 +277,7 @@ if(!isset($_SESSION['admin_login'])){
           </div>
           <div class="form-group text-center">
             <a href="master_produk.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i></a>
-            <input type="submit" name="tambah_produk" class="btn btn-primary w-25" value="TAMBAH DATA">
+            <input type="submit" name="edit_produk" class="btn btn-primary w-25" value="UBAH DATA">
           </div>
           </form>
           </div>

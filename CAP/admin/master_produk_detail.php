@@ -12,49 +12,50 @@
     $id_produk = $_GET['id_produk'];
   
   //SELECT PRODUK
-  $result_produk = mysqli_query($con, "SELECT * FROM produk, kategori_produk WHERE produk.ID_KATEGORI = kategori_produk.ID_KATEGORI AND ID_PRODUK = '$id_produk'");
+  $result_produk = mysqli_query($con, "SELECT * FROM tampil_produk, kategori_produk WHERE tampil_produk.ID_KATEGORI = kategori_produk.ID_KATEGORI AND ID_TAMPIL_PRODUK = '$id_produk'");
   $data_produk = mysqli_fetch_assoc($result_produk);
-  $nama_produk = $data_produk['NAMA_PRODUK'];
-  $desc_produk = $data_produk['DESC_PRODUK'];
-  $ket_produk = $data_produk['KET_HARGA'];
+  $nama_produk = $data_produk['NAMA_TAMPIL_PRODUK'];
+  $desc_produk = $data_produk['DESC_TAMPIL_PRODUK'];
+  $ket_produk = $data_produk['KET_TAMPIL_PRODUK'];
   $nama_kategori = $data_produk['NAMA_KAT_PRODUK'];
+  $status_produk = $data_produk['STATUS_TAMPIL_PRODUK'];
 
   //SELECT WARNA
   $result_warna = mysqli_query($con, 
-  "SELECT warna.JENIS_WARNA FROM produk, detail_warna, warna
-  WHERE produk.ID_PRODUK = detail_warna.ID_PRODUK AND
-  warna.ID_WARNA = detail_warna.ID_WARNA AND
-  produk.ID_PRODUK = '$id_produk'
+  "SELECT warna.JENIS_WARNA FROM tampil_produk, tampil_warna, warna
+  WHERE tampil_produk.ID_TAMPIL_PRODUK = tampil_warna.ID_TAMPIL_PRODUK AND
+  warna.ID_WARNA = tampil_warna.ID_WARNA AND
+  tampil_produk.ID_TAMPIL_PRODUK = '$id_produk'
   ");
 
   //SELECT KATEGORI UKURAN
   $result_ukuran_kat = mysqli_query($con, 
-  "SELECT kategori_ukuran.ID_KAT_UKURAN, kategori_ukuran.NAMA_KAT_UKURAN FROM
-  produk, detail_ukuran, ukuran, kategori_ukuran 
+  "SELECT DISTINCT kategori_ukuran.ID_KAT_UKURAN, kategori_ukuran.NAMA_KAT_UKURAN FROM
+  tampil_produk, tampil_ukuran, ukuran, kategori_ukuran 
   WHERE
-  produk.ID_PRODUK = detail_ukuran.ID_PRODUK AND
-  detail_ukuran.ID_UKURAN = ukuran.ID_UKURAN AND
+  tampil_produk.ID_TAMPIL_PRODUK = tampil_ukuran.ID_TAMPIL_PRODUK AND
+  tampil_ukuran.ID_UKURAN = ukuran.ID_UKURAN AND
   ukuran.ID_KAT_UKURAN = kategori_ukuran.ID_KAT_UKURAN AND
-  produk.ID_PRODUK = '$id_produk'
+  tampil_produk.ID_TAMPIL_PRODUK = '$id_produk'
   ");
 
   //SELECT KATEGORI UKURAN
   $result_bahan_kat = mysqli_query($con, 
-  "SELECT kategori_bahan.ID_KAT_BAHAN, kategori_bahan.NAMA_KAT_BAHAN FROM
-  produk, detail_bahan, bahan, kategori_bahan
+  "SELECT DISTINCT kategori_bahan.ID_KAT_BAHAN, kategori_bahan.NAMA_KAT_BAHAN FROM
+  tampil_produk, tampil_bahan, bahan, kategori_bahan
   WHERE
-  produk.ID_PRODUK = detail_bahan.ID_PRODUK AND
-  detail_bahan.ID_BAHAN = bahan.ID_BAHAN AND
+  tampil_produk.ID_TAMPIL_PRODUK = tampil_bahan.ID_TAMPIL_PRODUK AND
+  tampil_bahan.ID_BAHAN = bahan.ID_BAHAN AND
   bahan.ID_KAT_BAHAN = kategori_bahan.ID_KAT_BAHAN AND
-  produk.ID_PRODUK = '$id_produk'
+  tampil_produk.ID_TAMPIL_PRODUK = '$id_produk'
   ");
 
   //SELECT GAMBAR THUMBNAIL
-  $result_gambar = mysqli_query($con, "SELECT produk.NAMA_PRODUK, gambar_produk.GBR_FILE_NAME FROM
-  produk, gambar_produk
+  $result_gambar = mysqli_query($con, "SELECT tampil_produk.NAMA_TAMPIL_PRODUK, gambar_produk.GBR_FILE_NAME FROM
+  tampil_produk, gambar_produk
   WHERE
-  produk.ID_PRODUK = gambar_produk.ID_PRODUK AND
-  produk.ID_PRODUK = '$id_produk'
+  tampil_produk.ID_TAMPIL_PRODUK = gambar_produk.ID_TAMPIL_PRODUK AND
+  tampil_produk.ID_TAMPIL_PRODUK = '$id_produk'
   ");
   }
 
@@ -72,10 +73,14 @@
         <div class="card-body">
           <div class="row p-2">
             <div class="col-lg">
+            <div class="form-group">
+              <span class="badge badge-<?php if($status_produk == 1 ){echo "success";}else{echo "danger";}?> p-2"><?php if($status_produk == 1 ){echo "Tersedia";}else{echo "Tidak Tersedia";}?></span>
+            </div>
               <h4>Kategori : <?=$nama_kategori?></h4>
               <h4>Deskripsi Produk : </h4>
               <p><?=$desc_produk?></p>
               <h4>Keterangan Harga : </h4>
+              <div class="mt-2 overflow-auto"><?php include "../src/file/$ket_produk";?></div>
             </div>
           </div>
           <hr>
@@ -104,14 +109,14 @@
                     $id_kategori_ukuran = $data_ukuran_kat['ID_KAT_UKURAN'];
                     $nama_kategori_ukuran = $data_ukuran_kat['NAMA_KAT_UKURAN'];
                 ?>
-                <h5 class="mt-1"><?=$nama_kategori_ukuran?></h5>
-                <ul class="list-group">
+                <h5 class="ml-2 mt-1"><?=$nama_kategori_ukuran?></h5>
+                <ul class="list-group mb-2">
                 <?php 
                   $result_ukuran = mysqli_query($con, 
-                  "SELECT ukuran.JENIS_UKURAN FROM produk, detail_ukuran, ukuran
-                  WHERE produk.ID_PRODUK = detail_ukuran.ID_PRODUK AND
-                  ukuran.ID_UKURAN = detail_ukuran.ID_UKURAN AND
-                  produk.ID_PRODUK = '$id_produk' AND
+                  "SELECT ukuran.JENIS_UKURAN FROM tampil_produk, tampil_ukuran, ukuran
+                  WHERE tampil_produk.ID_TAMPIL_PRODUK = tampil_ukuran.ID_TAMPIL_PRODUK AND
+                  ukuran.ID_UKURAN = tampil_ukuran.ID_UKURAN AND
+                  tampil_produk.ID_TAMPIL_PRODUK = '$id_produk' AND
                   ukuran.ID_KAT_UKURAN = '$id_kategori_ukuran'
                   ");
 
@@ -136,14 +141,14 @@
                     $id_kategori_bahan = $data_bahan_kat['ID_KAT_BAHAN'];
                     $nama_kategori_bahan = $data_bahan_kat['NAMA_KAT_BAHAN'];
                 ?>
-                <h5 class="mt-1"><?=$nama_kategori_bahan?></h5>
+                <h5 class=""><?=$nama_kategori_bahan?></h5>
                 <ul class="list-group">
                 <?php 
                   $result_bahan = mysqli_query($con, 
-                  "SELECT bahan.NAMA_BAHAN FROM produk, detail_bahan, bahan
-                  WHERE produk.ID_PRODUK = detail_bahan.ID_PRODUK AND
-                  bahan.ID_BAHAN = detail_bahan.ID_BAHAN AND
-                  produk.ID_PRODUK = '$id_produk' AND
+                  "SELECT bahan.NAMA_BAHAN FROM tampil_produk, tampil_bahan, bahan
+                  WHERE tampil_produk.ID_TAMPIL_PRODUK = tampil_bahan.ID_TAMPIL_PRODUK AND
+                  bahan.ID_BAHAN = tampil_bahan.ID_BAHAN AND
+                  tampil_produk.ID_TAMPIL_PRODUK = '$id_produk' AND
                   bahan.ID_KAT_BAHAN = '$id_kategori_bahan'
                   ");
 
@@ -165,7 +170,7 @@
             <?php $i = 1;
               while($data_gambar = mysqli_fetch_assoc($result_gambar)){
               $file_gambar = $data_gambar['GBR_FILE_NAME'];
-              $nama_produk = $data_gambar['NAMA_PRODUK'];
+              $nama_produk = $data_gambar['NAMA_TAMPIL_PRODUK'];
             ?>
               <li class="list-group-item"><img class="m-2" width="300" src="../pictures/produk_thumb/<?=$file_gambar?>" alt="<?=$nama_produk."-".$i?>"></li>
             <?php $i+=1; }?>

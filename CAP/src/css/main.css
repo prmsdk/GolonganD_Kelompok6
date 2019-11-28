@@ -153,8 +153,14 @@ html {
     z-index: 2;
 }
 
-.daftar-gambar{
+
+#daftar{
     background-image: url('../img/slider/print-3.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.daftar-gambar{
     background-size: cover;
     height: 400px;
     position: relative;
@@ -163,6 +169,10 @@ html {
 
 
 /* ======= FOOTER ======== */
+
+iframe{
+    padding: 0;
+}
 
 #footer{
     padding: 50px 0;
@@ -262,4 +272,12 @@ html {
 .btn-oren:hover{
     background-color: #da7c11;
     color: white;
+}
+
+.box{
+    display: none;
+}
+
+.box_warna{
+    display: none;
 }

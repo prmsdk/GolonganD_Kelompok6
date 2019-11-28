@@ -20,8 +20,8 @@
 
 .btn-absolute{
     position: absolute;
-    top: 100%;
-    right: 1%;
+    top: 84%;
+    right: 2%;
     z-index: 2;
 }
 

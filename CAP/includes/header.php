@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="src/css/animation-slider.css">
     <link rel="stylesheet" href="src/css/kategori.css">
     <link rel="stylesheet" href="src/css/bootstrap.css">
@@ -39,6 +40,9 @@
           <?php
               session_start();
               error_reporting(0);
+              if(isset($_SESSION['id_user'])){
+                $id_user = $_SESSION['id_user'];
+              }
               if($_SESSION['status']=='login'){
                 ?><div class="dropdown notif-custom">
                     <a class="nav-item nav-link icon-custom" style="color:#F69322;" type="button" data-toggle="dropdown"><i class="fa fa-bell fa-1x"></i></a>
@@ -153,7 +157,7 @@
                       <span class="caret"></span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right text-right">
-                      <a class="dropdown-item" href="#">Setting Profile</a>
+                      <a class="dropdown-item" href="user_profil.php?id_user=<?=$id_user?>">Setting Profile</a>
                       <a class="dropdown-item" href="#">Bantuan</a>
                       <a class="dropdown-item" href="#">Keamanan</a>
                       <div class="dropdown-divider"></div>
@@ -162,7 +166,7 @@
                   </div><?php
               }else if($_SESSION['status']!='login'){
                   // header("location:../index.php?=belum login");
-                  echo '<button type="button" class="btn rounded-0 nav-item nav-custom mr-auto" data-toggle="modal" data-target="#login_user" style="color: #25A8E0">
+                  echo '<button type="button" class="btn rounded-0 nav-item nav-custom mr-auto login" data-toggle="modal" data-target="#login_user" style="color: #25A8E0">
                   MASUK
                   </button>
                   <a class="nav-item nav-link nav-custom" style="color:#F69322;" href="register_user.php">DAFTAR</a>';
