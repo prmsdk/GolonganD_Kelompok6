@@ -150,7 +150,7 @@
                 <button type="button" class="btn btn-primary" data-target="#login_user" data-toggle="modal">Keranjang</button>
                 <button type="button" class="btn btn-primary" data-target="#login_user" data-toggle="modal">Bayar</button>
                 <?php }else{?>
-                <input type="submit" name="pemesanan_produk" value="Keranjang" class="btn btn-primary font-m-med">
+                <a class="btn btn-primary font-m-med" href="#" id="keranjang" data-ukuran="UKN000003" data-bahan="BHN000004" data-produk="" data-warna="" data->Keranjang</a>
                 <input type="submit" name="pemesanan_produk" value="Bayar" class="btn btn-primary font-m-med">
                 <?php }?>
                 <a class="btn btn-secondary" href="produk_user.php?produk_id=<?=$produk_id?>">Kembali</a>
