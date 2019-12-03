@@ -6,6 +6,7 @@
     <div class="row justify-content-center mt-4">
         <div class="col-lg-9 pt-4 mb-5">
             <div class="card shadow p-5">
+                      <div class="row px-3 py-2">
                         <div class="col-lg-12 col-sm-12 col-12 border-bottom text-center border-warning font-m-semi">
                           <h2>Keranjang Pesanan</h2>
                         </div>
