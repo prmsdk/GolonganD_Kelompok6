@@ -13,11 +13,13 @@ if(!isset($_SESSION['admin_login'])){
 if(isset($_GET['id_bahan'])){
   $id_bahan = $_GET['id_bahan'];
 
-  $data = mysqli_query($con, "SELECT * FROM bahan, kategori_bahan WHERE bahan.ID_KAT_BAHAN = kategori_bahan.ID_KAT_BAHAN AND ID_BAHAN = '$id_bahan'");
+  $data = mysqli_query($con, "SELECT * FROM bahan, kategori_bahan, satuan_bahan WHERE 
+  bahan.ID_KAT_BAHAN = kategori_bahan.ID_KAT_BAHAN AND
+  bahan.ID_SATUAN = satuan_bahan.ID_SATUAN AND 
+  ID_BAHAN = '$id_bahan'");
   $data_bahan = mysqli_fetch_assoc($data);
   $nama_bahan = $data_bahan['NAMA_BAHAN']; 
-  $satuan_bahan = $data_bahan['SATUAN'];
-  $jumlah_satuan = $data_bahan['JUMLAH_SATUAN'];
+  $id_satuan_bahan = $data_bahan['ID_SATUAN'];
   $isi_bahan = $data_bahan['ISI_PER_BAHAN'];
   $harga_bahan = $data_bahan['HARGA_BAHAN'];
   $kategori_bahan_id = $data_bahan['ID_KAT_BAHAN'];
@@ -39,12 +41,19 @@ if(isset($_GET['id_bahan'])){
             <input type="text" class="form-control" id="nama_bahan" name="nama_bahan" value="<?=$nama_bahan?>" placeholder="Masukkan Nama Bahan" required>
           </div>
           <div class="form-group">
-            <label for="satuan_bahan" class="font-m-med">Satuan bahan</label>
-            <input type="text" class="form-control" id="satuan_bahan" name="satuan_bahan" value="<?=$satuan_bahan?>" placeholder="Masukkan Satuan Bahan" required>
-          </div>
-          <div class="form-group">
-            <label for="jumlah_satuan" class="font-m-med">Jumlah Satuan</label>
-            <input type="text" class="form-control" id="jumlah_satuan" name="jumlah_satuan" value="<?=$jumlah_satuan?>" placeholder="Masukkan Jumlah Satuan" required>
+            <label for="satuan_bahan">Satuan Bahan</label>
+            <select class="form-control" id="satuan_bahan" name="satuan_bahan">
+              <?php 
+                $data = mysqli_query($con, "SELECT * FROM satuan_bahan");
+                while($data_sat_bahan = mysqli_fetch_assoc($data)){
+                $id_sat_bahan = $data_sat_bahan['ID_SATUAN'];
+                $nama_sat_bahan = $data_sat_bahan['SATUAN'];
+              ?>
+              <option value="<?=$id_sat_bahan?>"
+              <?php if($id_sat_bahan==$id_satuan_bahan){echo "selected";}?>
+              ><?=$nama_sat_bahan?></option>
+              <?php } ?>
+            </select>
           </div>
           <div class="form-group">
             <label for="isi_per_bahan" class="font-m-med">Isi per Bahan</label>

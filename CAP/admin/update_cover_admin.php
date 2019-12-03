@@ -14,7 +14,7 @@ if($_POST['post_cover_admin']) {
                 move_uploaded_file($file_temporary, 'img/profil/'.$nama); //untuk upload file
                 $query = mysqli_query ($con, "UPDATE admin SET ADM_COVER ='$nama' WHERE ADM_ID ='$id_admin'");
                     if($query) {
-                        // header("location:admin_profil.php?id_admin=$id_admin");
+                        header("location:admin_profil.php");
                     }else{
                         echo "MAAF...., UPLOAD GAGAL";
                     }

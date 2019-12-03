@@ -31,7 +31,7 @@
               <form class="pt-3" method="post" action="register_query.php">
                 <div class="form-group">
                   <label for="nama_user" class="font-m-semi">Nama Lengkap</label>
-                  <input type="text" class="form-control" id="nama_user" name="nama_user" placeholder="Masukkan Nama Lengkap Anda" required pattern="^[A-Za-z -.]+.{1,}$" title="Masukkan hanya huruf" autofocus>
+                  <input type="text" class="form-control" id="nama_user" name="nama_user" placeholder="Masukkan Nama Lengkap Anda" required pattern="[a-zA-Z]{1,}" title="Masukkan hanya huruf" autofocus>
                 </div>
                 <div class="form-group">
                   <label for="email_user" class="font-m-semi">Alamat Email</label>
@@ -54,14 +54,19 @@
                   <input type="text" class="form-control" id="username_user" name="username_user" placeholder="Isikan Username Anda" required pattern="^[A-Za-z0-9 _.]+$" title="Username Format: huruf, angka, dan ._">
                 </div>
               </div>
-              <div class="form-group">
+              <div class="form-group m-0">
                 <label for="password_user" class="font-m-semi">Password</label>
-                <input type="password" class="form-control" id="password_user" name="password_user" placeholder="Password" aria-describedby="passwordHelp" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}" title="Password harus memiliki 1 huruf hapital, 1 huruf kecil dan 1 Angka minimal 8 karakter dan maksimal 32 karakter">
-                <small id="passwordHelp" class="text-muted">
+                <input type="password" class="form-control tampil-sandi" id="password_user" name="password_user" placeholder="Password" aria-describedby="passwordHelp" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}" title="Password harus memiliki 1 huruf kapital, 1 huruf kecil dan 1 Angka minimal 8 karakter dan maksimal 32 karakter">
+                <small id="passwordHelp" class="text-muted mb-0">
                   Masukkan password harus 8 - 32 karakter.
                 </small>
+                <div class="mb-2 form-check">
+                  <input type="checkbox" class="form-check-input" id="tampil-sandi">
+                  <label class="form-check-label" for="tampil-sandi"><small>Tampilkan Sandi</small></label>
+                </div>
               </div>
-              <div class="form-group">
+                
+              <div class="form-group text-left">
                 <label for="repassword_user" class="font-m-semi">Re-Type Password</label>
                 <input type="password" class="form-control" id="repassword_user" name="repassword_user" placeholder="Password" aria-describedby="passwordHelp" required title="Masukkan Password yang sama persis dengan password yang anda masukkan diatas">
                 <small id="passwordHelp" class="text-muted">

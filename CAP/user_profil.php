@@ -19,18 +19,6 @@ if (isset($_GET['id_user'])){
 }
 ?>
 
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>CSS</title>
-</head>
-
-<body>
 <div class="container container-fluid-md pb-4">
 <!-- Cover -->
       <div class="cover">
@@ -89,10 +77,7 @@ if (isset($_GET['id_user'])){
 </div>
 
 
-<!-- Footer -->
-<?php
-require 'includes/footer.php';
-?>
+
 
 
 <!-- Modal untuk Foto Profil -->
@@ -152,5 +137,8 @@ require 'includes/footer.php';
     </div>
   </div>
 </div>
-</body>
-</html>
+
+<!-- Footer -->
+<?php
+require 'includes/footer.php';
+?>

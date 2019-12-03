@@ -10,11 +10,11 @@
       <h3>Reset Password Anda. </h3>
       <p class="mb-3 w-75 mx-auto">Masukkan password baru anda. Dimohon password baru tidak sama dengan password sebelumnya.</p>
       <form action="" method="post">
-        <input type="password" class="form-control mx-auto w-75" id="password_user" name="password_user" placeholder="Password Baru" aria-describedby="passwordHelp" required>
+        <input type="password" class="form-control mx-auto w-75" id="password_user" name="password_user" placeholder="Password Baru" aria-describedby="passwordHelp" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}" title="Password harus memiliki 1 huruf kapital, 1 huruf kecil dan 1 Angka minimal 8 karakter dan maksimal 32 karakter">
         <p class="text-left w-75 mx-auto"><small id="passwordHelp" class="text-muted">
           Masukkan password harus 8 - 32 karakter.
         </small></p>
-        <input type="password" class="form-control mx-auto w-75" id="repassword_user" name="repassword_user" placeholder="Password" aria-describedby="passwordHelp" required>
+        <input type="password" class="form-control mx-auto w-75" id="repassword_user" name="repassword_user" placeholder="Password" aria-describedby="passwordHelp" required title="Masukkan Password yang sama persis dengan password yang anda masukkan diatas">
         <p class="text-left w-75 mx-auto"><small id="passwordHelp" class="text-muted">
           Masukkan password yang sama persis untuk kebutuhan validasi.
           </small></p>
@@ -38,7 +38,6 @@
       $match  = mysqli_num_rows($search);
       $user_data = mysqli_fetch_array($search);
       $password_lama = $user_data['USER_PASSWORD'];
-      var_dump($password_lama);
 
       $password_baru = md5($password_user);
 

@@ -15,16 +15,14 @@ if(isset($_POST['edit_bahan'])){
   $id_bahan = $_POST['id_bahan'];
   $nama_bahan = $_POST['nama_bahan'];
   $satuan_bahan = $_POST['satuan_bahan'];
-  $jumlah_satuan = $_POST['jumlah_satuan'];
   $isi_bahan = $_POST['isi_per_bahan'];
   $harga_bahan = $_POST['harga_bahan'];
   $kategori_bahan = $_POST['kategori_bahan'];
 
   $result = mysqli_query($con, "UPDATE bahan SET 
     NAMA_BAHAN = '$nama_bahan',
-    SATUAN = '$satuan_bahan',
-    JUMLAH_SATUAN = '$jumlah_satuan',
-    ISI_PERBAHAN = '$isi_bahan',
+    ID_SATUAN = '$satuan_bahan',
+    ISI_PER_BAHAN = '$isi_bahan',
     HARGA_BAHAN = '$harga_bahan',
     ID_KAT_BAHAN = '$kategori_bahan'
     WHERE
@@ -37,7 +35,6 @@ header("location:../master_bahan.php");
 if(isset($_POST['tambah_bahan'])){
   $nama_bahan = $_POST['nama_bahan'];
   $satuan_bahan = $_POST['satuan_bahan'];
-  $jumlah_satuan = $_POST['jumlah_satuan'];
   $isi_bahan = $_POST['isi_per_bahan'];
   $harga_bahan = $_POST['harga_bahan'];
   $kategori_bahan = $_POST['kategori_bahan'];
@@ -58,7 +55,7 @@ if(isset($_POST['tambah_bahan'])){
 
     $result = mysqli_query($con, "INSERT INTO 
     bahan
-    VALUES('$id_bahan', '$kategori_bahan', '$nama_bahan', '$harga_bahan', '$satuan_bahan', '$jumlah_satuan', '$isi_bahan')
+    VALUES('$id_bahan', '$satuan_bahan', '$kategori_bahan', '$nama_bahan', '$harga_bahan', '$isi_bahan')
     ");
 
     header("location:../master_bahan.php");
