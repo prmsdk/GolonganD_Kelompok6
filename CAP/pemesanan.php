@@ -124,10 +124,11 @@
                     <label class="custom-control-label" for="pilihdesain2">Belum punya Desain</label>
                 </div>
             </div>
-            <div class="custom-file ">
-                <input type="file" id="uploadfile" name="desain" readonly required> 
-                <label for="uploadfile">Unggah file anda dalam format .zip (max ukuran file 30mb) Jika ukuran file anda melebihi batas silahkan kirim file melalui <a href="mailto:aldion819@gmail.com">email ini.</a></label>
-            </div>
+                <div class="custom-file ">
+                    <input type="file" class="custom-file-input" id="uploadfile" name="desain" readonly required>
+                    <label class="custom-file-label" for="inputGroupFile01">Pilih file</label>
+                    <label for="uploadfile">Unggah file anda dalam format .zip .rar .pdf (max ukuran file 30mb) Jika ukuran file anda melebihi batas silahkan kirim file melalui <a href="mailto:aldion819@gmail.com">email ini.</a></label>
+                </div>
             <p class="font-m-semi mt-3">Jumlah</p>
             <input id="jumlah_produk" type="number" class="form-control mb-4 w-50" placeholder="Masukkan Jumlah Cetak" name="jumlah_produk" required min="1">
             <p class="font-m-semi">TOTAL</p>

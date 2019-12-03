@@ -87,9 +87,9 @@ $("#select_warna").change(function () {
     var optionValue = $(this).attr("value");
     if (optionValue) {
       $(".box_warna").not("#" + optionValue).hide();
-      $(".box_warna").not("#" + optionValue).find("#warna_khusus").attr('required', '');
+      $(".box_warna").not("#" + optionValue).attr('required', '');
       $("#" + optionValue).show();
-      $("#" + optionValue).find("#warna_khusus").attr('required', 'required');
+      $("#" + optionValue).attr('required', 'required');
     } else {
       $(".box_warna").hide();
     }
@@ -150,10 +150,46 @@ $(document).on('click', 'body *', function () {
 
   TotHarga = ((HrgDesain * ValDesain) + (HrgWarna + HrgUkuran) + IsiBahan * (HrgBahan * (JmlCetak / SatBahan))) / ValPembayaran;
 
-
   $("#sub_total").prop('value', TotHarga);
 
 });
+
+var rupiah = document.getElementById("rupiah");
+rupiah.addEventListener("keyup", function(e) {
+  rupiah.value = convertRupiah(this.value, "Rp. ");
+});
+sub_total.addEventListener('keydown', function(event) {
+	return isNumberKey(event);
+});
+ 
+function convertRupiah(angka, prefix) {
+  var number_string = angka.replace(/[^,\d]/g, "").toString(),
+    split  = number_string.split(","),
+    sisa   = split[0].length % 3,
+    rupiah = split[0].substr(0, sisa),
+    ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+ 
+	if (ribuan) {
+		separator = sisa ? "." : "";
+		rupiah += separator + ribuan.join(".");
+	}
+ 
+	rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+	return prefix == undefined ? rupiah : rupiah ? prefix + rupiah : "";
+}
+ 
+function isNumberKey(evt) {
+    key = evt.which || evt.keyCode;
+	if ( 	key != 188 // Comma
+		 && key != 8 // Backspace
+		 && key != 17 && key != 86 & key != 67 // Ctrl c, ctrl v
+		 && (key < 48 || key > 57) // Non digit
+		) 
+	{
+		evt.preventDefault();
+		return;
+	}
+}
 
 
 function validate(evt) {
@@ -173,3 +209,16 @@ function validate(evt) {
     if(theEvent.preventDefault) theEvent.preventDefault();
   }
 }
+
+// Upload gambar
+
+$('.custom-file-input').on('change',function(){
+  let fileName = $(this).val().split('\\').pop();
+  $(this).next('.custom-file-label').addClass("custom-file").html(fileName);
+});
+
+// checkbox all
+
+$('#ceksemua').click(function () {
+  $(this).parents('fieldset:eq(0)').find(':checkbox').attr('checked', this.checked);
+  });

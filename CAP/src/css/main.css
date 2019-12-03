@@ -137,6 +137,20 @@ html {
     font-size: 17px;
 }
 
+/* ======== PRODUK ======== */
+
+.inner{
+    overflow: hidden;
+}
+
+.inner img{
+    transition: all 1.5s ease;
+}
+
+.inner:hover img{
+    transform: scale(1.1);
+}
+
 /* ======== PORTOFOLIO ======== */
 
 .portfolio-cap img{
@@ -155,7 +169,7 @@ html {
 
 
 #daftar{
-    background-image: url('../img/slider/print-3.jpg');
+    background-image: url('../img/slider/print-6.jpg');
     background-attachment: fixed;
     background-size: cover;
 }
