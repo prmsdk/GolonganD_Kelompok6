@@ -13,8 +13,8 @@ require '../../fpdf/fpdf.php';
 $pdf = new FPDF('P','mm','A4');
 // membuat halaman baru
 $pdf->AddPage();
-// setting jenis font yang akan digunakan
 $pdf->isFinished = false;
+// setting jenis font yang akan digunakan
 $pdf->SetFont('Times','B',16);
 // mencetak string 
 $pdf->Image('../../src/img/icons/cap.png',20,10,22,22);
@@ -30,36 +30,34 @@ $pdf->Cell(10,7,'',0,1);
 $pdf->Cell(10,7,'',0,1);
 
 $pdf->SetFont('Times','B',14);
-$pdf->Cell(190,10,'LAPORAN DATA BAHAN',0,1,'C');
+$pdf->Cell(190,12,'LAPORAN DATA ADMIN',0,1,'C');
 
 $pdf->SetFont('Times','B',10);
 // Menampilkan Header Tabel
 $pdf->Cell(11,6,'',0,0,'C');
 $pdf->Cell(10,6,'NO',1,0,'C');
-$pdf->Cell(25,6,'ID BAHAN',1,0,'C');
-$pdf->Cell(40,6,'NAMA BAHAN',1,0,'C');
-$pdf->Cell(20,6,'SATUAN',1,0,'C');
-$pdf->Cell(20,6,'ISI',1,0,'C');
-$pdf->Cell(30,6,'HARGA BAHAN',1,0,'C');
-$pdf->Cell(25,6,'KATEGORI',1,1,'C');
+$pdf->Cell(25,6,'ID ADMIN',1,0,'C');
+$pdf->Cell(50,6,'NAMA',1,0,'C');
+$pdf->Cell(35,6,'NO TELP',1,0,'C');
+$pdf->Cell(50,6,'EMAIL',1,1,'C');
 
+
+// select seluruh data pada tabel ukuran
 $pdf->SetFont('Times','',10);
-$result_bahan = mysqli_query($con, "SELECT * FROM bahan, kategori_bahan, satuan_bahan 
-WHERE bahan.ID_KAT_bahan = kategori_bahan.ID_KAT_bahan AND
-bahan.ID_SATUAN = satuan_bahan.ID_SATUAN");
+$result_ukuran = mysqli_query($con, "SELECT * FROM admin");
 $i = 0;
-while($data_bahan = mysqli_fetch_assoc($result_bahan)){
+while($data_ukuran = mysqli_fetch_assoc($result_ukuran)){
   $i+=1;
   $pdf->Cell(11,6,'',0,0,'C');
   $pdf->Cell(10,6,$i,1,0,'C');
-  $pdf->Cell(25,6,$data_bahan['ID_BAHAN'],1,0,'C');
-  $pdf->Cell(40,6,$data_bahan['NAMA_BAHAN'],1,0,'C');
-  $pdf->Cell(20,6,$data_bahan['SATUAN'],1,0,'C');
-  $pdf->Cell(20,6,$data_bahan['ISI_PER_BAHAN'],1,0,'C');
-  $pdf->Cell(30,6,'Rp. '. number_format($data_bahan['HARGA_BAHAN'], 0,".","."),1,0,'C');
-  $pdf->Cell(25,6,$data_bahan['NAMA_KAT_BAHAN'],1,1,'C');
+  $pdf->Cell(25,6,$data_ukuran['ADM_ID'],1,0,'C');
+  $pdf->Cell(50,6,$data_ukuran['ADM_NAMA_USAHA_ADM'],1,0,'C');
+  $pdf->Cell(35,6,$data_ukuran['ADM_NO_TELP'],1,0,'C');
+  $pdf->Cell(50,6,$data_ukuran['ADM_EMAIL'],1,1,'C');
 }
 
+
+// tampilkan footer ketika dokumen telah selesai
 $pdf->isFinished = true;
 if($pdf->isFinished){
   $pdf->setY(-60);
@@ -77,5 +75,10 @@ if($pdf->isFinished){
   $pdf->Cell(30,6,$data_admin['ADM_NAMA_USAHA_ADM'],0,1,'C');
 }
 
+
 $pdf->Output();
+
+
+    
+
 ?>

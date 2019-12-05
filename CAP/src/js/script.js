@@ -6,6 +6,10 @@ $("#alert-login").fadeTo(2000, 500).slideUp(500, function(){
   window.location.hash = '';
 });
 
+$(document).ready(function() {
+  $('#example').DataTable();
+} );
+
 /* SCRIPT UNUTUK MENAMPILKAN KATA SANDI KETIKA DICENTANG */
 
 $(document).ready(function(){		
@@ -188,3 +192,4 @@ $('.custom-file-input').on('change',function(){
 $('#ceksemua').click(function () {
   $(this).parents('fieldset:eq(0)').find(':checkbox').attr('checked', this.checked);
   });
+

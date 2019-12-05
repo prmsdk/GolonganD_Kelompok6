@@ -20,26 +20,24 @@
 
 .banner-absolute1{
   position: absolute;
-  z-index: 1;
-  top: 40%;
+  z-index: 2;
+  top: 300px;
   left: 0;
   right: 0;
 }
 
 .banner-absolute2{
   position: absolute;
-  z-index: 1;
-  top: 35%;
-  left: 10%;
+  z-index: 2;
+  top: 300px;
   right: 10%;
 }
 
 .banner-absolute3{
   position: absolute;
-  z-index: 1;
-  top: 35%;
+  z-index: 2;
+  top: 300px;
   left: 10%;
-  right: 10%;
 }
 
 .mySlides a{
@@ -60,7 +58,7 @@
 }
 
 /* Next & previous buttons */
-.prev, .nextt {
+.prev, .next {
   z-index: 2;
   cursor: pointer;
   position: absolute;
@@ -77,13 +75,13 @@
 }
 
 /* Position the "next button" to the right */
-.nextt {
+.next {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
 
 /* On hover, add a black background color with a little bit see-through */
-.prev:hover, .nextt:hover {
+.prev:hover, .next:hover {
   background-color: rgba(0,0,0,0.8);
 }
 

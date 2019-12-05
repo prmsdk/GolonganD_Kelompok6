@@ -34,26 +34,17 @@
   
   <?php require 'login_user.php';?>
 
-  <?php require 'login_user.php';?>
-  <script type="text/javascript" src="src/DataTables/DataTables-1.10.20/js/dataTables.bootstrap.js"></script>
-      <script type="text/javascript" src="src/DataTables/DataTables-1.10.20/js/jquery.dataTables.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="src/js/bootstrap.js"></script>
   <script src="src/js/jquery-3.4.1.js"></script>
-  <script src="src/js/script.js"></script>
+  <script src="src/DataTables/DataTables-1.10.20/js/dataTables.bootstrap4.min.js"></script>
+  <script src="src/DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js"></script>
+  
   <script src="src/js/sticky-scroll.js"></script>
   <script src="src/js/slideshow.js"></script>
   <script src="src/js/kategori.js"></script>
-      <script src="src/js/jquery.singlePageNav.min.js"></script>
-      <script src="src/js/jquery.fancybox.pack.js"></script>
-      <script src="src/js/owl.carousel.min.js"></script>
-      <script src="src/js/jquery.easing.min.js"></script>
-      <script src="src/js/jquery.ba-cond.min.js"></script>
-      <script src="src/js/wow.min.js"></script>
-      <script src="src/js/main.js"></script>
-      <!-- query -->
-      <script src="js/jquery-3.1.0.js"></script>
+
+  <script src="src/js/main.js"></script>
+  <script src="src/js/script.js"></script>
+  <!-- query -->
     
 
       

@@ -35,7 +35,7 @@
                             <h5 class="card-title font-m-semi"><?=$produk_nama;?></h5>
                             <?php 
                             $result = mysqli_query($con, "SELECT tampil_produk.NAMA_TAMPIL_PRODUK, tampil_produk.ID_TAMPIL_PRODUK,
-                            (warna.HARGA_WARNA + ukuran.HARGA_UKURAN) + bahan.ISI_PER_BAHAN * (bahan.HARGA_BAHAN * (1 / satuan_bahan.JUMLAH_SATUAN)) 
+                            (warna.HARGA_WARNA + ukuran.HARGA_UKURAN) + bahan.ISI_PER_BAHAN * (bahan.HARGA_BAHAN * (1 / satuan_bahan.JUMLAH_SATUAN)) AS HARGA_MIN
                             FROM
                             tampil_produk, warna, bahan, ukuran, tampil_warna, tampil_ukuran, tampil_bahan, satuan_bahan
                             WHERE
@@ -49,12 +49,12 @@
                             tampil_produk.ID_TAMPIL_PRODUK = '$produk_id'
                             
                             ORDER BY 
-                            (warna.HARGA_WARNA + ukuran.HARGA_UKURAN) + bahan.ISI_PER_BAHAN * (bahan.HARGA_BAHAN * (1 / satuan_bahan.JUMLAH_SATUAN))
+                            HARGA_MIN
                             ASC
                             LIMIT 1");
 
                             $data_harga = mysqli_fetch_assoc($result);
-                            $produk_harga = $data_harga['(warna.HARGA_WARNA + ukuran.HARGA_UKURAN) + bahan.ISI_PER_BAHAN * (bahan.HARGA_BAHAN * (1 / satuan_bahan.JUMLAH_SATUAN))'];
+                            $produk_harga = $data_harga['HARGA_MIN'];
                             $produk_harga_awal = substr($produk_harga, 0, -5);
                             ?>
                             <p id="rupiah" class="card-text small">Mulai dari Rp. <?= number_format($produk_harga_awal, 0, ".", ".");?>/psc</p>

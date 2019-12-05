@@ -24,6 +24,7 @@
   <div class="card-header py-2">
     <h3 class="mt-2 font-weight-bold float-left text-primary">Tabel Daftar Admin</h3>
     <button class="mt-2 btn btn-primary float-right ml-auto" data-toggle="modal" data-target="#tambah_admin">Tambah Data</button>
+    <a class="mt-2 mr-2 btn btn-biru float-right ml-auto" href="laporan/report_admin.php"><i class="fas fa-fw fa-print"></i></a>
   </div>
   <div class="card-body">
     <div class="table-responsive">
