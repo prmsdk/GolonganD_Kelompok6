@@ -112,15 +112,15 @@ $adm_status = $data_admin['ADM_STATUS'];
         </div>
         <div class="form-group">
             <label for="inputAddress">Nomor Telephone</label>
-            <input type="text" name="no_hp" class="form-control" id="inputAddress" placeholder="(0331)" value="<?= $no_telp?>" required pattern="[0-9 ()]{12,13}" title="Mohon masukkan hanya angka dan ( ), 12 - 13 digit">
+            <input type="text" name="no_telp" class="form-control" id="inputAddress" placeholder="(0331)" value="<?= $no_telp?>" required pattern="[0-9 ()]{12,13}" title="Mohon masukkan hanya angka dan ( ), 12 - 13 digit">
         </div>
         <div class="form-group">
             <label for="inputAddress2">Alamat</label>
-            <textarea name="alamat" class="form-control" id="inputAddress2" minlength=20 title="Mohon masukkan lebih dari 20 character" value="<?= $alamat?>" required></textarea>
+            <textarea name="alamat" class="form-control" id="inputAddress2" minlength=20 title="Mohon masukkan lebih dari 20 character" required><?= $alamat?></textarea>
         </div>
         <div class="form-group">
           <label for="inputCity">Deskripsi</label>
-          <textarea name="adm_desc" class="form-control" id="inputCity" value="<?=$desc?>" minlength=100 title="Mohon masukkan lebih dari 100 character" required></textarea>
+          <textarea name="adm_desc" class="form-control" id="inputCity" value="<?=$desc?>" minlength=100 title="Mohon masukkan lebih dari 100 character" required><?=$desc?></textarea>
         </div>
         <div class="form-group">
           <label for="inputCity">Username</label>

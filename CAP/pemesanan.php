@@ -124,10 +124,11 @@
                     <label class="custom-control-label" for="pilihdesain2">Belum punya Desain</label>
                 </div>
             </div>
-            <div class="custom-file ">
-                <input type="file" id="uploadfile" name="desain" readonly required> 
-                <label for="uploadfile">Unggah file anda dalam format .zip (max ukuran file 30mb) Jika ukuran file anda melebihi batas silahkan kirim file melalui <a href="mailto:aldion819@gmail.com">email ini.</a></label>
-            </div>
+                <div class="custom-file ">
+                    <input type="file" class="custom-file-input" id="uploadfile" name="desain" readonly required>
+                    <label class="custom-file-label" for="inputGroupFile01">Pilih file</label>
+                    <label for="uploadfile">Unggah file anda dalam format .zip .rar .pdf (max ukuran file 30mb) Jika ukuran file anda melebihi batas silahkan kirim file melalui <a href="mailto:aldion819@gmail.com">email ini.</a></label>
+                </div>
             <p class="font-m-semi mt-3">Jumlah</p>
             <input id="jumlah_produk" type="number" class="form-control mb-4 w-50" placeholder="Masukkan Jumlah Cetak" name="jumlah_produk" required min="1">
             <p class="font-m-semi">TOTAL</p>
@@ -149,7 +150,7 @@
                 <button type="button" class="btn btn-primary" data-target="#login_user" data-toggle="modal">Keranjang</button>
                 <button type="button" class="btn btn-primary" data-target="#login_user" data-toggle="modal">Bayar</button>
                 <?php }else{?>
-                <input type="submit" name="pemesanan_produk" value="Keranjang" class="btn btn-primary font-m-med">
+                <a class="btn btn-primary font-m-med" href="#" id="keranjang" data-ukuran="UKN000003" data-bahan="BHN000004" data-produk="" data-warna="" data->Keranjang</a>
                 <input type="submit" name="pemesanan_produk" value="Bayar" class="btn btn-primary font-m-med">
                 <?php }?>
                 <a class="btn btn-secondary" href="produk_user.php?produk_id=<?=$produk_id?>">Kembali</a>

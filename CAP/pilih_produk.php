@@ -16,7 +16,7 @@
                     $produk_nama = $data_produk['NAMA_TAMPIL_PRODUK'];
                 ?>
                 <div class="col-lg-3 col-md-6">
-                    <div class="card mb-3">
+                    <div class="card shadow mb-3">
                         <a href="produk_user.php?produk_id=<?=$produk_id?>">
                         <?php $result_gambar = mysqli_query($con, "SELECT gambar_produk.GBR_FILE_NAME FROM
                         gambar_produk, tampil_produk WHERE
@@ -27,7 +27,9 @@
                         $data_gambar = mysqli_fetch_assoc($result_gambar);
                         $gambar_produk = $data_gambar['GBR_FILE_NAME'];
                         ?>
+                        <div class="inner">
                         <img src="pictures/produk_thumb/<?=$gambar_produk?>" class="card-img-top " alt="...">
+                        </div>
                         </a>
                         <div class="card-body text-center">
                             <h5 class="card-title font-m-semi"><?=$produk_nama;?></h5>
@@ -55,7 +57,7 @@
                             $produk_harga = $data_harga['(warna.HARGA_WARNA + ukuran.HARGA_UKURAN) + bahan.ISI_PER_BAHAN * (bahan.HARGA_BAHAN * (1 / satuan_bahan.JUMLAH_SATUAN))'];
                             $produk_harga_awal = substr($produk_harga, 0, -5);
                             ?>
-                            <p class="card-text small">Mulai dari Rp. <?=$produk_harga_awal?>/psc</p>
+                            <p id="rupiah" class="card-text small">Mulai dari Rp. <?= number_format($produk_harga_awal, 0, ".", ".");?>/psc</p>
                             <a href="produk_user.php?produk_id=<?=$produk_id?>" class="btn btn-primary font-m-med">Pesan</a>
                         </div>
                     </div>

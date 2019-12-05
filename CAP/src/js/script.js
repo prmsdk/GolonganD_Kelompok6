@@ -87,9 +87,9 @@ $("#select_warna").change(function () {
     var optionValue = $(this).attr("value");
     if (optionValue) {
       $(".box_warna").not("#" + optionValue).hide();
-      $(".box_warna").not("#" + optionValue).find("#warna_khusus").attr('required', '');
+      $(".box_warna").not("#" + optionValue).attr('required', '');
       $("#" + optionValue).show();
-      $("#" + optionValue).find("#warna_khusus").attr('required', 'required');
+      $("#" + optionValue).attr('required', 'required');
     } else {
       $(".box_warna").hide();
     }
@@ -150,11 +150,13 @@ $(document).on('click', 'body *', function () {
 
   TotHarga = ((HrgDesain * ValDesain) + (HrgWarna + HrgUkuran) + IsiBahan * (HrgBahan * (JmlCetak / SatBahan))) / ValPembayaran;
 
-
   $("#sub_total").prop('value', TotHarga);
+  console.log(dataukuran);
+
+  $("#keranjang").attr("data-ukuran", HrgUkuran);
+  
 
 });
-
 
 function validate(evt) {
   var theEvent = evt || window.event;
@@ -173,3 +175,16 @@ function validate(evt) {
     if(theEvent.preventDefault) theEvent.preventDefault();
   }
 }
+
+// Upload gambar
+
+$('.custom-file-input').on('change',function(){
+  let fileName = $(this).val().split('\\').pop();
+  $(this).next('.custom-file-label').addClass("custom-file").html(fileName);
+});
+
+// checkbox all
+
+$('#ceksemua').click(function () {
+  $(this).parents('fieldset:eq(0)').find(':checkbox').attr('checked', this.checked);
+  });

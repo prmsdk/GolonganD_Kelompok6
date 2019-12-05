@@ -21,6 +21,7 @@
   <div class="card-header py-2">
     <h3 class="mt-2 font-weight-bold float-left text-primary">Tabel Daftar Produk</h3>
     <a class="mt-2 btn btn-primary float-right ml-auto" href="master_produk_tambah.php">Tambah Data</a>
+    <a class="mt-2 mr-2 btn btn-biru float-right ml-auto" href="laporan/report_produk.php"><i class="fas fa-fw fa-print"></i></a>
   </div>
   <div class="card-body">
     <div class="table-responsive">

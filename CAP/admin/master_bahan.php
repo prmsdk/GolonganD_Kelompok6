@@ -22,6 +22,7 @@
   <div class="card-header py-2">
     <h3 class="mt-2 font-weight-bold float-left text-primary">Tabel Daftar Bahan</h3>
     <button class="mt-2 btn btn-primary float-right ml-auto" data-toggle="modal" data-target="#tambah_bahan">Tambah Data</button>
+    <a class="mt-2 mr-2 btn btn-biru float-right ml-auto" href="laporan/report_bahan.php"><i class="fas fa-fw fa-print"></i></a>
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -102,12 +103,17 @@
                       <input type="text" class="form-control" id="nama_bahan" name="nama_bahan" aria-describedby="usernameHelp" placeholder="Masukkan Nama Bahan" required>
                     </div>
                     <div class="form-group">
-                      <label for="satuan_bahan" class="font-m-med">Satuan bahan</label>
-                      <input type="text" class="form-control" id="satuan_bahan" name="satuan_bahan" aria-describedby="usernameHelp" placeholder="Masukkan Satuan Bahan" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="jumlah_satuan" class="font-m-med">Jumlah Satuan</label>
-                      <input type="text" class="form-control" id="jumlah_satuan" name="jumlah_satuan" aria-describedby="usernameHelp" placeholder="Masukkan Jumlah Satuan" required>
+                      <label for="satuan_bahan">Satuan Bahan</label>
+                      <select class="form-control" id="satuan_bahan" name="satuan_bahan">
+                        <?php 
+                          $data = mysqli_query($con, "SELECT * FROM satuan_bahan");
+                          while($data_sat_bahan = mysqli_fetch_assoc($data)){
+                          $id_sat_bahan = $data_sat_bahan['ID_SATUAN'];
+                          $nama_sat_bahan = $data_sat_bahan['SATUAN'];
+                        ?>
+                        <option value="<?=$id_sat_bahan?>"><?=$nama_sat_bahan?></option>
+                        <?php } ?>
+                      </select>
                     </div>
                     <div class="form-group">
                       <label for="isi_per_bahan" class="font-m-med">Isi per Bahan</label>
