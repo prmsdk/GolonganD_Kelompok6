@@ -1,5 +1,5 @@
 <?php 
-include 'koneksi.php';
+require 'includes/config.php';
 
 if($_POST['post_cover']) {
     $id_user = $_POST['id_user'];

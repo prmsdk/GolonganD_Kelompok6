@@ -1,3 +1,4 @@
+/* Untuk profil dan cover */
 .cover img{
     margin: 0px;
     position: relative; 
@@ -58,6 +59,20 @@ border-radius: 15px;
     text-align: center;
 }
 
+/* Untuk history */
+.history{
+    margin-top: 5px;
+    padding-top: 2px;
+    text-align: center;
+    color: darkslategrey;
+    position: relative;
+}
 
-
-/* mencari gambar edit yg resolusinya kecil */
+/* Untuk Antrian */
+.antrian{
+    text-align: center;
+    margin-top: 5px;
+    padding-top: 2px;
+    color: darkslategrey;
+    position: relative; 
+}

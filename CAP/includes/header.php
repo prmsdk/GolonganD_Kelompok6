@@ -12,7 +12,12 @@
         <link rel="stylesheet" href="src/css/owl.carousel.css">
         <link rel="stylesheet" href="src/css/animate.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-    <link rel="icon" type="image/png" href="src/img/icons/cap.png">
+        <link rel="stylesheet" href="admin/css/sb-admin-2.css">
+        
+        <link rel="stylesheet" type="text/css" href="src/DataTables/DataTables-1.10.20/css/jquery.dataTables.css">
+        <link rel="stylesheet" type="text/css" href="src/DataTables/DataTables-1.10.20/css/dataTables.bootstrap.css">
+        
+        <link rel="icon" type="image/png" href="src/img/icons/cap.png">
     <title>Cahaya Abadi Perkasa</title>
 </head>
 <body>
