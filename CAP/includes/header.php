@@ -47,28 +47,25 @@
                 $id_user = $_SESSION['id_user'];
               }
               if($_SESSION['status']=='login'){
-                ?><div class="dropdown notif-custom">
-                    <a class="nav-item nav-link icon-custom" style="color:#F69322;" type="button" data-toggle="dropdown"><i class="fa fa-bell fa-1x"></i></a>
+                ?><div class="dropdown notif-custom ">
+                    <a class="nav-item nav-link icon-custom notif-dropdown" style="color:#F69322;" type="button" data-toggle="dropdown">
+                      <i class="fa fa-bell fa-1x">
+                      </i>
+                      <span class="badge badge-danger badge-counter notif-count"></span>
+                    </a>
                     <div class="dropdown-menu dropdown-menu-right p-3 text-center" style="width: 50vw">
                       <div class="row">
                         <div class="col-lg-12 col-sm-12 col-12 text-left">
-                          <span><strong>Notifications (3)</strong></span>
+                          <span><strong>Notifications (<span class="notif-count">0</span>)</strong></span>
                           <a href="#" class="float-right text-dark text-light">Mark all as read</a>
                         </div>
                       </div>
                       <div class="dropdown-divider"></div>
-                      <div class="row">
-                          <div class="col-lg-2 col-sm-4 text-right">
-                            <img src="http://placehold.it/80x80" class="rounded">
-                          </div>    
-                          <div class="col-lg-10 col-sm-8 text-left justify-content-start">
-                            <a href="#"><strong class="text-info">Pesanan Anda Telah Selesai Dikerjakan!</strong></a>
-                            <div>
-                              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel mollitia ipsam officia enim aspernatur culpa in nulla aliquam minima? Eum accusamus repellendus eius quidem modi libero consequuntur doloribus, corrupti sint?</p>
-                            </div>
-                            <small class="text-info">27.11.2015, 15:00</small>
-                          </div>    
-                        </div>
+                      <div class="row wadah-notif-dropdown">
+                        <div class="col-lg-12 text-center">
+                          <h4>Tidak ada Notifikasi untuk Anda.</h4>
+                        </div>  
+                      </div>
                       <div class="dropdown-divider"></div>
                         <a href="#" class="text-dark ">View All</a>
                       </div>
@@ -160,7 +157,7 @@
                       <span class="caret"></span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right text-right">
-                      <a class="dropdown-item" href="user_profil.php?id_user=<?=$id_user?>">Setting Profile</a>
+                      <a class="dropdown-item" href="user_profil.php">Setting Profile</a>
                       <a class="dropdown-item" href="#">Bantuan</a>
                       <a class="dropdown-item" href="#">Keamanan</a>
                       <div class="dropdown-divider"></div>

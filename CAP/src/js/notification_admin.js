@@ -1,5 +1,7 @@
+
+
 $(document).ready(function(){
-  
+
   function load_unseen_notification(view = '')
   {
     $.ajax({

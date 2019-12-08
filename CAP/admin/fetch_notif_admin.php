@@ -20,7 +20,7 @@
   while($row = mysqli_fetch_assoc($result))
   {
     $admin_notif = $row['ADMIN_NOTIF'];
-    if($admin_notif == 1){
+    if($admin_notif == 0){
       $bg = 'bg-light';
     }else{
       $bg = 'bg-white';
