@@ -3,8 +3,8 @@
 require 'includes/config.php';
 require 'includes/header.php';
 
-if (isset($_GET['id_user'])){
-  $id_user = $_GET['id_user'];
+if (isset($_SESSION['id_user'])){
+  $id_user = $_SESSION['id_user'];
   $query = mysqli_query ($con, "SELECT * FROM user  WHERE USER_ID = '$id_user'");
   // var_dump($query);
   $result = mysqli_fetch_assoc($query);
