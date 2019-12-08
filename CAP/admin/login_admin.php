@@ -16,7 +16,7 @@
                   <form class="font-m-light col-11 mt-3" action="cek_login_admin.php" method="post">
                     <div class="form-group">
                       <label for="username-admin" class="font-m-med">Username</label>
-                      <input type="text" class="form-control" id="username-admin" name="username-admin" aria-describedby="usernameHelp" placeholder="Enter username" required>
+                      <input type="text" class="form-control" id="username-admin" name="username-admin" aria-describedby="usernameHelp" placeholder="Enter username" required autofocus>
                       
                     </div>
                     <div class="form-group">
