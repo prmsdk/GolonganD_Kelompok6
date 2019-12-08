@@ -41,7 +41,7 @@
             <h6 class="collapse-header">Transaksi Pemesanan :</h6>
             <a class="collapse-item" href="#">Antrian</a>
             <a class="collapse-item" href="#">History</a>
-            <a class="collapse-item" href="#">Notifikasi</a>
+            <a class="collapse-item" href="trs_notifikasi_admin.php">Notifikasi</a>
           </div>
         </div>
       </li>

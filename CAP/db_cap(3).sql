@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Des 2019 pada 07.30
+-- Waktu pembuatan: 08 Des 2019 pada 09.02
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.4
 
@@ -95,7 +95,7 @@ CREATE TABLE `detail_pesanan` (
 --
 
 INSERT INTO `detail_pesanan` (`ID_PRODUK`, `ID_PESANAN`, `JUMLAH_PRODUK`, `SUB_TOTAL`, `UPLOAD_DESAIN`, `STATUS_DESAIN`) VALUES
-('PRD000001', 'PSN000002', 700, 0, NULL, 0),
+('PRD000002', 'PSN000002', 700, 0, NULL, 0),
 ('PRD000001', 'PSN000001', 700, 0, NULL, 0),
 ('PRD000001', 'PSN000001', 700, 0, NULL, 1),
 ('PRD000001', 'PSN000003', 700, 0, NULL, 1);
@@ -202,17 +202,19 @@ CREATE TABLE `pesanan` (
   `TOTAL_HARGA` int(11) DEFAULT NULL,
   `STATUS_PESANAN` int(1) NOT NULL,
   `BUKTI_TRANSFER` varchar(200) DEFAULT NULL,
-  `KET_PEMBAYARAN` int(1) NOT NULL
+  `KET_PEMBAYARAN` int(1) NOT NULL,
+  `ADMIN_NOTIF` int(1) NOT NULL DEFAULT '0',
+  `USER_NOTIF` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `pesanan`
 --
 
-INSERT INTO `pesanan` (`ID_PESANAN`, `ADM_ID`, `USER_ID`, `TANGGAL_PESANAN`, `TOTAL_HARGA`, `STATUS_PESANAN`, `BUKTI_TRANSFER`, `KET_PEMBAYARAN`) VALUES
-('PSN000001', 'ADM000001', 'USR000001', '2019-11-18 09:00:00', 0, 1, NULL, 1),
-('PSN000002', 'ADM000002', 'USR000002', '2019-11-12 07:00:00', 0, 2, NULL, 2),
-('PSN000003', 'ADM000002', 'USR000002', '2019-11-07 16:00:00', 0, 2, NULL, 1);
+INSERT INTO `pesanan` (`ID_PESANAN`, `ADM_ID`, `USER_ID`, `TANGGAL_PESANAN`, `TOTAL_HARGA`, `STATUS_PESANAN`, `BUKTI_TRANSFER`, `KET_PEMBAYARAN`, `ADMIN_NOTIF`, `USER_NOTIF`) VALUES
+('PSN000001', 'ADM000001', 'USR000001', '2019-12-03 09:00:00', 456000, 1, NULL, 1, 1, 0),
+('PSN000002', 'ADM000002', 'USR000002', '2019-12-06 07:00:00', 703000, 6, NULL, 2, 0, 1),
+('PSN000003', 'ADM000002', 'USR000002', '2019-12-07 16:00:00', 354000, 2, NULL, 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -492,7 +494,7 @@ INSERT INTO `warna` (`ID_WARNA`, `JENIS_WARNA`, `WARNA_DESC`, `HARGA_WARNA`) VAL
 ('WRN000001', 'Full Color (Dua Muka)', 'Deskripsi Full Color', 20000),
 ('WRN000002', 'Satu Warna (Dua Muka)', 'Ini Satu Warna Dua Muka', 10000),
 ('WRN000003', 'Full Color (Satu Muka)', 'Untuk Satu Muka saja tapi fullcolor', 10000),
-('WRN000004', 'Full Color & Satu Warna (Dua M', 'Full Color & Satu Warna (Dua Muka)', 15000),
+('WRN000004', 'Full Color & Satu Warna ', 'Full Color & Satu Warna (Dua Muka)', 15000),
 ('WRN000005', 'Satu Warna (Satu Muka)', 'Satu Warna (Satu Muka)', 5000);
 
 --

@@ -57,17 +57,19 @@
                       <div class="row">
                         <div class="col-lg-12 col-sm-12 col-12 text-left">
                           <span><strong>Notifications (<span class="notif-count">0</span>)</strong></span>
-                          <a href="#" class="float-right text-dark text-light">Mark all as read</a>
+                          <a href="notifikasi_user_query.php" class="float-right text-dark text-light">Mark all as read</a>
                         </div>
                       </div>
                       <div class="dropdown-divider"></div>
-                      <div class="row wadah-notif-dropdown">
-                        <div class="col-lg-12 text-center">
-                          <h4>Tidak ada Notifikasi untuk Anda.</h4>
-                        </div>  
+                      <div class="wadah-notif-dropdown">
+                        <div class="row">
+                          <div class="col-lg-12 text-center">
+                            <h4>Tidak ada Notifikasi untuk Anda.</h4>
+                          </div>  
+                        </div>
                       </div>
                       <div class="dropdown-divider"></div>
-                        <a href="#" class="text-dark ">View All</a>
+                        <a href="notifikasi_user.php" class="text-dark ">View All</a>
                       </div>
                   </div>
                   <!-- BATAS BELL -->
