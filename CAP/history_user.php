@@ -3,7 +3,6 @@
 require 'includes/config.php';
 require 'includes/header.php';
 
-$_SESSION['id_user'] = 'USR000002';
 $id_user = $_SESSION['id_user'];
 $result_pesanan = mysqli_query($con, "SELECT * FROM pesanan, user where
 user.USER_ID = pesanan.USER_ID AND

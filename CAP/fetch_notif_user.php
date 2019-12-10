@@ -53,7 +53,7 @@
           <i class="fas fa-file-alt fa-3x '.$bg.'"></i>
         </div>    
         <div class="col-lg-10 col-sm-8 text-left justify-content-start">
-          <a href="detail_pesanan_user.php?ID_PESANAN='.$row['ID_PESANAN'].'" class="'.$bg.'">Pesanan <strong>'.$row['NAMA_PRODUK'].'</strong> Anda '.$row['KET_STATUS'].'!</a>
+          <a href="detail_pesanan_user.php?id_pesanan='.$row['ID_PESANAN'].'" class="'.$bg.'">Pesanan <strong>'.$row['NAMA_PRODUK'].'</strong> Anda '.$row['KET_STATUS'].'!</a>
           <div>
             <p class="text-grey"><small>'.$row['TANGGAL_PESANAN'].'</small></p>
           </div>

@@ -17,7 +17,6 @@ if($_POST['edit_profil_admin']){
     ADM_NO_HP = '$no_hp', 
     ADM_NO_TELP = '$no_telp',
     ADM_ALAMAT = '$alamat',
-    ADM_NO_TELP = '$no_telp,
     ADM_DESC = '$desc',
     ADM_USERNAME = '$adminname' 
     where ADM_ID = '$id_admin'");

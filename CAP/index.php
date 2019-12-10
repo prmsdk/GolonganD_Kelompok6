@@ -1,5 +1,6 @@
 <?php
 
+    require 'includes/config.php';
     require 'includes/header_home.php';
     require 'slider.php';
     require 'pilih_produk.php';

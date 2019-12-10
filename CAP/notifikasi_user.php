@@ -31,6 +31,7 @@ WHERE
   pesanan.ID_PESANAN = detail_pesanan.ID_PESANAN AND
   detail_pesanan.ID_PRODUK = produk.ID_PRODUK AND
   pesanan.USER_ID = '$id_user'
+  GROUP BY ID_PESANAN
   ORDER BY pesanan.TANGGAL_PESANAN DESC");
 ?>
 
@@ -43,7 +44,7 @@ WHERE
     </div>
     <div class="card-body">
       <a class="mb-3 btn btn-primary float-right ml-auto" href="notifikasi_user_query.php">Tandai Semua Sudah Dibaca</a>
-      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+      <table class="table table-bordered" id="example" width="100%" cellspacing="0">
         <thead>
           <tr>
             <th>No</th>
@@ -88,18 +89,21 @@ WHERE
             }else{
               echo '<span class="badge badge-pill badge-success py-2 px-3">Sudah Dibaca</span>';
             }?></td>
-            <td style="width:60px">
-            <div class="block">
+            <td style="width:100px">
+            <div class="">
+            <a href="detail_pesanan_user.php?id_pesanan=<?=$id_psn?>" class="btn btn-info btn-rounded btn-sm float-left w-50 mr-1">
+                  <i class="fas fa-info"></i>
+              </a>
             <?php
             if($status_notif==0){
             ?>
-              <a href="notifikasi_user_query.php?id_pesanan=<?=$id_psn?>&action=sudah" class="btn btn-primary btn-rounded w-100 btn-sm" onclick="return confirm('Tandai sudah dibaca?');">
+              <a href="notifikasi_user_query.php?id_pesanan=<?=$id_psn?>&action=sudah" class="btn btn-primary btn-rounded btn-sm float-right" onclick="return confirm('Tandai sudah dibaca?');">
                   <i class="fas fa-check"></i>
               </a>
             <?php
             }else{
             ?>
-              <a href="notifikasi_user_query.php?id_pesanan=<?=$id_psn?>&action=belum" class="btn btn-danger btn-rounded w-100 btn-sm" onclick="return confirm('Tandai belum dibaca?');">
+              <a href="notifikasi_user_query.php?id_pesanan=<?=$id_psn?>&action=belum" class="btn btn-danger btn-rounded btn-sm float-right" onclick="return confirm('Tandai belum dibaca?');">
                   <i class="fas fa-check"></i>
               </a>
             <?php

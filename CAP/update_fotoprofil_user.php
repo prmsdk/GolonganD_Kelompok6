@@ -1,5 +1,5 @@
 <?php
-include 'koneksi.php'; //mengoneksikan dengan database
+include 'includes/config.php'; //mengoneksikan dengan database
 
 if($_POST['post_profile']) {
     $id_user = $_POST['id_user'];
@@ -12,8 +12,8 @@ if($_POST['post_profile']) {
         if(in_array($ekstensi,$ekstensi_boleh)===true){
             if($ukuran < 3132210){ 
                 move_uploaded_file($file_temporary, 'file_upload/'.$nama); //untuk upload file
-                // $query = mysqli_query ($koneksi, "SELECT * FROM user");
-                $query = mysqli_query ($koneksi, "UPDATE user SET USER_PROFIL='$nama' WHERE USER_ID='$id_user'");
+                // $query = mysqli_query ($con, "SELECT * FROM user");
+                $query = mysqli_query ($con, "UPDATE user SET USER_PROFIL='$nama' WHERE USER_ID='$id_user'");
                     if($query) {
                         header("location:user_profil.php?id_user=$id_user");
                     }else{

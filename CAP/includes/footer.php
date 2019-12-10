@@ -50,6 +50,7 @@
   <script src="src/js/main.js"></script>
   <script src="src/js/script.js"></script>
   <script src="src/js/notification_user.js"></script>
+  <script src="src/js/ava_uname_email.js"></script>
   <!-- query -->
 
   <?php require 'login_user.php';?>

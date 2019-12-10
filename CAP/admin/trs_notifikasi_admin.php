@@ -14,6 +14,7 @@
     pesanan.USER_ID = user.USER_ID AND
     pesanan.ID_PESANAN = detail_pesanan.ID_PESANAN AND
     detail_pesanan.ID_PRODUK = produk.ID_PRODUK
+    GROUP BY ID_PESANAN
     ORDER BY pesanan.TANGGAL_PESANAN DESC");
 ?>
 
@@ -61,18 +62,21 @@
                     }else{
                       echo '<span class="badge badge-pill badge-success px-3">Sudah Dibaca</span>';
                     }?></td>
-                    <td style="width:60px">
+                    <td style="width:80px">
                         <div class="block">
+                          <a href="trs_detail_pesanan_admin.php?id_pesanan=<?=$id_psn?>" class="btn btn-info btn-rounded w-50 btn-sm">
+                            <i class="fas fa-info"></i>
+                          </a>
                           <?php
                           if($status_notif==0){
                           ?>
-                            <a href="query/mark_all_notif.php?id_pesanan=<?=$id_psn?>&action=sudah" class="btn btn-biru btn-rounded w-100 btn-sm" onclick="return confirm('Tandai sudah dibaca?');">
+                            <a href="query/mark_all_notif.php?id_pesanan=<?=$id_psn?>&action=sudah" class="btn btn-biru btn-rounded  btn-sm" onclick="return confirm('Tandai sudah dibaca?');">
                                 <i class="fas fa-check"></i>
                             </a>
                           <?php
                           }else{
                           ?>
-                            <a href="query/mark_all_notif.php?id_pesanan=<?=$id_psn?>&action=belum" class="btn btn-danger btn-rounded w-100 btn-sm" onclick="return confirm('Tandai belum dibaca?');">
+                            <a href="query/mark_all_notif.php?id_pesanan=<?=$id_psn?>&action=belum" class="btn btn-danger btn-rounded  btn-sm" onclick="return confirm('Tandai belum dibaca?');">
                                 <i class="fas fa-check"></i>
                             </a>
                           <?php

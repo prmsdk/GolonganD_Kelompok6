@@ -97,6 +97,7 @@ if (isset($_SESSION['id_user'])){
         
           <form action="update_fotoprofil_user.php" method="POST" enctype="multipart/form-data">
               <input type="hidden" class="mb-3" name="id_user" value="<?=$id_user?>">
+              <input type="file" class="mb-3" id="inputGroupFile02" name="file">
               <div class="modal-footer">
               <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
               <input type="submit"  class="btn btn-primary" name="post_profile" value="Upload">
@@ -124,20 +125,10 @@ if (isset($_SESSION['id_user'])){
         
           <form action="update_cover_user.php" method="POST" enctype="multipart/form-data">
               <input type="hidden" name="id_user" value="<?=$id_user?>">
-<<<<<<< HEAD
-                  <div>
-                  <input type="file" id="inputGroupFile02" name="file">
-                  <label for="inputGroupFile02"  aria-describedby="inputGroupFileAddon02" ></label>
-                  <!-- <div class="modal-footer"> -->
-                  </div>
-              </div>
-
-=======
                   
                   <input type="file" class="mb-3" id="inputGroupFile02" name="file">
                   <!-- <div class="modal-footer">
                   </div> -->
->>>>>>> a0ec809b93ade203809fa4f0a0087a582c1653ce
               <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
                 <input type="submit"  class="btn btn-primary" name="post_cover" value="Upload">

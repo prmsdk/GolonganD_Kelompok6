@@ -39,8 +39,8 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Transaksi Pemesanan :</h6>
-            <a class="collapse-item" href="#">Antrian</a>
-            <a class="collapse-item" href="#">History</a>
+            <a class="collapse-item" href="trs_antrian.php">Antrian</a>
+            <a class="collapse-item" href="trs_history_admin.php">History</a>
             <a class="collapse-item" href="trs_notifikasi_admin.php">Notifikasi</a>
           </div>
         </div>

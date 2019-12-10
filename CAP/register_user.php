@@ -35,7 +35,12 @@
                 </div>
                 <div class="form-group">
                   <label for="email_user" class="font-m-semi">Alamat Email</label>
-                  <input type="email" class="form-control" id="email_user" name="email_user" aria-describedby="emailHelp" placeholder="Masukkan Alamat Email Anda" required>
+                  <div class="input-group">
+                    <input type="email" class="form-control" id="email_user" name="email_user" aria-describedby="emailHelp" placeholder="Masukkan Alamat Email Anda" required>
+                    <div class="input-group-prepend">
+                      <div id="email_response" class="input-group-text bg-light"><i class="fas fa-times text-danger"></i></div>
+                    </div>
+                  </div>
                   <small id="emailHelp" class="form-text text-muted">Kita tidak akan menyebarkan email anda kemanapun.</small>
                 </div>
                 <div class="form-group">
@@ -49,9 +54,12 @@
                 <label for="username_user" class="font-m-semi">Username</label>
                 <div class="input-group mb-2">
                   <div class="input-group-prepend">
-                    <div class="input-group-text">@</div>
+                    <div class="input-group-text bg-light">@</div>
                   </div>
-                  <input type="text" class="form-control" id="username_user" name="username_user" placeholder="Isikan Username Anda" required pattern="^[A-Za-z0-9 _.]+$" title="Username Format: huruf, angka, dan ._">
+                  <input type="text" class="form-control" id="username_user" name="username_user" placeholder="Isikan Username Anda" required pattern="^[A-Za-z0-9 _.]+$" title="Username Format: huruf, angka, dan ._" >
+                  <div class="input-group-prepend">
+                    <div id="uname_response" class="input-group-text bg-light"><i class="fas fa-times text-danger"></i></div>
+                  </div>
                 </div>
               </div>
               <div class="form-group m-0">
@@ -68,7 +76,12 @@
                 
               <div class="form-group text-left">
                 <label for="repassword_user" class="font-m-semi">Re-Type Password</label>
-                <input type="password" class="form-control" id="repassword_user" name="repassword_user" placeholder="Password" aria-describedby="passwordHelp" required title="Masukkan Password yang sama persis dengan password yang anda masukkan diatas">
+                <div class="input-group">
+                  <input type="password" class="form-control" id="repassword_user" name="repassword_user" placeholder="Password" aria-describedby="passwordHelp" required title="Masukkan Password yang sama persis dengan password yang anda masukkan diatas">
+                  <div class="input-group-prepend">
+                    <div id="retype_password" class="input-group-text bg-light"><i class="fas fa-times text-danger"></i></div>
+                  </div>
+                </div>
                 <small id="passwordHelp" class="text-muted">
                   Masukkan password yang sama persis untuk kebutuhan validasi.
                 </small>
@@ -78,7 +91,7 @@
                 <label class="form-check-label" for="exampleCheck1">Saya setuju dengan <a href="#">Kebijakan & Privasi</a> yang telah ditentukan.</label>
               </div>
               <div class="text-center">
-                <input type="submit" name="submit_daftar" class="btn btn-primary" value="DAFTAR">
+                <input type="submit" id="submit_daftar" name="submit_daftar" class="btn btn-primary" value="DAFTAR">
               </div>
               </form>
             </div>

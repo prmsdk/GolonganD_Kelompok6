@@ -1,19 +1,26 @@
 <?php 
-
+session_start();
 require 'includes/config.php';
 require 'includes/header.php';
 
-$_SESSION['id_admin'] = 'ADM000002';
-$id_admin = $_SESSION['id_admin'];
-$result_pesanan = mysqli_query($con, "SELECT * FROM pesanan, user where
-user.USER_ID = pesanan.USER_ID AND 
-ADM_ID='$id_admin'")
+$result_pesanan = mysqli_query($con, "SELECT *, 
+CASE
+WHEN pesanan.STATUS_PESANAN = 1 THEN 'Sedang Menunggu Bukti TF'
+WHEN pesanan.STATUS_PESANAN = 2 THEN 'Sedang Menunggu Antrian'
+WHEN pesanan.STATUS_PESANAN = 3 THEN 'Sedang Dalam Proses'
+WHEN pesanan.STATUS_PESANAN = 4 THEN 'Selesai'
+WHEN pesanan.STATUS_PESANAN = 5 THEN 'Dalam Pengiriman'
+WHEN pesanan.STATUS_PESANAN = 6 THEN 'Dibatalkan'
+END AS STATUS_KET
+FROM pesanan, user where
+user.USER_ID = pesanan.USER_ID AND
+(pesanan.STATUS_PESANAN = 1 OR pesanan.STATUS_PESANAN = 2)")
 ?>
 
 
 <!-- Antrian -->
-<div class="container">
-  <div class="card shadow m-5">
+<div class="container-fluid">
+  <div class="card shadow">
     <div class="card-header text-center">
       <h2 clas="">Antrian</h2>
     </div>
@@ -38,19 +45,32 @@ ADM_ID='$id_admin'")
             $total_psn = $data_pesanan['TOTAL_HARGA'];
             $nama_user = $data_pesanan['USER_NAMA_LENGKAP'];
             $tanggal_psn = $data_pesanan['TANGGAL_PESANAN'];
-            $status_psn = $data_pesanan['STATUS_PESANAN'];
+            $status_notif = $data_pesanan['STATUS_PESANAN'];
+            $status_psn = $data_pesanan['STATUS_KET'];
             $ket_pembayaran = $data_pesanan['KET_PEMBAYARAN'];
         ?>
-          
           <tbody>
               <tr class="bg-light">
                   <td><?=$i?></td>
                   <td><?=$id_psn?></td>
                   <td><?=$nama_user?></td>
                   <td><?=$tanggal_psn?></td>
-                  <td><?=$total_psn?></td>
-                  <td><?=$status_psn?></td>
-                  <td><?=$ket_pembayaran?></td>
+                  <td>Rp. <?=number_format($total_psn, 0,".",".")?></td>
+                  <td class="text-center"><?php if($status_notif==1 OR $status_notif==2 OR $status_notif==3){
+                      echo '<span class="badge badge-pill badge-secondary px-3">'.$status_psn.'</span>';
+                    }else if($status_notif==4 OR $status_notif==5){
+                      echo '<span class="badge badge-pill badge-success px-3">'.$status_psn.'</span>';
+                    }else{
+                      echo '<span class="badge badge-pill badge-danger px-3">'.$status_psn.'</span>';
+                    }?>
+                  </td>
+                  <td>
+                        <div class="block text-center">
+                          <a href="trs_detail_pesanan_admin.php?id_pesanan=<?=$id_psn?>" class="btn btn-info btn-rounded w-50 btn-sm">
+                            <i class="fas fa-info"></i>
+                          </a>
+                        </div>
+                  </td>
               </tr>
           </tbody>
           <thead>
@@ -65,7 +85,12 @@ ADM_ID='$id_admin'")
               </tr>
           </thead>
         <?php
-        $result_produk = mysqli_query($con, "SELECT produk.NAMA_PRODUK, warna.JENIS_WARNA, ukuran.JENIS_UKURAN, detail_pesanan.JUMLAH_PRODUK, detail_pesanan.SUB_TOTAL, detail_pesanan.STATUS_DESAIN FROM
+        $result_produk = mysqli_query($con, "SELECT produk.NAMA_PRODUK, warna.JENIS_WARNA, ukuran.JENIS_UKURAN, detail_pesanan.JUMLAH_PRODUK, detail_pesanan.SUB_TOTAL, detail_pesanan.STATUS_DESAIN, 
+        CASE
+        WHEN detail_pesanan.STATUS_DESAIN = 0 THEN 'ADA'
+        WHEN detail_pesanan.STATUS_DESAIN = 1 THEN 'TIDAK ADA'
+        END AS STATUS_
+        FROM
         produk, detail_pesanan, warna, ukuran
         WHERE
         produk.ID_PRODUK = detail_pesanan.ID_PRODUK AND
@@ -79,6 +104,7 @@ ADM_ID='$id_admin'")
         $jml_produk = $data_produk['JUMLAH_PRODUK'];
         $sub_total = $data_produk['SUB_TOTAL'];
         $ket_desain = $data_produk['STATUS_DESAIN'];
+        $desain_status = $data_produk['STATUS_'];
         ?>
         
           <tbody>
@@ -87,9 +113,14 @@ ADM_ID='$id_admin'")
                   <td><?=$nama_produk?></td>
                   <td><?=$warna_produk?></td>
                   <td><?=$ukuran_produk?></td>
-                  <td><?=$jml_produk?></td>
-                  <td><?=$sub_total?></td>
-                  <td><?=$ket_desain?></td>
+                  <td><?=number_format($jml_produk, 0,".",".")?></td>
+                  <td>Rp. <?=number_format($sub_total, 0,".",".")?></td>
+                  <td class="text-center"><?php if($ket_desain==0){
+                      echo '<span class="badge badge-pill badge-info px-3">'.$desain_status.'</span>';
+                    }else{
+                      echo '<span class="badge badge-pill badge-secondary px-3">'.$desain_status.'</span>';
+                    }?>
+                  </td>
               </tr>
           </tbody>
         <?php } }?>

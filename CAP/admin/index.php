@@ -76,7 +76,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Transaksi Bulan Ini</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?=number_format($djml_pesanan_bulan['TOT_PESANAN'], 0,".",".")?> Pesanan</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><span class="Count"><?=number_format($djml_pesanan_bulan['TOT_PESANAN'], 0,".",".")?></span> Pesanan</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -94,7 +94,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total Produk dipesan Bulan Ini</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?=number_format($djml_produk_bulan['TOT_PRODUK'], 0,".",".")?> Produk</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><span class="Count"><?=number_format($djml_produk_bulan['TOT_PRODUK'], 0,".",".")?></span> Produk</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -112,7 +112,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Omset Bulan Ini</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. <?=number_format($domset_bulan['TOT_OMSET'], 0,".",".")?></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. <span class="Count"><?=$domset_bulan['TOT_OMSET']?></span></div>
                     </div>
                     <div class="col-auto">
                       <i class="fa fa-money-bill-wave fa-2x text-gray-300"></i>
@@ -219,7 +219,7 @@
                 WHERE pesanan.TANGGAL_PESANAN LIKE '$bulan_now%' AND
                 pesanan.ID_PESANAN = detail_pesanan.ID_PESANAN AND
                 produk.ID_PRODUK = detail_pesanan.ID_PRODUK
-                GROUP BY ID_PRODUK 
+                GROUP BY NAMA_PRODUK 
                 ORDER BY `TOT_PEMBELIAN_PRODUK`  DESC LIMIT 5");
 
                 $result_jumlah_populer = mysqli_query($con, "SELECT DISTINCT detail_pesanan.ID_PRODUK, SUM(JUMLAH_PRODUK) as TOT_PEMBELIAN_PRODUK, NAMA_PRODUK
@@ -227,7 +227,7 @@
                 WHERE pesanan.TANGGAL_PESANAN LIKE '$bulan_now%' AND
                 pesanan.ID_PESANAN = detail_pesanan.ID_PESANAN AND
                 produk.ID_PRODUK = detail_pesanan.ID_PRODUK
-                GROUP BY ID_PRODUK 
+                GROUP BY NAMA_PRODUK 
                 ORDER BY `TOT_PEMBELIAN_PRODUK`  DESC LIMIT 5");
                 ?>
 
@@ -253,7 +253,7 @@
                       <?php
                       while($data_produk_populer = mysqli_fetch_assoc($result_jumlah_populer)){
                         $jumlah_produk = $data_produk_populer['TOT_PEMBELIAN_PRODUK'];
-                          echo "'$jumlah_produk',";
+                          echo "'$jumlah_produk' ,";
                       }
                       ?>
                     ],

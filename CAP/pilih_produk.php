@@ -1,5 +1,4 @@
 <?php
-    include 'includes/config.php';
 
     $result_produk = mysqli_query($con, "SELECT * FROM tampil_produk");
     

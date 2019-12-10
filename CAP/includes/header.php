@@ -46,6 +46,10 @@
               if(isset($_SESSION['id_user'])){
                 $id_user = $_SESSION['id_user'];
               }
+
+              $result_user = mysqli_query($con, "SELECT * FROM user WHERE USER_ID = '$id_user'");
+              $data_user = mysqli_fetch_assoc($result_user);
+
               if($_SESSION['status']=='login'){
                 ?><div class="dropdown notif-custom ">
                     <a class="nav-item nav-link icon-custom notif-dropdown" style="color:#F69322;" type="button" data-toggle="dropdown">
@@ -155,11 +159,14 @@
                   </div>
                   <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="menu-profile" data-toggle="dropdown">
-                    <img class="rounded-circle img-circle" src="http://placehold.it/25x25">
+                    <img class="rounded-circle img-circle" width="25" src="file_upload/<?=$data_user['USER_PROFIL']?>">
                       <span class="caret"></span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right text-right">
+                      <label class="dropdown-item bg-primary text-white pb-2"><?=$data_user['USER_USERNAME']?></label>
                       <a class="dropdown-item" href="user_profil.php">Setting Profile</a>
+                      <a class="dropdown-item" href="notifikasi_user.php">Notifikasi</a>
+                      <a class="dropdown-item" href="history_user.php">History</a>
                       <a class="dropdown-item" href="#">Bantuan</a>
                       <a class="dropdown-item" href="#">Keamanan</a>
                       <div class="dropdown-divider"></div>

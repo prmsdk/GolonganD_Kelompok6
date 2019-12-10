@@ -3,7 +3,7 @@ include 'includes/config.php';
 
 if($_POST['post_cover_admin']) {
     $id_admin = $_POST['id_admin'];
-    $ekstensi_boleh = array('png','jpg','jpeg'); //ekstensi file yang boleh diupload
+    $ekstensi_boleh = array('png','jpg','jpeg','JPG','PNG','JPEG'); //ekstensi file yang boleh diupload
     $nama = $_FILES['file']['name']; //menunjukkan letak dan nama file yang akan di upload
     $ex = explode ('.',$nama); //explode berfungsi memecahkan/memisahkan string sesuai dengan tanda baca yang ditentukan
     $ekstensi = strtolower(end($ex)); //end = mengambil nilai terakhir dari ex, dtrtolower = memanipulasi string menjadi huruf kecil 
