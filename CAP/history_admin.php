@@ -11,7 +11,7 @@ ADM_ID='$id_admin'")
 ?>
 
 
-<!-- History User -->
+<!-- History Admin -->
 <div class="container">
   <div class="card shadow m-5">
     <div class="card-header text-center">

@@ -5,9 +5,9 @@ require 'includes/header.php';
 
 $_SESSION['id_user'] = 'USR000002';
 $id_user = $_SESSION['id_user'];
-$result_pesanan = mysqli_query($con, "SELECT * FROM pesanan, admin where
-admin.ADM_ID = pesanan.ADM_ID AND 
-USER_ID='$id_user'")
+$result_pesanan = mysqli_query($con, "SELECT * FROM pesanan, user where
+user.USER_ID = pesanan.USER_ID AND
+user.USER_ID='$id_user'")
 ?>
 
 
@@ -23,20 +23,20 @@ USER_ID='$id_user'")
               <tr>
                   <th>No</th>
                   <th>ID Pesanan</th>
-                  <th>Admin</th>
-                  <th>Tanggal</th>
+                  <th>Nama User</th>
+                  <th>Tanggal Pesanan</th>
                   <th>Total</th>
-                  <th>Status</th>
-                  <th>Ket</th>
+                  <th>Status Pesanan</th>
+                  <th>Ket Pembayaran</th>
               </tr>
         </thead>
-        <?php 
+        <?php
         $i=0;
         while($data_pesanan = mysqli_fetch_assoc($result_pesanan)){
             $i+=1;
             $id_psn = $data_pesanan['ID_PESANAN'];
             $total_psn = $data_pesanan['TOTAL_HARGA'];
-            $nama_admin = $data_pesanan['ADM_NAMA_USAHA_ADM'];
+            $nama_user = $data_pesanan['USER_NAMA_LENGKAP'];
             $tanggal_psn = $data_pesanan['TANGGAL_PESANAN'];
             $status_psn = $data_pesanan['STATUS_PESANAN'];
             $ket_pembayaran = $data_pesanan['KET_PEMBAYARAN'];
@@ -46,7 +46,7 @@ USER_ID='$id_user'")
               <tr class="bg-light">
                   <td><?=$i?></td>
                   <td><?=$id_psn?></td>
-                  <td><?=$nama_admin?></td>
+                  <td><?=$nama_user?></td>
                   <td><?=$tanggal_psn?></td>
                   <td><?=$total_psn?></td>
                   <td><?=$status_psn?></td>
@@ -56,10 +56,10 @@ USER_ID='$id_user'")
           <thead>
               <tr class="table-primary">
                     <th></th>
-                  <th>Nama Prd</th>
+                  <th>Nama Produk</th>
                   <th>Warna</th>
                   <th>Ukuran</th>
-                  <th>Jumlah Prd</th>
+                  <th>Jumlah Produk</th>
                   <th>Ket Desain</th>
                   <th>Sub Total</th>
               </tr>
