@@ -14,22 +14,29 @@
       if($match > 0){
           // We have a match, activate the account
           mysqli_query($con, "UPDATE user SET USER_ACTIVE='1' WHERE USER_EMAIL='$email_user' AND USER_HASH='$hash' AND USER_ACTIVE='0'");
-          $msg = 'Your account has been activated, you can now login';
+          $msg = 'Akun anda telah teraktifasi, Silahkan login dan semoga hari anda menyenangkan';
       }else{
           // No match -> invalid url or account has already been activated.
-          $msg = 'The url is either invalid or you already have activated your account.';
+          $msg = 'Link yang anda masukkan tidak valid atau akun anda telah teraktifasi.';
       }
                   
   }else{
       // Invalid approach
-      $msg = 'Invalid approach, please use the link that has been send to your email.';
+      $msg = 'Link tidak valid, Mohon masukkan link yang telah kami kirimkan ke email anda.';
   }
 ?>
 
 <div class="container container-fluid-lg">
   <div class="row justify-content-center regis-success">
-    <div class="col-lg-12 my-5 text-center my-auto">
-      <h1> <?=$msg?></h1>
+    <div class="col-lg-6 text-center my-4">
+      <div class="card shadow">
+        <div class="card-header bg-info text-center">
+          <h3 class="text-light">Pesan</h3>
+        </div>
+        <div class="card-body">
+          <h3 class="my-5"><?=$msg?></h3>
+        </div>
+      </div>
     </div>
   </div>
 </div>

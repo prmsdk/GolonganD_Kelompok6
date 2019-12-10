@@ -56,8 +56,10 @@ user.USER_ID = pesanan.USER_ID AND
                   <td><?=$nama_user?></td>
                   <td><?=$tanggal_psn?></td>
                   <td>Rp. <?=number_format($total_psn, 0,".",".")?></td>
-                  <td class="text-center"><?php if($status_notif==1 OR $status_notif==2 OR $status_notif==3){
+                  <td class="text-center"><?php if($status_notif==1 OR $status_notif==2){
                       echo '<span class="badge badge-pill badge-secondary px-3">'.$status_psn.'</span>';
+                    }else if($status_notif==3){
+                      echo '<span class="badge badge-pill badge-primary px-3">'.$status_psn.'</span>';
                     }else if($status_notif==4 OR $status_notif==5){
                       echo '<span class="badge badge-pill badge-success px-3">'.$status_psn.'</span>';
                     }else{

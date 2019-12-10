@@ -1,7 +1,7 @@
 <?php
   session_start();
 
-  $_SESSION['active_link'] = 'master';
+  $_SESSION['active_link'] = 'pemesanan';
   include 'includes/config.php';
   include 'includes/header.php';
   if(!isset($_SESSION['admin_login'])){
@@ -14,7 +14,7 @@
     $result_pesanan = mysqli_query($con, "SELECT
     user.USER_NAMA_LENGKAP,	
     cast(pesanan.TANGGAL_PESANAN as date) as TANGGAL_PESANAN, 
-    pesanan.TOTAL_HARGA, 
+    pesanan.TOTAL_HARGA, pesanan.STATUS_PESANAN,
 
     CASE 
     WHEN pesanan.STATUS_PESANAN = 1 THEN 'Sedang Menunggu Bukti Transfer' 
@@ -42,6 +42,7 @@
     $total_harga = $data_pesanan['TOTAL_HARGA'];
     $ket_pembayaran = $data_pesanan['KET_PEMBAYARAN'];
     $ket_status = $data_pesanan['KET_STATUS'];
+    $status_notif = $data_pesanan['STATUS_PESANAN'];
   }
 
 ?>
@@ -137,6 +138,24 @@
           <tr>
         </tbody>
       </table>
+      <div class="text-center">
+      <?php
+      if($status_notif==1){
+      echo '<button class="btn btn-primary px-4" disabled="true">Sedang diproses</button>';
+      echo '<a href="query/update_pesanan.php?status='.$status_notif.'&id_pesanan='.$id_pesanan.'" class="btn btn-danger px-4 ml-2" disabled>Dibatalkan</a>';
+      }else if($status_notif==2){
+      echo '<a href="query/update_pesanan.php?status='.$status_notif.'&id_pesanan='.$id_pesanan.'" class="btn btn-primary px-4" >Sedang diproses</a>';
+      }else if($status_notif==3){
+      echo '<a href="query/update_pesanan.php?status='.$status_notif.'&id_pesanan='.$id_pesanan.'" class="btn btn-success px-4" >Pesanan Selesai</a>';
+      }else if($status_notif==4){
+      echo '<a href="query/update_pesanan.php?status='.$status_notif.'&id_pesanan='.$id_pesanan.'" class="btn btn-warning px-4" >Dalam Pengiriman</a>';
+      }else if($status_notif==5){
+      echo '<button class="btn btn-danger px-4" disabled>Dalam Pengiriman</button>';
+      }else if($status_notif==6){
+      echo '<button class="btn btn-danger px-4" disabled>Dibatalkan</button>';
+      }
+      ?>
+      </div>
         </div>
       </div>
     </div>
