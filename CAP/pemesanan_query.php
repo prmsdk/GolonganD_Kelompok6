@@ -58,7 +58,7 @@ $data = mysqli_query($con, "select ID_PESANAN from pesanan ORDER BY ID_PESANAN D
 
 $pesanan = mysqli_query($con, "INSERT INTO pesanan 
 
-    VALUES('$id_pesanan','ADM000001','$id_user','$date $time','$total','1',NULL,'$ket_pembayaran')");
+    VALUES('$id_pesanan','ADM000001','$id_user','$date $time','$total','1',NULL,'$ket_pembayaran',0,0)");
 
 $detail_pesanan = mysqli_query($con, "INSERT INTO detail_pesanan 
     VALUES('$id_produk','$id_pesanan','$jumlah_produk','$sub_total',NULL,'$status_desain')");
