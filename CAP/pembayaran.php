@@ -1,63 +1,27 @@
 <?php
     require 'includes/header.php';
-    include 'includes/config.php';  
+
+    include 'includes/config.php'; 
+    if(isset($_SESSION['id_user'])){
+        $id_user = $_SESSION['id_user'];
+    } 
 ?>
 
 <div class="container container-fluid-md">
     <div class="row justify-content-center mt-4">
         <div class="col-lg-9 pt-4">
-            <div class="card shadow p-5">           
-                      <div class="row px-4">
-                        <div class="col-lg-3">
-                          <div class="row">
-                            <div class="col-lg-12 col-sm-12 text-left" >
-                              <strong>Detail Produk</strong>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-lg-9">
-                          <div class="row">
-                            <div class="col-lg-8"></div>
-                            <div class="col-lg-2 text-left">
-                              <strong>Jumlah</strong>
-                            </div>
-                          </div>
-                        </div>
+
+            <div class="card shadow p-5">
+            <form action="pemesanan_query.php" method="post">
+                <input type="hidden" name="id_user" value="<?=$id_user?>">
+                      <p class="pt-3 font-m-semi">Detail Pemesanan :</p>          
+                      <div class="modal-body">
+                        <table class="show-cart-bayar table">
+                          
+                        </table>
+                        <div class="text-right">Total pembayaran: Rp. <span class="total-cart"></span></div>
                       </div>
-                      <div class="dropdown-divider"></div>
-                      <div class="row px-3">
-                        <div class="col-lg-2">
-                          <div class="row">
-                            <div class="col-lg-9 col-sm-3 text-center my-auto">
-                              <img src="http://placehold.it/80x80" class="rounded">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-lg-10">
-                          <div class="row">
-                            <div class="col-lg-8 col-sm-5 text-left justify-content-start">
-                              <a href="#"><strong class="text-info">Kalender Duduk A5 7 Lembar ART CARTON 250gr</strong></a>
-                              <div>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                              </div>
-                              <strong>Harga : Rp. 16.400</strong>
-                            </div>  
-                            <div class="col-lg-2 col-sm-2 text-center my-auto">
-                              <input type="text" name="quantity" class="form-control input-number text-center" value="1" disabled>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="dropdown-divider mb-0"></div>
-                      <div class="dropdown-divider my-0"></div>
-                      <div class="row px-3 py-2">
-                        <div class="col-lg-9 col-sm-9 text-right">
-                          <strong>Sub Total :</strong>
-                        </div>
-                        <div class="col-lg-3 text-right">
-                          <strong>Rp. 820.000,00</strong>
-                        </div>
-                      </div>
+
                       <p class="pt-3 font-m-semi">Pilih Bank :</p>
                       <div id="select_bank" class="">
                       <?php
@@ -68,13 +32,20 @@
                                   $nama_rekening = $data_rekening['NAMA_REKENING'];
                                   $nomer_rekening = $data_rekening['NOMER_REKENING'];
                                   echo '<div class="custom-control custom-radio custom-control-inline mb-3 pl-5">
-                                  <input type="radio" aria-describedby="'.$nomer_rekening.'" id="pilihbank'.$i.'" name="pilihwarna" value="'.$id_rekening.'" class="custom-control-input" required>
+                                  <input type="radio" aria-describedby="'.$nomer_rekening.'" id="pilihbank'.$i.'" name="pilihbank" value="'.$id_rekening.'" class="custom-control-input" required>
+
                                   <label class="custom-control-label" for="pilihbank'.$i.'">'.$nama_rekening.'</label>
                                   <input type="hidden" id="">
                                   </div>';
                                   $i+=1;
                           }   
                       ?>
+                        
+                    <div class="text-center">
+                        <input type="submit" name="pemesanan_produk" value="Bayar" class="clear-cart btn btn-primary font-m-med">
+                        <a class="btn btn-secondary" href="index.php">Kembali</a>
+                    </div>
+                    </form>
                       </div>
                       </div>
             <div class="pt-5 mb-4">

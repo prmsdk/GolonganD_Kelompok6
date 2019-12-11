@@ -55,6 +55,10 @@ html {
 
 /* ======= NAV BAR ======= */
 
+.show-cart li {
+    display: flex;
+  }
+
 .nav-tr{
     position: absolute;
     top: -1px;

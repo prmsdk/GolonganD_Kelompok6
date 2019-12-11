@@ -77,12 +77,12 @@
                       </div>
                   </div>
                   <!-- BATAS BELL -->
-                  <div class="dropdown notif-custom">
+                  <div class="dropdown notif-custom" id="cart">
                     <a class="nav-item nav-link icon-custom" style="color:#25A8E0;" type="button" data-toggle="dropdown"><i class="fa fa-shopping-cart fa-1x"></i></a>
                     <div class="dropdown-menu p-0 m-0 dropdown-menu-right text-center overflow-hidden" style="width: 70vw">
                       <div class="row px-3 py-2" style="background-color:#25A8E0;">
                         <div class="col-lg-12 col-sm-12 col-12 text-left text-light">
-                          <span><strong>Keranjang Pesanan (1)</strong></span>
+                          <span><strong>Keranjang Pesanan (<span class="total-count"></span>)</strong></span>
                         </div>
                       </div>
                       <div class="dropdown-divider mt-0"></div>
@@ -157,6 +157,7 @@
                       </div>
                       </div>
                   </div>
+                  <!-- BATAS KERANJANG -->
                   <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="menu-profile" data-toggle="dropdown">
                     <img class="rounded-circle img-circle" width="25" src="file_upload/<?=$data_user['USER_PROFIL']?>">

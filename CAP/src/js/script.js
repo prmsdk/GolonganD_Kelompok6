@@ -98,6 +98,9 @@ $("#select_warna").change(function () {
       $(".box_warna").hide();
     }
   });
+
+}); 
+
 }).change();
 
 // TOTAL HARGA PRODUK
@@ -105,6 +108,9 @@ $("#select_warna").change(function () {
 $(document).on('click', 'body *', function () {
 
   var TotHarga = 0;
+
+  var ModalHarga = 0;
+
   var HrgWarna = 0;
   var HrgBahan = 0;
   var SatBahan = 0;
@@ -113,7 +119,8 @@ $(document).on('click', 'body *', function () {
   var ValDesain = 0;
   var HrgDesain = 50000;
   var ValPembayaran = 0;
-  var JmlCetak = 0;
+
+
   var JmlCetak = document.getElementById('jumlah_produk').value;
 
   $("#select_warna").change(function () {
@@ -154,11 +161,19 @@ $(document).on('click', 'body *', function () {
 
 
   TotHarga = ((HrgDesain * ValDesain) + (HrgWarna + HrgUkuran) + IsiBahan * (HrgBahan * (JmlCetak / SatBahan))) / ValPembayaran;
-
   $("#sub_total").prop('value', TotHarga);
-  console.log(dataukuran);
+  ModalHarga = ((HrgDesain * ValDesain) + (HrgWarna + HrgUkuran) + IsiBahan * (HrgBahan * (1 / 500))) / ValPembayaran;
+  $("#modal_total").prop('value', ModalHarga);
 
-  $("#keranjang").attr("data-ukuran", HrgUkuran);
+  console.log(JmlCetak);
+  console.log(SatBahan);
+
+  var jumlah = parseInt(document.getElementById("jumlah").value);
+
+  if(jumlah < 1){
+    alert("Jumlah pesanan paling sedikit 1 pcs");
+    $("#jumlah").prop('value','1');
+  }
 
 
 });
@@ -168,29 +183,28 @@ function validate(evt) {
 
   // Handle paste
   if (theEvent.type === 'paste') {
-    key = event.clipboardData.getData('text/plain');
+
+      key = event.clipboardData.getData('text/plain');
   } else {
-    // Handle key press
-    var key = theEvent.keyCode || theEvent.which;
-    key = String.fromCharCode(key);
+  // Handle key press
+      var key = theEvent.keyCode || theEvent.which;
+      key = String.fromCharCode(key);
   }
   var regex = /[0-9]|\./;
-  if (!regex.test(key)) {
+  if( !regex.test(key) ) {
     theEvent.returnValue = false;
-    if (theEvent.preventDefault) theEvent.preventDefault();
+    if(theEvent.preventDefault) theEvent.preventDefault();
+
   }
 }
 
 // Upload gambar
 
-$('.custom-file-input').on('change', function () {
+
+$('.custom-file-input').on('change',function(){
+
   let fileName = $(this).val().split('\\').pop();
   $(this).next('.custom-file-label').addClass("custom-file").html(fileName);
 });
 
-// checkbox all
-
-$('#ceksemua').click(function () {
-  $(this).parents('fieldset:eq(0)').find(':checkbox').attr('checked', this.checked);
-});
 
