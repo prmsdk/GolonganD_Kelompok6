@@ -1,0 +1,78 @@
+/* Untuk profil dan cover */
+.cover img{
+    margin: 0px;
+    position: relative; 
+    /* padding: 0px 50px 15px 100px; */
+    height: 200px;
+    /* width: 100%;  */
+    
+    text-align: center;
+} 
+
+.cover{
+    position: relative;
+    width: 100%;
+    margin: 0px;
+}
+
+.cover a{
+    font-size: 35px;
+}
+
+.btn-absolute{
+    position: absolute;
+    top: 84%;
+    right: 2%;
+    z-index: 2;
+}
+
+.cover .btn{
+    padding: 0px;
+    margin: 0px;
+}
+
+.foto img{
+height: 200px;
+width: 200px;
+border: 5px solid white;
+border-radius: 15px;    
+}
+
+.foto {
+    margin: -120px auto 0px;
+    text-align: center;
+}
+
+.foto .btn{
+    padding: 0px;
+    margin: 0px; 
+}
+
+.btn-foto {
+    position: absolute;
+    top: 80%;
+    right: 42%;
+    z-index: 2;  
+}
+
+.modal-body img{
+    text-align: center;
+}
+
+/* Untuk history */
+.history{
+    margin-top: 5px;
+    padding-top: 2px;
+    text-align: center;
+    color: darkslategrey;
+    position: relative;
+}
+
+/* Untuk Antrian */
+.antrian{
+    text-align: center;
+    margin-top: 5px;
+    padding-top: 2px;
+    color: darkslategrey;
+    position: relative; 
+}

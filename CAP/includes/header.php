@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="src/css/animation-slider.css">
     <link rel="stylesheet" href="src/css/kategori.css">
     <link rel="stylesheet" href="src/css/bootstrap.css">
@@ -11,7 +12,10 @@
         <link rel="stylesheet" href="src/css/owl.carousel.css">
         <link rel="stylesheet" href="src/css/animate.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-
+        
+        <link rel="stylesheet" type="text/css" href="src/DataTables/datatables.css">
+        
+        <link rel="icon" type="image/png" href="src/img/icons/cap.png">
     <title>Cahaya Abadi Perkasa</title>
 </head>
 <body>
@@ -32,38 +36,44 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
-          <a class="nav-item nav-link nav-custom" href="#produkbtn">PRODUK <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link nav-custom" href="#carakerjabtn">CARA KERJA</a>
-          <a class="nav-item nav-link nav-custom" href="#portfoliobtn">PORTOFOLIO</a>
-          <a class="nav-item nav-link nav-custom" href="#contuctusbtn">CONTACT US</a>
+          <a class="nav-item nav-link nav-custom" href="index.php#produkbtn">PRODUK <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link nav-custom" href="index.php#carakerjabtn">CARA KERJA</a>
+          <a class="nav-item nav-link nav-custom" href="index.php#portfoliobtn">PORTOFOLIO</a>
+          <a class="nav-item nav-link nav-custom" href="index.php#contuctusbtn">CONTACT US</a>
           <?php
               session_start();
               error_reporting(0);
+              if(isset($_SESSION['id_user'])){
+                $id_user = $_SESSION['id_user'];
+              }
+
+              $result_user = mysqli_query($con, "SELECT * FROM user WHERE USER_ID = '$id_user'");
+              $data_user = mysqli_fetch_assoc($result_user);
+
               if($_SESSION['status']=='login'){
-                ?><div class="dropdown notif-custom">
-                    <a class="nav-item nav-link icon-custom" style="color:#F69322;" type="button" data-toggle="dropdown"><i class="fa fa-bell fa-1x"></i></a>
+                ?><div class="dropdown notif-custom ">
+                    <a class="nav-item nav-link icon-custom notif-dropdown" style="color:#F69322;" type="button" data-toggle="dropdown">
+                      <i class="fa fa-bell fa-1x">
+                      </i>
+                      <span class="badge badge-danger badge-counter notif-count"></span>
+                    </a>
                     <div class="dropdown-menu dropdown-menu-right p-3 text-center" style="width: 50vw">
                       <div class="row">
                         <div class="col-lg-12 col-sm-12 col-12 text-left">
-                          <span><strong>Notifications (3)</strong></span>
-                          <a href="#" class="float-right text-dark text-light">Mark all as read</a>
+                          <span><strong>Notifications (<span class="notif-count">0</span>)</strong></span>
+                          <a href="notifikasi_user_query.php" class="float-right text-dark text-light">Mark all as read</a>
                         </div>
                       </div>
                       <div class="dropdown-divider"></div>
-                      <div class="row">
-                          <div class="col-lg-2 col-sm-4 text-right">
-                            <img src="http://placehold.it/80x80" class="rounded">
-                          </div>    
-                          <div class="col-lg-10 col-sm-8 text-left justify-content-start">
-                            <a href="#"><strong class="text-info">Pesanan Anda Telah Selesai Dikerjakan!</strong></a>
-                            <div>
-                              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel mollitia ipsam officia enim aspernatur culpa in nulla aliquam minima? Eum accusamus repellendus eius quidem modi libero consequuntur doloribus, corrupti sint?</p>
-                            </div>
-                            <small class="text-info">27.11.2015, 15:00</small>
-                          </div>    
+                      <div class="wadah-notif-dropdown">
+                        <div class="row">
+                          <div class="col-lg-12 text-center">
+                            <h4>Tidak ada Notifikasi untuk Anda.</h4>
+                          </div>  
                         </div>
+                      </div>
                       <div class="dropdown-divider"></div>
-                        <a href="#" class="text-dark ">View All</a>
+                        <a href="notifikasi_user.php" class="text-dark ">View All</a>
                       </div>
                   </div>
                   <!-- BATAS BELL -->
@@ -150,11 +160,14 @@
                   <!-- BATAS KERANJANG -->
                   <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="menu-profile" data-toggle="dropdown">
-                    <img class="rounded-circle img-circle" src="http://placehold.it/25x25">
+                    <img class="rounded-circle img-circle" width="25" src="file_upload/<?=$data_user['USER_PROFIL']?>">
                       <span class="caret"></span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right text-right">
-                      <a class="dropdown-item" href="#">Setting Profile</a>
+                      <label class="dropdown-item bg-primary text-white pb-2"><?=$data_user['USER_USERNAME']?></label>
+                      <a class="dropdown-item" href="user_profil.php">Setting Profile</a>
+                      <a class="dropdown-item" href="notifikasi_user.php">Notifikasi</a>
+                      <a class="dropdown-item" href="history_user.php">History</a>
                       <a class="dropdown-item" href="#">Bantuan</a>
                       <a class="dropdown-item" href="#">Keamanan</a>
                       <div class="dropdown-divider"></div>
@@ -163,7 +176,7 @@
                   </div><?php
               }else if($_SESSION['status']!='login'){
                   // header("location:../index.php?=belum login");
-                  echo '<button type="button" class="btn rounded-0 nav-item nav-custom mr-auto" data-toggle="modal" data-target="#login_user" style="color: #25A8E0">
+                  echo '<button type="button" class="btn rounded-0 nav-item nav-custom mr-auto login" data-toggle="modal" data-target="#login_user" style="color: #25A8E0">
                   MASUK
                   </button>
                   <a class="nav-item nav-link nav-custom" style="color:#F69322;" href="register_user.php">DAFTAR</a>';

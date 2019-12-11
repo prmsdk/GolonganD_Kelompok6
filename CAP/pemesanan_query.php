@@ -1,4 +1,5 @@
 <?php
+
 include 'includes/config.php';
 
 if(isset($_POST['pemesanan_produk'])){
@@ -6,17 +7,21 @@ if(isset($_POST['pemesanan_produk'])){
     $id_user = $_POST['id_user'];
     $id_produk = $_POST['id_produk'];
 
+
     
     $id_warna = $_POST['pilihwarnaa'];
+
     $id_bahan = $_POST['pilihbahan'];
     $id_ukuran = $_POST['pilihukuran'];
     $nama_produk = $_POST['nama_produk'];
     $status_desain = $_POST['pilihdesain'];
     $jumlah_produk = $_POST['jumlah_produk'];
+
     $ket_pembayaran = $_POST['ket_pembayaran'];
     $sub_total = $_POST['sub_total'];
     $total = $_POST['total'];
     $id_bank = $_POST['pilihbank'];
+
 
 
 $data = mysqli_query($con, "select ID_PRODUK from produk ORDER BY ID_PRODUK DESC LIMIT 1");
@@ -52,6 +57,7 @@ $data = mysqli_query($con, "select ID_PESANAN from pesanan ORDER BY ID_PESANAN D
     $time = date("h:i:sa");
 
 $pesanan = mysqli_query($con, "INSERT INTO pesanan 
+
     VALUES('$id_pesanan','ADM000001','$id_user','$date $time','$total','1',NULL,'$ket_pembayaran')");
 
 $detail_pesanan = mysqli_query($con, "INSERT INTO detail_pesanan 
@@ -86,6 +92,7 @@ if($detail_pesanan > 0){
     //     }else{
     //         echo "FILE TIDAK SESUAI DENGAN EKSTENSI YANG DIBERIKAN";
     //     }
+
 
 
 

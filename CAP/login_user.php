@@ -16,13 +16,13 @@
                   <form class="font-m-light col-11 mt-3" action="cek_login.php" method="post">
                     <div class="form-group">
                       <label for="username-user" class="font-m-med">Username</label>
-                      <input type="text" class="form-control" id="username-user" name="username-user" aria-describedby="usernameHelp" placeholder="Enter username" required>
+                      <input type="text" class="form-control" id="username-user" name="username-user" aria-describedby="usernameHelp" placeholder="Enter username" autofocus required pattern="^(?=.*[@])[A-Za-z0-9 @_.]+$" title="Username Format: huruf, angka, ._ dan harus menyertakan @">
                       
                     </div>
                     <div class="form-group">
                       <label for="password-user" class="font-m-med">Password</label>
                       <input type="password" class="form-control tampil-sandi" id="password-user" name="password-user" placeholder="Password" required>
-                      <small id="passwordHelp" class="form-text float-right"><a href="#">Lupa password?</a></small>
+                      <small id="passwordHelp" class="form-text float-right"><a href="forgot_password.php">Lupa password?</a></small>
                       <div class="form-group form-check float-left">
                         <input type="checkbox" class="form-check-input" id="tampil-sandi">
                         <label class="form-check-label" for="tampil-sandi"><small>Tampilkan Sandi</small></label>

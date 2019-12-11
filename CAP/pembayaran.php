@@ -1,5 +1,6 @@
 <?php
     require 'includes/header.php';
+
     include 'includes/config.php'; 
     if(isset($_SESSION['id_user'])){
         $id_user = $_SESSION['id_user'];
@@ -9,6 +10,7 @@
 <div class="container container-fluid-md">
     <div class="row justify-content-center mt-4">
         <div class="col-lg-9 pt-4">
+
             <div class="card shadow p-5">
             <form action="pemesanan_query.php" method="post">
                 <input type="hidden" name="id_user" value="<?=$id_user?>">
@@ -19,7 +21,7 @@
                         </table>
                         <div class="text-right">Total pembayaran: Rp. <span class="total-cart"></span></div>
                       </div>
-                        
+
                       <p class="pt-3 font-m-semi">Pilih Bank :</p>
                       <div id="select_bank" class="">
                       <?php
@@ -31,12 +33,14 @@
                                   $nomer_rekening = $data_rekening['NOMER_REKENING'];
                                   echo '<div class="custom-control custom-radio custom-control-inline mb-3 pl-5">
                                   <input type="radio" aria-describedby="'.$nomer_rekening.'" id="pilihbank'.$i.'" name="pilihbank" value="'.$id_rekening.'" class="custom-control-input" required>
+
                                   <label class="custom-control-label" for="pilihbank'.$i.'">'.$nama_rekening.'</label>
                                   <input type="hidden" id="">
                                   </div>';
                                   $i+=1;
                           }   
                       ?>
+                        
                     <div class="text-center">
                         <input type="submit" name="pemesanan_produk" value="Bayar" class="clear-cart btn btn-primary font-m-med">
                         <a class="btn btn-secondary" href="index.php">Kembali</a>
