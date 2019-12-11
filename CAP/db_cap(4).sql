@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Des 2019 pada 09.02
+-- Waktu pembuatan: 11 Des 2019 pada 02.10
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.4
 
@@ -36,7 +36,7 @@ CREATE TABLE `admin` (
   `ADM_NO_TELP` varchar(13) DEFAULT NULL,
   `ADM_ALAMAT` text NOT NULL,
   `ADM_PROFIL` varchar(100) DEFAULT 'no_profil.jpg',
-  `ADM_COVER` varchar(100) DEFAULT 'bg.jpg',
+  `ADM_COVER` varchar(100) DEFAULT 'betak.jpg',
   `ADM_DESC` text,
   `ADM_USERNAME` varchar(50) NOT NULL,
   `ADM_PASSWORD` varchar(32) NOT NULL,
@@ -48,8 +48,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`ADM_ID`, `ADM_NAMA_USAHA_ADM`, `ADM_EMAIL`, `ADM_NO_HP`, `ADM_NO_TELP`, `ADM_ALAMAT`, `ADM_PROFIL`, `ADM_COVER`, `ADM_DESC`, `ADM_USERNAME`, `ADM_PASSWORD`, `ADM_STATUS`) VALUES
-('ADM000001', 'CAHAYA ABADI PERKASA', 'admin@cahayaabadi.com', '(0331)412990', '(0331)412990', 'Karang Miuwo, Mangli, Kec. Kaliwates, \r\nKabupaten Jember, Jawa Timur \r\n68131', 'IMG-20190910-WA0033.jpg', 'betak.jpg', 'CV. Cahaya Abadi Perkasa Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam libero et iusto. Perspiciatis tempora ad unde iure reiciendis consequatur cupiditate quaerat animi ullam accusantium, voluptatum voluptatibus facilis. Voluptas, repellendus nisi.', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1),
-('ADM000002', 'Saiful Rizal', 'rizal776@gmail.com', '083847008485', '(0331)660111', 'Gg. Klinik Pratama Jatimulyo, Jember, Bondowoso', 'no_profil.jpg', 'bg.jpg', 'Saiful Rizal Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam libero et iusto. Perspiciatis tempora ad unde iure reiciendis consequatur cupiditate quaerat animi ullam accusantium, voluptatum voluptatibus facilis. Voluptas, repellendus nisi.', 'saiful', '4eeccab0e8c08e16a1d08296265e38fa', 2);
+('ADM000001', 'CAHAYA ABADI PERKASA', 'admin@cahayaabadi.com', '0821412990', '(0331)412990', 'Karang Miuwo, Mangli, Kec. Kaliwates, \r\nKabupaten Jember, Jawa Timur \r\n68131', 'no_profil.jpg', 'betak.jpg', 'CV. Cahaya Abadi Perkasa Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam libero et iusto. Perspiciatis tempora ad unde iure reiciendis consequatur cupiditate quaerat animi ullam accusantium, voluptatum voluptatibus facilis. Voluptas, repellendus nisi.', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1),
+('ADM000002', 'Saiful Rizal', 'rizal776@gmail.com', '083847008485', '(0331)660111', 'Gg. Klinik Pratama Jatimulyo, Jember, Bondowoso', 'no_profil.jpg', 'betak.jpg', 'Saiful Rizal Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam libero et iusto. Perspiciatis tempora ad unde iure reiciendis consequatur cupiditate quaerat animi ullam accusantium, voluptatum voluptatibus facilis. Voluptas, repellendus nisi.', 'saiful', '4eeccab0e8c08e16a1d08296265e38fa', 2);
 
 -- --------------------------------------------------------
 
@@ -95,10 +95,13 @@ CREATE TABLE `detail_pesanan` (
 --
 
 INSERT INTO `detail_pesanan` (`ID_PRODUK`, `ID_PESANAN`, `JUMLAH_PRODUK`, `SUB_TOTAL`, `UPLOAD_DESAIN`, `STATUS_DESAIN`) VALUES
-('PRD000002', 'PSN000002', 700, 0, NULL, 0),
-('PRD000001', 'PSN000001', 700, 0, NULL, 0),
-('PRD000001', 'PSN000001', 700, 0, NULL, 1),
-('PRD000001', 'PSN000003', 700, 0, NULL, 1);
+('PRD000003', 'PSN000002', 645, 703000, NULL, 0),
+('PRD000001', 'PSN000001', 125, 300000, NULL, 0),
+('PRD000002', 'PSN000001', 250, 156000, NULL, 1),
+('PRD000004', 'PSN000003', 450, 320000, NULL, 1),
+('PRD000005', 'PSN000003', 200, 240000, 'kalender.jpg', 0),
+('PRD000006', 'PSN000004', 631, 560000, NULL, 1),
+('PRD000007', 'PSN000005', 400, 350000, 'design.zip', 0);
 
 -- --------------------------------------------------------
 
@@ -212,9 +215,11 @@ CREATE TABLE `pesanan` (
 --
 
 INSERT INTO `pesanan` (`ID_PESANAN`, `ADM_ID`, `USER_ID`, `TANGGAL_PESANAN`, `TOTAL_HARGA`, `STATUS_PESANAN`, `BUKTI_TRANSFER`, `KET_PEMBAYARAN`, `ADMIN_NOTIF`, `USER_NOTIF`) VALUES
-('PSN000001', 'ADM000001', 'USR000001', '2019-12-03 09:00:00', 456000, 1, NULL, 1, 1, 0),
-('PSN000002', 'ADM000002', 'USR000002', '2019-12-06 07:00:00', 703000, 6, NULL, 2, 0, 1),
-('PSN000003', 'ADM000002', 'USR000002', '2019-12-07 16:00:00', 354000, 2, NULL, 1, 0, 1);
+('PSN000001', 'ADM000001', 'USR000001', '2019-12-06 09:00:00', 456000, 6, NULL, 1, 0, 0),
+('PSN000002', 'ADM000002', 'USR000002', '2019-12-06 07:00:00', 703000, 4, NULL, 2, 0, 0),
+('PSN000003', 'ADM000002', 'USR000002', '2019-12-07 16:00:00', 354000, 1, NULL, 1, 0, 0),
+('PSN000004', 'ADM000002', 'USR000004', '2019-12-09 00:00:00', 560000, 3, 'bukti_tf.jpg', 1, 0, 0),
+('PSN000005', 'ADM000001', 'USR000003', '2019-12-10 00:00:00', 350000, 3, 'bukti.jpg', 2, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -236,7 +241,12 @@ CREATE TABLE `produk` (
 
 INSERT INTO `produk` (`ID_PRODUK`, `ID_UKURAN`, `ID_BAHAN`, `ID_WARNA`, `NAMA_PRODUK`) VALUES
 ('PRD000001', 'UKN000001', 'BHN000001', 'WRN000001', 'Brosur'),
-('PRD000002', 'UKN000002', 'BHN000001', 'WRN000002', 'Banner');
+('PRD000002', 'UKN000002', 'BHN000001', 'WRN000002', 'Banner'),
+('PRD000003', 'UKN000006', 'BHN000003', 'WRN000003', 'Kartu Nama'),
+('PRD000004', 'UKN000004', 'BHN000002', 'WRN000005', 'Banner'),
+('PRD000005', 'UKN000005', 'BHN000001', 'WRN000004', 'Kalender'),
+('PRD000006', 'UKN000009', 'BHN000001', 'WRN000002', 'Kalender'),
+('PRD000007', 'UKN000007', 'BHN000003', 'WRN000004', 'Brosur');
 
 -- --------------------------------------------------------
 
@@ -401,7 +411,7 @@ CREATE TABLE `transfer` (
 --
 
 INSERT INTO `transfer` (`ID_PESANAN`, `USER_ID`, `TANGGAL_TRANSFER`, `STATUS_PESAN_AWAL`, `STATUS_PESAN_AKHIR`) VALUES
-('PSN000002', 'USR000002', '2019-12-03 07:00:00', 1, 2);
+('PSN000003', 'USR000003', '2019-12-10 10:00:00', 2, 3);
 
 --
 -- Trigger `transfer`
@@ -433,7 +443,7 @@ CREATE TABLE `ukuran` (
 --
 
 INSERT INTO `ukuran` (`ID_UKURAN`, `ID_KAT_UKURAN`, `JENIS_UKURAN`, `HARGA_UKURAN`) VALUES
-('UKN000001', 'KUN000001', 'A4 (21 x 29,7)', 2700),
+('UKN000001', 'KUN000001', 'A4 (21 x 29,7)', 2750),
 ('UKN000002', 'KUN000002', 'F4 (21 x 33)', 4000),
 ('UKN000003', 'KUN000001', 'A5 (14,8 x 21)', 2000),
 ('UKN000004', 'KUN000001', 'A3 (29,7 x 42)', 6000),
@@ -455,8 +465,8 @@ CREATE TABLE `user` (
   `USER_EMAIL` varchar(50) NOT NULL,
   `USER_NO_HP` varchar(13) NOT NULL,
   `USER_ALAMAT` text,
-  `USER_PROFIL` varchar(100) DEFAULT NULL,
-  `USER_COVER` varchar(100) DEFAULT NULL,
+  `USER_PROFIL` varchar(100) DEFAULT 'no_profil.jpg',
+  `USER_COVER` varchar(100) DEFAULT 'betak.jpg',
   `USER_USERNAME` varchar(50) NOT NULL,
   `USER_PASSWORD` varchar(32) NOT NULL,
   `USER_HASH` varchar(32) NOT NULL,
@@ -469,9 +479,10 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`USER_ID`, `USER_NAMA_LENGKAP`, `USER_EMAIL`, `USER_NO_HP`, `USER_ALAMAT`, `USER_PROFIL`, `USER_COVER`, `USER_USERNAME`, `USER_PASSWORD`, `USER_HASH`, `USER_ACTIVE`) VALUES
 ('USR000001', 'Primasdika Yunia Putra', 'dickayunia1@gmail.com', '083847008485', 'Gg. Klinik Pratama No 99\r\nMaesan, Bondowoso, Jawa Timur', 'dika.jpg', 'coverdika.jpg', '@prmsdk', 'cfbd0bd15c81301cbabe30143fd80b1a', 'c0f168ce8900fa56e57789e2a2f2c9d0', 1),
-('USR000002', 'Siti Nurlaeli Agustin', 'lelyagstn@gmail.com', '085885566770', NULL, NULL, NULL, '@lely_agstn', 'bce95752c0ebda21194e3a80b732ac92', 'abd815286ba1007abfbb8415b83ae2cf', 1),
+('USR000002', 'Siti Nurlaeli Agustin', 'lelyagstn@gmail.com', '085885566770', 'Jl. Brigpol Soedarlan RT05 RW02 No.2, Petung, Curahdami, Bondowoso', 'noprofil.jpg', 'betak.jpg', '@lely_agstn', 'bce95752c0ebda21194e3a80b732ac92', 'abd815286ba1007abfbb8415b83ae2cf', 1),
 ('USR000003', 'Aldion', 'aldion819@gmail.com', '083853000123', NULL, NULL, NULL, '@aldion.anjay_', 'a0792fe69cc316d4188ac2c71d1635e0', 'ec8ce6abb3e952a85b8551ba726a1227', 1),
-('USR000004', 'Dyta', 'dytashofia32@gmail.com', '083853000123', NULL, NULL, NULL, '@dyta', '65f14443215834271c1ad576630df067', 'cc1aa436277138f61cda703991069eaf', 0);
+('USR000004', 'Dyta', 'dytashofia32@gmail.com', '083853000123', NULL, NULL, NULL, '@dyta', '65f14443215834271c1ad576630df067', 'cc1aa436277138f61cda703991069eaf', 0),
+('USR000005', 'Raziki', 'jekiyudi15@gmail.com', '082233120146', 'Pakuwesi, Curahdami ', 'no_profil.jpg', 'betak.jpg', '@raziki', '67fab04a48e028732fab845d0ac58954', '202cb962ac59075b964b07152d234b70', 1);
 
 -- --------------------------------------------------------
 
