@@ -1,7 +1,7 @@
 <?php
+    include 'includes/config.php';
     require 'includes/header.php';
 
-    include 'includes/config.php'; 
     if(isset($_SESSION['id_user'])){
         $id_user = $_SESSION['id_user'];
     } 
@@ -42,7 +42,7 @@
                       ?>
                         
                     <div class="text-center">
-                        <input type="submit" name="pemesanan_produk" value="Bayar" class="clear-cart btn btn-primary font-m-med">
+                        <input type="submit" name="pemesanan_produk" value="Bayar" class="btn btn-primary font-m-med">
                         <a class="btn btn-secondary" href="index.php">Kembali</a>
                     </div>
                     </form>

@@ -11,6 +11,8 @@ if(isset($_GET['id_pesanan'])){
   $id_pesanan = $_GET['id_pesanan'];
 }
 
+$update_notif = mysqli_query($con, "UPDATE pesanan SET USER_NOTIF = 1 WHERE ID_PESANAN = '$id_pesanan'");
+
 $result_pesanan = mysqli_query($con, "SELECT
 user.USER_NAMA_LENGKAP,	
 cast(pesanan.TANGGAL_PESANAN as date) as TANGGAL_PESANAN, 
@@ -47,7 +49,7 @@ $ket_status = $data_pesanan['KET_STATUS'];
 <div class="container">
   <form action="transaksi_query.php" method="post">
   <div class="card m-5 shadow">
-    <div class="card-header text-center text-light bg-info">
+    <div class="card-header text-center text-light bg-primary">
       <h3 class="d-inline">Pesanan Anda</h3>
       <a class="mt-2 mr-2 btn btn-light float-right ml-auto" href="nota/nota_pesanan.php?id_pesanan=<?=$id_pesanan?>"><i class="fas fa-fw fa-print"></i></a>
     </div>

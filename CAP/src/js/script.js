@@ -101,7 +101,14 @@ $("#select_warna").change(function () {
 
 }); 
 
-}).change();
+$(document).ready(function(){
+  var button = document.getElementById('clear-cart');
+  button.click();
+
+  var buttonpemb = document.getElementById('verif_pembayaran');
+  buttonpemb.click();
+
+});
 
 // TOTAL HARGA PRODUK
 
@@ -162,8 +169,15 @@ $(document).on('click', 'body *', function () {
 
   TotHarga = ((HrgDesain * ValDesain) + (HrgWarna + HrgUkuran) + IsiBahan * (HrgBahan * (JmlCetak / SatBahan))) / ValPembayaran;
   $("#sub_total").prop('value', TotHarga);
-  ModalHarga = ((HrgDesain * ValDesain) + (HrgWarna + HrgUkuran) + IsiBahan * (HrgBahan * (1 / 500))) / ValPembayaran;
-  $("#modal_total").prop('value', ModalHarga);
+  // ModalHarga = ((HrgDesain * ValDesain) + (HrgWarna + HrgUkuran) + IsiBahan * (HrgBahan * (1 / 500))) / ValPembayaran;
+  // $("#modal_total").prop('value', ModalHarga);
+
+  var Var1 = (HrgDesain * ValDesain) + (HrgWarna + HrgUkuran);
+  var Var2 = IsiBahan * HrgBahan;
+  $("#var1").prop('value', Var1);
+  $("#var2").prop('value', Var2);
+  $("#var3").prop('value', SatBahan);
+  $("#var4").prop('value', ValPembayaran);
 
   console.log(JmlCetak);
   console.log(SatBahan);

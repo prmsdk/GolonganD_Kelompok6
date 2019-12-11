@@ -1,6 +1,7 @@
 <?php
-    require 'includes/header.php';
+
     include 'includes/config.php';
+    require 'includes/header.php';
     if(isset($_GET['produk_id'])){
         $produk_id = $_GET['produk_id'];
         $data = mysqli_query($con, "select * from tampil_produk where ID_TAMPIL_PRODUK = '$produk_id'");

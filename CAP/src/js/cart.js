@@ -9,10 +9,14 @@ var shoppingCart = (function() {
   cart = [];
   
   // Constructor
-  function Item(produk, price, count, idproduk, warna) {
+  function Item(produk, price, var2, var3, var4, count, idproduk, warna) {
     this.idproduk = idproduk;
     this.produk = produk;
-    this.price = document.getElementById('modal_total').value;
+    this.price = Number(document.getElementById('var1').value);
+    this.var2 = Number(document.getElementById('var2').value);
+    this.var3 = Number(document.getElementById('var3').value);
+    this.var4 = Number(document.getElementById('var4').value);
+    // this.price = document.getElementById('modal_total').value;
     this.count = document.getElementById('jumlah_produk').value;
     this.warna = $('input[name=pilihwarna]:checked').attr('namawarna');
     this.idwarna = $('input[name=pilihwarna]:checked').val();
@@ -45,7 +49,7 @@ var shoppingCart = (function() {
   var obj = {};
   
   // Add to cart
-  obj.addItemToCart = function(produk, price, count, idproduk, warna, bahan, ukuran, satbahan) {
+  obj.addItemToCart = function(produk, price, var2, var3, var4, count, idproduk, warna, bahan, ukuran, satbahan) {
     for(var item in cart) {
       if(cart[item].produk === produk) {
         cart[item].count ++;
@@ -53,7 +57,7 @@ var shoppingCart = (function() {
         return;
       }
     }
-    var item = new Item(produk, price, count, idproduk, warna, bahan, ukuran, satbahan);
+    var item = new Item(produk, price, var2, var3, var4, count, idproduk, warna, bahan, ukuran, satbahan);
     cart.push(item);
     saveCart();
   }
@@ -110,7 +114,7 @@ var shoppingCart = (function() {
   obj.totalCart = function() {
     var totalCart = 0;
     for(var item in cart) {
-      totalCart += cart[item].price * cart[item].count;
+      totalCart += ( cart[item].price + ( cart[item].var2 * ( cart[item].count / cart[item].var3))) / cart[item].var4;
     }
     return Number(totalCart);
   }
@@ -125,7 +129,7 @@ var shoppingCart = (function() {
         itemCopy[p] = item[p];
 
       }
-      itemCopy.total = Number(item.price * (item.count / item.satbahan));
+      itemCopy.total = Number(( item.price + ( item.var2 * ( item.count / item.var3))) / item.var4);
       cartCopy.push(itemCopy)
     }
     return cartCopy;
@@ -159,7 +163,7 @@ $('.add-to-cart').click(function(event) {
   var warna = $(this).data('warna');
   var bahan = $(this).data('bahan');
   var ukuran = $(this).data('ukuran');
-  shoppingCart.addItemToCart(produk, price, count, idproduk, warna, bahan, ukuran);
+  shoppingCart.addItemToCart(produk, price, var2, var3, var4, count, idproduk, warna, bahan, ukuran);
   displayCart();
 });
 

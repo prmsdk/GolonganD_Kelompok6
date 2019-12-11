@@ -1,6 +1,6 @@
 <?php
-    require 'includes/header.php';
     include 'includes/config.php';
+    require 'includes/header.php';
 
     if(isset($_SESSION['id_user'])){
         $id_user = $_SESSION['id_user'];
@@ -152,7 +152,12 @@
             </div>
             <input type="number" id="sub_total" class="form-control mb-4 w-50" placeholder="Total Pembayaran" name="sub_total" pattern="(^\d+(\.|\,)\d{2}$)" readonly>
 
-            <input type="number" id="modal_total" class="form-control mb-4 w-50" placeholder="Modal Pembayaran" name="modal_total" pattern="(^\d+(\.|\,)\d{2}$)" readonly>
+            <!-- <input type="number" id="modal_total" class="form-control mb-4 w-50" placeholder="Modal Pembayaran" name="modal_total" pattern="(^\d+(\.|\,)\d{2}$)" readonly> -->
+            <!-- 
+            <input type="number" id="var1" class="form-control mb-4 w-50" placeholder="Modal Pembayaran" name="var1" pattern="(^\d+(\.|\,)\d{2}$)" readonly>
+            <input type="number" id="var2" class="form-control mb-4 w-50" placeholder="Modal Pembayaran" name="var2" pattern="(^\d+(\.|\,)\d{2}$)" readonly>
+            <input type="number" id="var3" class="form-control mb-4 w-50" placeholder="Modal Pembayaran" name="var3" pattern="(^\d+(\.|\,)\d{2}$)" readonly>
+            <input type="number" id="var4" class="form-control mb-4 w-50" placeholder="Modal Pembayaran" name="var4" pattern="(^\d+(\.|\,)\d{2}$)" readonly> -->
 
             <div class="cutom-inline text-center">
                 <?php
@@ -162,7 +167,7 @@
                 <button type="button" class="btn btn-primary" data-target="#login_user" data-toggle="modal">Bayar</button>
                 <?php }else{?>
 
-                <a class="add-to-cart btn btn-primary font-m-med" href="index.php" id="keranjang" data-produk="<?=$nama_produk?>" data-price="" data-warna="" data-ukuran="" data-bahan="" data-count="" data-idproduk="<?=$produk_id?>" >Keranjang</a>
+                <a class="add-to-cart btn btn-primary font-m-med" href="index.php" id="keranjang" data-produk="<?=$nama_produk?>" data-price="" data-warna="" data-ukuran="" data-bahan="" data-count="" data-idproduk="<?=$produk_id?>" onclick="return confirm('Yakin memasukkan produk yang anda pilih ke keranjang?');">Keranjang</a>
 
                 <input type="submit" name="pemesanan_produk" value="Bayar" class="btn btn-primary font-m-med">
                 <?php }?>

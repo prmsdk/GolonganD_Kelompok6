@@ -1,14 +1,13 @@
 <?php
 
 include 'includes/config.php';
+require 'includes/header.php';
 
 if(isset($_POST['pemesanan_produk'])){
 
     $id_user = $_POST['id_user'];
     $id_produk = $_POST['id_produk'];
 
-
-    
     $id_warna = $_POST['pilihwarnaa'];
 
     $id_bahan = $_POST['pilihbahan'];
@@ -53,8 +52,10 @@ $data = mysqli_query($con, "select ID_PESANAN from pesanan ORDER BY ID_PESANAN D
       $id_pesanan = 'PSN000001';
     }
 
+    ini_set('date.timezone', 'Asia/Jakarta');
+
     $date = date("Y-m-d");
-    $time = date("h:i:sa");
+    $time = date("H:i:s");
 
 $pesanan = mysqli_query($con, "INSERT INTO pesanan 
 
@@ -64,7 +65,9 @@ $detail_pesanan = mysqli_query($con, "INSERT INTO detail_pesanan
     VALUES('$id_produk','$id_pesanan','$jumlah_produk','$sub_total',NULL,'$status_desain')");
 
 if($detail_pesanan > 0){
-  header("location:verif_pembayaran.php?id_pesanan=$id_pesana&id_bank=$id_bank");
+  echo "<button type='button' id='clear-cart' class='clear-cart'></button>";
+  echo '<button onclick="window.location.href = '."'http://localhost/GolonganD_Kelompok6/CAP/verif_pembayaran.php?id_pesanan=$id_pesana&id_bank=$id_bank'".';" id="verif_pembayaran">Home</button>';
+  // header("location:verif_pembayaran.php?id_pesanan=$id_pesana&id_bank=$id_bank");
 }else{
   echo "detail_pesanan gagal";
 }
@@ -95,6 +98,6 @@ if($detail_pesanan > 0){
 
 
 
-
+    require 'includes/footer.php';
 }
 ?>
