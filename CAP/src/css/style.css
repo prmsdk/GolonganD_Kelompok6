@@ -73,6 +73,10 @@ a{
 
 /* ================= BATAS CSS RESET ================ */
 
+.show-cart li {
+  display: flex;
+}
+
 #info{
   box-sizing: border-box;
   padding: 7px;

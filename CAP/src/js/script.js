@@ -57,3 +57,116 @@ $(document).ready(function() {
       } 
   });
 }); 
+<<<<<<< Updated upstream
+=======
+
+$("#select_warna").change(function () {
+  $(this).find("input:checked").each(function () {
+    var optionValue = $(this).attr("value");
+    $('#keranjang').data('warna', optionValue);
+    if (optionValue) {
+      $(".box_warna").not("#" + optionValue).hide();
+      $(".box_warna").not("#" + optionValue).attr('required', '');
+      $("#" + optionValue).show();
+      $("#" + optionValue).attr('required', 'required');
+    } else {
+      $(".box_warna").hide();
+    }
+  });
+}).change();
+
+// TOTAL HARGA PRODUK
+
+$(document).on('click', 'body *', function () {
+
+  var TotHarga = 0;
+  var ModalHarga = 0;
+  var HrgWarna = 0;
+  var HrgBahan = 0;
+  var SatBahan = 0;
+  var IsiBahan = 1;
+  var HrgUkuran = 0;
+  var ValDesain = 0;
+  var HrgDesain = 50000;
+  var ValPembayaran = 0;
+  var JmlCetak = document.getElementById('jumlah_produk').value;
+
+  $("#select_warna").change(function () {
+    $(this).find("input:checked").each(function () {
+      HrgWarna = parseInt($(this).attr("aria-describedby"));
+    });
+  }).change();
+
+  $("#select_bahan").change(function () {
+    $(this).find("input:checked").each(function () {
+      HrgBahan = parseInt($(this).attr("aria-describedby"));
+    });
+  }).change();
+
+  $("#select_bahan").change(function () {
+    $(this).find("input:checked").each(function () {
+      SatBahan = parseInt($(this).attr("placeholder"));
+    });
+  }).change();
+
+  $("#select_ukuran").change(function () {
+    $(this).find("input:checked").each(function () {
+      HrgUkuran = parseInt($(this).attr("aria-describedby"));
+    });
+  }).change();
+
+  $("#pilihan_desain").change(function () {
+    $(this).find("input:checked").each(function () {
+      ValDesain = parseInt($(this).attr("value"));
+    });
+  }).change();
+
+  $("#pembayaran").change(function () {
+    $(this).find("input:checked").each(function () {
+      ValPembayaran = parseInt($(this).attr("value"));
+    });
+  }).change();
+
+  TotHarga = ((HrgDesain * ValDesain) + (HrgWarna + HrgUkuran) + IsiBahan * (HrgBahan * (JmlCetak / SatBahan))) / ValPembayaran;
+  $("#sub_total").prop('value', TotHarga);
+  ModalHarga = ((HrgDesain * ValDesain) + (HrgWarna + HrgUkuran) + IsiBahan * (HrgBahan * (1 / 500))) / ValPembayaran;
+  $("#modal_total").prop('value', ModalHarga);
+
+  console.log(JmlCetak);
+  console.log(SatBahan);
+
+  var jumlah = parseInt(document.getElementById("jumlah").value);
+
+  if(jumlah < 1){
+    alert("Jumlah pesanan paling sedikit 1 pcs");
+    $("#jumlah").prop('value','1');
+  }
+
+});
+
+function validate(evt) {
+  var theEvent = evt || window.event;
+
+  // Handle paste
+  if (theEvent.type === 'paste') {
+      key = event.clipboardData.getData('text/plain');
+  } else {
+  // Handle key press
+      var key = theEvent.keyCode || theEvent.which;
+      key = String.fromCharCode(key);
+  }
+  var regex = /[0-9]|\./;
+  if( !regex.test(key) ) {
+    theEvent.returnValue = false;
+    if(theEvent.preventDefault) theEvent.preventDefault();
+  }
+}
+
+// Upload gambar
+
+$('.custom-file-input').on('change',function(){
+  let fileName = $(this).val().split('\\').pop();
+  $(this).next('.custom-file-label').addClass("custom-file").html(fileName);
+});
+
+>>>>>>> Stashed changes
