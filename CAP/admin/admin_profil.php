@@ -14,14 +14,68 @@ $adm_profil = $data_admin['ADM_PROFIL'];
 $adm_cover = $data_admin['ADM_COVER'];
 $desc = $data_admin['ADM_DESC'];
 $adm_status = $data_admin['ADM_STATUS'];
+
+
 ?>
 
-<body>
+
 <div class="container container-fluid-md pb-4">
+<div class="w-100 justify-content-center">
+<?php
+if(isset($_GET['pesan'])){
+  if($_GET['pesan']=='gagal_upload'){
+      echo '<div id="alert-login" class="alert alert-danger text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" style="left:35%; right:17%; z-index: 99;">
+              Upload Foto Anda <strong>Gagal!</strong> 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+  }else if($_GET['pesan']=='ukuran_besar'){
+    echo '<div id="alert-login" class="alert alert-danger text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" style="left:35%; right:17%; z-index: 99;">
+              Ukuran Foto Anda <strong>Terlalu Besar!</strong> 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+            
+  }else if($_GET['pesan']=='ekstensi_salah'){
+    echo '<div id="alert-login" class="alert alert-danger text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" style="left:35%; right:17%; z-index: 99;">
+              Ekstensi File yang anda masukkan <strong>Salah!</strong> 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+  }else if($_GET['pesan']=='gagal_update'){
+    echo '<div id="alert-login" class="alert alert-danger text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" style="left:35%; right:17%; z-index: 99;">
+              Ekstensi File yang anda masukkan <strong>Salah!</strong> 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+  }else if($_GET['pesan']=='sukses_upload'){
+      echo '<div id="alert-login" class="alert alert-success text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" style="left:35%; right:17%; z-index: 99;">
+              Anda <strong>Berhasil!</strong> mengunggah foto!.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+  }else if($_GET['pesan']=='sukses_update'){
+    echo '<div id="alert-login" class="alert alert-success text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" style="left:35%; right:17%; z-index: 99;">
+            Anda <strong>Berhasil!</strong> mengunggah foto!.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>';
+  }
+}
+?>
+</div>
+
 <!-- Cover -->
       <div class="cover">
           <form action="update_cover_admin.php" method="POST" enctype="multipart/form-data">
               <img src="img/profil/<?=$adm_cover?>" alt="background" class="w-100" style="height: 450px;">
+              
               <div class="btn-absolute">   
                   <a class="btn btn-light text-dark px-2" data-toggle="modal" data-target="#Modal-Cover" role="button"><i class="fa fa-edit"></i></a>   
               </div> 

@@ -10,10 +10,12 @@ if($_POST['post_profile']) {
     $ukuran = $_FILES['file']['size']; //untuk mendapatkan ukuran file yang diupload
     $file_temporary = $_FILES['file']['tmp_name']; //untuk mendapatkan temporary file yang di upload
         if(in_array($ekstensi,$ekstensi_boleh)===true){
-            if($ukuran < 3132210){ 
-                move_uploaded_file($file_temporary, 'file_upload/'.$nama); //untuk upload file
+            if($ukuran < 3132210 && $ukuran != 0){ 
+                $id = rand(0,100);
+                $uniq = uniqid($id,true);
+                move_uploaded_file($file_temporary, 'file_upload/'.$uniq.'.'.$ekstensi); //untuk upload file
                 // $query = mysqli_query ($con, "SELECT * FROM user");
-                $query = mysqli_query ($con, "UPDATE user SET USER_PROFIL='$nama' WHERE USER_ID='$id_user'");
+                $query = mysqli_query ($con, "UPDATE user SET USER_PROFIL='$uniq.$ekstensi' WHERE USER_ID='$id_user'");
                     if($query) {
                         header("location:user_profil.php?id_user=$id_user");
                     }else{

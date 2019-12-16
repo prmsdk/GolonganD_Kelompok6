@@ -158,7 +158,7 @@
                         <div class="col-lg-8 col-sm-12 my-auto">
                             <div class="card-body font-m-med ml-3 mt-1">
                                 <h2>Cetak Buku, Kalender, Brosur, dan hal lainnya yang kamu butuhkan tanpa ribet? <br><span>Segera Daftar Sekarang!</span></h2>
-                                <a class="btn btn-primary btn-lg" href="#" role="button">DAFTAR</a>
+                                <a class="btn btn-primary btn-lg" href="register_user.php" role="button">DAFTAR</a>
                             </div>
                         </div>
                         <div class="col-lg-4 col-sm-0">
@@ -173,30 +173,30 @@
 </section>
 
 <div class="container">
-<section id="contact" class="my-5 font-m-light text-center">
-    <h2 class="font-m-bold">HUBUNGI KAMI</h2>
+<section id="contact" class="pt-3 my-5 font-m-light text-center">
+    <h2 class="font-m-bold pt-5">HUBUNGI KAMI</h2>
     <h5 class="w-75 mx-auto">Isi formulir dibawah untuk memberi saran, menanyakan ketersediaan produk yang tak tersedia di Website kami, atau menghubungi kami.</h5>
     
     <form action="contact_us.php" method="post">
     <div class="row text-left mt-5">
         <div class="col-6">
             <div class="form-group">
-                <input type="text" class="form-control" id="nama_admin" name="nama_admin" aria-describedby="usernameHelp" placeholder="Masukkan Nama" required>
+                <input type="text" class="form-control" id="kontak_nama" name="kontak_nama" aria-describedby="usernameHelp" placeholder="Masukkan Nama" required pattern="^[A-Za-z -.]+$" title="Mohon masukkan hanya huruf">
             </div>
             <div class="form-group">
-                <input type="email" class="form-control" id="nama_email" name="nama_email" aria-describedby="usernameHelp" placeholder="Masukkan Email" required>
+                <input type="email" class="form-control" id="kontak_email" name="kontak_email" aria-describedby="usernameHelp" placeholder="Masukkan Email" required title="Mohon masukkan Email Valid">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" id="nama_telepon" name="nama_telepon" aria-describedby="usernameHelp" placeholder="Masukkan Telepon/HP" required>
+                <input type="text" class="form-control" id="kontak_telepon" name="kontak_telepon" aria-describedby="usernameHelp" placeholder="Masukkan Telepon/HP" required pattern="[0-9 ()]{12,13}" title="Mohon masukkan hanya angka dan ( ), 12 - 13 digit">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" id="nama_subject" name="nama_subject" aria-describedby="usernameHelp" placeholder="Masukkan Subject" required>
+                <input type="text" class="form-control" id="kontak_subject" name="kontak_subject" aria-describedby="usernameHelp" placeholder="Masukkan Subject" required>
             </div>
             <div class="form-group">
-                <textarea name="alamat_admin" id="alamat_admin" class="form-control" placeholder="Alamat Anda" required></textarea>
+                <textarea name="kontak_pesan" id="kontak_pesan" class="form-control" placeholder="Tuliskan pesan yang anda kirimkan, minimal 20 karakter" required minlength=20 title="Mohon masukkan lebih dari 20 character"></textarea>
             </div>
             <div class="form-froup text-right">
-                <input type="sumbit" class="btn btn-primary" value="KIRIM">
+                <input type="submit" name="kontak_kirim" id="kontak_kirim" class="btn btn-primary" value="KIRIM">
             </div>
             </form>
         </div>

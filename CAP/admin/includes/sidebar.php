@@ -56,7 +56,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Setting Profile:</h6>
             <a class="collapse-item" href="admin_profil.php">Profile</a>
-            <a class="collapse-item" href="#">About Us</a>
+            <a class="collapse-item" href="master_slider.php">Promo / Slider</a>
           </div>
         </div>
       </li>
@@ -83,6 +83,10 @@
             <a class="collapse-item" href="master_ukuran.php">Ukuran</a>
             <a class="collapse-item" href="master_warna.php">Warna</a>
             <div class="collapse-divider"></div>
+            <h6 class="collapse-header">Form Detail:</h6>
+            <a class="collapse-item" href="master_produk_gambar.php">Gambar Produk</a>
+            <a class="collapse-item" href="master_bahan_satuan.php">Satuan Bahan</a>
+            <div class="collapse-divider"></div>
             <h6 class="collapse-header">Form Kategori:</h6>
             <a class="collapse-item" href="kategori_produk.php">Kategori Produk</a>
             <a class="collapse-item" href="kategori_bahan.php">Kategori Bahan</a>
@@ -91,8 +95,9 @@
             if(isset($_SESSION['admin_status'])){
               if($_SESSION['admin_status']==1){?>
               <h6 class="collapse-header">Form Akun:</h6>
-              <a class="collapse-item" href="master_admin.php">Admin</a>
               <a class="collapse-item" href="master_user.php">User</a>
+              <a class="collapse-item" href="master_admin.php">Admin</a>
+              <a class="collapse-item" href="master_rekening.php">Rekening</a>
             <?php
               }
             }

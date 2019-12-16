@@ -10,6 +10,8 @@
 
   if(isset($_GET['id_pesanan'])){
     $id_pesanan = $_GET['id_pesanan'];
+
+    $update_notif = mysqli_query($con, "UPDATE pesanan SET ADMIN_NOTIF = 1 WHERE ID_PESANAN = '$id_pesanan'");
   
     $result_pesanan = mysqli_query($con, "SELECT
     user.USER_NAMA_LENGKAP,	

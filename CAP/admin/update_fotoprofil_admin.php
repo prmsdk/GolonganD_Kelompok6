@@ -10,19 +10,21 @@ if($_POST['post_foto_admin']) {
     $ukuran = $_FILES['file']['size']; //untuk mendapatkan ukuran file yang diupload
     $file_temporary = $_FILES['file']['tmp_name']; //untuk mendapatkan temporary file yang di upload
         if(in_array($ekstensi,$ekstensi_boleh)===true){
-            if($ukuran < 3132210){ 
-                move_uploaded_file($file_temporary, 'img/profil/'.$nama); //untuk upload file
-                $query = mysqli_query ($con, "UPDATE admin SET ADM_PROFIL ='$nama' WHERE ADM_ID='$id_admin'");
+            if($ukuran < 3132210 && $ukuran != 0){ 
+                $id = rand(0,100);
+                $uniq = uniqid($id,true);
+                move_uploaded_file($file_temporary, 'img/profil/'.$uniq.'.'.$ekstensi); //untuk upload file
+                $query = mysqli_query ($con, "UPDATE admin SET ADM_PROFIL ='$uniq.$ekstensi' WHERE ADM_ID='$id_admin'");
                     if($query) {
-                        header("location:admin_profil.php");
+                        header("location:admin_profil.php?pesan=sukses_upload");
                     }else{
-                        echo "MAAF...., UPLOAD GAGAL";
+                        header("location:admin_profil.php?pesan=gagal_upload");
                     }
             }else{
-                echo "UKURAN FILE TERLALU BESAR";
+                header("location:admin_profil.php?pesan=ukuran_besar");
             }
         }else{
-            echo "FILE TIDAK SESUAI DENGAN EKSTENSI YANG DIBERIKAN";
+            header("location:admin_profil.php?pesan=ekstensi_salah");
         }
 }
 

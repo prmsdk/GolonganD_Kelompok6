@@ -15,7 +15,62 @@
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
+<?php
+if(isset($_GET['pesan'])){
+  if($_GET['pesan']=='sukse_delete'){
+      echo '<div id="alert-logi" class="alert alert-success text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" style="left:35%; right:17%; z-index: 99;">
+              Anda <strong>Berhasil!</strong> menghapus data!
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+  }else if($_GET['pesan']=='gagal_delete'){
+    echo '<div id="alert-login" class="alert alert-danger text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" style="left:35%; right:17%; z-index: 99;">
+            Anda <strong>Gagal!</strong> menghapus data! 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+            
+  }else if($_GET['pesan']=='ukuran_besar'){
+    echo '<div id="alert-login" class="alert alert-danger text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" style="left:35%; right:17%; z-index: 99;">
+              Ukuran Foto Anda <strong>Terlalu Besar!</strong> 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+            
+  }else if($_GET['pesan']=='ekstensi_salah'){
+    echo '<div id="alert-login" class="alert alert-danger text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" style="left:35%; right:17%; z-index: 99;">
+              Ekstensi File yang anda masukkan <strong>Salah!</strong> 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+  }else if($_GET['pesan']=='sukses_insert'){
+    echo '<div id="alert-login" class="alert alert-success text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" style="left:35%; right:17%; z-index: 99;">
+            Anda <strong>Berhasil!</strong> menambahkan data! 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+  }else if($_GET['pesan']=='gagal_insert'){
+    echo '<div id="alert-login" class="alert alert-danger text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" style="left:35%; right:17%; z-index: 99;">
+            Anda <strong>Gagal!</strong> menambahkan data! 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+  }else if($_GET['pesan']=='gagal_edit'){
+    echo '<div id="alert-login" class="alert alert-success text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" style="left:35%; right:17%; z-index: 99;">
+            Anda <strong>Gagal!</strong> mengubah data!.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>';
+  }
+}
+?>
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
   <div class="card-header py-2">
@@ -91,60 +146,6 @@
 
 </div>
 <!-- End of Main Content -->
-
-<!-- Modal Tambah -->
-<div class="login-bg">
-    <div class="row">
-      <div class="col-5">
-        <div class="modal fade" id="tambah_produk" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header bg-biru-tua">
-                    <h5 class="modal-title text-light font-m-bold ml-3" id="editLabel">Tambah Data produk</h5>
-                    <button type="button" class="close btn bg-biru-tua" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body row justify-content-center">
-                  <form class="font-m-light col-11 mt-3" action="query/master_produk_query.php" method="post">
-                    <div class="form-group">
-                      <label for="nama_produk" class="font-m-med">Nama produk</label>
-                      <input type="text" class="form-control" id="nama_produk" name="nama_produk" aria-describedby="usernameHelp" placeholder="Masukkan Nama produk" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="desc_produk" class="font-m-med">Deskripsi produk</label>
-                      <textarea name="alamat_admin" id="alamat_admin" class="form-control" placeholder="Masukkan Deskripsi Produk . ." required></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label for="ket_produk" class="font-m-med">Keterangan Harga</label>
-                      <input type="text" class="form-control" id="ket_produk" name="ket_produk" aria-describedby="usernameHelp" placeholder="Masukkan Ket produk" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="kategori_produk">Kategori Produk</label>
-                      <select class="form-control" id="kategori_produk" name="kategori_produk">
-                        <?php 
-                          $data = mysqli_query($con, "SELECT * FROM kategori_produk");
-                          while($data_kat_produk = mysqli_fetch_assoc($data)){
-                          $id_kategori_produk = $data_kat_produk['ID_KATEGORI'];
-                          $nama_kategori_produk = $data_kat_produk['NAMA_KAT_PRODUK'];
-                        ?>
-                        <option value="<?=$id_kategori_produk?>"><?=$nama_kategori_produk?></option>
-                        <?php } ?>
-                      </select>
-                    </div>
-                  </div>
-                <div class="modal-footer text-center">
-                    <input type="submit" class="btn btn-primary" name="tambah_produk" value="Simpan">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-              </form>
-          </div>
-      </div>
-      </div>
-    </div>
-  </div>
-<!-- End Modal Tambah -->
 
 <?php
   require 'includes/footer.php';

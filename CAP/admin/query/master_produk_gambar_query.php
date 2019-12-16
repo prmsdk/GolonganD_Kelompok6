@@ -36,7 +36,7 @@ if(isset($_POST['edit_gambar_produk'])){
               // $query = mysqli_query ($koneksi, "SELECT * FROM user");
               $query = mysqli_query ($con, "UPDATE gambar_produk SET ID_TAMPIL_PRODUK='$id_produk', GBR_FILE_NAME='$nama' WHERE GBR_ID='$id_produk_gambar'");
                   if($query) {
-                      // header("location:master_produk_gambar.php");
+                      header("location:master_produk_gambar.php");
                   }else{
                       echo "MAAF...., UPLOAD GAGAL";
                   }

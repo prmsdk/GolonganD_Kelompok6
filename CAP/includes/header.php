@@ -39,7 +39,8 @@
           <a class="nav-item nav-link nav-custom" href="index.php#produkbtn">PRODUK <span class="sr-only">(current)</span></a>
           <a class="nav-item nav-link nav-custom" href="index.php#carakerjabtn">CARA KERJA</a>
           <a class="nav-item nav-link nav-custom" href="index.php#portfoliobtn">PORTOFOLIO</a>
-          <a class="nav-item nav-link nav-custom" href="index.php#contuctusbtn">CONTACT US</a>
+          <a class="nav-item nav-link nav-custom" href="index.php#testimonibtn">TESTIMONI</a>
+          <a class="nav-item nav-link nav-custom" href="index.php#contact">CONTACT US</a>
           <?php
               session_start();
               error_reporting(0);

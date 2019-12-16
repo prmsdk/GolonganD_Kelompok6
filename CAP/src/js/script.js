@@ -2,8 +2,6 @@
 
 $("#alert-login").fadeTo(2000, 500).slideUp(500, function () {
   $("#alert-login").slideUp(500);
-  history.pushState(null, null, window.location.href.split('#')[0]);
-  window.location.hash = '';
 });
 
 $(document).ready(function () {

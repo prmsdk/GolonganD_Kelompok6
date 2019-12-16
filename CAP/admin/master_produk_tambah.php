@@ -179,12 +179,6 @@ if(!isset($_SESSION['admin_login'])){
           </div> 
           
           <div class="form-group">
-            <h5>Gambar Produk</h5>
-            <div class="my-2"><input type="file" id="gambar_produk_1" name="gambar_produk[]"></div>
-            <div class="my-2"><input type="file" id="gambar_produk_2" name="gambar_produk[]"></div>
-            <div class="my-2"><input type="file" id="gambar_produk_3" name="gambar_produk[]"></div>
-          </div>
-          <div class="form-group">
             <div class="form-check">
               <input class="form-check-input" type="radio" id="status_radio1" name="status_produk" value="1" required checked>
               <label class="form-check-label" for="status_radio1">

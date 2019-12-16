@@ -26,7 +26,7 @@
       $bg = 'bg-white';
     }
     $output .= '
-    <a class="dropdown-item d-flex align-items-center '.$bg.'" href="detail_pesanan_admin.php?ID_PESANAN='.$row['ID_PESANAN'].'">
+    <a class="dropdown-item d-flex align-items-center '.$bg.'" href="trs_detail_pesanan_admin.php?id_pesanan='.$row['ID_PESANAN'].'">
       <div class="mr-3">
         <div class="icon-circle bg-primary">
           <i class="fas fa-file-alt text-white"></i>

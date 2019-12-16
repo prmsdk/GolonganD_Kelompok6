@@ -3,6 +3,7 @@
     define('DB_USER','root');
     define('DB_PASS' ,'');
     define('DB_NAME', 'db_cap');
+    define('SENDGRID_API_KEY', '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');
     $con = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME);
     // Check connection
     if (mysqli_connect_errno())

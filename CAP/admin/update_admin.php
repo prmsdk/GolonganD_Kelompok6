@@ -21,7 +21,11 @@ if($_POST['edit_profil_admin']){
     ADM_USERNAME = '$adminname' 
     where ADM_ID = '$id_admin'");
 
-    header("location:admin_profil.php");
+    if($query){
+        header("location:admin_profil.php?pesan=sukses_update");
+    }else{
+        header("location:admin_profil.php?pesan=gagal_update");
+    }
     
     
 }

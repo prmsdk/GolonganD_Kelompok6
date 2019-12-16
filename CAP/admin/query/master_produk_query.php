@@ -19,15 +19,23 @@ if(isset($_GET['id_produk'])){
       $result_gambar = mysqli_query($con, "SELECT * from gambar_produk WHERE ID_TAMPIL_PRODUK='$id_produk'");
       while($data_gambar = mysqli_fetch_assoc($result_gambar)){
       $nama_gambar = $data_tampil['GBR_FILE_NAME'];
-      $nama_gambar = "../pictures/produk_thumb/$nama_gambar";
+      $nama_gambar = "../../pictures/produk_thumb/$nama_gambar";
       unlink($nama_gambar);
       }
 
       $result_gbr = mysqli_query($con, "DELETE FROM gambar_produk WHERE ID_TAMPIL_PRODUK='$id_produk'");
       $result = mysqli_query($con, "DELETE FROM tampil_produk WHERE ID_TAMPIL_PRODUK='$id_produk'");
 
-      
-      header("location:../master_produk.php");
+      if($result&&$result_warna&&$result_bahan&&$result_ukuran&&$result_gbr){
+        header("location:../master_produk.php?pesan=sukses_delete");
+      }else{
+        echo "ada error";
+        var_dump($result);
+        var_dump($result_warna);
+        var_dump($result_bahan);
+        var_dump($result_ukuran);
+        var_dump($result_gbr);
+      }
     }
   }
 }
@@ -87,90 +95,17 @@ if(isset($_POST['tambah_produk'])){
           }
 
           if($query) {
-              // header("location:../master_produk.php");
+            header("location:../master_produk.php?pesan=sukses_insert");
           }else{
-              echo "MAAF...., UPLOAD GAGAL";
+            header("location:../master_produk.php?pesan=gagal_insert");
           }
       }else{
-          echo "UKURAN FILE TERLALU BESAR";
+        header("location:../master_produk.php?pesan=ukuran_besar");
       }
   }else{
-      echo "FILE TIDAK SESUAI DENGAN EKSTENSI YANG DIBERIKAN";
+    header("location:../master_produk.php?pesan=ekstensi_salah");
   }
 
-  if(isset($_FILES['gambar_produk'])){
-
-    // File upload configuration
-    $targetDir = "../../pictures/produk_thumb/";
-    $allowTypes = array('jpg','png','jpeg','JPG','PNG','JPEG');
-    
-    $statusMsg = $errorMsg = $insertValuesSQL = $errorUpload = $errorUploadType = '';
-    $i = 0;
-    if(!empty(array_filter($_FILES['gambar_produk']['name']))){
-        foreach($_FILES['gambar_produk']['name'] as $key=>$val){
-            $i+=1;
-            // File upload path
-            $fileName = basename($_FILES['gambar_produk']['name'][$key]);
-            $targetFilePath = $targetDir . $fileName;
-            
-            // Check whether file type is valid
-            $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
-            if(in_array($fileType, $allowTypes)){
-                // Upload file to server
-                if(move_uploaded_file($_FILES["gambar_produk"]["tmp_name"][$key], $targetFilePath)){
-                    // Image db insert sql
-                    $insertValuesSQL = $fileName;
-                }else{
-                    $errorUpload .= $_FILES['gambar_produk']['name'][$key].', ';
-                }
-            }else{
-                $errorUploadType .= $_FILES['gambar_produk']['name'][$key].', ';
-            }
-
-            $data_gbr = mysqli_query($con, "select GBR_ID from gambar_produk ORDER BY GBR_ID DESC LIMIT 1");
-            while($data_gambar = mysqli_fetch_array($data_gbr))
-            {
-                $gbr_id = $data_gambar['GBR_ID'];
-            }
-
-            $row = mysqli_num_rows($data);
-            if($row>0){
-              $id_gambar = autonumber($gbr_id, 3, 6);
-            }else{
-              $id_gambar = 'GBR000001';
-            }
-
-            if(empty($errorUpload OR $errorUploadType OR $errorMsg)){
-              // Insert image file name into database
-              $insert = mysqli_query($con, "INSERT INTO gambar_produk(GBR_ID, ID_TAMPIL_PRODUK, GBR_FILE_NAME) VALUES('$id_gambar','$id_produk','$insertValuesSQL')");
-              var_dump($insertValuesSQL);
-              var_dump($id_gambar);
-              if($insert){
-                  $statusMsg = "Files are uploaded successfully.".$errorMsg;
-                  
-              }else{
-                  $statusMsg = "Sorry, there was an error uploading your file.".$errorMsg;
-              }
-            }else{
-              $errorUpload = !empty($errorUpload)?'Upload Error: '.$errorUpload:'';
-              $errorUploadType = !empty($errorUploadType)?'File Type Error: '.$errorUploadType:'';
-              $errorMsg = !empty($errorUpload)?'<br/>'.$errorUpload.'<br/>'.$errorUploadType:'<br/>'.$errorUploadType;
-              $statusMsg = "Files are uploaded successfully.".$errorMsg;
-            }
-        }
-
-        
-        
-        
-    }else{
-        $statusMsg = 'Please select a file to upload.';
-    }
-    
-    // Display status message
-    echo $statusMsg;
-
-    header("location:../master_produk.php");
-  }
 }
 
 
@@ -186,7 +121,7 @@ if(isset($_POST['edit_produk'])){
 
   var_dump($_FILES['ket_produk']);
 
-  if(is_null($_FILES['ket_produk']['name'])){
+  if($_FILES['ket_produk']['name'] != null){
   $ekstensi_boleh = array('htm','html'); //ekstensi file yang boleh diupload
   $nama = $_FILES['ket_produk']['name']; //menunjukkan letak dan nama file yang akan di upload
   $ex = explode ('.',$nama); //explode berfungsi memecahkan/memisahkan string sesuai dengan tanda baca yang ditentukan
@@ -195,7 +130,7 @@ if(isset($_POST['edit_produk'])){
   $file_temporary = $_FILES['ket_produk']['tmp_name']; //untuk mendapatkan temporary file yang di upload
     
     if(in_array($ekstensi,$ekstensi_boleh)===true){
-        if($size < 3132210){ 
+        if($size < 3132210 && $size != 0){ 
             move_uploaded_file($file_temporary, '../../src/file/'.$nama); //untuk upload file
             $query = mysqli_query ($con, "UPDATE tampil_produk SET
             ID_KATEGORI = '$kategori_produk', 
@@ -227,15 +162,15 @@ if(isset($_POST['edit_produk'])){
             }
 
             if($query) {
-                // header("location:../master_produk.php");
+              header("location:../master_produk.php?id_produk=$id_produk&pesan=sukses_edit");
             }else{
-                echo "MAAF...., UPLOAD GAGAL";
+              header("location:../master_produk.php?pesan=gagal_edit");
             }
         }else{
-            echo "UKURAN FILE TERLALU BESAR";
+          header("location:../master_produk.php?pesan=ukuran_besar");
         }
     }else{
-        echo "FILE TIDAK SESUAI DENGAN EKSTENSI YANG DIBERIKAN";
+      header("location:../master_produk.php?pesan=ekstensi_salah");
     }
   }else{
     $query = mysqli_query ($con, "UPDATE tampil_produk SET
@@ -267,9 +202,9 @@ if(isset($_POST['edit_produk'])){
     }
 
     if($query) {
-        header("location:../master_produk_detail.php?id_produk=$id_produk");
+      header("location:../master_produk_detail.php?id_produk=$id_produk&pesan=sukses_edit");
     }else{
-        echo "GAGAL UPDATE";
+      header("location:../master_produk.php?pesan=gagal_edit");
     }
   }
     

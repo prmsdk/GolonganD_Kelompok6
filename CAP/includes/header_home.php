@@ -24,14 +24,14 @@
     <?php
         if(isset($_GET['pesan'])){
             if($_GET['pesan']=='gagal'){
-                echo '<div id="alert-login" class="alert alert-danger alert-dismissible fade show position-fixed alert-login mx-auto" role="alert">
+                echo '<div id="alert-login" class="alert alert-danger alert-dismissible fade show position-absolute alert-login mx-auto" role="alert">
                         Login anda <strong>Gagal!</strong> 
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>';
             }else if($_GET['pesan']=='logout'){
-              echo '<div id="alert-login" class="alert alert-success alert-dismissible fade show position-fixed alert-login mx-auto" role="alert">
+              echo '<div id="alert-login" class="alert alert-success alert-dismissible fade show position-absolute alert-login mx-auto" role="alert">
                       Anda <strong>Berhasil!</strong> melakukan logout!.
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -39,7 +39,7 @@
                     </div>';
             }else if($_GET['pesan']=='loginberhasil'){
                 $_SESSION['status']='login';
-                echo '<div id="alert-login" class="alert alert-success alert-dismissible fade show position-fixed alert-login mx-auto" role="alert">
+                echo '<div id="alert-logina" class="alert alert-success alert-dismissible fade show position-absolute alert-login mx-auto" role="alert">
                         Login <strong>Berhasil!</strong> semoga harimu menyenangkan!.
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
@@ -61,7 +61,7 @@
           <a class="nav-item nav-link nav-custom" href="index.php#carakerjabtn">CARA KERJA</a>
           <a class="nav-item nav-link nav-custom" href="index.php#portfoliobtn">PORTOFOLIO</a>
           <a class="nav-item nav-link nav-custom" href="index.php#testimonibtn">TESTIMONI</a>
-          <a class="nav-item nav-link nav-custom" href="index.php#contuctusbtn">CONTACT US</a>
+          <a class="nav-item nav-link nav-custom" href="index.php#contact">CONTACT US</a>
           <?php
               error_reporting(0);
               session_start();

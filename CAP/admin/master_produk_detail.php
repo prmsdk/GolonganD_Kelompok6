@@ -64,6 +64,18 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
+<?php
+if(isset($_GET['pesan'])){
+  if($_GET['pesan']=='sukses_edit'){
+    echo '<div id="alert-login" class="alert alert-success text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" style="left:35%; right:17%; z-index: 99;">
+            Anda <strong>Berhasil!</strong> mengubah data!.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>';
+  }
+}
+?>
   <div class="row justify-content-center">
     <div class="col-lg-8">
       <div class="card shadow mb-4">
