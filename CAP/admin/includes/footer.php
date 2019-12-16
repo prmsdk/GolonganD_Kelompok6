@@ -50,6 +50,7 @@
   <script src="../src/js/script.js"></script>
 
   <!-- Page level plugins -->
+  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
   <script src="vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
   <script src="code.jquery.com/jquery-1.12.4.min.js"></script>

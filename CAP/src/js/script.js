@@ -177,15 +177,13 @@ $(document).on('click', 'body *', function () {
   $("#var3").prop('value', SatBahan);
   $("#var4").prop('value', ValPembayaran);
 
-  console.log(JmlCetak);
-  console.log(SatBahan);
 
-  var jumlah = parseInt(document.getElementById("jumlah").value);
+  // var jumlah = parseInt(document.getElementById("jumlah").value);
 
-  if(jumlah < 1){
-    alert("Jumlah pesanan paling sedikit 1 pcs");
-    $("#jumlah").prop('value','1');
-  }
+  // if(jumlah < 1){
+  //   alert("Jumlah pesanan paling sedikit 1 pcs");
+  //   $("#jumlah").prop('value','1');
+  // }
 
 
 });

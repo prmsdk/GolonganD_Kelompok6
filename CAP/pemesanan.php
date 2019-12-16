@@ -153,11 +153,11 @@
             <input type="number" id="sub_total" class="form-control mb-4 w-50" placeholder="Total Pembayaran" name="sub_total" pattern="(^\d+(\.|\,)\d{2}$)" readonly>
 
             <!-- <input type="number" id="modal_total" class="form-control mb-4 w-50" placeholder="Modal Pembayaran" name="modal_total" pattern="(^\d+(\.|\,)\d{2}$)" readonly> -->
-            <!-- 
-            <input type="number" id="var1" class="form-control mb-4 w-50" placeholder="Modal Pembayaran" name="var1" pattern="(^\d+(\.|\,)\d{2}$)" readonly>
-            <input type="number" id="var2" class="form-control mb-4 w-50" placeholder="Modal Pembayaran" name="var2" pattern="(^\d+(\.|\,)\d{2}$)" readonly>
-            <input type="number" id="var3" class="form-control mb-4 w-50" placeholder="Modal Pembayaran" name="var3" pattern="(^\d+(\.|\,)\d{2}$)" readonly>
-            <input type="number" id="var4" class="form-control mb-4 w-50" placeholder="Modal Pembayaran" name="var4" pattern="(^\d+(\.|\,)\d{2}$)" readonly> -->
+            
+            <input type="hidden" id="var1" class="form-control mb-4 w-50" placeholder="Modal Pembayaran" name="var1" pattern="(^\d+(\.|\,)\d{2}$)" readonly>
+            <input type="hidden" id="var2" class="form-control mb-4 w-50" placeholder="Modal Pembayaran" name="var2" pattern="(^\d+(\.|\,)\d{2}$)" readonly>
+            <input type="hidden" id="var3" class="form-control mb-4 w-50" placeholder="Modal Pembayaran" name="var3" pattern="(^\d+(\.|\,)\d{2}$)" readonly>
+            <input type="hidden" id="var4" class="form-control mb-4 w-50" placeholder="Modal Pembayaran" name="var4" pattern="(^\d+(\.|\,)\d{2}$)" readonly>
 
             <div class="cutom-inline text-center">
                 <?php

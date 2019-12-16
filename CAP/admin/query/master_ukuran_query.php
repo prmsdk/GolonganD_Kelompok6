@@ -6,7 +6,11 @@ if(isset($_GET['id_ukuran'])){
   if(isset($_GET['action'])){
     if($_GET['action']=='delete'){
       $result = mysqli_query($con, "DELETE FROM ukuran WHERE ID_UKURAN='$id_ukuran'");
-      header("location:../master_ukuran.php");
+      if($result){
+        header("location:../master_ukuran.php?pesan=sukses_delete");
+      }else{
+        header("location:../master_ukuran.php?pesan=gagal_delete");
+      }
     }
   }
 }
@@ -25,7 +29,11 @@ if(isset($_POST['edit_ukuran'])){
     ID_UKURAN = '$id_ukuran'
   ");
 
-header("location:../master_ukuran.php");
+  if($result){
+    header("location:../master_ukuran.php?pesan=sukses_edit");
+  }else{
+    header("location:../master_ukuran.php?pesan=gagal_edit");
+  }
 }
 
 if(isset($_POST['tambah_ukuran'])){
@@ -52,5 +60,9 @@ if(isset($_POST['tambah_ukuran'])){
     VALUES('$id_kategori', '$kategori_ukuran', '$jenis_ukuran', '$harga_ukuran')
     ");
 
-    header("location:../master_ukuran.php");
+  if($result){
+    header("location:../master_ukuran.php?pesan=sukses_insert");
+  }else{
+    header("location:../master_ukuran.php?pesan=gagal_insert");
+  }
 }

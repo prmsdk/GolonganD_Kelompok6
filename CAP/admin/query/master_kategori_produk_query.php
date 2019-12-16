@@ -6,7 +6,11 @@ if(isset($_GET['id_kategori_produk'])){
   if(isset($_GET['action'])){
     if($_GET['action']=='delete'){
       $result = mysqli_query($con, "DELETE FROM kategori_produk WHERE ID_KATEGORI='$id_kategori_produk'");
-      header("location:../kategori_produk.php?pesan=hapus_done");
+      if($result){
+        header("location:../kategori_produk.php?pesan=sukses_delete");
+      }else{
+        header("location:../kategori_produk.php?pesan=gagal_delete");
+      }
     }
   }
 }
@@ -21,7 +25,11 @@ if(isset($_POST['edit_kategori_produk'])){
     ID_KATEGORI = '$id_kategori_produk'
   ");
 
-header("location:../kategori_produk.php?pesan=update_done_$nama_admin");
+  if($result){
+    header("location:../kategori_produk.php?pesan=sukses_edit");
+  }else{
+    header("location:../kategori_produk.php?pesan=gagal_edit");
+  }
 }
 
 if(isset($_POST['tambah_kategori_produk'])){
@@ -46,6 +54,10 @@ if(isset($_POST['tambah_kategori_produk'])){
     VALUES('$id_kategori', '$nama_kategori')
     ");
 
-    header("location:../kategori_produk.php?pesan=Anda berhasil mendaftar!&status=success");
+  if($result){
+    header("location:../kategori_produk.php?pesan=sukses_insert");
+  }else{
+    header("location:../kategori_produk.php?pesan=gagal_insert");
+  }
 }
 

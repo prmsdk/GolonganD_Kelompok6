@@ -6,7 +6,11 @@ if(isset($_GET['id_kategori_ukuran'])){
   if(isset($_GET['action'])){
     if($_GET['action']=='delete'){
       $result = mysqli_query($con, "DELETE FROM kategori_ukuran WHERE ID_KAT_UKURAN='$id_kategori_ukuran'");
-      header("location:../kategori_ukuran.php");
+      if($result){
+        header("location:../kategori_ukuran.php?pesan=sukses_delete");
+      }else{
+        header("location:../kategori_ukuran.php?pesan=gagal_delete");
+      }
     }
   }
 }
@@ -21,7 +25,11 @@ if(isset($_POST['edit_kategori_ukuran'])){
     ID_KAT_UKURAN = '$id_kategori_ukuran'
   ");
 
-header("location:../kategori_ukuran.php");
+  if($result){
+    header("location:../kategori_ukuran.php?pesan=sukses_edit");
+  }else{
+    header("location:../kategori_ukuran.php?pesan=gagal_edit");
+  }
 }
 
 if(isset($_POST['tambah_kategori_ukuran'])){
@@ -47,6 +55,10 @@ if(isset($_POST['tambah_kategori_ukuran'])){
     VALUES('$id_kategori', '$nama_kategori_ukuran')
     ");
 
-    header("location:../kategori_ukuran.php");
+  if($result){
+    header("location:../kategori_ukuran.php?pesan=sukses_insert");
+  }else{
+    header("location:../kategori_ukuran.php?pesan=gagal_insert");
+  }
 }
 

@@ -6,9 +6,15 @@ if(isset($_GET['id_bahan'])){
   if(isset($_GET['action'])){
     if($_GET['action']=='delete'){
       $result = mysqli_query($con, "DELETE FROM bahan WHERE ID_BAHAN='$id_bahan'");
-      header("location:../master_bahan.php");
+
+      if($result){
+        header("location:../master_bahan.php?pesan=sukses_delete");
+      }else{
+        header("location:../master_bahan.php?pesan=gagal_delete");
+      }
     }
   }
+
 }
 
 if(isset($_POST['edit_bahan'])){
@@ -29,7 +35,11 @@ if(isset($_POST['edit_bahan'])){
     ID_BAHAN = '$id_bahan'
   ");
 
-header("location:../master_bahan.php");
+  if($result){
+    header("location:../master_bahan.php?pesan=sukses_edit");
+  }else{
+    header("location:../master_bahan.php?pesan=gagal_edit");
+  }
 }
 
 if(isset($_POST['tambah_bahan'])){
@@ -58,5 +68,9 @@ if(isset($_POST['tambah_bahan'])){
     VALUES('$id_bahan', '$satuan_bahan', '$kategori_bahan', '$nama_bahan', '$harga_bahan', '$isi_bahan')
     ");
 
-    header("location:../master_bahan.php");
+  if($result){
+    header("location:../master_bahan.php?pesan=sukses_insert");
+  }else{
+    header("location:../master_bahan.php?pesan=gagal_insert");
+  }
 }

@@ -9,7 +9,11 @@ if(isset($_GET['id_user'])){
   if(isset($_GET['action'])){
     if($_GET['action']=='delete'){
       $result = mysqli_query($con, "DELETE FROM user WHERE USER_ID='$id_user'");
-      header("location:../master_user.php?pesan=hapus_done_$nama_user");
+      if($result){
+        header("location:../master_user.php?pesan=sukses_delete");
+      }else{
+        header("location:../master_user.php?pesan=gagal_delete");
+      }
     }
   }
 }
@@ -33,7 +37,11 @@ if(isset($_POST['edit_user'])){
     USER_ID = '$id_user'
   ");
 
-  header("location:../master_user.php?pesan=update_done_$id_user");
+  if($result){
+    header("location:../master_user.php?pesan=sukses_edit");
+  }else{
+    header("location:../master_user.php?pesan=gagal_edit");
+  }
 }
 
 if(isset($_POST['tambah_user'])){
@@ -65,5 +73,9 @@ if(isset($_POST['tambah_user'])){
     VALUES('$id_user', '$nama_user', '$email_user', '$no_hp_user', '$alamat_user', '$username_user', '$password_user', '$status_user')
     ");
 
-    header("location:../master_user.php?pesan=Anda berhasil mendaftar!&status=success");
+  if($result){
+    header("location:../master_user.php?pesan=sukses_insert");
+  }else{
+    header("location:../master_user.php?pesan=gagal_insert");
+  }
 }

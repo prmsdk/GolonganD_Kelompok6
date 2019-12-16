@@ -2,14 +2,16 @@
 include '../includes/config.php';
 if(isset($_GET['id_admin'])){
   $id_admin = $_GET['id_admin'];
-  $data = mysqli_query($con, "SELECT * FROM admin WHERE ADM_ID='$id_admin'");
-  $data_admin_delete = mysqli_fetch_array($data);
-  $nama_admin_delete = $data_admin_delete['ADM_NAMA_USAHA_ADM'];
   
   if(isset($_GET['action'])){
     if($_GET['action']=='delete'){
       $result = mysqli_query($con, "DELETE FROM admin WHERE ADM_ID='$id_admin'");
-      header("location:../master_admin.php?pesan=hapus_done_$nama_admin");
+      
+      if($result){
+        header("location:../master_admin.php?pesan=sukses_delete");
+      }else{
+        header("location:../master_admin.php?pesan=gagal_delete");
+      }
     }
   }
 }
@@ -35,7 +37,11 @@ if(isset($_POST['edit_admin'])){
     ADM_ID = '$id_admin'
   ");
 
-  header("location:../master_admin.php?pesan=update_done_$nama_admin");
+  if($result){
+    header("location:../master_admin.php?pesan=sukses_edit");
+  }else{
+    header("location:../master_admin.php?pesan=gagal_edit");
+  }
 }
 
 if(isset($_POST['tambah_admin'])){
@@ -68,5 +74,9 @@ if(isset($_POST['tambah_admin'])){
     VALUES('$id_admin', '$nama_admin', '$email_admin', '$no_hp_admin', '$no_telp_admin', '$alamat_admin', '$username_admin', '$password_admin', '$status_admin')
     ");
 
-    header("location:../master_admin.php?pesan=Anda berhasil mendaftar!&status=success");
+  if($result){
+    header("location:../master_admin.php?pesan=sukses_insert");
+  }else{
+    header("location:../master_admin.php?pesan=gagal_insert");
+  }
 }

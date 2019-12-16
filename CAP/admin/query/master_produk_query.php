@@ -29,12 +29,7 @@ if(isset($_GET['id_produk'])){
       if($result&&$result_warna&&$result_bahan&&$result_ukuran&&$result_gbr){
         header("location:../master_produk.php?pesan=sukses_delete");
       }else{
-        echo "ada error";
-        var_dump($result);
-        var_dump($result_warna);
-        var_dump($result_bahan);
-        var_dump($result_ukuran);
-        var_dump($result_gbr);
+        header("location:../master_produk.php?pesan=gagal_delete");
       }
     }
   }
@@ -73,10 +68,12 @@ if(isset($_POST['tambah_produk'])){
   $file_temporary = $_FILES['ket_produk']['tmp_name']; //untuk mendapatkan temporary file yang di upload
   
   if(in_array($ekstensi,$ekstensi_boleh)===true){
-      if($size < 3132210){ 
-          move_uploaded_file($file_temporary, '../../src/file/'.$nama); //untuk upload file
+      if($size < 3132210 && $size != 0){ 
+          $id = rand(0,100);
+          $uniq = uniqid($id,true);
+          move_uploaded_file($file_temporary, '../../src/file/'.$uniq.'.'.$ekstensi); //untuk upload file
           $query = mysqli_query ($con, "INSERT INTO tampil_produk 
-          VALUES('$id_produk', '$kategori_produk', '$nama_produk', '$desc_produk', '$nama', '$status_produk') 
+          VALUES('$id_produk', '$kategori_produk', '$nama_produk', '$desc_produk', '$uniq.$ekstensi', '$status_produk') 
           ");
 
           foreach ($_POST['check_warna'] as $id_warna) {
@@ -131,12 +128,14 @@ if(isset($_POST['edit_produk'])){
     
     if(in_array($ekstensi,$ekstensi_boleh)===true){
         if($size < 3132210 && $size != 0){ 
-            move_uploaded_file($file_temporary, '../../src/file/'.$nama); //untuk upload file
+            $id = rand(0,100);
+            $uniq = uniqid($id,true);
+            move_uploaded_file($file_temporary, '../../src/file/'.$uniq.'.'.$ekstensi); //untuk upload file
             $query = mysqli_query ($con, "UPDATE tampil_produk SET
             ID_KATEGORI = '$kategori_produk', 
             NAMA_TAMPIL_PRODUK = '$nama_produk', 
             DESC_TAMPIL_PRODUK = '$desc_produk', 
-            KET_TAMPIL_PRODUK = '$nama', 
+            KET_TAMPIL_PRODUK = '$uniq.$ekstensi', 
             STATUS_TAMPIL_PRODUK = '$status_produk'
             WHERE
             ID_TAMPIL_PRODUK = '$id_produk'

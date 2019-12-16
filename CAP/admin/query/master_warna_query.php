@@ -6,7 +6,11 @@ if(isset($_GET['id_warna'])){
   if(isset($_GET['action'])){
     if($_GET['action']=='delete'){
       $result = mysqli_query($con, "DELETE FROM warna WHERE ID_WARNA='$id_warna'");
-      header("location:../master_warna.php");
+      if($result){
+        header("location:../master_warna.php?pesan=sukses_delete");
+      }else{
+        header("location:../master_warna.php?pesan=gagal_delete");
+      }
     }
   }
 }
@@ -25,7 +29,11 @@ if(isset($_POST['edit_warna'])){
     ID_WARNA = '$id_warna'
   ");
 
-header("location:../master_warna.php");
+  if($result){
+    header("location:../master_warna.php?pesan=sukses_edit");
+  }else{
+    header("location:../master_warna.php?pesan=gagal_edit");
+  }
 }
 
 if(isset($_POST['tambah_warna'])){
@@ -52,6 +60,10 @@ if(isset($_POST['tambah_warna'])){
     VALUES('$id_warna', '$jenis_warna', '$desc_warna', '$harga_warna')
     ");
 
-    header("location:../master_warna.php");
+  if($result){
+    header("location:../master_warna.php?pesan=sukses_insert");
+  }else{
+    header("location:../master_warna.php?pesan=gagal_insert");
+  }
 }
 

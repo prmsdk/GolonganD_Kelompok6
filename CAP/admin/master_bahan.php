@@ -16,7 +16,54 @@
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
+<?php
+if(isset($_GET['pesan'])){
+  if($_GET['pesan']=='sukses_delete'){
+      echo '<div id="alert-login" class="alert alert-success text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" style="left:35%; right:17%; z-index: 99;">
+              Anda <strong>Berhasil!</strong> menghapus data!
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+  }else if($_GET['pesan']=='gagal_delete'){
+    echo '<div id="alert-login" class="alert alert-danger text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" style="left:35%; right:17%; z-index: 99;">
+            Anda <strong>Gagal!</strong> menghapus data! 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+            
+  }else if($_GET['pesan']=='sukses_insert'){
+    echo '<div id="alert-login" class="alert alert-success text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" style="left:35%; right:17%; z-index: 99;">
+            Anda <strong>Berhasil!</strong> menambahkan data! 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+  }else if($_GET['pesan']=='gagal_insert'){
+    echo '<div id="alert-login" class="alert alert-danger text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" style="left:35%; right:17%; z-index: 99;">
+            Anda <strong>Gagal!</strong> menambahkan data! 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+  }else if($_GET['pesan']=='gagal_edit'){
+    echo '<div id="alert-login" class="alert alert-danger text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" style="left:35%; right:17%; z-index: 99;">
+            Anda <strong>Gagal!</strong> mengubah data!.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>';
+  }else if($_GET['pesan']=='sukses_edit'){
+    echo '<div id="alert-login" class="alert alert-success text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" style="left:35%; right:17%; z-index: 99;">
+            Anda <strong>Berhasil!</strong> mengubah data!.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>';
+  }
+}
+?>
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
   <div class="card-header py-2">
@@ -57,7 +104,7 @@
             <td><?=$satuan_bahan?></td>
             <td><?=$jumlah_satuan?></td>
             <td><?=$isi_bahan?></td>
-            <td>Rp. <?=$harga_bahan?>,00</td>
+            <td><?='Rp. '. number_format($harga_bahan, 0,".",".")?></td>
             <td><?=$kategori_bahan?></td>
             <td style="width:67px;">
               <div class="block ml-auto">

@@ -6,7 +6,11 @@ if(isset($_GET['id_kategori_bahan'])){
   if(isset($_GET['action'])){
     if($_GET['action']=='delete'){
       $result = mysqli_query($con, "DELETE FROM kategori_bahan WHERE ID_KAT_BAHAN='$id_kategori_bahan'");
-      header("location:../kategori_bahan.php");
+      if($result){
+        header("location:../kategori_bahan.php?pesan=sukses_delete");
+      }else{
+        header("location:../kategori_bahan.php?pesan=gagal_delete");
+      }
     }
   }
 }
@@ -21,7 +25,11 @@ if(isset($_POST['edit_kategori_bahan'])){
     ID_KAT_BAHAN = '$id_kategori_bahan'
   ");
 
-header("location:../kategori_bahan.php");
+  if($result){
+    header("location:../kategori_bahan.php?pesan=sukses_edit");
+  }else{
+    header("location:../kategori_bahan.php?pesan=gagal_edit");
+  }
 }
 
 if(isset($_POST['tambah_kategori_bahan'])){
@@ -46,6 +54,10 @@ if(isset($_POST['tambah_kategori_bahan'])){
     VALUES('$id_kategori', '$nama_kategori_bahan')
     ");
 
-    header("location:../kategori_bahan.php");
+  if($result){
+    header("location:../kategori_bahan.php?pesan=sukses_insert");
+  }else{
+    header("location:../kategori_bahan.php?pesan=gagal_insert");
+  }
 }
 

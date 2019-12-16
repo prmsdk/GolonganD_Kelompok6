@@ -1,6 +1,7 @@
 <?php
 
 include 'includes/config.php';
+include 'api_key.php';
 
 require 'C:\xampp\sendgrid\vendor\autoload.php';
 
@@ -27,11 +28,11 @@ $email->addContent("text/plain", "$message");
 $email->addContent(
     "text/html", "<p>$message<p>"
 );
-$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+// $sendgrid = new \SendGrid(getenv(SENDGRID_API_KEY));
 // $apiKey = getenv('SENDGRID_API_KEY');
 // $sendgrid = new \SendGrid($apiKey);
-// $apiKey = SENDGRID_API_KEY;
-// $sendgrid = new \SendGrid($apiKey);
+$apiKey = SENDGRID_API_KEY;
+$sendgrid = new \SendGrid($apiKey);
 try {
     $response = $sendgrid->send($email);
     print $response->statusCode() . "\n";
@@ -42,5 +43,5 @@ try {
 }
 print_r($email_user);
 
-// header("location:index.php?pesan=email_kirim");
+header("location:index.php?pesan=email_kirim");
 }

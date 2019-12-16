@@ -115,8 +115,9 @@
         <div id="collapseLaporan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Laporan:</h6>
-            <a class="collapse-item" href="#l">Transaksi</a>
-            <a class="collapse-item" href="#">Master</a>
+            <a class="collapse-item" href="transaksi_bulanan.php">Transaksi per Bulan</a>
+            <a class="collapse-item" href="transaksi_tahunan.php">Transaksi per Tahun</a>
+            <a class="collapse-item" href="transaksi_rentang.php">Transaksi Rentang Hari</a>
           </div>
         </div>
       </li>
