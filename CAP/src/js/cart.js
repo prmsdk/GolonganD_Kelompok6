@@ -165,6 +165,7 @@ $('.add-to-cart').click(function(event) {
   var ukuran = $(this).data('ukuran');
   shoppingCart.addItemToCart(produk, price, var2, var3, var4, count, idproduk, warna, bahan, ukuran);
   displayCart();
+  location.href="http://localhost/GolonganD_Kelompok6/CAP/index.php";
 });
 
 // Clear items
@@ -178,6 +179,9 @@ function displayCart() {
   var cartArray = shoppingCart.listCart();
   var output = "";
   var outputbayar = "";
+  outputbayar += "<tr>"
+      + "<th>Daftar Produk</th><th>Qty</th><th>Sub Total</th>"
+      + "</tr>";
   for(var i in cartArray) {
     output += "<tr>"
       + "<td>" + cartArray[i].produk + " / " + cartArray[i].warna + " / " + cartArray[i].bahan + " / " + cartArray[i].ukuran + "</td>" 
@@ -193,7 +197,7 @@ function displayCart() {
       + "<td>" + cartArray[i].produk + " / " + cartArray[i].warna + " / " + cartArray[i].bahan + " / " + cartArray[i].ukuran + "</td>" 
       + "<td>"+ cartArray[i].count +"</td>"
       + " = " 
-      + "<td>" + cartArray[i].total + "</td>" 
+      + "<td>Rp. " + cartArray[i].total + "</td>" 
       +  "</tr>"
       + "<input type='hidden' name='id_produk' value='" + cartArray[i].idproduk + "'>"
       + "<input type='hidden' name='nama_produk' value='" + cartArray[i].produk + "'>"

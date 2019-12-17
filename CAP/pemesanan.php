@@ -19,13 +19,45 @@
     <div class="row justify-content-center mt-4">
         <div class="col-lg-9 pt-4">
             <div class="card shadow p-5">
+            <div class="border-bottom text-center border-warning font-m-semi">
+            <h2><?=$nama_produk?></h2>
+            </div>
+
+            <p class="font-m-semi">Desain</p>
+            <div id="pilihan_desain" class="pl-4 mb-3">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="pilihdesain1" name="pilihdesain" class="custom-control-input" value="0" required>
+                    <label class="custom-control-label" for="pilihdesain1">Upload Desain</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="pilihdesain2" name="pilihdesain" class="custom-control-input" value="1" checked required>
+                    <label class="custom-control-label" for="pilihdesain2">Belum punya Desain</label>
+                </div>
+            </div>
+            <form id="uploadImage" action="upload_desain_jquery.php" method="post">
+            <div class="input-group">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="uploadfile" name="desain" readonly required>
+                    <label class="custom-file-label" for="uploadfile">Pilih file</label>
+                </div>
+                <div class="input-group-append">
+                    <input type="submit" id="uploadSubmit" value="Upload" class="btn btn-outline-secondary" onclick="return confirm('Apakah anda yakin ingin mengupload desain? Pilihan anda tidak dapat diubah kembali ketika selesai mengupload desain anda.');">
+                </div>
+            </div>
+            </form>
+            <div class="progress mt-2" style="display:none; width: 100%;">
+                <div class="progress-bar" width="100%" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div id="targetLayer" class="text-center mt-2" style="display:none; width:100%;"></div>
+            <div id="loader-icon" class="text-center mt-2" style="display:none; width:100%;"><h5 class="text-gray-500 pt-0">Mohon Tunggu . .</h5></div>
+            <label for="uploadfile">Unggah file anda dalam format .zip .rar .pdf (max ukuran file 30mb) Jika ukuran file anda melebihi batas silahkan kirim file melalui <a href="mailto:aldion819@gmail.com">email ini.</a></label>
+
+            <!-- BATAS UPLOAD DESAIN -->
             <form action="pemesanan_query.php" method="post" enctype="multipart/form-data">
             <input type="hidden" value="<?=$produk_id?>" name="id_produk">
             <input type="hidden" value="<?=$nama_produk?>" name="nama_produk">
             <input type="hidden" value="<?=$id_user?>" name="id_user">
-            <div class="border-bottom text-center border-warning font-m-semi">
-            <h2><?=$nama_produk?></h2>
-            </div>
+            
             <p class="pt-3 font-m-semi">Pilih Warna :</p>
             <div id="select_warna" class="">
                 <?php
@@ -119,22 +151,15 @@
     }   
             ?>           
             </div>
-            <p class="font-m-semi">Desain</p>
-            <div id="pilihan_desain" class="pl-4 mb-3">
-                <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="pilihdesain1" name="pilihdesain" class="custom-control-input" value="0" required>
-                    <label class="custom-control-label" for="pilihdesain1">Upload Desain</label>
-                </div>
-                <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="pilihdesain2" name="pilihdesain" class="custom-control-input" value="1" checked required>
-                    <label class="custom-control-label" for="pilihdesain2">Belum punya Desain</label>
-                </div>
-            </div>
-                <div class="custom-file ">
-                    <input type="file" class="custom-file-input" id="uploadfile" name="desain" readonly required>
-                    <label class="custom-file-label" for="inputGroupFile01">Pilih file</label>
-                    <label for="uploadfile">Unggah file anda dalam format .zip .rar .pdf (max ukuran file 30mb) Jika ukuran file anda melebihi batas silahkan kirim file melalui <a href="mailto:aldion819@gmail.com">email ini.</a></label>
-                </div>
+            
+            <!-- <div class="custom-file ">
+                <input type="file" class="custom-file-input" id="uploadfile" name="desain" readonly required>
+                <label class="custom-file-label" for="inputGroupFile01">Pilih file</label>
+                <label for="uploadfile">Unggah file anda dalam format .zip .rar .pdf (max ukuran file 30mb) Jika ukuran file anda melebihi batas silahkan kirim file melalui <a href="mailto:aldion819@gmail.com">email ini.</a></label>
+            </div> -->
+            
+
+
             <p class="font-m-semi mt-3">Jumlah</p>
             <input id="jumlah_produk" type="number" class="form-control mb-4 w-50" placeholder="Masukkan Jumlah Cetak" name="jumlah_produk" required min="1">
             <p class="font-m-semi">TOTAL</p>
@@ -191,8 +216,7 @@
     </div>
 </div>
 
-
-<script src="src/js/main.js"></script>
+<!-- <script src="src/js/main.js"></script> -->
 
 <?php
 

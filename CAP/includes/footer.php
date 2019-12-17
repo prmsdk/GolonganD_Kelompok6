@@ -55,6 +55,7 @@
   <script src="src/js/notification_user.js"></script>
   <script src="src/js/ava_uname_email.js"></script>
   <script src="src/js/cart.js"></script>
+  <script src="src/js/jquery.form.js"></script>
   <!-- query -->
 
 </body>
