@@ -14,7 +14,8 @@ WHEN pesanan.STATUS_PESANAN = 6 THEN 'Dibatalkan'
 END AS STATUS_KET
 FROM pesanan, user where
 user.USER_ID = pesanan.USER_ID AND
-(pesanan.STATUS_PESANAN = 1 OR pesanan.STATUS_PESANAN = 2)")
+(pesanan.STATUS_PESANAN = 1 OR pesanan.STATUS_PESANAN = 2)
+ORDER BY pesanan.TANGGAL_PESANAN DESC")
 ?>
 
 

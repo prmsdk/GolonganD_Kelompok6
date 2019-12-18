@@ -147,7 +147,9 @@
         </div>
     </div>
 </section>
-
+<?php
+if($_SESSION['status']!='login'){
+?>
 <section id="daftar">
     <div class="daftar-gambar">
     <div class="daftar-absolute">
@@ -171,6 +173,7 @@
     </div>
     </div>
 </section>
+<?php }?>
 
 <div class="container">
 <section id="contact" class="pt-3 my-5 font-m-light text-center">

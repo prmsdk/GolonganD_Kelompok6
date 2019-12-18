@@ -15,6 +15,7 @@ if(isset($_POST['pemesanan_produk'])){
     $nama_produk = $_POST['nama_produk'];
     $status_desain = $_POST['pilihdesain'];
     $jumlah_produk = $_POST['jumlah_produk'];
+    $namadesain = $_POST['namadesain'];
 
     $ket_pembayaran = $_POST['ket_pembayaran'];
     $sub_total = $_POST['sub_total'];
@@ -62,7 +63,7 @@ $pesanan = mysqli_query($con, "INSERT INTO pesanan
     VALUES('$id_pesanan','ADM000001','$id_user','$date $time','$total','1',NULL,'$ket_pembayaran',0,0)");
 
 $detail_pesanan = mysqli_query($con, "INSERT INTO detail_pesanan 
-    VALUES('$id_produk','$id_pesanan','$jumlah_produk','$sub_total',NULL,'$status_desain')");
+    VALUES('$id_produk','$id_pesanan','$jumlah_produk','$sub_total','$namadesain','$status_desain')");
 
 if($detail_pesanan > 0){
   echo "<button type='button' id='clear-cart' class='clear-cart'></button>";

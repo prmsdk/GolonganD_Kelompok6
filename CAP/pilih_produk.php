@@ -14,7 +14,7 @@
                     $produk_id = $data_produk['ID_TAMPIL_PRODUK'];
                     $produk_nama = $data_produk['NAMA_TAMPIL_PRODUK'];
                 ?>
-                <div class="col-lg-<?php if(($row_produk%4)>0){echo "4";}else{echo "3";}?> col-md-6 mb-3">
+                <div class="col-lg-3 col-md-6 mb-3">
                     <div class="card shadow mb-3">
                         <a href="produk_user.php?produk_id=<?=$produk_id?>">
                         <?php $result_gambar = mysqli_query($con, "SELECT gambar_produk.GBR_FILE_NAME FROM

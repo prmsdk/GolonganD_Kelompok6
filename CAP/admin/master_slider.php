@@ -97,7 +97,7 @@ if(isset($_GET['pesan'])){
                     <td><p><?=$tombol?></p></td>
                     <td><p><?=$link?></p></td>
                     <td><p><?=$desc?></p></td>
-                    <td><p><?=$gambar?></p></td>
+                    <td><p><img src="../src/img/slider/<?=$gambar?>" class="img-fluid" alt="Gambar <?=$id_slider?>"></p></td>
                     <td style="width:67px">
                         <div class="block">
                             <a href="query/master_slider_query.php?action=delete&id_slider=<?=$id_slider?>" class="btn btn-danger btn-circle btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus data?');">

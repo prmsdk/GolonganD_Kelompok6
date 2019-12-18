@@ -12,6 +12,7 @@ if(!empty($_FILES))
 		if(move_uploaded_file($source_path, $target_path))
 		{
 			// echo '<img src="'.$target_path.'" class="img-thumbnail" width="300" height="250" />';
+			echo '<input type="hidden" id="namadesain" name="namadesain" value="'.$_FILES['desain']['name'].'">';
 			echo '<h5 class="text-success pt-0">Upload Berhasil!</h5>';
 		}
 	}

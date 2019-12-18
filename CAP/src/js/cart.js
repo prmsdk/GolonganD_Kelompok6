@@ -26,7 +26,12 @@ var shoppingCart = (function() {
     this.idukuran = $('input[name=pilihukuran]:checked').val();
     this.ukuran = $('input[name=pilihukuran]:checked').attr('namaukuran');
     this.desain = $('input[name=pilihdesain]:checked').val();
-    this.ketpembayaran = $('input[name=ket_pembayaran]:checked').val();    
+    this.ketpembayaran = $('input[name=ket_pembayaran]:checked').val();
+    if(document.getElementById('namadesain') === null){
+    this.namadesain = '';
+    }else{
+    this.namadesain = document.getElementById('namadesain').value;   
+    } 
   }
   
   // Save cart
@@ -205,6 +210,7 @@ function displayCart() {
       + "<input type='hidden' name='pilihbahan' value='" + cartArray[i].idbahan + "'>"
       + "<input type='hidden' name='pilihukuran' value='" + cartArray[i].idukuran + "'>"
       + "<input type='hidden' name='pilihdesain' value='" + cartArray[i].desain + "'>"
+      + "<input type='hidden' name='namadesain' value='" + cartArray[i].namadesain + "'>"
       + "<input type='hidden' name='ket_pembayaran' value='" + cartArray[i].ketpembayaran + "'>"
       + "<input type='hidden' name='jumlah_produk' value='" + cartArray[i].count + "'>"
       + "<input type='hidden' name='sub_total' value='" + cartArray[i].total + "'>"

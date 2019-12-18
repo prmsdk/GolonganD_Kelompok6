@@ -69,6 +69,7 @@ $(document).ready(function () {
   // Kondisi saat Form di-load
   if ($('input[id="pilihdesain2"]:radio:checked').val() == "Y") {
     $('#uploadfile').attr('disabled', 'disabled');
+    $("#targetLayer").append('<input type="hidden" id="namadesain" name="namadesain" value="">');
   } else {
     $('#uploadfile').attr('disabled', 'disabled');
   }
@@ -78,6 +79,7 @@ $(document).ready(function () {
     if ($(this).attr("value") == "N") {
       $('#uploadfile').attr('disabled', 'disabled');
     } else {
+      $("#targetLayer").append('<input type="hidden" id="namadesain" name="namadesain" value="">');
       $('#uploadfile').attr('disabled', 'disabled');
       $('#uploadfile').focus();
     }

@@ -13,7 +13,8 @@ WHEN pesanan.STATUS_PESANAN = 5 THEN 'Dalam Pengiriman'
 WHEN pesanan.STATUS_PESANAN = 6 THEN 'Dibatalkan'
 END AS STATUS_KET
 FROM pesanan, user where
-user.USER_ID = pesanan.USER_ID")
+user.USER_ID = pesanan.USER_ID
+ORDER BY pesanan.TANGGAL_PESANAN DESC")
 ?>
 
 
@@ -56,8 +57,10 @@ user.USER_ID = pesanan.USER_ID")
                   <td><?=$nama_user?></td>
                   <td><?=$tanggal_psn?></td>
                   <td>Rp. <?=number_format($total_psn, 0,".",".")?></td>
-                  <td class="text-center"><?php if($status_notif==1 OR $status_notif==2){
+                  <td class="text-center"><?php if($status_notif==1){
                       echo '<span class="badge badge-pill badge-secondary px-3">'.$status_psn.'</span>';
+                    }else if($status_notif==2){
+                      echo '<span class="badge badge-pill badge-warning px-3">'.$status_psn.'</span>';
                     }else if($status_notif==3){
                       echo '<span class="badge badge-pill badge-primary px-3">'.$status_psn.'</span>';
                     }else if($status_notif==4 OR $status_notif==5){

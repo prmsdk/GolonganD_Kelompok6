@@ -14,40 +14,40 @@
             <div class="card shadow p-5">
             <form action="pemesanan_query.php" method="post">
                 <input type="hidden" name="id_user" value="<?=$id_user?>">
-                      <p class="pt-3 font-m-semi">Detail Pemesanan :</p>          
-                      <div class="modal-body">
+                    <p class="pt-3 font-m-semi">Detail Pemesanan :</p>          
+                    <div class="modal-body">
                         <table class="show-cart-bayar table">
-                          
+                        
                         </table>
                         <div class="text-right">Total pembayaran: Rp. <span class="total-cart"></span></div>
-                      </div>
+                    </div>
 
-                      <p class="pt-3 font-m-semi">Pilih Bank :</p>
-                      <div id="select_bank" class="">
-                      <?php
-                          $i = 1;
-                          $result = mysqli_query($con, "select * from rekening_bank");
-                              while($data_rekening = mysqli_fetch_assoc($result)){
-                                  $id_rekening = $data_rekening['ID_REKENING'];
-                                  $nama_rekening = $data_rekening['NAMA_REKENING'];
-                                  $nomer_rekening = $data_rekening['NOMER_REKENING'];
-                                  echo '<div class="custom-control custom-radio custom-control-inline mb-3 pl-5">
-                                  <input type="radio" aria-describedby="'.$nomer_rekening.'" id="pilihbank'.$i.'" name="pilihbank" value="'.$id_rekening.'" class="custom-control-input" required>
+                    <p class="pt-3 font-m-semi">Pilih Bank :</p>
+                    <div id="select_bank" class="">
+                    <?php
+                        $i = 1;
+                        $result = mysqli_query($con, "select * from rekening_bank");
+                            while($data_rekening = mysqli_fetch_assoc($result)){
+                                $id_rekening = $data_rekening['ID_REKENING'];
+                                $nama_rekening = $data_rekening['NAMA_REKENING'];
+                                $nomer_rekening = $data_rekening['NOMER_REKENING'];
+                                echo '<div class="custom-control custom-radio custom-control-inline mb-3 pl-5">
+                                <input type="radio" aria-describedby="'.$nomer_rekening.'" id="pilihbank'.$i.'" name="pilihbank" value="'.$id_rekening.'" class="custom-control-input" required>
 
-                                  <label class="custom-control-label" for="pilihbank'.$i.'">'.$nama_rekening.'</label>
-                                  <input type="hidden" id="">
-                                  </div>';
-                                  $i+=1;
-                          }   
-                      ?>
+                                <label class="custom-control-label" for="pilihbank'.$i.'">'.$nama_rekening.'</label>
+                                <input type="hidden" id="">
+                                </div>';
+                                $i+=1;
+                        }   
+                    ?>
                         
                     <div class="text-center">
                         <input type="submit" name="pemesanan_produk" value="Bayar" class="btn btn-primary font-m-med">
                         <a class="btn btn-secondary" href="index.php">Kembali</a>
                     </div>
                     </form>
-                      </div>
-                      </div>
+                    </div>
+                    </div>
             <div class="pt-5 mb-4">
                 <div class="card shadow col-lg p-5 bg-light text-dark">
                     <div class="font-m-semi">

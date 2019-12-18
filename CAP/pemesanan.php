@@ -37,7 +37,7 @@
             <form id="uploadImage" action="upload_desain_jquery.php" method="post">
             <div class="input-group">
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="uploadfile" name="desain" readonly required>
+                    <input type="file" accept=".zip, .rar, .pdf" class="custom-file-input" id="uploadfile" name="desain" readonly required>
                     <label class="custom-file-label" for="uploadfile">Pilih file</label>
                 </div>
                 <div class="input-group-append">
@@ -48,6 +48,7 @@
             <div class="progress mt-2" style="display:none; width: 100%;">
                 <div class="progress-bar" width="100%" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
+            <!-- <div id="desaindiv"><input type="hidden" class="namadesain" id="namadesain" name="namadesain" value=""></div> -->
             <div id="targetLayer" class="text-center mt-2" style="display:none; width:100%;"></div>
             <div id="loader-icon" class="text-center mt-2" style="display:none; width:100%;"><h5 class="text-gray-500 pt-0">Mohon Tunggu . .</h5></div>
             <label for="uploadfile">Unggah file anda dalam format .zip .rar .pdf (max ukuran file 30mb) Jika ukuran file anda melebihi batas silahkan kirim file melalui <a href="mailto:aldion819@gmail.com">email ini.</a></label>
