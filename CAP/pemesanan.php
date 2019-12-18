@@ -54,9 +54,9 @@
             <label for="uploadfile">Unggah file anda dalam format .zip .rar .pdf (max ukuran file 30mb) Jika ukuran file anda melebihi batas silahkan kirim file melalui <a href="mailto:aldion819@gmail.com">email ini.</a></label>
 
             <!-- BATAS UPLOAD DESAIN -->
-            <form action="pemesanan_query.php" method="post" enctype="multipart/form-data">
-            <input type="hidden" value="<?=$produk_id?>" name="id_produk">
-            <input type="hidden" value="<?=$nama_produk?>" name="nama_produk">
+            <form id="form_pemesanan" action="index.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" id="id_produk" value="<?=$produk_id?>" name="id_produk">
+            <input type="hidden" id="nama_produk" value="<?=$nama_produk?>" name="nama_produk">
             <input type="hidden" value="<?=$id_user?>" name="id_user">
             
             <p class="pt-3 font-m-semi">Pilih Warna :</p>
@@ -193,7 +193,7 @@
                 <button type="button" class="btn btn-primary" data-target="#login_user" data-toggle="modal">Bayar</button>
                 <?php }else{?>
 
-                <a class="add-to-cart btn btn-primary font-m-med" href="index.php" id="keranjang" data-produk="<?=$nama_produk?>" data-price="" data-warna="" data-ukuran="" data-bahan="" data-count="" data-idproduk="<?=$produk_id?>" onclick="return confirm('Yakin memasukkan produk yang anda pilih ke keranjang?');">Keranjang</a>
+                <input type="submit" class="add-to-cart btn btn-primary font-m-med" name="pemesanan_produk" href="index.php" id="keranjang" onclick="return confirm('Yakin memasukkan produk yang anda pilih ke keranjang?');" value="Keranjang">
 
                 <input type="submit" name="pemesanan_produk" value="Bayar" class="btn btn-primary font-m-med">
                 <?php }?>

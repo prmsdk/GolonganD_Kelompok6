@@ -19,7 +19,7 @@ $gambar = $data_slider['GAMBAR'];
 <div class="mySlides fadeSlide img-fluid">
     <!-- <div class="numbertext">1 / 3</div> -->
     <img src="src/img/slider/<?=$gambar?>">
-    <div class="banner-absolute<?php if($a ==1){echo "1";}else if($a == 2){echo "3";}else if($a ==3){echo "2";}?> text-light text-center font-m-semi">
+    <div class="banner-absolute text-light text-center font-m-semi">
     <h1><?=$desc?></h1>
     <a class="btn btn-primary btn-lg mt-2" href="<?=$link?>" role="button"><?=$tombol?></a>
     </div>

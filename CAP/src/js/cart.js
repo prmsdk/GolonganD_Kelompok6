@@ -9,14 +9,15 @@ var shoppingCart = (function() {
   cart = [];
   
   // Constructor
-  function Item(produk, price, var2, var3, var4, count, idproduk, warna) {
-    this.idproduk = idproduk;
-    this.produk = produk;
+  function Item(produk, price, var2, var3, var4, banyak, count, idproduk, warna) {
+    this.idproduk = document.getElementById('id_produk').value;;
+    this.produk = document.getElementById('nama_produk').value;;
     this.price = Number(document.getElementById('var1').value);
     this.var2 = Number(document.getElementById('var2').value);
     this.var3 = Number(document.getElementById('var3').value);
     this.var4 = Number(document.getElementById('var4').value);
     // this.price = document.getElementById('modal_total').value;
+    this.banyak = 1;
     this.count = document.getElementById('jumlah_produk').value;
     this.warna = $('input[name=pilihwarna]:checked').attr('namawarna');
     this.idwarna = $('input[name=pilihwarna]:checked').val();
@@ -54,20 +55,22 @@ var shoppingCart = (function() {
   var obj = {};
   
   // Add to cart
-  obj.addItemToCart = function(produk, price, var2, var3, var4, count, idproduk, warna, bahan, ukuran, satbahan) {
+  obj.addItemToCart = function(produk, price, var2, var3, var4, count, banyak, idproduk, warna, bahan, ukuran, satbahan) {
     for(var item in cart) {
       if(cart[item].produk === produk) {
         cart[item].count ++;
+        // cart[item].banyak ++;
         saveCart();
         return;
       }
     }
-    var item = new Item(produk, price, var2, var3, var4, count, idproduk, warna, bahan, ukuran, satbahan);
+
+    var item = new Item(produk, price, var2, var3, var4, count, banyak, idproduk, warna, bahan, ukuran, satbahan);
     cart.push(item);
     saveCart();
   }
   // Set count from item
-  obj.setCountForItem = function(produk, count) {
+  obj.setCountForItem = function(produk, ukuran, warna, bahan, count) {
     for(var i in cart) {
       if (cart[i].produk === produk) {
         cart[i].count = count;
@@ -110,7 +113,7 @@ var shoppingCart = (function() {
   obj.totalCount = function() {
     var totalCount = 0;
     for(var item in cart) {
-      totalCount += cart[item].count;
+      totalCount += Number(cart[item].banyak);
     }
     return totalCount;
   }
@@ -159,16 +162,17 @@ var shoppingCart = (function() {
 // Triggers / Events
 // ***************************************** 
 // Add item
-$('.add-to-cart').click(function(event) {
+$('#form_pemesanan').on("submit",function(event){
   event.preventDefault();
-  var produk = $(this).data('produk');
-  var price = Number($(this).data('price'));
+  // var produk = $(this).data('produk');
+  // var price = Number($(this).data('price'));
   var count = Number($(this).data('count'));
-  var idproduk = $(this).data('idproduk');
-  var warna = $(this).data('warna');
-  var bahan = $(this).data('bahan');
-  var ukuran = $(this).data('ukuran');
-  shoppingCart.addItemToCart(produk, price, var2, var3, var4, count, idproduk, warna, bahan, ukuran);
+  // var idproduk = $(this).data('idproduk');
+  // var warna = $(this).data('warna');
+  // var bahan = $(this).data('bahan');
+  // var ukuran = $(this).data('ukuran');
+  // var banyak = Number($(this).data('banyak'));
+  shoppingCart.addItemToCart( var2, var3, var4, count);
   displayCart();
   location.href="http://localhost/GolonganD_Kelompok6/CAP/index.php";
 });
@@ -189,7 +193,7 @@ function displayCart() {
       + "</tr>";
   for(var i in cartArray) {
     output += "<tr>"
-      + "<td>" + cartArray[i].produk + " / " + cartArray[i].warna + " / " + cartArray[i].bahan + " / " + cartArray[i].ukuran + "</td>" 
+      + "<td>" + cartArray[i].produk +  " / " + cartArray[i].warna + " / " + cartArray[i].bahan + " / " + cartArray[i].ukuran + "</td>" 
       + "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-produk=" + cartArray[i].produk + ">-</button>"
       + "<input type='number' id='jumlah' class='item-count form-control' data-produk='" + cartArray[i].produk + "' value='" + cartArray[i].count + "'>"
       + "<button class='plus-item btn btn-primary input-group-addon' data-produk=" + cartArray[i].produk + ">+</button></div></td>"

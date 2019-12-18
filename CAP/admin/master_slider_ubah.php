@@ -46,7 +46,7 @@ if(isset($_GET['id_slider'])){
             <img class="img-fluid rounded" src="../src/img/slider/<?=$gambar?>" alt="<?=$id_slider?>">
             <div class="custom-file mt-3">
               <input type="file" class="custom-file-input" id="gambar" name="gambar" accept=".jpg, .png, .jpeg">
-              <label class="custom-file-label" for="inputGroupFile01">Pilih file</label>
+              <label class="custom-file-label" for="inputGroupFile01">Ukuran gambar minimal 1170x500px</label>
               <label for="uploadfile">Unggah file anda dalam format .jpg .jpeg .png <br> (max ukuran file 3mb)</label>
             </div>
           </div>
