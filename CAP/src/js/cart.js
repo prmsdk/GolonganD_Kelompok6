@@ -208,22 +208,29 @@ function displayCart() {
       + " = " 
       + "<td>Rp. " + cartArray[i].total + "</td>" 
       +  "</tr>"
-      + "<input type='hidden' name='id_produk' value='" + cartArray[i].idproduk + "'>"
-      + "<input type='hidden' name='nama_produk' value='" + cartArray[i].produk + "'>"
-      + "<input type='hidden' name='pilihwarnaa' value='" + cartArray[i].idwarna + "'>"
-      + "<input type='hidden' name='pilihbahan' value='" + cartArray[i].idbahan + "'>"
-      + "<input type='hidden' name='pilihukuran' value='" + cartArray[i].idukuran + "'>"
-      + "<input type='hidden' name='pilihdesain' value='" + cartArray[i].desain + "'>"
-      + "<input type='hidden' name='namadesain' value='" + cartArray[i].namadesain + "'>"
+      + "<input type='hidden' name='id_produk[]' value='" + cartArray[i].idproduk + "'>"
+      + "<input type='hidden' name='nama_produk[]' value='" + cartArray[i].produk + "'>"
+      + "<input type='hidden' name='pilihwarnaa[]' value='" + cartArray[i].idwarna + "'>"
+      + "<input type='hidden' name='pilihbahan[]' value='" + cartArray[i].idbahan + "'>"
+      + "<input type='hidden' name='pilihukuran[]' value='" + cartArray[i].idukuran + "'>"
+      + "<input type='hidden' name='pilihdesain[]' value='" + cartArray[i].desain + "'>"
+      + "<input type='hidden' name='namadesain[]' value='" + cartArray[i].namadesain + "'>"
       + "<input type='hidden' name='ket_pembayaran' value='" + cartArray[i].ketpembayaran + "'>"
-      + "<input type='hidden' name='jumlah_produk' value='" + cartArray[i].count + "'>"
-      + "<input type='hidden' name='sub_total' value='" + cartArray[i].total + "'>"
+      + "<input type='hidden' name='jumlah_produk[]' value='" + cartArray[i].count + "'>"
+      + "<input type='hidden' name='sub_total[]' value='" + cartArray[i].total + "'>"
       + "<input type='hidden' name='total' value='" + shoppingCart.totalCart() + "'>";
   }
   $('.show-cart').html(output);
   $('.show-cart-bayar').html(outputbayar);
   $('.total-cart').html(shoppingCart.totalCart());
   $('.total-count').html(shoppingCart.totalCount());
+}
+
+// Disable buttony
+if(cart.lenght === null){
+  $('#bayarba').attr('disabled','disabled');
+}else{
+  $('#bayarba').removeAttr('disabled');
 }
 
 // Delete item button
@@ -258,6 +265,3 @@ $('.show-cart').on("change", ".item-count", function(event) {
 
 displayCart();
 
-$(document).on('click','body *',function (){
-  
-});

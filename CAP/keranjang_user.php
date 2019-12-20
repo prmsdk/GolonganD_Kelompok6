@@ -15,8 +15,8 @@
                         <div class="text-right">Total pembayaran: Rp.<span class="total-cart"></span></div>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                        <a type="button" class="btn btn-primary" href="pembayaran.php">Bayar Sekarang</a>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" disabled>Kembali</button>
+                        <button type="button" id="bayarba" class="btn btn-primary" onclick="window.location.href='pembayaran.php'">Bayar Sekarang</button>
                       </div>
                     </div>
                   </div>

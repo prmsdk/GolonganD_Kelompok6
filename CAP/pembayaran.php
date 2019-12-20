@@ -38,11 +38,11 @@
                                 <input type="hidden" id="">
                                 </div>';
                                 $i+=1;
-                        }   
+                            }   
                     ?>
                         
                     <div class="text-center">
-                        <input type="submit" name="pemesanan_produk" value="Bayar" class="btn btn-primary font-m-med">
+                        <input type="submit"    name="pemesanan_produk" value="Bayar" class="btn btn-primary font-m-med">
                         <a class="btn btn-secondary" href="index.php">Kembali</a>
                     </div>
                     </form>
