@@ -1,19 +1,19 @@
 <?php
 include '../includes/config.php';
 if(isset($_GET['id_slider'])){
-  $id_slider = $_GET['id_slider'];
-  
-  if(isset($_GET['action'])){
+$id_slider = $_GET['id_slider'];
+
+if(isset($_GET['action'])){
     if($_GET['action']=='delete'){
-      $result = mysqli_query($con, "DELETE FROM slider WHERE ID_SLIDER='$id_slider'");
-      header("location:../master_slider.php");
+    $result = mysqli_query($con, "DELETE FROM slider WHERE ID_SLIDER='$id_slider'");
+    header("location:../master_slider.php");
     }
-  }
+}
 }
 
 if(isset($_POST['edit_slider'])){
 
-  if($_FILES['gambar']['name'] == null){
+if($_FILES['gambar']['name'] == null){
     $id_slider = $_POST['id_slider'];
     $tombol = $_POST['tombol'];
     $link = $_POST['link'];
@@ -30,7 +30,7 @@ if(isset($_POST['edit_slider'])){
             header("location:../master_slider.php?pesan=gagal_upload");
         }
 
-  }else{
+}else{
     $id_slider = $_POST['id_slider'];
     $tombol = $_POST['tombol'];
     $link = $_POST['link'];
@@ -46,6 +46,10 @@ if(isset($_POST['edit_slider'])){
             if($ukuran < 3132210 && $ukuran != 0){ 
                 $id = rand(0,100);
                 $uniq = uniqid($id,true);
+                $file_name = '../../src/img/slider/'.$nama;
+                $myfile = fopen($file_name , 'a');
+                fclose($myfiles);
+                unlink($file_name);
                 move_uploaded_file($file_temporary, '../../src/img/slider/'.$uniq.'.'.$ekstensi); //untuk upload file
                 $query = mysqli_query ($con, "UPDATE slider 
                 SET GAMBAR = '$uniq.$ekstensi',
@@ -64,16 +68,16 @@ if(isset($_POST['edit_slider'])){
         }else{
             header("location:../master_slider.php?pesan=ekstensi_salah");
         }
-  }
+}
 }
 
 if(isset($_POST['tambah_slider'])){
-  $tombol = $_POST['tombol'];
-  $link = $_POST['link'];
-  $desc = $_POST['deskripsi'];
-  
-  // UNTUK MENGAMBIL ID TERAKHIR
-  $data = mysqli_query($con, "select ID_SLIDER from slider ORDER BY ID_SLIDER DESC LIMIT 1");
+$tombol = $_POST['tombol'];
+$link = $_POST['link'];
+$desc = $_POST['deskripsi'];
+
+// UNTUK MENGAMBIL ID TERAKHIR
+$data = mysqli_query($con, "select ID_SLIDER from slider ORDER BY ID_SLIDER DESC LIMIT 1");
     while($slider_data = mysqli_fetch_array($data))
     {
         $sld_id = $slider_data['ID_SLIDER'];
@@ -81,9 +85,9 @@ if(isset($_POST['tambah_slider'])){
 
     $row = mysqli_num_rows($data);
     if($row>0){
-      $id_slider = autonumber($sld_id, 3, 6);
+    $id_slider = autonumber($sld_id, 3, 6);
     }else{
-      $id_slider = 'SLD000001';
+    $id_slider = 'SLD000001';
     }
 
     $ekstensi_boleh = array('png','jpg','jpeg','JPG','PNG','JPEG'); //ekstensi file yang boleh diupload

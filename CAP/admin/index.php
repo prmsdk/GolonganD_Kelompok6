@@ -53,7 +53,7 @@
   $djml_produk_bulan = mysqli_fetch_assoc($rjml_produk_bulan);
 
   // JUMLAH OMSET BULAN INI
-  $romset_bulan = mysqli_query($con, "SELECT SUM(TOTAL_HARGA) as TOT_OMSET FROM pesanan WHERE TANGGAL_PESANAN LIKE '$bulan_now%'");
+  $romset_bulan = mysqli_query($con, "SELECT SUM(TOTAL_HARGA) as TOT_OMSET FROM pesanan WHERE (STATUS_PESANAN = 4 OR STATUS_PESANAN = 5) AND TANGGAL_PESANAN LIKE '$bulan_now%'");
   $domset_bulan = mysqli_fetch_assoc($romset_bulan);
 
   if(isset($_SESSION['admin_login'])){

@@ -57,6 +57,9 @@
             <h6 class="collapse-header">Setting Profile:</h6>
             <a class="collapse-item" href="admin_profil.php">Profile</a>
             <a class="collapse-item" href="master_slider.php">Promo / Slider</a>
+            <a class="collapse-item" href="master_pesan.php">Pesan</a>
+            <a class="collapse-item" href="master_portfolio.php">Portofolio</a>
+            <a class="collapse-item" href="master_testimonial.php">Testimonial</a>
           </div>
         </div>
       </li>

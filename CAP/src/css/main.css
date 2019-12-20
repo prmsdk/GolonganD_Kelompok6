@@ -252,7 +252,7 @@ iframe{
 @media (min-width: 768px) { 
     .nav-tr{
         position: absolute;
-        background-color: rgb(17, 17, 17, 0);
+        background-color: rgb(17, 17, 17, 0.75);
         z-index: 2;
     }
 
@@ -298,4 +298,54 @@ iframe{
 
 .box_warna{
     display: none;
+}
+
+
+/* =================== TESTIMONIAL ================== */
+
+.testi h2{
+	position: relative;
+}
+.testi p{
+    font-weight: 200;
+    font-family: "montserratlight";
+    line-height: 20px;
+}
+.testi h2::after{
+	content: "";
+	width: 130px;
+	position: absolute;
+	margin: 0 auto;
+	height: 3px;
+	background: #FFF;
+	left: 0;
+	right: 0;
+	bottom: -10px;
+}
+.testi .carousel-inner .carousel-item .img-box{
+	width: 135px;
+	height: 135px;
+}
+.testi .carousel-control-prev{
+	left: -100px;
+}
+.testi .carousel-control-next{
+	right: -100px;
+}
+.testi .carousel-indicators{
+	top: 320px;
+}
+@media (min-width: 320px) and (max-width: 640px) {
+	.testi .carousel-inner .carousel-item p{
+		font-size: 14px;
+	}
+	.testi .carousel-control-prev{
+		left: -40px;
+	}
+	.testi .carousel-control-next{
+		right: -40px;
+	}
+ 	.testi .carousel-indicators{
+		top: 400px;
+	}
 }

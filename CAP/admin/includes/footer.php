@@ -60,6 +60,7 @@
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/demo/datatables-demo.js"></script>
   <script src="../src/js/notification_admin.js"></script>
+  <script src="../src/js/messages_admin.js"></script>
 
 </body>
 
