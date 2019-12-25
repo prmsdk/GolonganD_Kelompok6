@@ -41,6 +41,7 @@
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
 
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -61,6 +62,8 @@
   <script src="js/demo/datatables-demo.js"></script>
   <script src="../src/js/notification_admin.js"></script>
   <script src="../src/js/messages_admin.js"></script>
+  
+  
 
 </body>
 

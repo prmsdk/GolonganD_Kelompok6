@@ -4,6 +4,9 @@
   session_start();
 
   include 'includes/config.php';
+  include 'api_key.php';
+  
+  require 'C:\xampp\sendgrid\vendor\autoload.php';
 
     $nama_user = $_POST['nama_user'];
     $email_user = $_POST['email_user'];
@@ -35,29 +38,55 @@
       
       $_SESSION['id_user'] = $id_user;
 
-      header("location:register_success.php?pesan=Anda berhasil mendaftar!&status=success");
-
-      $to      = $email_user; // Send email to our user
-      $subject = 'Pendaftaran | Verifikasi'; // Give the email a subject 
-      $message = '
+      if($result){
+        $our_email = 'dickayunia1@gmail.com';
+    
+        date_default_timezone_set('Asia/Jakarta');
+        ini_set('date.timezone', 'Asia/Jakarta');
+    
+        // $dotenv = new Dotenv\Dotenv(__DIR__);
+        // $dotenv->load();
+    
+        $email = new \SendGrid\Mail\Mail(); 
+        $email->setFrom($our_email, 'Cahaya Abadi Perkasa');
+        $email->setSubject('Pendaftaran | Verifikasi');
+        $email->addTo($email_user, $nama_user);
+        $message = '
       
-      Terimakasih telah mendaftar dan bergabung dengan kami!
-      Silahkan cocokkan data diri yang kamu daftarkan dengan data yang kami terima dibawah, 
-      Mohon aktivasi akun anda untuk memaksimalkan fitur dari aplikasi kami.
-      
-      ------------------------
-      Your Name        : '.$nama_user.'
-      Your Username : '.$usename_user.'
-      ------------------------
-      
-      Dimohon klik link dibawah untuk mengaktifkan akunmu:
-      http://localhost/GolonganD_Kelompok6/CAP/register_verify.php?email='.$email_user.'&hash='.$hash.'
-      
-      '; // Our message above including the link
-                          
-      $headers = 'From:dickayunia1@gmail.com' . "\r\n"; // Set from headers
-      mail($to, $subject, $message, $headers); // Send our email
-
+        Terimakasih telah mendaftar dan bergabung dengan kami!
+        Silahkan cocokkan data diri yang kamu daftarkan dengan data yang kami terima dibawah, 
+        Mohon aktivasi akun anda untuk memaksimalkan fitur dari aplikasi kami.
+        
+        ------------------------
+        Your Name        : '.$nama_user.'
+        Your Username : '.$usename_user.'
+        ------------------------
+        
+        Dimohon klik link dibawah untuk mengaktifkan akunmu:
+        http://localhost/GolonganD_Kelompok6/CAP/register_verify.php?email='.$email_user.'&hash='.$hash.'
+        
+        ';
+        $email->addContent("text/plain", "$message");
+        $email->addContent(
+            "text/html", "<p>$message<p>"
+        );
+        // $sendgrid = new \SendGrid(getenv(SENDGRID_API_KEY));
+        // $apiKey = getenv('SENDGRID_API_KEY');
+        // $sendgrid = new \SendGrid($apiKey);
+        $apiKey = SENDGRID_API_KEY;
+        $sendgrid = new \SendGrid($apiKey);
+        try {
+            $response = $sendgrid->send($email);
+            print $response->statusCode() . "\n";
+            print_r($response->headers());
+            print $response->body() . "\n";
+        } catch (Exception $e) {
+            echo 'Caught exception: '. $e->getMessage() ."\n";
+        }
+        print_r($email_user);
+    
+        header("location:register_success.php?pesan=Anda berhasil mendaftar!&status=success");
+      }
 
     }else{
       header("location:register_user.php?pesan=Validasi Password anda!&status=danger");

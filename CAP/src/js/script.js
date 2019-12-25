@@ -226,9 +226,10 @@ $(document).ready(function(){
       event.preventDefault();
       $('.progress').show();
 			$('#loader-icon').show();
-			$('#targetLayer').hide();
+      $('#targetLayer').hide();
+      $('#targetUpload').hide();
 			$(this).ajaxSubmit({
-				target: '#targetLayer',
+				target: '#targetLayer, #targetUpload',
 				beforeSubmit:function(){
 					$('.progress-bar').width('50%');
 				},
@@ -243,6 +244,7 @@ $(document).ready(function(){
 				success:function(){
 					$('#loader-icon').hide();
           $('#targetLayer').show();
+          $('#targetUpload').show();
           $('#pilihdesain2').prop('disabled','true');
 				},
 				resetForm: true

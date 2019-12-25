@@ -162,19 +162,21 @@ var shoppingCart = (function() {
 // Triggers / Events
 // ***************************************** 
 // Add item
-$('#form_pemesanan').on("submit",function(event){
-  event.preventDefault();
-  // var produk = $(this).data('produk');
-  // var price = Number($(this).data('price'));
-  var count = Number($(this).data('count'));
-  // var idproduk = $(this).data('idproduk');
-  // var warna = $(this).data('warna');
-  // var bahan = $(this).data('bahan');
-  // var ukuran = $(this).data('ukuran');
-  // var banyak = Number($(this).data('banyak'));
-  shoppingCart.addItemToCart( var2, var3, var4, count);
-  displayCart();
-  location.href="http://localhost/GolonganD_Kelompok6/CAP/index.php";
+$('.add-to-cart').click(function() {
+  $('#form_pemesanan').on("submit",function(event){
+    event.preventDefault();
+    // var produk = $(this).data('produk');
+    // var price = Number($(this).data('price'));
+    var count = Number($(this).data('count'));
+    // var idproduk = $(this).data('idproduk');
+    // var warna = $(this).data('warna');
+    // var bahan = $(this).data('bahan');
+    // var ukuran = $(this).data('ukuran');
+    // var banyak = Number($(this).data('banyak'));
+    shoppingCart.addItemToCart( var2, var3, var4, count);
+    displayCart();
+    location.href="http://localhost/GolonganD_Kelompok6/CAP/index.php";
+  });
 });
 
 // Clear items

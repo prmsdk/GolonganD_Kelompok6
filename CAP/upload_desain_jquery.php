@@ -21,6 +21,7 @@ if(!empty($_FILES))
 		{	
 			// echo '<img src="'.$target_path.'" class="img-thumbnail" width="300" height="250" />';
 			echo '<input type="hidden" id="namadesain" name="namadesain" value="'.$nama_upload.'">';
+			echo '<input type="hidden" id="statusdesain" name="statusdesain" value="0">';
 			echo '<h5 class="text-success pt-0">Upload Berhasil!</h5>';
 		}
 	}

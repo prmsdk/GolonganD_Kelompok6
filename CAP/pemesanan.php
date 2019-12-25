@@ -54,7 +54,7 @@
             <label for="uploadfile">Unggah file anda dalam format .zip .rar .pdf (max ukuran file 30mb) Jika ukuran file anda melebihi batas silahkan kirim file melalui <a href="mailto:aldion819@gmail.com">email ini.</a></label>
 
             <!-- BATAS UPLOAD DESAIN -->
-            <form id="form_pemesanan" action="index.php" method="post" enctype="multipart/form-data">
+            <form id="form_pemesanan" action="pemesanan_nego.php" method="post" enctype="multipart/form-data">
             <input type="hidden" id="id_produk" value="<?=$produk_id?>" name="id_produk">
             <input type="hidden" id="nama_produk" value="<?=$nama_produk?>" name="nama_produk">
             <input type="hidden" value="<?=$id_user?>" name="id_user">
@@ -68,9 +68,9 @@
                         $detail_warna = $data_warnad['ID_WARNA'];
                         $nama_warna = $data_warnad['JENIS_WARNA'];
                         $harga_warna = $data_warnad['HARGA_WARNA'];
-                        echo '<div class="custom-control custom-radio custom-control-inline mb-3 pl-5">
-
-                        <input type="radio" namawarna="'.$nama_warna.'" aria-describedby="'.$harga_warna.'" id="pilihwarna'.$i.'" name="pilihwarna" value="'.$detail_warna.'" class="custom-control-input" required>
+                        echo '<div class="custom-control custom-radio mb-3 pl-5">
+                        
+                        <input type="radio" namawarna="'.$nama_warna.'" aria-describedby="'.$harga_warna.'" id="pilihwarna'.$i.'" name="pilihwarna" value="'.$detail_warna.'" class="custom-control-input d-block" required>
 
                         <label class="custom-control-label" for="pilihwarna'.$i.'">'.$nama_warna.'</label>
                         <input type="hidden" id="">
@@ -122,7 +122,7 @@
                         $nama_bahan = $data_bahan['NAMA_BAHAN'];
                         $harga_bahan = $data_bahan['HARGA_BAHAN'];
                         $satuan_bahan = $data_bahan['JUMLAH_SATUAN'];
-                        echo '<div class="custom-control custom-radio custom-control-inline mb-3 pl-5">
+                        echo '<div class="custom-control custom-radio mb-3 pl-5">
 
                         <input type="radio" namabahan="'.$nama_bahan.'" placeholder="'.$satuan_bahan.'" aria-describedby="'.$harga_bahan.'" id="pilihbahan'.$i.'" name="pilihbahan" value="'.$detail_bahan.'" class="custom-control-input" required>
 
@@ -141,11 +141,11 @@
                         $detail_ukuran = $data_ukuran['ID_UKURAN'];
                         $nama_ukuran = $data_ukuran['JENIS_UKURAN'];
                         $harga_ukuran = $data_ukuran['HARGA_UKURAN'];
-                        echo '<div class="custom-control custom-radio custom-control-inline mb-3 pl-5">
+                        echo '<div class="custom-control custom-radio mb-3 pl-5">
 
                         <input type="radio" namaukuran="'.$nama_ukuran.'" aria-describedby="'.$harga_ukuran.'" id="pilihukuran'.$i.'" name="pilihukuran" value="'.$detail_ukuran.'" class="custom-control-input" required>
 
-                        <label class="custom-control-label" for="pilihukuran'.$i.'">'.$nama_ukuran.'</label>
+                        <label class="custom-control-label" for="pilihukuran'.$i.'">'.$nama_ukuran.'</label><br>
                         </div>';
                         $i+=1;
                 }
@@ -164,6 +164,11 @@
             <p class="font-m-semi mt-3">Jumlah</p>
             <input id="jumlah_produk" type="number" class="form-control mb-4 w-50" placeholder="Masukkan Jumlah Cetak" name="jumlah_produk" required min="1">
             <p class="font-m-semi">TOTAL</p>
+
+            <!-- Value Desain Untuk Nego -->
+            <input type="hidden" id="statusdesain" name="statusdesain" value="1">
+            <div id="targetUpload" class="text-center mt-2" style="display:none; width:100%;"></div>
+
             <div id="pembayaran"  class="pl-4 mb-3">
                 <div class="custom-control custom-radio custom-control-inline">
 
@@ -189,14 +194,23 @@
                 <?php
                     if(!isset($_SESSION['id_user'])){
                 ?>
-                <button type="button" class="btn btn-primary" data-target="#login_user" data-toggle="modal">Keranjang</button>
+                <button type="button" class="btn btn-primary" data-target="#login_user" data-toggle="modal"><i class="fa fa-shopping-cart pr-1"></i></button>
                 <button type="button" class="btn btn-primary" data-target="#login_user" data-toggle="modal">Bayar</button>
                 <?php }else{?>
 
-                <input type="submit" class="add-to-cart btn btn-primary font-m-med" name="pemesanan_produk" href="index.php" id="keranjang" onclick="return confirm('Yakin memasukkan produk yang anda pilih ke keranjang?');" value="Keranjang">
+                <button type="submit" class="add-to-cart btn btn-primary font-m-med" name="pemesanan_produk" href="index.php" id="keranjang" onclick="return confirm('Yakin memasukkan produk yang anda pilih ke keranjang?');" value="Keranjang"><i class="fa fa-shopping-cart pr-1"></i></button>
 
                 <input type="submit" name="pemesanan_produk" value="Bayar" class="btn btn-primary font-m-med">
-                <?php }?>
+                <?php 
+                    $result_status = mysqli_query($con, "SELECT USER_ACTIVE FROM user WHERE USER_ID = '$id_user'");
+                    $data_status = mysqli_fetch_assoc($result_status);
+                    $status_user = $data_status["USER_ACTIVE"];
+                    if($status_user == 1){
+                        echo '<input type="submit" class="btn btn-success font-m-med" name="nego" id="nego" value="Nego">';
+                    }else{
+                        echo '<input type="submit" class="btn btn-success font-m-med" name="nego" id="nego" value="Nego" disabled>';
+                    }
+                }?>
                 <a class="btn btn-secondary" href="produk_user.php?produk_id=<?=$produk_id?>">Kembali</a>
             </div>
             </form>

@@ -335,6 +335,7 @@ iframe{
 .testi .carousel-indicators{
 	top: 320px;
 }
+
 @media (min-width: 320px) and (max-width: 640px) {
 	.testi .carousel-inner .carousel-item p{
 		font-size: 14px;
@@ -348,4 +349,10 @@ iframe{
  	.testi .carousel-indicators{
 		top: 400px;
 	}
+}
+
+#footer li a{
+    list-style: none;
+    color: #fff;
+    text-decoration: none;
 }

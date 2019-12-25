@@ -109,9 +109,10 @@
                       <label class="dropdown-item bg-primary text-white pb-2"><?=$data_user['USER_USERNAME']?></label>
                       <a class="dropdown-item" href="user_profil.php">Setting Profile</a>
                       <a class="dropdown-item" href="notifikasi_user.php">Notifikasi</a>
+                      <a class="dropdown-item" href="nego_user.php">Nego</a>
                       <a class="dropdown-item" href="history_user.php">History</a>
-                      <a class="dropdown-item" href="#">Bantuan</a>
-                      <a class="dropdown-item" href="#">Keamanan</a>
+                      <a class="dropdown-item" href="404.php">Bantuan</a>
+                      <a class="dropdown-item" href="keamanan_password.php">Keamanan</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="logout.php">Logout</a>
                     </div>

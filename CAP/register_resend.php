@@ -1,6 +1,10 @@
 <?php
 
   include 'includes/config.php';
+  include 'api_key.php';
+  
+  require 'C:\xampp\sendgrid\vendor\autoload.php';
+
   session_start();
   if(isset($_SESSION['id_user'])){
     $usr_id = $_SESSION['id_user'];
@@ -13,52 +17,104 @@
       $hash = $user_data['USER_HASH'];
     }
 
-    $to      = $email_user; // Send email to our user
-    $subject = 'Signup | Verification'; // Give the email a subject 
-    $message = '
+    $our_email = 'dickayunia1@gmail.com';
     
-    Thanks for signing up!
-    Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
+        date_default_timezone_set('Asia/Jakarta');
+        ini_set('date.timezone', 'Asia/Jakarta');
     
-    ------------------------
-    Your Name        : '.$nama_user.'
-    Your Username : '.$usename_user.'
-    ------------------------
+        // $dotenv = new Dotenv\Dotenv(__DIR__);
+        // $dotenv->load();
     
-    Please click this link to activate your account:
-    http://localhost/GolonganD_Kelompok6/CAP/register_verify.php?execute=activate&email='.$email_user.'&hash='.$hash.'
-    
-    '; // Our message above including the link
-                        
-    $headers = 'From:dickayunia1@gmail.com' . "\r\n"; // Set from headers
-    mail($to, $subject, $message, $headers); // Send our email
+        $email = new \SendGrid\Mail\Mail(); 
+        $email->setFrom($our_email, 'Cahaya Abadi Perkasa');
+        $email->setSubject('Pendaftaran | Verifikasi');
+        $email->addTo($email_user, $nama_user);
+        $message = '
+      
+        Terimakasih telah mendaftar dan bergabung dengan kami!
+        Silahkan cocokkan data diri yang kamu daftarkan dengan data yang kami terima dibawah, 
+        Mohon aktivasi akun anda untuk memaksimalkan fitur dari aplikasi kami.
+        
+        ------------------------
+        Your Name        : '.$nama_user.'
+        Your Username : '.$usename_user.'
+        ------------------------
+        
+        Dimohon klik link dibawah untuk mengaktifkan akunmu:
+        http://localhost/GolonganD_Kelompok6/CAP/register_verify.php?email='.$email_user.'&hash='.$hash.'
+        
+        ';
+        $email->addContent("text/plain", "$message");
+        $email->addContent(
+            "text/html", "<p>$message<p>"
+        );
+        // $sendgrid = new \SendGrid(getenv(SENDGRID_API_KEY));
+        // $apiKey = getenv('SENDGRID_API_KEY');
+        // $sendgrid = new \SendGrid($apiKey);
+        $apiKey = SENDGRID_API_KEY;
+        $sendgrid = new \SendGrid($apiKey);
+        try {
+            $response = $sendgrid->send($email);
+            print $response->statusCode() . "\n";
+            print_r($response->headers());
+            print $response->body() . "\n";
+        } catch (Exception $e) {
+            echo 'Caught exception: '. $e->getMessage() ."\n";
+        }
+        print_r($email_user);
 
-    header("location:register_success.php?pesan=Email berhasi dikirim ulang!&status=success");
+        header("location:register_success.php?pesan=Email berhasi dikirim ulang!&status=success");
+
   }else if(isset($_POST['email_user'])){
+    
     $email_user = $_POST['email_user'];
 
+    $our_email = 'dickayunia1@gmail.com';
     $data = mysqli_query($con, "select USER_HASH, USER_NAMA_LENGKAP from user where USER_EMAIL = '$email_user' OR USER_USERNAME='$email_user'");
     while($user_data = mysqli_fetch_array($data)){
       $hash = $user_data['USER_HASH'];
       $nama_user = $user_data['USER_NAMA_LENGKAP'];
     }
-
-    $to      = $email_user; // Send email to our user
-    $subject = 'Reset Password'; // Give the email a subject 
-    $message = '
     
-    Selamat '.$nama_user.'! Akun anda dapat dipulihkan.
-    Pesan ini dikirimkan untuk membantu anda mengatur ulang password anda.
+        date_default_timezone_set('Asia/Jakarta');
+        ini_set('date.timezone', 'Asia/Jakarta');
     
-    Mohon klik tautan dibawah ini untuk melanjutkan proses pengaturan ulang Password Anda :
-    http://localhost/GolonganD_Kelompok6/CAP/reset_password.php?email='.$email_user.'&hash='.$hash.'
-
-    Dimohon untuk tidak memberikan link diatas kepada siapapun karena bersifat privasi bagi Anda.
+        // $dotenv = new Dotenv\Dotenv(__DIR__);
+        // $dotenv->load();
     
-    '; // Our message above including the link
-                        
-    $headers = 'From:dickayunia1@gmail.com' . "\r\n"; // Set from headers
-    mail($to, $subject, $message, $headers); // Send our email
+        $email = new \SendGrid\Mail\Mail(); 
+        $email->setFrom($our_email, 'Cahaya Abadi Perkasa');
+        $email->setSubject('Reset Password');
+        $email->addTo($email_user, $nama_user);
+        $message = '
+    
+        Selamat '.$nama_user.'! Akun anda dapat dipulihkan.
+        Pesan ini dikirimkan untuk membantu anda mengatur ulang password anda.
+        
+        Mohon klik tautan dibawah ini untuk melanjutkan proses pengaturan ulang Password Anda :
+        http://localhost/GolonganD_Kelompok6/CAP/reset_password.php?email='.$email_user.'&hash='.$hash.'
+    
+        Dimohon untuk tidak memberikan link diatas kepada siapapun karena bersifat privasi bagi Anda.
+        
+        ';
+        $email->addContent("text/plain", "$message");
+        $email->addContent(
+            "text/html", "<p>$message<p>"
+        );
+        // $sendgrid = new \SendGrid(getenv(SENDGRID_API_KEY));
+        // $apiKey = getenv('SENDGRID_API_KEY');
+        // $sendgrid = new \SendGrid($apiKey);
+        $apiKey = SENDGRID_API_KEY;
+        $sendgrid = new \SendGrid($apiKey);
+        try {
+            $response = $sendgrid->send($email);
+            print $response->statusCode() . "\n";
+            print_r($response->headers());
+            print $response->body() . "\n";
+        } catch (Exception $e) {
+            echo 'Caught exception: '. $e->getMessage() ."\n";
+        }
+        print_r($email_user);
 
     header("location:forgot_password.php?pesan=Email berhasi dikirim ulang!&status=success");
   }else{

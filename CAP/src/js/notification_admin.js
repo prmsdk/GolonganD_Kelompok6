@@ -41,3 +41,50 @@ $('.Count').each(function () {
     }
   });
 });
+
+$("#yearpicker").datepicker({
+  format: " yyyy",
+  startView: "years", 
+  minViewMode: "years"
+});
+
+$("#monthpicker").datepicker({
+  format: " yyyy-mm",
+  startView: "months", 
+  minViewMode: "months"
+});
+
+$("#daypicker1").datepicker({
+  format: " yyyy-mm-dd",
+  startView: "days", 
+  minViewMode: "days"
+});
+
+$("#daypicker2").datepicker({
+  format: " yyyy-mm-dd",
+  startView: "days", 
+  minViewMode: "days"
+});
+
+$('#formrentang').on("submit",function(){
+
+  var tgl_awal_str = document.getElementById("daypicker1").value;
+  var tgl_akhir_str = document.getElementById("daypicker2").value;
+  var tgl_awal = new Date(tgl_awal_str.substring(11,1));
+  var tgl_akhir = new Date(tgl_akhir_str.substring(11,1));
+  var tanggal = tgl_akhir - tgl_awal;
+  
+  console.log(tanggal);
+  if(tanggal <= 0){
+    alert("Tanggal Akhir tidak boleh lebih awal daripada Tanggal Awal");
+    return false;
+  }else if(tanggal< (5*86400000) && tanggal > 0){
+    alert("Untuk menampilkan grafik, jumlah rentang hari yang dipilih harus lebih dari 5 hari");
+    return false;
+  }else if(tanggal>(30 * 86400000)){
+    alert("Untuk menampilkan grafik, jumlah rentang hari yang dipilih harus kurang dari 30 hari");
+    return false;
+  }else{
+    return true;
+  }
+});

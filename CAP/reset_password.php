@@ -4,10 +4,10 @@
   if(!isset($_POST['submit'])){
 ?>
 
-<div class="container container-fluid-lg">
+<div class="container mt-4 container-fluid-lg" style="height: 75vh;">
   <div class="row justify-content-center regis-success">
     <div class="col-lg-7 text-center">
-      <div class="card shadow my-3">
+      <div class="card shadow">
         <div class="card-header">
           <h3>Reset Password Anda. </h3>
         </div>
@@ -18,10 +18,18 @@
           <p class="text-left w-75 mx-auto"><small id="passwordHelp" class="text-muted">
             Masukkan password harus 8 - 32 karakter.
           </small></p>
-          <input type="password" class="form-control mx-auto w-75" id="repassword_user" name="repassword_user" placeholder="Password" aria-describedby="passwordHelp" required title="Masukkan Password yang sama persis dengan password yang anda masukkan diatas">
-          <p class="text-left w-75 mx-auto"><small id="passwordHelp" class="text-muted">
-            Masukkan password yang sama persis untuk kebutuhan validasi.
-            </small></p>
+          <div class="form-group mx-auto w-75 text-left">
+            <label for="repassword_user" class="font-m-semi">Re-Type Password</label>
+            <div class="input-group">
+              <input type="password" class="form-control" id="repassword_user" name="repassword_user" placeholder="Password" aria-describedby="passwordHelp" required title="Masukkan Password yang sama persis dengan password yang anda masukkan diatas">
+              <div class="input-group-prepend">
+                <div id="retype_password" class="input-group-text bg-light"><i class="fas fa-times text-danger"></i></div>
+              </div>
+            </div>
+            <small id="passwordHelp" class="text-muted">
+              Masukkan password yang sama persis untuk kebutuhan validasi.
+            </small>
+          </div>
           <input class="btn btn-primary" type="submit" name="submit" id="submit" value="Ubah Password">
           </form>
         </div>
@@ -68,9 +76,15 @@
     echo '
     <div class="container container-fluid-lg">
       <div class="row justify-content-center regis-success">
-        <div class="col-lg-12 my-5 text-center my-auto">
-          <h1> '.$msg.'</h1>
-          <a href="index.php">Kembali ke Home</a>
+        <div class="col-lg-6 text-center my-4">
+          <div class="card shadow">
+            <div class="card-header bg-info text-center">
+              <h3 class="text-light mb-2">Pesan</h3>
+            </div>
+            <div class="card-body my-5">
+              <p class="px-2" style="font-size: 18pt; line-height:30px;">'.$msg.'</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
