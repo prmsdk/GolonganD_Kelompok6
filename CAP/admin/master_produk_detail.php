@@ -19,6 +19,9 @@
   $ket_produk = $data_produk['KET_TAMPIL_PRODUK'];
   $nama_kategori = $data_produk['NAMA_KAT_PRODUK'];
   $status_produk = $data_produk['STATUS_TAMPIL_PRODUK'];
+  $isi_produk = $data_produk['STATUS_ISI'];
+  $isi_custom = $data_produk['BATAS_ISI'];
+  $min_pemesanan = $data_produk['MIN_JUMLAH'];
 
   //SELECT WARNA
   $result_warna = mysqli_query($con, 
@@ -92,7 +95,12 @@ if(isset($_GET['pesan'])){
               <h4>Deskripsi Produk : </h4>
               <p><?=$desc_produk?></p>
               <h4>Keterangan Harga : </h4>
-              <div class="mt-2 overflow-auto"><?php include "../src/file/$ket_produk";?></div>
+              <div class="my-2 overflow-auto"><?php include "../src/file/$ket_produk";?></div>
+              <h4>Butuh Isi Produk : <?php if($isi_produk == 0){echo "TIDAK";}else{echo "YA";}?></h4>
+              <?php if($isi_produk == 1){?>
+              <h4>Batas Isi Produk : <?=$isi_custom?></h4>
+              <?php }?>
+              <h4>Min Pemesanan : <?=$min_pemesanan?></h4>
             </div>
           </div>
           <hr>

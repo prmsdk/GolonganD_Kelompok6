@@ -88,3 +88,22 @@ $('#formrentang').on("submit",function(){
     return true;
   }
 });
+
+$("#select_isi").change(function () {
+  $(this).find("input:checked").each(function () {
+    var optionValue = $(this).attr("value");
+    if (optionValue) {
+      $(".box_isi").not("#" + optionValue).hide();
+      $(".box_isi").not("#" + optionValue).attr('required', '');
+      $("#" + optionValue).show();
+      $("#" + optionValue).attr('required', 'required');
+    } else {
+      $(".box_isi").hide();
+    }
+  });
+}); 
+
+if ($("#isi_produk2").prop("checked")) {
+  $("#1").show();
+  $("#1").attr('required', 'required');
+}

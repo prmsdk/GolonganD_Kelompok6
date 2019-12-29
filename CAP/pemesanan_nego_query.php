@@ -14,6 +14,8 @@ if(isset($_POST['nego_tombol'])){
   $status_desain = $_POST['pilihdesain'];
   $nama_desain = $_POST['namadesain'];
   $jumlah_produk = $_POST['jumlah_produk'];
+  $isi_produk = $_POST['isibahan'];
+  $catatan = $_POST['cttwarna1'];
 
   $ket_pembayaran = $_POST['ket_pembayaran'];
   $sub_total = $_POST['sub_total'];
@@ -39,7 +41,7 @@ if(isset($_POST['nego_tombol'])){
 
   $nego = mysqli_query($con, "INSERT INTO nego 
 
-    VALUES('$id_nego','$id_user','$id_produk','$id_ukuran','$id_warna','$id_bahan','$date $time','$nama_produk','$jumlah_produk','$sub_total','$nama_desain','$status_desain','$ket_pembayaran','$nego_harga','1')");
+    VALUES('$id_nego','$id_user','$id_produk','$id_ukuran','$id_warna','$id_bahan','$date $time','$nama_produk','$jumlah_produk','$sub_total','$nama_desain','$status_desain','$ket_pembayaran','$isi_produk','$catatan','$nego_harga','1')");
 
     if($nego){
       // echo"berhasil menambah pesanan <br>";

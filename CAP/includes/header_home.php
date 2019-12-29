@@ -99,12 +99,16 @@
                       </div>
                   </div>
                   <!-- BATAS BELL -->
+                  <!-- KERANJANG -->
                   <a class="nav-item nav-link icon-custom" style="color:#25A8E0;" type="button" data-toggle="modal" data-target="#cart"><i class="fa fa-shopping-cart fa-1x"></i></a>
+                  <!-- BATAS KERANJANG -->
                   <div class="dropdown">
+                  <!-- FOTO PROFIL -->
                     <button class="btn btn-default dropdown-toggle" type="button" id="menu-profile" data-toggle="dropdown">
                     <img class="rounded-circle img-circle" width="25" src="file_upload/<?=$data_user['USER_PROFIL']?>">
                       <span class="caret"></span>
                     </button>
+                    <!-- BATAS FOTO -->
                     <div class="dropdown-menu dropdown-menu-right text-right">
                       <label class="dropdown-item bg-primary text-white pb-2"><?=$data_user['USER_USERNAME']?></label>
                       <a class="dropdown-item" href="user_profil.php">Setting Profile</a>

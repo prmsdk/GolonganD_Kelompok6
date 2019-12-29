@@ -128,7 +128,7 @@
                 <!-- Card Body -->
                 <div class="card-body">
                   <div class="text-center">
-                    <h4 class="m-0">Tahun <?=month(date("n"))?></h4>
+                    <h4 class="m-0">Tahun <?=$year?></h4>
                     <div id="chartContainer" style="height: 430px; width: 100%;"></div>
                     <!-- <canvas id="chart-mingguan" width="100" height="43"></canvas> -->
                   </div>

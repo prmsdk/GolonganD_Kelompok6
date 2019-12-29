@@ -33,6 +33,37 @@ if(!isset($_SESSION['admin_login'])){
             <div><label for="ket_produk" class="font-m-med">Keterangan Harga</label></div>
             <input type="file" id="ket_produk" name="ket_produk" required>
           </div>
+
+          <div id="select_isi" class="">
+            <div class="form-group">
+              <label for="kategori_produk">Isi Produk</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" id="isi_produk1" name="isi_produk" value="0" required checked>
+                <label class="form-check-label" for="isi_produk1">
+                  Tidak Butuh Isi
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" id="isi_produk2" name="isi_produk" value="1" required>
+                <label class="form-check-label" for="isi_produk2">
+                  Butuh Isi Custom
+                </label>
+              </div>
+            </div>
+            <div id="1" class="box_isi">
+              <div class="form-group">
+                <label for="isi_custom" class="font-m-med">Batas Isi produk</label>
+                <input type="text" class="form-control w-75" id="isi_custom" name="isi_custom" placeholder="Isikan syarat pengisian pengguna terhadap isi produk">
+                <label class="small text-muted">Contoh : 1/2/3/6/12</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="min_pemesanan" class="font-m-med">Minimum Pemesanan</label>
+            <input type="number" min="1" class="form-control w-75" id="min_pemesanan" name="min_pemesanan" placeholder="Masukkan minimum pemesanan produk" required>
+          </div>
+
           <div class="form-group">
             <label for="kategori_produk">Kategori Produk</label>
             <select class="form-control w-50" id="kategori_produk" name="kategori_produk">

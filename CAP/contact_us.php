@@ -11,6 +11,7 @@ $email_user = $_POST['kontak_email'];
 $hp_user = $_POST['kontak_telepon'];
 $subject = $_POST['kontak_subject'];
 $message = $_POST['kontak_pesan'];
+var_dump($_POST);
 
     // UNTUK MENGAMBIL ID TERAKHIR
     $data = mysqli_query($con, "select ID_MSG from messages ORDER BY ID_MSG DESC LIMIT 1");
@@ -31,7 +32,8 @@ $message = $_POST['kontak_pesan'];
     $date = date("Y-m-d");
     $time = date("H:i:s");
 
-    $result_email = mysqli_query($con, "INSERT INTO messages VALUES('$id_messages','$nama_user','$email_user','$hp_user','$subject','$message', '$date $time')");
+    $result_email = mysqli_query($con, "INSERT INTO messages VALUES('$id_messages','$nama_user','$email_user','$hp_user','$subject','$message', '$date $time','0')");
+    var_dump($result_email);
 
     if($result_email){
     $our_email = 'dickayunia1@gmail.com';

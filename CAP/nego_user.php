@@ -8,7 +8,25 @@ $result_nego = mysqli_query($con, "SELECT * FROM nego where
 nego.ID_USER='$id_user'");
 ?>
 
-
+<?php
+if(isset($_GET['pesan'])){
+  if($_GET['pesan']=='sukses_delete'){
+      echo '<div id="alert-login" class="alert alert-success text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" z-index: 99;">
+              Anda <strong>Berhasil!</strong> menghapus data!
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+  }else if($_GET['pesan']=='gagal_delete'){
+    echo '<div id="alert-login" class="alert alert-danger text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert" z-index: 99;">
+            Anda <strong>Gagal!</strong> menghapus data! 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+  }
+}
+?>
 <!-- Nego User -->
 <div class="container">
   <div class="card shadow m-5">
@@ -40,14 +58,6 @@ nego.ID_USER='$id_user'");
         $harga_nego = $data_nego['NEGO_HARGA'];
         $status_nego = $data_nego['NEGO_STATUS'];
 
-        $id_ukuran = $data_nego['ID_UKURAN'];
-        $id_warna = $data_nego['ID_WARNA'];
-        $id_bahan = $data_nego['ID_BAHAN'];
-        $id_produk = $data_nego['ID_PRODUK'];
-        $jumlah_produk = $data_nego['JUMLAH_PRODUK'];
-        $namadesain = $data_nego['UPLOAD_DESAIN'];
-        $status_desain = $data_nego['STATUS_DESAIN'];
-
         ?>
           
             <tr class="bg-light">
@@ -73,7 +83,7 @@ nego.ID_USER='$id_user'");
                 </td>
                 <td class="text-center">
                 <a <?php if($status_nego != 2){echo "onclick='return false;'";}?> href="nego_pembayaran.php?id_nego=<?=$id_nego?>" class="nego-to-cart btn btn-primary font-m-med" name="pembayaran_nego"  id="pembayaran_nego" onclick="return confirm('Yakin melanjutkan hasil nego ke pembayaran?');" >BAYAR</a>
-                <a <?php if($status_nego == 3){echo "onclick='return false;'";}else if($status_nego != 1){echo "onclick='alert(".'"'."Anda disarankan untuk melanjutkan produk yang telah mendapat deal nego!".'"'.");return false;'";}else{echo "onclick='return confirm(".'"'."Yakin ingin menghapus ?".'"'.");'";}?> class="btn btn-danger font-m-med" href="nego_user_query.php?id_nego=<?=$id_nego?>" id="keranjang" ><i class="fa p-0 fa-trash fa-1x"></i></a>
+                <a <?php if($status_nego == 3){echo "onclick='return false;'";}else if($status_nego != 1){echo "onclick='alert(".'"'."Anda disarankan untuk melanjutkan produk yang telah mendapat deal nego!".'"'.");return false;'";}else{echo "onclick='return confirm(".'"'."Yakin ingin menghapus ?".'"'.");'";}?> class="btn btn-danger font-m-med" href="nego_pembayaran_query.php?id_nego=<?=$id_nego?>" id="keranjang" ><i class="fa p-0 fa-trash fa-1x"></i></a>
                 </td>
             </tr>
           <?php }?>

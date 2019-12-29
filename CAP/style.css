@@ -76,3 +76,7 @@ border-radius: 15px;
     color: darkslategrey;
     position: relative; 
 }
+
+.box_isi{
+    display: none;
+}

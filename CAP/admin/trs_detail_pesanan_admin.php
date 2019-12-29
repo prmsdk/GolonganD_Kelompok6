@@ -14,9 +14,9 @@
     $update_notif = mysqli_query($con, "UPDATE pesanan SET ADMIN_NOTIF = 1 WHERE ID_PESANAN = '$id_pesanan'");
   
     $result_pesanan = mysqli_query($con, "SELECT
-    user.USER_NAMA_LENGKAP,	
+    user.USER_NAMA_LENGKAP,	pesanan.ANTRIAN,
     cast(pesanan.TANGGAL_PESANAN as date) as TANGGAL_PESANAN, 
-    pesanan.TOTAL_HARGA, pesanan.STATUS_PESANAN,
+    pesanan.TOTAL_HARGA, pesanan.STATUS_PESANAN, pesanan.BUKTI_TRANSFER,
 
     CASE 
     WHEN pesanan.STATUS_PESANAN = 1 THEN 'Sedang Menunggu Bukti Transfer' 
@@ -25,12 +25,7 @@
     WHEN pesanan.STATUS_PESANAN = 4 THEN 'Telah Selesai Dikerjakan'
     WHEN pesanan.STATUS_PESANAN = 5 THEN 'Sedang Dalam Pengiriman' 
     WHEN pesanan.STATUS_PESANAN = 6 THEN 'Dibatalkan'
-    END AS KET_STATUS,
-
-    CASE 
-    WHEN pesanan.KET_PEMBAYARAN = 2 THEN 'Uang Muka'
-    WHEN pesanan.KET_PEMBAYARAN = 1 THEN 'Lunas'
-    END AS KET_PEMBAYARAN
+    END AS KET_STATUS
 
     FROM pesanan,user
 
@@ -42,9 +37,10 @@
     $nama_user = $data_pesanan['USER_NAMA_LENGKAP'];
     $tgl_psn = $data_pesanan['TANGGAL_PESANAN'];
     $total_harga = $data_pesanan['TOTAL_HARGA'];
-    $ket_pembayaran = $data_pesanan['KET_PEMBAYARAN'];
+    $antrian = $data_pesanan['ANTRIAN'];
     $ket_status = $data_pesanan['KET_STATUS'];
     $status_notif = $data_pesanan['STATUS_PESANAN'];
+    $bukti_transfer = $data_pesanan['BUKTI_TRANSFER'];
   }
 
 ?>
@@ -77,6 +73,7 @@
           <tr>
             <th>Daftar Produk</th>
             <th>Desain</th>
+            <th>Ket Pembayaran</th>
             <th>Jumlah Produk</th>
             <th>Sub Total</th>
           </tr>
@@ -85,12 +82,18 @@
           <?php
           $result_detail = mysqli_query($con, "SELECT 
           detail_pesanan.JUMLAH_PRODUK, 
-          detail_pesanan.SUB_TOTAL, 
+          detail_pesanan.SUB_TOTAL,
+          detail_pesanan.KET_PEMBAYARAN, 
 
           CASE
           WHEN detail_pesanan.STATUS_DESAIN = 1 THEN 'ADA'
           WHEN detail_pesanan.STATUS_DESAIN = 0 THEN 'TIDAK ADA'
           END AS STATUS_DESAIN,
+
+          CASE 
+          WHEN detail_pesanan.KET_PEMBAYARAN = 2 THEN 'Uang Muka'
+          WHEN detail_pesanan.KET_PEMBAYARAN = 1 THEN 'Lunas'
+          END AS KET_BAYAR,
           
           produk.NAMA_PRODUK, 
           warna.JENIS_WARNA, 
@@ -114,43 +117,49 @@
             $jenis_warna = $data_detail['JENIS_WARNA'];
             $jenis_ukuran = $data_detail['JENIS_UKURAN'];
             $nama_bahan = $data_detail['NAMA_BAHAN'];
+            $ket_pembayaran = $data_detail['KET_BAYAR'];
           ?>
           <tr>
             <!-- NAMA PRODUK, WARNA, UKURAN, BAHAN -->
-            <td><?php echo "$nama_produk / $jenis_warna / $nama_bahan / $jenis_ukuran";?></td>
+            <td style="width: 30%;"><p><?php echo "$nama_produk / $jenis_warna / $nama_bahan / $jenis_ukuran";?></p></td>
             <td><?= $status_desain?></td>
+            <td><?= $ket_pembayaran?></td>
             <td><?= number_format($quantity, 0,".",".")?></td>
-            <td>Rp. <?=number_format($sub_total, 0,".",".")?>,-</td>
+            <td>Rp. <?=number_format($sub_total, 0,".",".")?></td>
           </tr>
           <?php }?>
           <tr class="font-weight-bolder">
             <td class="border-0"> </td>
             <td class="text-right ">Total Harga : </td>
-            <td colspan="2" class="text-right " >Rp. <?=number_format($total_harga, 0,".",".")?>,-</td>
+            <td colspan="3" class="text-right " >Rp. <?=number_format($total_harga, 0,".",".")?></td>
           <tr>
           <tr class="font-weight-bolder">
             <td class="border-0"> </td>
             <td class="text-right ">Status Pesanan : </td>
-            <td colspan="2" class="text-right " ><?=$ket_status?></td>
+            <td colspan="3" class="text-right " ><?=$ket_status?></td>
           <tr>
           <tr class="font-weight-bolder">
             <td class="border-0"> </td>
-            <td class="text-right ">Ket Bayar : </td>
-            <td colspan="2" class="text-right " ><?=$ket_pembayaran?></td>
+            <td class="text-right ">Bukti Transfer : </td>
+            <td colspan="3" class="text-right"><img src="../pictures/bukti_transfer/<?=$bukti_transfer?>" class="img-fluid" alt=""></td>
           <tr>
         </tbody>
       </table>
       <div class="text-center">
       <?php
       if($status_notif==1){
-      echo '<button class="btn btn-primary px-4" disabled="true">Sedang diproses</button>';
-      echo '<a href="query/update_pesanan.php?status='.$status_notif.'&id_pesanan='.$id_pesanan.'" class="btn btn-danger px-4 ml-2" disabled>Dibatalkan</a>';
+      echo '<form action="query/update_pesanan.php" method="post">';
+      echo '<input type="hidden" name="id_pesanan" value="'.$id_pesanan.'">';
+      echo '<div class="form-group"><input type="number" name="antrian" id="antrian" required min="1" placeholder="Berapa jam pengerjaan untuk pesanan ini?" class="form-control mb-3 w-50 mx-auto"></div>';
+      echo '<div class="text-center justify-content-center"><button type="submit" name="masukkan_antrian" class="btn btn-primary px-4">Masukkan Antrian</button>';
+      echo '<a href="query/update_pesanan.php?status='.$status_notif.'&id_pesanan='.$id_pesanan.'" class="btn btn-danger px-4 ml-2" disabled>Dibatalkan</a></div>';
+      echo '</form>';
       }else if($status_notif==2){
-      echo '<a href="query/update_pesanan.php?status='.$status_notif.'&id_pesanan='.$id_pesanan.'" class="btn btn-primary px-4" >Sedang diproses</a>';
+      echo '<a href="query/update_pesanan.php?status='.$status_notif.'&id_pesanan='.$id_pesanan.'" class="btn btn-primary px-4" >Proses Pesanan</a>';
       }else if($status_notif==3){
       echo '<a href="query/update_pesanan.php?status='.$status_notif.'&id_pesanan='.$id_pesanan.'" class="btn btn-success px-4" >Pesanan Selesai</a>';
       }else if($status_notif==4){
-      echo '<a href="query/update_pesanan.php?status='.$status_notif.'&id_pesanan='.$id_pesanan.'" class="btn btn-warning px-4" >Dalam Pengiriman</a>';
+      echo '<a href="query/update_pesanan.php?status='.$status_notif.'&id_pesanan='.$id_pesanan.'" class="btn btn-warning px-4" >Kirim Pesanan</a>';
       }else if($status_notif==5){
       echo '<button class="btn btn-danger px-4" disabled>Dalam Pengiriman</button>';
       }else if($status_notif==6){

@@ -15,6 +15,12 @@ if(isset($_POST['nego'])){
   $status_desain = $_POST['statusdesain'];
   $nama_desain = $_POST['namadesain'];
   $jumlah_produk = $_POST['jumlah_produk'];
+  $isi_produk = $_POST['isibahan'];
+  $catatan = $_POST['cttwarna1'];
+
+  if(isset($_POST['cttwarna2'])){
+    $catatan .= ', '.$_POST['cttwarna2'];
+  }
 
   $ket_pembayaran = $_POST['ket_pembayaran'];
   $sub_total = $_POST['sub_total'];
@@ -67,6 +73,11 @@ if(isset($_POST['nego'])){
             <dd class="col-sm-5"><?=$nama_warna?></dd>
             <input type="hidden" name="pilihwarna" value="<?=$id_warna?>">
 
+            <dd class="col-sm-4">Isi Produk</dd>
+            <dd class="col-sm-1 text-right">:</dd>
+            <dd class="col-sm-5"><?=$isi_produk?></dd>
+            <input type="hidden" name="isibahan" value="<?=$isi_produk?>">
+
             <dd class="col-sm-4">Status</dd>
             <dd class="col-sm-1 text-right">:</dd>
             <dd class="col-sm-5"><?php if($status_desain==1){echo "Tidak Ada Desain";}else{echo "Ada Desain";}?></dd>
@@ -82,6 +93,11 @@ if(isset($_POST['nego'])){
             <dd class="col-sm-1 text-right">:</dd>
             <dd class="col-sm-5"><?=number_format($jumlah_produk, 0,".",".")?></dd>
             <input type="hidden" name="jumlah_produk" value="<?=$jumlah_produk?>">
+
+            <dd class="col-sm-4">Catatan Produk</dd>
+            <dd class="col-sm-1 text-right">:</dd>
+            <dd class="col-sm-5"><?=$catatan?></dd>
+            <input type="hidden" name="cttwarna1" value="<?=$catatan?>">
 
             <dd class="col-sm-4">Harga Produk</dd>
             <dd class="col-sm-1 text-right">:</dd>

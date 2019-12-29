@@ -6,24 +6,47 @@
         $id_user = $_SESSION['id_user'];
     }
 
+    // SELECT TAMPIL PRODUK berdasarkan ID PRODUK
     if(isset($_GET['produk_id'])){
         $produk_id = $_GET['produk_id'];
         $data = mysqli_query($con, "select * from tampil_produk where ID_TAMPIL_PRODUK = '$produk_id'");
-            while($data_produk = mysqli_fetch_assoc($data)){
-                $nama_produk = $data_produk['NAMA_TAMPIL_PRODUK'];
-            }
-    
-?>
+        $data_produk = mysqli_fetch_assoc($data);
+        $nama_produk = $data_produk['NAMA_TAMPIL_PRODUK'];
+        $status_isi = $data_produk['STATUS_ISI'];
+        $batas_isi = $data_produk['BATAS_ISI'];
+        $min_jumlah = $data_produk['MIN_JUMLAH'];
 
+?>
+<!-- MENAMPILKAN WARNING ESTIMASI ANTRIAN -->
+<?php
+$result_pesanan = mysqli_query($con, "SELECT * FROM pesanan WHERE STATUS_PESANAN = 1 OR STATUS_PESANAN = 2 OR STATUS_PESANAN = 3");
+$row_pesanan = mysqli_num_rows($result_pesanan);
+$result_jam = mysqli_query($con, "SELECT SUM(ANTRIAN) AS JAM FROM pesanan WHERE STATUS_PESANAN = 1 OR STATUS_PESANAN = 2 OR STATUS_PESANAN = 3");
+$data_jam = mysqli_fetch_assoc($result_jam);
+$antrian_jam = $data_jam['JAM'];
+
+$int_jam = $antrian_jam/24;
+$mod_jam = $antrian_jam%24;
+?>
 <div class="container container-fluid-md">
-    <div class="row justify-content-center mt-4">
-        <div class="col-lg-9 pt-4">
+    
+    
+    <div class="row justify-content-center mt-0">
+        <div class="col-lg-9 pt-3">
+        <div class="alert text-center alert-warning" role="alert">
+            <h4 class="alert-heading font-weight-bold">Perhatian!</h4>
+            <p class="w-75 mx-auto">Perhatikan sebelum melakukan pemesanan, kami menginformasikan bahwa transaksi online yang sedang dalam antrian dan sedang diproses saat ini sebanyak <strong><?=$row_pesanan?> Pesanan</strong> Mohon pertimbangkan terlebih dahulu sesuai kebutuhan Anda sebelum melakukan pemesanan, Terimakasih.</p>
+            <hr>
+            <p class="mb-0 w-50 mx-auto">Jika anda melakukan pemesanan, Pesanan Anda diperkirakan akan dikerjakan <strong><?=intval($int_jam)?> hari <?=$mod_jam?> jam</strong> yang akan datang <strong>(<?=$antrian_jam?> jam dari sekarang)</strong></p>
+        </div>
+
+        <!-- UPLOAD DESAIN PRODUK -->
             <div class="card shadow p-5">
             <div class="border-bottom text-center border-warning font-m-semi">
             <h2><?=$nama_produk?></h2>
             </div>
 
-            <p class="font-m-semi">Desain</p>
+            <p class="font-m-semi mt-3">Upload Desain</p>
             <div id="pilihan_desain" class="pl-4 mb-3">
                 <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="pilihdesain1" name="pilihdesain" class="custom-control-input" value="0" required>
@@ -34,6 +57,7 @@
                     <label class="custom-control-label" for="pilihdesain2">Belum punya Desain</label>
                 </div>
             </div>
+            <!-- FORM UPLOAD DESAIN -->
             <form id="uploadImage" action="upload_desain_jquery.php" method="post">
             <div class="input-group">
                 <div class="custom-file">
@@ -45,6 +69,7 @@
                 </div>
             </div>
             </form>
+            <!-- END FORM UPLOAD DESAIN -->
             <div class="progress mt-2" style="display:none; width: 100%;">
                 <div class="progress-bar" width="100%" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
@@ -54,6 +79,9 @@
             <label for="uploadfile">Unggah file anda dalam format .zip .rar .pdf (max ukuran file 30mb) Jika ukuran file anda melebihi batas silahkan kirim file melalui <a href="mailto:aldion819@gmail.com">email ini.</a></label>
 
             <!-- BATAS UPLOAD DESAIN -->
+
+
+            <!-- FORM PEMESANAN || BISA BUAT NEGO DAN KERANJANG -->
             <form id="form_pemesanan" action="pemesanan_nego.php" method="post" enctype="multipart/form-data">
             <input type="hidden" id="id_produk" value="<?=$produk_id?>" name="id_produk">
             <input type="hidden" id="nama_produk" value="<?=$nama_produk?>" name="nama_produk">
@@ -79,18 +107,31 @@
                 }   
             ?>
                 <div id="WRN000002" class="box_warna">
-                    <select class="form-control w-50" id="warna_khusus">
-                        <option value="Cyan">Cyan</option>
-                        <option value="Magenta">Magenta</option>
-                        <option value="Yellow">Yellow</option>
-                        <option value="Black">Black</option>
-                        <option value="Redn">Red</option>
-                        <option value="Green">Green</option>
-                        <option value="Blue">Blue</option>
-                    </select>
+                    <div class="mb-2">
+                        <select class="form-control w-50" id="cttwarna1" name="cttwarna1" required>
+                            <option value="Cyan">Cyan</option>
+                            <option value="Magenta">Magenta</option>
+                            <option value="Yellow">Yellow</option>
+                            <option value="Black">Black</option>
+                            <option value="Red">Red</option>
+                            <option value="Green">Green</option>
+                            <option value="Blue">Blue</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select class="form-control w-50" id="cttwarna2" name="cttwarna2" required>
+                            <option value="Cyan">Cyan</option>
+                            <option value="Magenta">Magenta</option>
+                            <option value="Yellow">Yellow</option>
+                            <option value="Black">Black</option>
+                            <option value="Red">Red</option>
+                            <option value="Green">Green</option>
+                            <option value="Blue">Blue</option>
+                        </select>
+                    </div>
                 </div>
                 <div id="WRN000004" class="box_warna">
-                    <select class="form-control w-50" id="warna_khusus">
+                    <select class="form-control w-50" id="cttwarna1" name="cttwarna1" required>
                         <option value="Cyan">Cyan</option>
                         <option value="Magenta">Magenta</option>
                         <option value="Yellow">Yellow</option>
@@ -101,7 +142,7 @@
                     </select>
                 </div>
                 <div id="WRN000005" class="box_warna">
-                    <select class="form-control w-50" id="warna_khusus">
+                    <select class="form-control w-50" id="cttwarna1" name="cttwarna1" required>
                         <option value="Cyan">Cyan</option>
                         <option value="Magenta">Magenta</option>
                         <option value="Yellow">Yellow</option>
@@ -162,7 +203,26 @@
 
 
             <p class="font-m-semi mt-3">Jumlah</p>
-            <input id="jumlah_produk" type="number" class="form-control mb-4 w-50" placeholder="Masukkan Jumlah Cetak" name="jumlah_produk" required min="1">
+            <input id="jumlah_produk" type="number" class="form-control mb-4 w-50" placeholder="Masukkan Jumlah Cetak" name="jumlah_produk" required min="<?=$min_jumlah?>">
+
+            <?php
+            if($status_isi==1){
+            ?>
+            <div class="form-group">
+                <label for="isibahan" class="font-m-semi" >Isi Produk</label>
+                <input type="text" id="isibahan" name="isibahan" class="form-control w-50" aria-describedby="isiInline">
+                <small id="isiInline" class="text-muted">
+                Isilah dengan memilih salah satu diantara <?=$batas_isi?>.
+                </small>
+            </div>
+            <?php
+            }else{
+            ?>
+            <input type="hidden" id="isibahan" name="isibahan" value="1">
+            <?php
+            }
+            ?>
+            
             <p class="font-m-semi">TOTAL</p>
 
             <!-- Value Desain Untuk Nego -->
@@ -191,13 +251,14 @@
             <input type="hidden" id="var4" class="form-control mb-4 w-50" placeholder="Modal Pembayaran" name="var4" pattern="(^\d+(\.|\,)\d{2}$)" readonly>
 
             <div class="cutom-inline text-center">
+                <!-- LOGIKA BELUM LOGIN MUNCUL MODAL LOGIN -->
                 <?php
                     if(!isset($_SESSION['id_user'])){
                 ?>
                 <button type="button" class="btn btn-primary" data-target="#login_user" data-toggle="modal"><i class="fa fa-shopping-cart pr-1"></i></button>
                 <button type="button" class="btn btn-primary" data-target="#login_user" data-toggle="modal">Bayar</button>
                 <?php }else{?>
-
+                <!-- KETIKA SUDAH LOGIN MASUK KE KERANJANG -->
                 <button type="submit" class="add-to-cart btn btn-primary font-m-med" name="pemesanan_produk" href="index.php" id="keranjang" onclick="return confirm('Yakin memasukkan produk yang anda pilih ke keranjang?');" value="Keranjang"><i class="fa fa-shopping-cart pr-1"></i></button>
 
                 <input type="submit" name="pemesanan_produk" value="Bayar" class="btn btn-primary font-m-med">
@@ -205,6 +266,7 @@
                     $result_status = mysqli_query($con, "SELECT USER_ACTIVE FROM user WHERE USER_ID = '$id_user'");
                     $data_status = mysqli_fetch_assoc($result_status);
                     $status_user = $data_status["USER_ACTIVE"];
+                    // LOGIKA BISA NEGO ATAU TIDAK, HARUS USER YANG TELAH TERAKTIVASI
                     if($status_user == 1){
                         echo '<input type="submit" class="btn btn-success font-m-med" name="nego" id="nego" value="Nego">';
                     }else{

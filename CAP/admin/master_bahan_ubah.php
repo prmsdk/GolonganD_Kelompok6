@@ -20,7 +20,6 @@ if(isset($_GET['id_bahan'])){
   $data_bahan = mysqli_fetch_assoc($data);
   $nama_bahan = $data_bahan['NAMA_BAHAN']; 
   $id_satuan_bahan = $data_bahan['ID_SATUAN'];
-  $isi_bahan = $data_bahan['ISI_PER_BAHAN'];
   $harga_bahan = $data_bahan['HARGA_BAHAN'];
   $kategori_bahan_id = $data_bahan['ID_KAT_BAHAN'];
   $kategori_bahan = $data_bahan['NAMA_KAT_BAHAN'];
@@ -54,10 +53,6 @@ if(isset($_GET['id_bahan'])){
               ><?=$nama_sat_bahan?></option>
               <?php } ?>
             </select>
-          </div>
-          <div class="form-group">
-            <label for="isi_per_bahan" class="font-m-med">Isi per Bahan</label>
-            <input type="text" class="form-control" id="isi_per_bahan" name="isi_per_bahan" value="<?=$isi_bahan?>" placeholder="Masukkan Isi per Bahan" required>
           </div>
           <div class="form-group">
             <label for="harga_bahan" class="font-m-med">Harga bahan</label>

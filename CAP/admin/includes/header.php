@@ -35,7 +35,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" class="text-dark">
 
   <script src="vendor/chart.js/Chart.min.js"></script>
 

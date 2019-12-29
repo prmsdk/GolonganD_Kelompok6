@@ -11,6 +11,7 @@
 
 <!-- ============ INI ISI DARI HALAMAN UTAMA ============== -->
 
+<!-- CARA KERJA -->
 <span id="carakerjabtn" class="anchor"></span>
 <section id="carakerja" class="text-center mt-5 font-m-semi">
     <div class="container container-fluid-md">
@@ -67,11 +68,13 @@
     </div>
     </div>
 </section>
+<!-- END CARA KERJA -->
 
+<!-- PORTFOLIO -->
 <span id="portfoliobtn" class="anchor"></span>
 <section id="portfolio" class="text-center mt-5 py-5 font-m-semi">
     <div class="container container-fluid-md">
-    <h2>PORTOFOLIO</h2>
+    <h2>PORTFOLIO</h2>
     <div class="portfolio-cap">
         <div class="row mt-5 px-5 text-center justify-content-center font-m-light">
             <?php
@@ -99,7 +102,7 @@
     </div>
     </div>
 </section>
-
+<!-- END PORTFOLIO -->
 
 <span id="testimonibtn" class="anchor"></span>
 <section id="testimoni" class="text-center mt-3 font-m-semi">
@@ -108,13 +111,13 @@
             <div class="col-md-8 offset-md-2 col-10 offset-1 pb-5">
                 <h2 class="text-center mt-5 mb-5 pb-2 text-uppercase text-dark"><strong>Testimonials</strong></h2>
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
+                    <ol class="carousel-indicators" style="z-index: 1;">
                     <?php
                     $result_testi = mysqli_query($con, "SELECT * FROM testimonial");
                     $result_count = mysqli_num_rows($result_testi);
                     for($i = 0; $i < $result_count; $i++){
                     ?>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="<?=$i?>" class="<?php if($i == 0){echo "active";}?>"></li>
+                    <li class="" data-target="#carouselExampleIndicators" data-slide-to="<?=$i?>" class="<?php if($i == 0){echo "active";}?>"></li>
                     <?php }?>
                     </ol>
                     <div class="carousel-inner mt-4">

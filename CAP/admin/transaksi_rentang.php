@@ -81,7 +81,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Transaksi Dari <?=$day1?> <br>Hingga <?=$day2?></div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Transaksi Dari <?=date("d-m-Y", strtotime($day1))?> <br>Hingga <?=date("d-m-Y", strtotime($day2))?></div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><span class="Count"><?=number_format($djml_pesanan_bulan['TOT_PESANAN'], 0,".",".")?></span> Pesanan</div>
                     </div>
                     <div class="col-auto">
@@ -99,7 +99,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total Produk dipesan Dari <?=$day1?> <br>Hingga <?=$day2?></div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total Produk dipesan Dari <?=date("d-m-Y", strtotime($day1))?> <br>Hingga <?=date("d-m-Y", strtotime($day2))?></div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><span class="Count"><?=number_format($djml_produk_bulan['TOT_PRODUK'], 0,".",".")?></span> Produk</div>
                     </div>
                     <div class="col-auto">
@@ -117,7 +117,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Omset Dari <?=$day1?> <br>Hingga <?=$day2?></div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Omset Dari <?=date("d-m-Y", strtotime($day1))?> <br>Hingga <?=date("d-m-Y", strtotime($day2))?></div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. <span class="Count"><?=$domset_bulan['TOT_OMSET']?></span></div>
                     </div>
                     <div class="col-auto">
@@ -142,12 +142,12 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Statistik Omset per Bulan</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Statistik Omset Dari <?=date("d-m-Y", strtotime($day1))?> Hingga <?=date("d-m-Y", strtotime($day2))?></h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
                   <div class="text-center">
-                    <h4 class="m-0">Dari <?=$day1?> Hingga <?=$day2?></h4>
+                    <h4 class="m-0">Dari <?=date("d-m-Y", strtotime($day1))?> Hingga <?=date("d-m-Y", strtotime($day2))?></h4>
                     <div id="chartContainer" style="height: 430px; width: 100%;"></div>
                     <!-- <canvas id="chart-mingguan" width="100" height="43"></canvas> -->
                   </div>

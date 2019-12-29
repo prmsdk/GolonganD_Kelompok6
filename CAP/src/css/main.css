@@ -117,9 +117,15 @@ html {
 
 /* ======= CARA KERJA ======= */
 
-#carakerja, #testimoni{
+#carakerja{
     background-color: #25A8E0;
     padding: 40px 0;
+}
+
+#testimoni{
+    padding: 40px 0;
+    background-image: url("../img/icons/testi.jpg");
+    background-size: cover;
 }
 
 #carakerja h2, #testimoni h2{

@@ -42,6 +42,7 @@
             <a class="collapse-item" href="trs_antrian.php">Antrian</a>
             <a class="collapse-item" href="trs_history_admin.php">History</a>
             <a class="collapse-item" href="trs_notifikasi_admin.php">Notifikasi</a>
+            <a class="collapse-item" href="master_nego.php">Nego</a>
           </div>
         </div>
       </li>
@@ -88,7 +89,7 @@
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Form Detail:</h6>
             <a class="collapse-item" href="master_produk_gambar.php">Gambar Produk</a>
-            <a class="collapse-item" href="master_bahan_satuan.php">Satuan Bahan</a>
+            <a class="collapse-item" href="master_satuan.php">Satuan Bahan</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Form Kategori:</h6>
             <a class="collapse-item" href="kategori_produk.php">Kategori Produk</a>

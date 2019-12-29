@@ -9,6 +9,7 @@
         <h2 class="pt-5">PRODUK KAMI</h2>
         <div class="produk-card">
             <div class="row mt-5 text-center justify-content-center font-m-light">
+                <!-- MENAMPILKAN PRODUK -->
                 <?php
                 while($data_produk = mysqli_fetch_assoc($result_produk)){
                     $produk_id = $data_produk['ID_TAMPIL_PRODUK'];
@@ -17,6 +18,7 @@
                 <div class="col-lg-3 col-md-6 mb-3">
                     <div class="card shadow mb-3">
                         <a href="produk_user.php?produk_id=<?=$produk_id?>">
+                        <!-- Menampilkan Gambar Produk, Dipilih 1 aja -->
                         <?php $result_gambar = mysqli_query($con, "SELECT gambar_produk.GBR_FILE_NAME FROM
                         gambar_produk, tampil_produk WHERE
                         gambar_produk.ID_TAMPIL_PRODUK = tampil_produk.ID_TAMPIL_PRODUK AND
@@ -33,6 +35,7 @@
                         <div class="card-body text-center">
                             <h5 class="card-title font-m-semi"><?=$produk_nama;?></h5>
                             <?php 
+                            // MENGHITUNG HARGA PER PCS YANG PALING MURAH
                             $result = mysqli_query($con, "SELECT tampil_produk.NAMA_TAMPIL_PRODUK, tampil_produk.ID_TAMPIL_PRODUK,
                             (warna.HARGA_WARNA + ukuran.HARGA_UKURAN) + bahan.ISI_PER_BAHAN * (bahan.HARGA_BAHAN * (1 / satuan_bahan.JUMLAH_SATUAN)) AS HARGA_MIN
                             FROM

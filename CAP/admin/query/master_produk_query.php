@@ -46,6 +46,13 @@ if(isset($_POST['tambah_produk'])){
   $desc_produk = $_POST['desc_produk'];
   $kategori_produk = $_POST['kategori_produk'];
   $status_produk = $_POST['status_produk'];
+  $isi_produk = $_POST['isi_produk'];
+  if($isi_produk == 1){
+    $isi_custom = $_POST['isi_custom'];
+  }else{
+    $isi_custom = '';
+  }
+  $min_pemesanan = $_POST['min_pemesanan'];
 
   $data = mysqli_query($con, "select ID_TAMPIL_PRODUK from tampil_produk ORDER BY ID_TAMPIL_PRODUK DESC LIMIT 1");
     while($data_produk = mysqli_fetch_array($data))
@@ -73,7 +80,7 @@ if(isset($_POST['tambah_produk'])){
           $uniq = uniqid($id,true);
           move_uploaded_file($file_temporary, '../../src/file/'.$uniq.'.'.$ekstensi); //untuk upload file
           $query = mysqli_query ($con, "INSERT INTO tampil_produk 
-          VALUES('$id_produk', '$kategori_produk', '$nama_produk', '$desc_produk', '$uniq.$ekstensi', '$status_produk') 
+          VALUES('$id_produk', '$kategori_produk', '$nama_produk', '$desc_produk', '$uniq.$ekstensi', '$isi_produk','$isi_custom','$min_pemesanan','$status_produk') 
           ");
 
           foreach ($_POST['check_warna'] as $id_warna) {
@@ -115,6 +122,13 @@ if(isset($_POST['edit_produk'])){
   $desc_produk = $_POST['desc_produk'];
   $kategori_produk = $_POST['kategori_produk'];
   $status_produk = $_POST['status_produk'];
+  $isi_produk = $_POST['isi_produk'];
+  if($isi_produk == 1){
+    $isi_custom = $_POST['isi_custom'];
+  }else{
+    $isi_custom = '';
+  }
+  $min_pemesanan = $_POST['min_pemesanan'];
 
   var_dump($_FILES['ket_produk']);
 
@@ -136,6 +150,9 @@ if(isset($_POST['edit_produk'])){
             NAMA_TAMPIL_PRODUK = '$nama_produk', 
             DESC_TAMPIL_PRODUK = '$desc_produk', 
             KET_TAMPIL_PRODUK = '$uniq.$ekstensi', 
+            STATUS_ISI = '$isi_produk',
+            BATAS_ISI = '$isi_custom',
+            MIN_JUMLAH = '$min_pemesanan',
             STATUS_TAMPIL_PRODUK = '$status_produk'
             WHERE
             ID_TAMPIL_PRODUK = '$id_produk'

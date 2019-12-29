@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include 'includes/config.php';
 require 'includes/header.php';
 
@@ -16,10 +16,13 @@ if(isset($_POST['pemesanan_produk'])){
     $jumlah_produk = $_POST['jumlah_produk'];
     $namadesain = $_POST['namadesain'];
 
+    $isi_produk = $_POST['isibahan'];
     $ket_pembayaran = $_POST['ket_pembayaran'];
     $sub_total = $_POST['sub_total'];
     $total = $_POST['total'];
     $id_bank = $_POST['pilihbank'];
+
+    $catatan = $_POST['catatan'];
 
     
     $number = count($_POST["id_produk"]);
@@ -39,14 +42,17 @@ if(isset($_POST['pemesanan_produk'])){
           $id_pesanan = 'PSN000001';
         }
 
+        // SET WAKTU JAKARTA GMT +7
         ini_set('date.timezone', 'Asia/Jakarta');
 
+        // FORMAT TANGGAL -> TAHUN, BULAN, HARI
         $date = date("Y-m-d");
+        // FORMAT JAM -> JAM 24, MENIT, DETIK
         $time = date("H:i:s");
 
     $pesanan = mysqli_query($con, "INSERT INTO pesanan 
 
-    VALUES('$id_pesanan','ADM000001','$id_user','$date $time','$total','1',NULL,'$ket_pembayaran',0,0)");
+    VALUES('$id_pesanan','ADM000001','$id_user','$id_bank','$date $time','$total','1',NULL,0,0,0)");
 
     if($pesanan){
       echo"berhasil menambah pesanan <br>";
@@ -72,7 +78,6 @@ if(isset($_POST['pemesanan_produk'])){
           $id_produk = 'PRD000001';
         }
 
-        var_dump($id_produk);
         $id_ukn = $id_ukuran[$i];
         $id_bhn = $id_bahan[$i];
         $id_wrn = $id_warna[$i];
@@ -92,10 +97,13 @@ if(isset($_POST['pemesanan_produk'])){
         $jml_prd = $jumlah_produk[$i];
         $nama_dsn = $namadesain[$i];
         $sub_ttl = $sub_total[$i];
-        $stts_dsn= $status_desain[$i];
+        $stts_dsn = $status_desain[$i];
+        $ket_byr = $ket_pembayaran[$i];
+        $isi_prd = $isi_produk[$i];
+        $ctt = $catatan[$i];
 
         $detail_pesanan = mysqli_query($con, "INSERT INTO detail_pesanan 
-        VALUES('$id_produk','$id_pesanan','$jml_prd','$sub_ttl','$nama_dsn','$stts_dsn')");
+        VALUES('$id_produk','$id_pesanan','$jml_prd','$sub_ttl','$nama_dsn','$stts_dsn','$isi_prd','$ket_byr','$ctt')");
 
         if($detail_pesanan){
           echo"berhasil menambah detail pesanan <br>";
@@ -109,7 +117,6 @@ if(isset($_POST['pemesanan_produk'])){
     
 
     
-
 
   echo "<button type='button' id='clear-cart' class='clear-cart'></button>";
   echo '<button onclick="window.location.href = '."'http://localhost/GolonganD_Kelompok6/CAP/verif_pembayaran.php?id_pesanan=$id_pesanan&id_bank=$id_bank'".';" id="verif_pembayaran">Home</button>';

@@ -80,7 +80,6 @@ if(isset($_GET['pesan'])){
             <th>Nama Bahan</th>
             <th>Satuan Bahan</th>
             <th>Jumlah Satuan</th>
-            <th>Isi Perbahan</th>
             <th>Harga Bahan</th>
             <th>Kategori</th>
             <th>Aksi</th>
@@ -93,7 +92,6 @@ if(isset($_GET['pesan'])){
             $nama_bahan = $data_bahan['NAMA_BAHAN']; 
             $satuan_bahan = $data_bahan['SATUAN'];
             $jumlah_satuan = $data_bahan['JUMLAH_SATUAN'];
-            $isi_bahan = $data_bahan['ISI_PER_BAHAN'];
             $harga_bahan = $data_bahan['HARGA_BAHAN'];
             $kategori_bahan = $data_bahan['NAMA_KAT_BAHAN'];
             $i+=1;
@@ -103,7 +101,6 @@ if(isset($_GET['pesan'])){
             <td><?=$nama_bahan?></td>
             <td><?=$satuan_bahan?></td>
             <td><?=$jumlah_satuan?></td>
-            <td><?=$isi_bahan?></td>
             <td><?='Rp. '. number_format($harga_bahan, 0,".",".")?></td>
             <td><?=$kategori_bahan?></td>
             <td style="width:67px;">
@@ -161,10 +158,6 @@ if(isset($_GET['pesan'])){
                         <option value="<?=$id_sat_bahan?>"><?=$nama_sat_bahan?></option>
                         <?php } ?>
                       </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="isi_per_bahan" class="font-m-med">Isi per Bahan</label>
-                      <input type="text" class="form-control" id="isi_per_bahan" name="isi_per_bahan" aria-describedby="usernameHelp" placeholder="Masukkan Isi per Bahan" required>
                     </div>
                     <div class="form-group">
                       <label for="harga_bahan" class="font-m-med">Harga bahan</label>

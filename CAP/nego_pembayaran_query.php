@@ -2,6 +2,16 @@
 session_start();
 include 'includes/config.php';
 
+if(isset($_GET['id_nego'])){
+  $id_nego = $_GET['id_nego'];
+  $delete = mysqli_query($con, "DELETE FROM nego WHERE ID_NEGO = '$id_nego'");
+  if($delete){
+    header("location:nego_user.php?pesan=sukses_delete");
+  }else{
+    header("location:nego_user.php?pesan=gagal_delete");
+  }
+}
+
 if(isset($_POST['nego_pembayaran'])){
   $id_user = $_POST['id_user'];
   $id_produk = $_POST['id_produk'];
@@ -12,6 +22,8 @@ if(isset($_POST['nego_pembayaran'])){
   $status_desain = $_POST['pilihdesain'];
   $nama_desain = $_POST['namadesain'];
   $ket_pembayaran = $_POST['ket_pembayaran'];
+  $isi_produk = $_POST['isibahan'];
+  $catatan = $_POST['catatan'];
   $jumlah_produk = $_POST['jumlah_produk'];
   $sub_total = $_POST['sub_total'];
   $total = $_POST['sub_total'];
@@ -40,7 +52,7 @@ if(isset($_POST['nego_pembayaran'])){
 
     $pesanan = mysqli_query($con, "INSERT INTO pesanan 
 
-    VALUES('$id_pesanan','ADM000001','$id_user','$date $time','$total','1',NULL,'$ket_pembayaran',0,0)");
+    VALUES('$id_pesanan','ADM000001','$id_user','$id_bank','$date $time','$total','1',NULL,0,0,0)");
 
     if($pesanan){
       echo"berhasil menambah pesanan <br>";
@@ -74,14 +86,14 @@ if(isset($_POST['nego_pembayaran'])){
   }
 
   $detail_pesanan = mysqli_query($con, "INSERT INTO detail_pesanan 
-  VALUES('$id_produk','$id_pesanan','$jumlah_produk','$sub_total','$nama_desain','$status_desain')");
+  VALUES('$id_produk','$id_pesanan','$jumlah_produk','$sub_total','$nama_desain','$status_desain','$isi_produk','$ket_pembayaran','$catatan')");
 
   if($detail_pesanan){
     $query_update = mysqli_query($con, "UPDATE nego SET NEGO_STATUS = 3 WHERE ID_NEGO = '$id_nego'");
     header("location:verif_pembayaran.php?id_pesanan=$id_pesanan&id_bank=$id_bank");
     echo"berhasil menambah detail pesanan <br>";
   }else{
-    header("location:nego_pembayaran?id_nego=$id_nego");
+    header("location:nego_pembayaran.php?id_nego=$id_nego");
     echo"gagal menambah detail pesanan <br>";
   }
 }

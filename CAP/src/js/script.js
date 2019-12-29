@@ -98,7 +98,6 @@ $("#select_warna").change(function () {
       $(".box_warna").hide();
     }
   });
-
 }); 
 
 $(document).ready(function(){
@@ -121,14 +120,14 @@ $(document).on('click', 'body *', function () {
   var HrgWarna = 0;
   var HrgBahan = 0;
   var SatBahan = 0;
-  var IsiBahan = 1;
+  // var IsiBahan = 1;
   var HrgUkuran = 0;
   var ValDesain = 0;
   var HrgDesain = 50000;
   var ValPembayaran = 0;
 
 
-  var JmlCetak = document.getElementById('jumlah_produk').value;
+  var JmlCetak = Number(document.getElementById('jumlah_produk').value);
 
   $("#select_warna").change(function () {
     $(this).find("input:checked").each(function () {
@@ -147,6 +146,8 @@ $(document).on('click', 'body *', function () {
       SatBahan = parseInt($(this).attr("placeholder"));
     });
   }).change();
+
+  var IsiBahan = Number(document.getElementById('isibahan').value);
 
   $("#select_ukuran").change(function () {
     $(this).find("input:checked").each(function () {
@@ -244,7 +245,7 @@ $(document).ready(function(){
 				success:function(){
 					$('#loader-icon').hide();
           $('#targetLayer').show();
-          $('#targetUpload').show();
+          // $('#targetUpload').show();
           $('#pilihdesain2').prop('disabled','true');
 				},
 				resetForm: true

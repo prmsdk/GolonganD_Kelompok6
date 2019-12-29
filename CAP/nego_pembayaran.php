@@ -29,6 +29,8 @@
     $namadesain = $data_nego['UPLOAD_DESAIN'];
     $status_desain = $data_nego['STATUS_DESAIN'];
     $ket_pembayaran = $data_nego['KET_PEMBAYARAN'];
+    $isi_produk = $data_nego['ISI_PRODUK'];
+    $catatan = $data_nego['CATATAN'];
 
     $result_ukuran = mysqli_query($con, "SELECT * FROM ukuran WHERE ID_UKURAN = '$id_ukuran'");
     $data_ukuran = mysqli_fetch_assoc($result_ukuran);
@@ -59,6 +61,8 @@
                 <input type="hidden" name="pilihdesain" value="<?=$status_desain?>">
                 <input type="hidden" name="namadesain" value="<?=$namadesain?>">
                 <input type="hidden" name="ket_pembayaran" value="<?=$ket_pembayaran?>">
+                <input type="hidden" name="isibahan" value="<?=$isi_produk?>">
+                <input type="hidden" name="catatan" value="<?=$catatan?>">
                 <input type="hidden" name="jumlah_produk" value="<?=$jumlah_produk?>">
                 <input type="hidden" name="sub_total" value="<?=$harga_nego?>">
                     <p class="pt-3 font-m-semi">Detail Pemesanan :</p>          

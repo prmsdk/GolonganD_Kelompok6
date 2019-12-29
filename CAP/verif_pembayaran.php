@@ -22,9 +22,19 @@
             <div class="card shadow p-5">
             <h2 class="text-center font-m-semi border-bottom mb-3">Verifikasi Pembayaran</h2>
             <div class="">
-            <p>Nama BANK : <?=$nama_rekening?></p>
-            <p>Nomer Rekening : <?=$nomer_rekening?> </p>
-            <p>Nama : <?=$nama_admin?> </p>
+            <dl class="row" style="font-weight: 600;">
+                <dd class="col-sm-4">Nama Bank</dd>
+                <dd class="col-sm-1 text-right">:</dd>
+                <dd class="col-sm-5"><?=$nama_rekening?></dd>
+
+                <dd class="col-sm-4">Nomor Rekening</dd>
+                <dd class="col-sm-1 text-right">:</dd>
+                <dd class="col-sm-5"><?=$nomer_rekening?></dd>
+
+                <dd class="col-sm-4">Atas Nama</dd>
+                <dd class="col-sm-1 text-right">:</dd>
+                <dd class="col-sm-5"><?=$nama_admin?></dd>
+            </dl>
             </div>
             <div class="custom-file mb-5 ">
                 <input type="hidden" name="id_pesanan" value="<?=$id_pesanan?>">
