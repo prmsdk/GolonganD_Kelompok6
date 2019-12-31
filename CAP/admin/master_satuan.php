@@ -132,7 +132,7 @@ if(isset($_GET['pesan'])){
               <form action="query/master_satuan_query.php" method="POST">
                 <div class="form-group">
                   <label>Nama Satuan</label>
-                  <input type="text" name="nama_satuan" class="form-control" placeholder="Masukkan Nama Satuan" required>
+                  <input type="text" name="nama_satuan" class="form-control" placeholder="Masukkan Nama Satuan" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" required>
                 </div>
                 <div class="form-group">
                   <label>Jumlah Satuan</label>

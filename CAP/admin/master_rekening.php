@@ -77,6 +77,7 @@ if(isset($_GET['pesan'])){
                     <th>No</th>
                     <th>Nama Rekening</th>
                     <th>Nomor Rekening</th>
+                    <th>Atas Nama</th>
                     <th>Status Rekening</th>
                     <th>Aksi</th>
                   </tr>
@@ -87,6 +88,7 @@ if(isset($_GET['pesan'])){
                 $id_rekening = $data_rekening_bank['ID_REKENING'];
                 $nama_rek = $data_rekening_bank['NAMA_REKENING'];
                 $no_rek = $data_rekening_bank['NOMOR_REKENING'];
+                $atas_nama = $data_rekening_bank['ATAS_NAMA'];
                 $stat_rek = $data_rekening_bank['STATUS_REKENING'];
                 $i+=1;
                 ?>
@@ -94,6 +96,7 @@ if(isset($_GET['pesan'])){
                     <td class="text-center" style="width:30px;"><?=$i?></td>
                     <td><?=$nama_rek?></td>
                     <td><?=$no_rek?></td>
+                    <td><?=$atas_nama?></td>
                     <td><?php if($stat_rek == 1){ echo
                     '<span href="" class="btn btn-success btn-circle btn-sm">
                       <i class="fas fa-check"></i>
@@ -148,6 +151,10 @@ if(isset($_GET['pesan'])){
                 <div class="form-group">
                   <label for="no_rek">Nomor Rekening</label>
                   <input type="text" name="no_rek" class="form-control" placeholder="Masukkan Nomor Rekening" required>
+                </div>
+                <div class="form-group">
+                  <label for="atas_nama">Atas Nama</label>
+                  <input type="text" name="atas_nama" class="form-control" placeholder="Masukkan Atas Nama" required>
                 </div>
                 <div class="form-group">
                   <label for="status_rekening">Kategori Produk</label>

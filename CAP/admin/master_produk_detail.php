@@ -93,7 +93,7 @@ if(isset($_GET['pesan'])){
             </div>
               <h4>Kategori : <?=$nama_kategori?></h4>
               <h4>Deskripsi Produk : </h4>
-              <p><?=$desc_produk?></p>
+              <p class="text-justify"><?=$desc_produk?></p>
               <h4>Keterangan Harga : </h4>
               <div class="my-2 overflow-auto"><?php include "../src/file/$ket_produk";?></div>
               <h4>Butuh Isi Produk : <?php if($isi_produk == 0){echo "TIDAK";}else{echo "YA";}?></h4>

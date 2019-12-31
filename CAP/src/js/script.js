@@ -169,7 +169,7 @@ $(document).on('click', 'body *', function () {
 
 
   TotHarga = ((HrgDesain * ValDesain) + (HrgWarna + HrgUkuran) + IsiBahan * (HrgBahan * (JmlCetak / SatBahan))) / ValPembayaran;
-  $("#sub_total").prop('value', TotHarga);
+
   // ModalHarga = ((HrgDesain * ValDesain) + (HrgWarna + HrgUkuran) + IsiBahan * (HrgBahan * (1 / 500))) / ValPembayaran;
   // $("#modal_total").prop('value', ModalHarga);
 
@@ -181,13 +181,21 @@ $(document).on('click', 'body *', function () {
   $("#var4").prop('value', ValPembayaran);
 
 
+  function rubah(angka){
+    var reverse = angka.toString().split('').reverse().join(''),
+    ribuan = reverse.match(/\d{1,3}/g);
+    ribuan = ribuan.join('.').split('').reverse().join('');
+    return ribuan;
+  }
+
+  $("#sub_total").prop('value', 'Rp. ' + rubah(TotHarga));
+  $("#sub_total_form").prop('value', TotHarga);
   // var jumlah = parseInt(document.getElementById("jumlah").value);
 
   // if(jumlah < 1){
   //   alert("Jumlah pesanan paling sedikit 1 pcs");
   //   $("#jumlah").prop('value','1');
   // }
-
 
 });
 

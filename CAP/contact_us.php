@@ -48,7 +48,7 @@ var_dump($_POST);
     $email->setFrom($email_user, $nama_user);
     $email->setSubject($subject);
     $email->addTo($our_email, "Primasdika Yunia Putra");
-    $email->addContent("text/plain", "$message");
+    // $email->addContent("text/plain", "$message");
     $email->addContent(
         "text/html", "<p>$message<p>"
     );

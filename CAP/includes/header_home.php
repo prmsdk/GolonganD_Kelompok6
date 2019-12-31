@@ -10,11 +10,16 @@
     <link rel="stylesheet" href="src/css/fontawesome-all.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
         
+
+    <link rel="icon" type="image/png" href="src/img/icons/cap.png">
     <title>Cahaya Abadi Perkasa</title>
 </head>
 <body>
   
     <header id="info">
+        <p class="m-0 p-2 pr-3 float-left text-right" style="z-index:19; color:#fff">
+            Buka Senin - Sabtu Jam 09.000 - 20.00 <span style="color: #a1a1a1">(Hari Minggu dan Hari Besar Libur)</span>
+        </p>
         <p class="m-0 p-2 pr-3 text-light text-right">
             <img src="src/img/icons/telepon.png" height="20" alt="telepon">
             (0331) 412990
@@ -100,7 +105,7 @@
                   </div>
                   <!-- BATAS BELL -->
                   <!-- KERANJANG -->
-                  <a class="nav-item nav-link icon-custom" style="color:#25A8E0;" type="button" data-toggle="modal" data-target="#cart"><i class="fa fa-shopping-cart fa-1x"></i></a>
+                  <a class="nav-item nav-link icon-custom" id="cart-modal" style="color:#25A8E0;" type="button" data-toggle="modal" data-target="#cart"><i class="fa fa-shopping-cart fa-1x"></i></a>
                   <!-- BATAS KERANJANG -->
                   <div class="dropdown">
                   <!-- FOTO PROFIL -->

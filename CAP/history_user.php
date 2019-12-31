@@ -15,7 +15,7 @@ WHEN pesanan.STATUS_PESANAN = 6 THEN 'Dibatalkan'
 END AS STATUS_PESANAN 
 FROM pesanan, user where
 user.USER_ID = pesanan.USER_ID AND
-user.USER_ID='$id_user'")
+user.USER_ID='$id_user' ORDER BY pesanan.ID_PESANAN DESC")
 ?>
 
 

@@ -26,7 +26,7 @@
       </div>
       <div class="row copyright">
         <div class="col-lg text-center">
-          <p>&copy Copyright 2019 ~ <span style="color: #F69322;">Pe</span><span style="color: #25A8E0;">Takon</span></p>
+          <p>&copy Copyright 2020 ~ <span style="color: #F69322;">Pe</span><span style="color: #25A8E0;">Takon</span></p>
         </div>
       </div>
   </footer>

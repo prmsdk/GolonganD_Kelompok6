@@ -1,6 +1,6 @@
 <?php
   session_start();
-  $_SESSION['active_link'] = 'dashboard';
+  $_SESSION['active_link'] = 'laporan';
   include 'includes/config.php';
   require 'includes/header.php';
 

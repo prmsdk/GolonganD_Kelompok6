@@ -78,7 +78,7 @@ if(!isset($_SESSION['admin_login'])){
       </div>
       <div class="text-left">
         <input type="submit" class="btn btn-primary" name="edit_admin" value="Simpan">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="master_admin.php" class="btn btn-secondary" data-dismiss="modal">Close</a>
       </div>
     </div>
     </form>

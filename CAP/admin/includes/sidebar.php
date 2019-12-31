@@ -4,8 +4,8 @@
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-file-alt"></i>
+        <div class="sidebar-brand-icon">
+          <img src="../src/img/icons/cap.png" alt="" width="40px" class="img-fluid">
         </div>
         <div class="sidebar-brand-text mx-3">Admin CAP</div>
       </a>

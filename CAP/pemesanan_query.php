@@ -1,5 +1,6 @@
 <?php
-session_start();
+include 'api_key.php';
+require 'C:\xampp\sendgrid\vendor\autoload.php';
 include 'includes/config.php';
 require 'includes/header.php';
 
@@ -114,7 +115,91 @@ if(isset($_POST['pemesanan_produk'])){
       }
     }
 
+    $our_email = 'dickayunia1@gmail.com';
+
+    $result_user = mysqli_query($con, "SELECT * FROM user WHERE USER_ID = '$id_user'");
+    $data_user = mysqli_fetch_assoc($result_user);
+    $user_email = $data_user['USER_EMAIL'];
+    $user_nama = $data_user['USER_NAMA_LENGKAP'];
+
+    $result_bank = mysqli_query($con, "SELECT * FROM rekening_bank WHERE ID_REKENING = '$id_bank'");
+    $data_bank = mysqli_fetch_assoc($result_bank);
+    $nama_bank = $data_bank['NAMA_REKENING'];
+    $nomor_bank = $data_bank['NOMOR_REKENING'];
+    $atas_nama = $data_bank['ATAS_NAMA'];
+
+    date_default_timezone_set('Asia/Jakarta');
+    ini_set('date.timezone', 'Asia/Jakarta');
+
+    // $dotenv = new Dotenv\Dotenv(__DIR__);
+    // $dotenv->load();
+    $for = '';
     
+    // PERULANGAN DETAIL PESANAN
+    for($j = 0; $j < $number; $j++){
+      $for.= '<tr>
+          <td style="padding: 10px 0 0 0; border-top: 1px dashed #aaaaaa;">
+              <!-- TWO COLUMNS -->
+              <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                  <tr>
+                      <td valign="top" class="mobile-wrapper">
+                          <!-- LEFT COLUMN -->
+                          <table cellpadding="0" cellspacing="0" border="0" width="47%" style="width: 47%;" align="left">
+                              <tr>
+                                  <td style="padding: 0 0 10px 0;">
+                                      <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                          <tr>
+                                              <td align="left" style="font-family: Arial, sans-serif; color: #333333; font-size: 16px;">'.$nama_produk[$j].' ('.$jumlah_produk[$j].')</td>
+                                          </tr>
+                                      </table>
+                                  </td>
+                              </tr>
+                          </table>
+                          <!-- RIGHT COLUMN -->
+                          <table cellpadding="0" cellspacing="0" border="0" width="47%" style="width: 47%;" align="right">
+                              <tr>
+                                  <td style="padding: 0 0 10px 0;">
+                                      <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                          <tr>
+                                              <td align="right" style="font-family: Arial, sans-serif; color: #333333; font-size: 16px;">Rp. '.number_format($sub_total[$j], 0,".",".").'</td>
+                                          </tr>
+                                      </table>
+                                  </td>
+                              </tr>
+                          </table>
+                      </td>
+                  </tr>
+              </table>
+          </td>
+      </tr>';
+      }
+                      // END PERULANGAN
+
+    
+
+    $email = new \SendGrid\Mail\Mail(); 
+    $email->setFrom($our_email, 'Cahaya Abadi Perkasa');
+    $email->setSubject('Pesanan Diterima');
+    $email->addTo($user_email, $user_nama);
+    // $email->addContent("text/plain", "$message");
+    $message = '';
+    include 'verif_pembayran_email.php';
+    $email->addContent(
+        "text/html", $message
+    );
+    // $sendgrid = new \SendGrid(getenv(SENDGRID_API_KEY));
+    // $apiKey = getenv('SENDGRID_API_KEY');
+    // $sendgrid = new \SendGrid($apiKey);
+    $apiKey = SENDGRID_API_KEY;
+    $sendgrid = new \SendGrid($apiKey);
+    try {
+        $response = $sendgrid->send($email);
+        print $response->statusCode() . "\n";
+        print_r($response->headers());
+        print $response->body() . "\n";
+    } catch (Exception $e) {
+        echo 'Caught exception: '. $e->getMessage() ."\n";
+    }
 
     
 

@@ -16,15 +16,15 @@ if($_POST['post_cover']) {
                 move_uploaded_file($file_temporary, 'file_upload/'.$uniq.'.'.$ekstensi); //untuk upload file
                 $query = mysqli_query ($con, "UPDATE user SET USER_COVER='$uniq.$ekstensi' WHERE USER_ID='$id_user'");
                     if($query) {
-                        header("location:user_profil.php?id_user=$id_user");
+                        header("location:user_profil.php?pesan=sukses_upload");
                     }else{
-                        echo "MAAF...., UPLOAD GAGAL";
+                        header("location:user_profil.php?pesan=gagal_upload");
                     }
             }else{
-                echo "UKURAN FILE TERLALU BESAR";
+                header("location:user_profil.php?pesan=ukuran_besar");
             }
         }else{
-            echo "FILE TIDAK SESUAI DENGAN EKSTENSI YANG DIBERIKAN";
+            header("location:user_profil.php?pesan=ekstensi_salah");
         }
 }
 

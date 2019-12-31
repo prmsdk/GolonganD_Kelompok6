@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    $_SESSION['active_link'] = 'master';
+    $_SESSION['active_link'] = 'setting';
     include 'includes/config.php';
     include 'includes/header.php';
 
@@ -138,15 +138,15 @@ if(isset($_GET['pesan'])){
               <form action="query/master_slider_query.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                   <label>Tombol</label>
-                  <input type="text" name="tombol" class="form-control" placeholder="Masukkan Tombol" required>
+                  <input type="text" name="tombol" class="form-control" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" placeholder="Masukkan Tombol" required>
                 </div>
                 <div class="form-group">
                   <label>Link</label>
-                  <input type="text" name="link" class="form-control" placeholder="Masukkan link" required>
+                  <input type="text" name="link" class="form-control" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" placeholder="Masukkan link" required>
                 </div>
                 <div class="form-group">
                   <label>Deskripsi</label>
-                  <textarea type="text" name="deskripsi" class="form-control" placeholder="Masukkan deskripsi" required></textarea>
+                  <textarea type="text" name="deskripsi" class="form-control" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" minlenght="10" placeholder="Masukkan deskripsi" required></textarea>
                   <label>Tuliskan &lt;br&gt; untuk Enter</label>
                 </div>
                 <div class="form-group">

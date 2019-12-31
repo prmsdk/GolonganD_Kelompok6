@@ -241,7 +241,8 @@ $mod_jam = $antrian_jam%24;
                     <label class="custom-control-label" for="total2">Lunas</label>
                 </div>
             </div>
-            <input type="number" id="sub_total" class="form-control mb-4 w-50" placeholder="Total Pembayaran" name="sub_total" pattern="(^\d+(\.|\,)\d{2}$)" readonly>
+            <input type="text" id="sub_total" class="form-control mb-4 w-50" placeholder="Total Pembayaran" pattern="(^\d+(\.|\,)\d{2}$)" readonly>
+            <input type="hidden" id="sub_total_form" class="form-control mb-4 w-50" placeholder="Total Pembayaran" name="sub_total" pattern="(^\d+(\.|\,)\d{2}$)" readonly>
 
             <!-- <input type="number" id="modal_total" class="form-control mb-4 w-50" placeholder="Modal Pembayaran" name="modal_total" pattern="(^\d+(\.|\,)\d{2}$)" readonly> -->
             
@@ -261,7 +262,8 @@ $mod_jam = $antrian_jam%24;
                 <!-- KETIKA SUDAH LOGIN MASUK KE KERANJANG -->
                 <button type="submit" class="add-to-cart btn btn-primary font-m-med" name="pemesanan_produk" href="index.php" id="keranjang" onclick="return confirm('Yakin memasukkan produk yang anda pilih ke keranjang?');" value="Keranjang"><i class="fa fa-shopping-cart pr-1"></i></button>
 
-                <input type="submit" name="pemesanan_produk" value="Bayar" class="btn btn-primary font-m-med">
+                <!-- KETIKA SUDAH LOGIN LANGSUNG BAYAR -->
+                <button type="submit" class="add-to-bayar btn btn-primary font-m-med" name="pemesanan_produk" href="index.php" id="keranjang" onclick="return confirm('Yakin anda langsung melakukan proses pembayaran?');">Bayar</button>
                 <?php 
                     $result_status = mysqli_query($con, "SELECT USER_ACTIVE FROM user WHERE USER_ID = '$id_user'");
                     $data_status = mysqli_fetch_assoc($result_status);

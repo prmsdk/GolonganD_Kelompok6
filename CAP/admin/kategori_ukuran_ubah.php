@@ -29,7 +29,7 @@ if(isset($_GET['id_kategori_ukuran'])){
         <input type="hidden" name="id_kategori_ukuran" id="id" value="<?=$id_kategori_ukuran?>">
         <div class="form-group">
           <label for="nama_kategori_ukuran" class="font-m-med">Nama</label>
-          <input type="text" class="form-control" id="nama_kategori_ukuran" name="nama_kategori_ukuran" aria-describedby="usernameHelp" placeholder="Masukkan Nama" value="<?=$nama_kategori_ukuran?>" required>
+          <input type="text" class="form-control" id="nama_kategori_ukuran" name="nama_kategori_ukuran" aria-describedby="usernameHelp" pattern="[^()/><\][\\\x22,;|]+" title="Masukkan data yang valid" placeholder="Masukkan Nama" value="<?=$nama_kategori_ukuran?>" required>
         </div>
         <div class="text-left">
           <input type="submit" class="btn btn-primary" name="edit_kategori_ukuran" value="Simpan">

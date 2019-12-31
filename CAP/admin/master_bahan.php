@@ -144,7 +144,7 @@ if(isset($_GET['pesan'])){
                   <form class="font-m-light col-11 mt-3" action="query/master_bahan_query.php" method="post">
                     <div class="form-group">
                       <label for="nama_bahan" class="font-m-med">Nama bahan</label>
-                      <input type="text" class="form-control" id="nama_bahan" name="nama_bahan" aria-describedby="usernameHelp" placeholder="Masukkan Nama Bahan" required>
+                      <input type="text" class="form-control" id="nama_bahan" name="nama_bahan" aria-describedby="usernameHelp" pattern="[^()/><\][\\\x22,;|]+" title="Masukkan data yang valid" placeholder="Masukkan Nama Bahan" required>
                     </div>
                     <div class="form-group">
                       <label for="satuan_bahan">Satuan Bahan</label>
@@ -161,7 +161,7 @@ if(isset($_GET['pesan'])){
                     </div>
                     <div class="form-group">
                       <label for="harga_bahan" class="font-m-med">Harga bahan</label>
-                      <input type="text" class="form-control" id="harga_bahan" name="harga_bahan" aria-describedby="usernameHelp" placeholder="Masukkan Harga bahan" required>
+                      <input type="number" class="form-control" id="harga_bahan" name="harga_bahan" aria-describedby="usernameHelp" placeholder="Masukkan Harga bahan" required>
                     </div>
                     <div class="form-group">
                       <label for="kategori_bahan">Kategori bahan</label>

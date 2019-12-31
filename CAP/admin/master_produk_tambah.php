@@ -23,11 +23,11 @@ if(!isset($_SESSION['admin_login'])){
           <form action="query/master_produk_query.php" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label for="nama_produk" class="font-m-med">Nama produk</label>
-            <input type="text" class="form-control" id="nama_produk" name="nama_produk" aria-describedby="usernameHelp" placeholder="Masukkan Nama produk" required>
+            <input type="text" class="form-control" id="nama_produk" name="nama_produk" aria-describedby="usernameHelp" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" placeholder="Masukkan Nama produk" required>
           </div>
           <div class="form-group">
             <label for="desc_produk" class="font-m-med">Deskripsi produk</label>
-            <textarea name="desc_produk" id="desc_produk" class="form-control" placeholder="Masukkan Deskripsi Produk . ." required></textarea>
+            <textarea name="desc_produk" id="desc_produk" class="form-control" minlenght="50" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" placeholder="Masukkan Deskripsi Produk . ." required></textarea>
           </div>
           <div class="form-group">
             <div><label for="ket_produk" class="font-m-med">Keterangan Harga</label></div>
@@ -53,7 +53,7 @@ if(!isset($_SESSION['admin_login'])){
             <div id="1" class="box_isi">
               <div class="form-group">
                 <label for="isi_custom" class="font-m-med">Batas Isi produk</label>
-                <input type="text" class="form-control w-75" id="isi_custom" name="isi_custom" placeholder="Isikan syarat pengisian pengguna terhadap isi produk">
+                <input type="text" pattern="[^()><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" class="form-control w-75" id="isi_custom" name="isi_custom" placeholder="Isikan syarat pengisian pengguna terhadap isi produk">
                 <label class="small text-muted">Contoh : 1/2/3/6/12</label>
               </div>
             </div>

@@ -1,5 +1,8 @@
 <?php
 session_start();
+include '../../api_key.php';
+
+require 'C:\xampp\sendgrid\vendor\autoload.php';
 include '../includes/config.php';
 if(isset($_GET['status']) AND isset($_GET['id_pesanan'])){
   $status = $_GET['status'];
@@ -20,7 +23,51 @@ if(isset($_GET['status']) AND isset($_GET['id_pesanan'])){
   }else if($status == 4){
     $update = mysqli_query($con, "UPDATE pesanan SET STATUS_PESANAN = 5 WHERE ID_PESANAN = '$id_pesanan'");
 
+    // MENGIRIM EMAIL SELESAI
     if($update){
+
+      $result_pesanan = mysqli_query($con, "SELECT * FROM pesanan WHERE ID_PESANAN = '$id_pesanan'");
+      $data_pesanan = mysqli_fetch_assoc($result_pesanan);
+      $id_user = $data_pesanan['USER_ID'];
+
+      $result_user = mysqli_query($con, "SELECT * FROM user WHERE USER_ID = '$id_user'");
+      $data_user = mysqli_fetch_assoc($result_user);
+      $user_email = $data_user['USER_EMAIL'];
+      $user_alamat = $data_user['USER_ALAMAT'];
+      $user_nama = $data_user['USER_NAMA_LENGKAP'];
+
+      $our_email = 'dickayunia1@gmail.com';
+
+      date_default_timezone_set('Asia/Jakarta');
+      ini_set('date.timezone', 'Asia/Jakarta');
+
+      // $dotenv = new Dotenv\Dotenv(__DIR__);
+      // $dotenv->load();
+
+      $email = new \SendGrid\Mail\Mail(); 
+      $email->setFrom($our_email, 'Cahaya Abadi Perkasa');
+      $email->setSubject('Pesanan Anda Telah Selesai');
+      $email->addTo($user_email, $user_nama);
+      // $email->addContent("text/plain", "$message");
+      $message = '';
+      include 'update_pesanan_email.php';
+      $email->addContent(
+          "text/html", $message
+      );
+      // $sendgrid = new \SendGrid(getenv(SENDGRID_API_KEY));
+      // $apiKey = getenv('SENDGRID_API_KEY');
+      // $sendgrid = new \SendGrid($apiKey);
+      $apiKey = SENDGRID_API_KEY;
+      $sendgrid = new \SendGrid($apiKey);
+      try {
+          $response = $sendgrid->send($email);
+          print $response->statusCode() . "\n";
+          print_r($response->headers());
+          print $response->body() . "\n";
+      } catch (Exception $e) {
+          echo 'Caught exception: '. $e->getMessage() ."\n";
+      }
+      print_r($email_user);
       header("location:../trs_detail_pesanan_admin.php?id_pesanan=$id_pesanan");
     }
   }else if($status == 1){

@@ -17,6 +17,7 @@ if(isset($_GET['id_rekening'])){
   $nama_rek = $data_rekening['NAMA_REKENING'];
   $no_rek = $data_rekening['NOMOR_REKENING'];
   $stat_rek = $data_rekening['STATUS_REKENING'];
+  $atas_nama = $data_rekening['ATAS_NAMA'];
 }
 
 ?>
@@ -36,6 +37,10 @@ if(isset($_GET['id_rekening'])){
           <div class="form-group">
             <label for="no_rek">Nomor Rekening</label>
             <input type="text" name="no_rek" class="form-control" placeholder="Masukkan Nomor Rekening" value="<?=$no_rek?>" required>
+          </div>
+          <div class="form-group">
+            <label for="atas_nama">Atas Nama</label>
+            <input type="text" name="atas_nama" class="form-control" placeholder="Masukkan Nama Rekening" value="<?=$atas_nama?>" required>
           </div>
           <div class="form-group">
             <div class="form-check">

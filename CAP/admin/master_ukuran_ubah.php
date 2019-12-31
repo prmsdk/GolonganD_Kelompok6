@@ -31,11 +31,11 @@ if(isset($_GET['id_ukuran'])){
         <input type="hidden" name="id_ukuran" id="id" value="<?=$id_ukuran?>">
         <div class="form-group">
           <label for="jenis_ukuran" class="font-m-med">Jenis Ukuran</label>
-          <input type="text" class="form-control" id="jenis_ukuran" name="jenis_ukuran" value="<?=$jenis_ukuran?>" placeholder="Masukkan Jenis Ukuran" required>
+          <input type="text" class="form-control" id="jenis_ukuran" name="jenis_ukuran" value="<?=$jenis_ukuran?>" placeholder="Masukkan Jenis Ukuran" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" required>
         </div>
         <div class="form-group">
           <label for="harga_ukuran" class="font-m-med">Harga Ukuran</label>
-          <input type="text" class="form-control" id="harga_ukuran" name="harga_ukuran" value="<?=$harga_ukuran?>" placeholder="Masukkan Harga Ukuran" required>
+          <input type="number" class="form-control" id="harga_ukuran" name="harga_ukuran" value="<?=$harga_ukuran?>" placeholder="Masukkan Harga Ukuran" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" required>
         </div>
         <div class="form-group">
           <label for="kategori_ukuran">Kategori Ukuran</label>

@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    $_SESSION['active_link'] = 'master';
+    $_SESSION['active_link'] = 'setting';
     include 'includes/config.php';
     include 'includes/header.php';
 
@@ -90,10 +90,9 @@ if(isset($_GET['pesan'])){
                 <tr>
                     <th>No</th>
                     <th>Nama</th>
-                    <th>Email</th>
                     <th>No Hp</th>
                     <th>Subject</th>
-                    <th style="width: 200px;">Pesan</th>
+                    <th style="width: 150px;">Pesan</th>
                     <th>Aksi</th>
                   </tr>
                 </thead>
@@ -112,11 +111,10 @@ if(isset($_GET['pesan'])){
                 <tr>
                     <td class="text-center" style="width:40px;"><?=$i?>.</td>
                     <td><?=$nama_msg?></td>
-                    <td><?=$email_msg?></td>
                     <td><?=$no_hp_msg?></td>
                     <td><?=$subject_msg?></td>
-                    <td><p><?=$messages?></p></td>
-                    <td style="width:120px">
+                    <td style="width: 150px;"><p><?=$messages?></p></td>
+                    <td style="width:100px;">
                         <div class="block text-center">
                             <a href="master_pesan_detail.php?ID_MSG=<?=$id_msg?>" class="btn btn-info btn-circle btn-sm">
                                 <i class="fas fa-info"></i>

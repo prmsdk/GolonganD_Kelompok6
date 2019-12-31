@@ -30,11 +30,11 @@ if(isset($_GET['id_satuan_bahan'])){
         <input type="hidden" name="id_satuan" id="id" value="<?=$id_satuan_bahan?>">
         <div class="form-group">
           <label for="nama_satuan_bahan" class="font-m-med">Nama</label>
-          <input type="text" class="form-control" id="nama_satuan" name="nama_satuan" aria-describedby="usernameHelp" placeholder="Masukkan Nama" value="<?=$nama_satuan_bahan?>" required>
+          <input type="text" class="form-control" id="nama_satuan" name="nama_satuan" aria-describedby="usernameHelp" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" placeholder="Masukkan Nama" value="<?=$nama_satuan_bahan?>" required>
         </div>
         <div class="form-group">
           <label>Jumlah Satuan</label>
-          <input type="number" min="1" name="jumlah_satuan" class="form-control" placeholder="Masukkan Jumlah Satuan" value="<?=number_format($jumlah_satuan_bahan, 0,".",".")?>" required>
+          <input type="number" min="1" name="jumlah_satuan" class="form-control" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" placeholder="Masukkan Jumlah Satuan" value="<?=number_format($jumlah_satuan_bahan, 0,".",".")?>" required>
         </div>
         <div class="text-left">
           <input type="submit" class="btn btn-primary" name="edit_satuan" value="Simpan">

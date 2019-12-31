@@ -6,9 +6,9 @@
         $id_pesanan = $_GET['id_pesanan'];
         $id_rekening = $_GET['id_bank'];
     }
-    $result = mysqli_query($con, "select * from rekening_bank, admin where ID_REKENING = '$id_rekening'");
+    $result = mysqli_query($con, "select * from rekening_bank where ID_REKENING = '$id_rekening'");
     while($data_rekening = mysqli_fetch_assoc($result)){
-    $nama_admin = $data_rekening['ADM_NAMA_USAHA_ADM'];
+    $nama_admin = $data_rekening['ATAS_NAMA'];
     $nama_rekening = $data_rekening['NAMA_REKENING'];
     $nomer_rekening = $data_rekening['NOMOR_REKENING'];
     }

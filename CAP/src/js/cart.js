@@ -10,8 +10,7 @@ var shoppingCart = (function() {
   
   // Constructor
   function Item(produk, price, var2, var3, var4, banyak, count, idproduk, warna) {
-    this.idproduk = document.getElementById('id_produk').value;;
-    this.produk = document.getElementById('nama_produk').value;;
+    this.produk = document.getElementById('nama_produk').value;
     this.price = Number(document.getElementById('var1').value);
     this.var2 = Number(document.getElementById('var2').value);
     this.var3 = Number(document.getElementById('var3').value);
@@ -95,6 +94,10 @@ var shoppingCart = (function() {
           cart[item].count --;
           if(cart[item].count === 0) {
             cart.splice(item, 1);
+            var jumlah_keranjang = Number($('.total-count').html());
+            if(jumlah_keranjang == 1){
+              $('#bayarba').attr('disabled','disabled');
+            }
           }
           break;
         }
@@ -110,6 +113,10 @@ var shoppingCart = (function() {
         break;
       }
     }
+    var jumlah_keranjang = Number($('.total-count').html());
+    if(jumlah_keranjang == 1){
+      $('#bayarba').attr('disabled','disabled');
+    }
     saveCart();
   }
 
@@ -117,6 +124,7 @@ var shoppingCart = (function() {
   obj.clearCart = function() {
     cart = [];
     saveCart();
+    $('#bayarba').attr('disabled','disabled');
   }
 
   // Count cart 
@@ -189,12 +197,28 @@ $('.add-to-cart').click(function() {
   });
 });
 
+$('.add-to-bayar').click(function() {
+  $('#form_pemesanan').on("submit",function(event){
+    event.preventDefault();
+    var count = Number($(this).data('count'));
+    shoppingCart.addItemToCart( var2, var3, var4, count);
+    displayCart();
+    location.href="http://localhost/GolonganD_Kelompok6/CAP/pembayaran.php";
+  });
+});
+
 // Clear items
 $('.clear-cart').click(function() {
   shoppingCart.clearCart();
   displayCart();
 });
 
+function rubah(angka){
+  var reverse = angka.toString().split('').reverse().join(''),
+  ribuan = reverse.match(/\d{1,3}/g);
+  ribuan = ribuan.join('.').split('').reverse().join('');
+  return ribuan;
+}
 
 function displayCart() {
   var cartArray = shoppingCart.listCart();
@@ -211,7 +235,7 @@ function displayCart() {
       + "<button class='plus-item btn btn-primary input-group-addon' data-produk=" + cartArray[i].produk + ">+</button></div></td>"
       + "<td><button class='delete-item btn btn-danger' data-produk=" + cartArray[i].produk + ">X</button></td>"
       + " = " 
-      + "<td>" + cartArray[i].total + "</td>" 
+      + "<td>Rp." + rubah(cartArray[i].total) + "</td>" 
       +  "</tr>";
 
       outputbayar += "<tr>"
@@ -236,16 +260,20 @@ function displayCart() {
   }
   $('.show-cart').html(output);
   $('.show-cart-bayar').html(outputbayar);
-  $('.total-cart').html(shoppingCart.totalCart());
+  $('.total-cart').html(rubah(shoppingCart.totalCart()));
   $('.total-count').html(shoppingCart.totalCount());
 }
 
 // Disable buttony
-if(cart.lenght === null){
-  $('#bayarba').attr('disabled','disabled');
-}else{
-  $('#bayarba').removeAttr('disabled');
-}
+$('#cart-modal').click(function() {
+  var jumlah_keranjang = Number($('.total-count').html());
+  console.log(jumlah_keranjang);
+  if(jumlah_keranjang == 0){
+    $('#bayarba').attr('disabled','disabled');
+  }else{
+    $('#bayarba').removeAttr('disabled');
+  }
+});
 
 // Delete item button
 

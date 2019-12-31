@@ -220,7 +220,7 @@ if($_SESSION['status']!='login'){
                 </div>
                 <div class="col-8">
                     <p>
-                    CV. CAHAYA ABADI PERKASAKarang Miuwo, Mangli, Kec. Kaliwates, Kabupaten Jember, Jawa Timur <br>68131
+                    CV. CAHAYA ABADI PERKASA <br> Jl. Kauman 312 RT 04, Mangli, Kecamatan Kaliwates, Jember, Jawa Timur <br>68131
                     </p>
                 </div>
             </div>
@@ -240,7 +240,7 @@ if($_SESSION['status']!='login'){
                 </div>
                 <div class="col-8">
                     <p>
-                    admin@cahayaabadi.com
+                    cahayaabadiperkasa@gmail.com
                     </p>
                 </div>
             </div>
