@@ -183,7 +183,7 @@ if(isset($_POST['pemesanan_produk'])){
     $email->addTo($user_email, $user_nama);
     // $email->addContent("text/plain", "$message");
     $message = '';
-    include 'verif_pembayran_email.php';
+    include 'verif_pembayaran_email.php';
     $email->addContent(
         "text/html", $message
     );

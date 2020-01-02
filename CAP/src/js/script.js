@@ -50,16 +50,20 @@ $(document).ready(function () {
   // Kondisi saat Form di-load
   if ($('input[id="pilihdesain1"]:radio:checked').val() == "Y") {
     $('#uploadfile').removeAttr('disabled');
+    $('#uploadSubmit').removeAttr('disabled');
   } else {
     $('#uploadfile').attr('disabled', 'disabled');
+    $('#uploadSubmit').attr('disabled', 'disabled');
   }
   // Kondisi saat Radio Button diklik
   // $('input[type="radio"]').click(function(){
   $('input[id="pilihdesain1"]:radio').click(function () {
     if ($(this).attr("value") == "N") {
       $('#uploadfile').attr('disabled', 'disabled');
+      $('#uploadSubmit').attr('disabled', 'disabled');
     } else {
       $('#uploadfile').removeAttr('disabled');
+      $('#uploadSubmit').removeAttr('disabled');
       $('#uploadfile').focus();
     }
   });
@@ -69,18 +73,22 @@ $(document).ready(function () {
   // Kondisi saat Form di-load
   if ($('input[id="pilihdesain2"]:radio:checked').val() == "Y") {
     $('#uploadfile').attr('disabled', 'disabled');
+    $('#uploadSubmit').attr('disabled', 'disabled');
     $("#targetLayer").append('<input type="hidden" id="namadesain" name="namadesain" value="">');
   } else {
     $('#uploadfile').attr('disabled', 'disabled');
+    $('#uploadSubmit').attr('disabled', 'disabled');
   }
   // Kondisi saat Radio Button diklik
   // $('input[type="radio"]').click(function(){
   $('input[id="pilihdesain2"]:radio').click(function () {
     if ($(this).attr("value") == "N") {
       $('#uploadfile').attr('disabled', 'disabled');
+      $('#uploadSubmit').attr('disabled', 'disabled');
     } else {
       $("#targetLayer").append('<input type="hidden" id="namadesain" name="namadesain" value="">');
       $('#uploadfile').attr('disabled', 'disabled');
+      $('#uploadSubmit').attr('disabled', 'disabled');
       $('#uploadfile').focus();
     }
   });
@@ -254,8 +262,8 @@ $(document).ready(function(){
 					$('#loader-icon').hide();
           $('#targetLayer').show();
           // $('#targetUpload').show();
-          $('#pilihdesain2').prop('disabled','true');
-				},
+          // $('#pilihdesain2').prop('disabled','true');
+        },
 				resetForm: true
 			});
 		}

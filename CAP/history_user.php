@@ -12,6 +12,8 @@ WHEN pesanan.STATUS_PESANAN = 3 THEN 'Sedang Dalam Proses'
 WHEN pesanan.STATUS_PESANAN = 4 THEN 'Selesai'
 WHEN pesanan.STATUS_PESANAN = 5 THEN 'Dalam Pengiriman'
 WHEN pesanan.STATUS_PESANAN = 6 THEN 'Dibatalkan'
+WHEN pesanan.STATUS_PESANAN = 7 THEN 'Bukti TF Anda Salah'
+WHEN pesanan.STATUS_PESANAN = 8 THEN 'Nominal Bayar Salah'
 END AS STATUS_PESANAN 
 FROM pesanan, user where
 user.USER_ID = pesanan.USER_ID AND
@@ -33,7 +35,7 @@ user.USER_ID='$id_user' ORDER BY pesanan.ID_PESANAN DESC")
                   <th>ID Pesanan</th>
                   <th>Nama User</th>
                   <th>Tanggal Pesanan</th>
-                  <th>Total</th>
+                  <th style="width: 100px;">Total</th>
                   <th>Status Pesanan</th>
                   <th>Aksi</th>
               </tr>

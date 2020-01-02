@@ -9,19 +9,22 @@ if(isset($_GET['status']) AND isset($_GET['id_pesanan'])){
   $id_pesanan = $_GET['id_pesanan'];
 
   if($status == 2){
-    $update = mysqli_query($con, "UPDATE pesanan SET STATUS_PESANAN = 3 WHERE ID_PESANAN = '$id_pesanan'");
+    $update = mysqli_query($con, "UPDATE pesanan SET STATUS_PESANAN = 3,
+    USER_NOTIF = 0  WHERE ID_PESANAN = '$id_pesanan'");
 
     if($update){
-      header("location:../trs_detail_pesanan_admin.php?id_pesanan=$id_pesanan");
+      header("location:../trs_history_admin.php");
     }
   }else if($status == 3){
-    $update = mysqli_query($con, "UPDATE pesanan SET STATUS_PESANAN = 4 WHERE ID_PESANAN = '$id_pesanan'");
+    $update = mysqli_query($con, "UPDATE pesanan SET STATUS_PESANAN = 4,
+    USER_NOTIF = 0  WHERE ID_PESANAN = '$id_pesanan'");
 
     if($update){
-      header("location:../trs_detail_pesanan_admin.php?id_pesanan=$id_pesanan");
+      header("location:../trs_history_admin.php");
     }
   }else if($status == 4){
-    $update = mysqli_query($con, "UPDATE pesanan SET STATUS_PESANAN = 5 WHERE ID_PESANAN = '$id_pesanan'");
+    $update = mysqli_query($con, "UPDATE pesanan SET STATUS_PESANAN = 5,
+    USER_NOTIF = 0  WHERE ID_PESANAN = '$id_pesanan'");
 
     // MENGIRIM EMAIL SELESAI
     if($update){
@@ -50,7 +53,7 @@ if(isset($_GET['status']) AND isset($_GET['id_pesanan'])){
       $email->addTo($user_email, $user_nama);
       // $email->addContent("text/plain", "$message");
       $message = '';
-      include 'update_pesanan_email.php';
+      require 'update_pesanan_email.php';
       $email->addContent(
           "text/html", $message
       );
@@ -68,13 +71,29 @@ if(isset($_GET['status']) AND isset($_GET['id_pesanan'])){
           echo 'Caught exception: '. $e->getMessage() ."\n";
       }
       print_r($email_user);
-      header("location:../trs_detail_pesanan_admin.php?id_pesanan=$id_pesanan");
+      header("location:../trs_history_admin.php");
     }
   }else if($status == 1){
-    $update = mysqli_query($con, "UPDATE pesanan SET STATUS_PESANAN = 6 WHERE ID_PESANAN = '$id_pesanan'");
+    if($_GET['param']==7){
+      $update = mysqli_query($con, "UPDATE pesanan 
+      SET STATUS_PESANAN = 7,
+      BUKTI_TRANSFER = NULL,
+      USER_NOTIF = 0 
+      WHERE ID_PESANAN = '$id_pesanan'");
 
-    if($update){
-      header("location:../trs_detail_pesanan_admin.php?id_pesanan=$id_pesanan");
+      if($update){
+        header("location:../trs_detail_pesanan_admin.php?id_pesanan=$id_pesanan");
+      }
+    }else if($_GET['param']==8){
+      $update = mysqli_query($con, "UPDATE pesanan 
+      SET STATUS_PESANAN = 8,
+      BUKTI_TRANSFER = NULL,
+      USER_NOTIF = 0 
+      WHERE ID_PESANAN = '$id_pesanan'");
+
+      if($update){
+        header("location:../trs_detail_pesanan_admin.php?id_pesanan=$id_pesanan");
+      }
     }
   }
 }

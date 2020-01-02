@@ -117,9 +117,12 @@ if(isset($_GET['pesan'])){
               <input type="text" name="username" class="form-control" id="inputCity" value="<?=$username?>" required pattern="^(?=.*[@])[A-Za-z0-9 @_.]+$" title="Username Format: huruf, angka, ._ dan harus menyertakan @">
             </div>
         </div> 
-        <div class="form-group">
+        <div class="form-group d-inline">
           <span class="badge badge-<?php if($active == 1 ){echo "success";}else{echo "danger";}?> p-2"><?php if($active == 1 ){echo "Active";}else{echo "Not Active";}?></span>
         </div>
+        <?php if($active == 0){ ?>
+          <a href="register_activation.php" class="btn btn-primary btn-sm py-1 px-3">Aktikasi akun</a>
+        <?php } ?>
         <div class="text-right">
         <input type="submit" value="Simpan" name="edit_profil_user" class="btn btn-primary w-25">
         </div>

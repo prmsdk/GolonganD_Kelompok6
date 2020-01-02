@@ -6,16 +6,22 @@
         $produk_id = $_GET['produk_id'];
         // SELECT DARI TAMPIL PRODUK
         $data = mysqli_query($con, "select * from tampil_produk where ID_TAMPIL_PRODUK = '$produk_id'");
-        while($data_produk = mysqli_fetch_assoc($data)){
-            $nama_produk = $data_produk['NAMA_TAMPIL_PRODUK'];
-            $deskirpsi_produk = $data_produk['DESC_TAMPIL_PRODUK'];
-            $tabel_produk = $data_produk['KET_TAMPIL_PRODUK'];
-        }
+        $data_produk = mysqli_fetch_assoc($data);
+        $nama_produk = $data_produk['NAMA_TAMPIL_PRODUK'];
+        $deskirpsi_produk = $data_produk['DESC_TAMPIL_PRODUK'];
+        $tabel_produk = $data_produk['KET_TAMPIL_PRODUK'];
+
+        // SELECT ALAMAT USER UNTUK VALIDASI
+        $id_user = $_SESSION['id_user'];
+        $result_user = mysqli_query($con, "SELECT * FROM user WHERE USER_ID = '$id_user'");
+        $data_user = mysqli_fetch_assoc($result_user);
+        $alamat = $data_user['USER_ALAMAT'];
+        
 ?>
 
 <div class="bg-light">
 <div class="p-2 mb-2 bg-secondary text-center cutom-inline">
-    <h1 class="text-white font-m-bold pt-2">Cetak <?=$nama_produk?></h1>
+    <h1 class="text-white font-m-bold pt-2">Cetak <?php echo str_replace("_"," ",$nama_produk);?></h1>
 </div>
 <!-- MENAMPILKAN WARNING ESTIMASI ANTRIAN -->
 <?php
@@ -90,7 +96,7 @@ $mod_jam = $antrian_jam%24;
         </div>
         <div class="col-lg-6">
             <div class="font-m-semi border-bottom mb-3">
-            <h2><?=$nama_produk?></h2>
+            <h2><?php echo str_replace("_"," ",$nama_produk);?></h2>
             </div>
             <p class="text-justify my-4"><?=$deskirpsi_produk?></p>
             <div class="overflow-auto mb-4">
@@ -99,7 +105,13 @@ $mod_jam = $antrian_jam%24;
             ?>
             </div>
             <div class="text-center">
+            <?php if($alamat != null){ ?>
             <a href="pemesanan.php?produk_id=<?=$produk_id?>" class="btn btn-primary mr-1 font-m-med mb-5">Pesan Sekarang</a>
+            <?php }else if(!isset($_SESSION['id_user'])){ ?>
+            <a href="pemesanan.php?produk_id=<?=$produk_id?>" class="btn btn-primary mr-1 font-m-med mb-5">Pesan Sekarang</a>
+            <?php }else{ ?>
+            <a href="user_profil.php" onclick="return confirm('Anda harus mengisi alamat terlebih dahulu sebelum melakukan pemesanan karena akan dilakukan pengiriman produk ke alamat anda ketika pesanan telah selesai dikerjakan.');" class="btn btn-primary mr-1 font-m-med mb-5">Pesan Sekarang</a>
+            <?php } ?>
             <a href="index.php" class="btn btn-secondary font-m-med mb-5">Kembali</a>
             </div>
         </div>

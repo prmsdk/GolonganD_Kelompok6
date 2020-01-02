@@ -11,7 +11,7 @@
     $nama_user = $_POST['nama_user'];
     $email_user = $_POST['email_user'];
     $no_hp_user = $_POST['no_hp_user'];
-    $usename_user = '@'.$_POST['username_user'];
+    $username_user = '@'.$_POST['username_user'];
     $password_user = $_POST['password_user'];
     $repassword_user = $_POST['repassword_user'];
     $hash = md5( rand(0,1000) );
@@ -46,29 +46,20 @@
     
         // $dotenv = new Dotenv\Dotenv(__DIR__);
         // $dotenv->load();
-    
+        $subject = 'Pendaftaran | Verifikasi';
+        $pesan = 'Terimakasih telah mendaftar dan bergabung dengan kami!<br>
+        Silahkan cocokkan data diri yang kamu daftarkan dengan data yang kami terima dibawah,<br> 
+        Mohon aktivasi akun anda untuk memaksimalkan fitur dari aplikasi kami.';
+        $link = 'http://localhost/GolonganD_Kelompok6/CAP/register_verify.php?email='.$email_user.'&hash='.$hash;
+      
         $email = new \SendGrid\Mail\Mail(); 
         $email->setFrom($our_email, 'Cahaya Abadi Perkasa');
-        $email->setSubject('Pendaftaran | Verifikasi');
+        $email->setSubject($subject);
         $email->addTo($email_user, $nama_user);
-        $message = '
-      
-        Terimakasih telah mendaftar dan bergabung dengan kami!
-        Silahkan cocokkan data diri yang kamu daftarkan dengan data yang kami terima dibawah, 
-        Mohon aktivasi akun anda untuk memaksimalkan fitur dari aplikasi kami.
-        
-        ------------------------
-        Your Name        : '.$nama_user.'
-        Your Username : '.$usename_user.'
-        ------------------------
-        
-        Dimohon klik link dibawah untuk mengaktifkan akunmu:
-        http://localhost/GolonganD_Kelompok6/CAP/register_verify.php?email='.$email_user.'&hash='.$hash.'
-        
-        ';
-        $email->addContent("text/plain", "$message");
+        $message = '';
+        include 'register_activation_email.php';
         $email->addContent(
-            "text/html", "<p>$message<p>"
+            "text/html", $message
         );
         // $sendgrid = new \SendGrid(getenv(SENDGRID_API_KEY));
         // $apiKey = getenv('SENDGRID_API_KEY');

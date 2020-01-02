@@ -15,9 +15,11 @@
           // We have a match, activate the account
           mysqli_query($con, "UPDATE user SET USER_ACTIVE='1' WHERE USER_EMAIL='$email_user' AND USER_HASH='$hash' AND USER_ACTIVE='0'");
           $msg = 'Akun anda telah teraktifasi, Silahkan login dan semoga hari anda menyenangkan';
+          session_destroy();
+          session_unset();
       }else{
           // No match -> invalid url or account has already been activated.
-          $msg = 'Link yang anda masukkan tidak valid atau akun anda telah teraktifasi.';
+          $msg = 'Link yang anda masukkan tidak valid atau akun anda telah teraktivasi.';
       }
                   
   }else{

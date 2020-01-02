@@ -248,6 +248,31 @@ if($_SESSION['status']!='login'){
     </div>
 </section>
 </div>
+<section id="about">
+    <div class="about-gambar">
+    <div class="about-absolute">
+    <div class="container container-fluid-md">
+        <div class="row my-5">
+            <div class="col-lg">
+                <div class="row no-gutters justify-content-center text-light">
+                    <div class="col-lg-10 col-sm-12 my-auto">
+                        <div class="card-body text-center my-auto font-m-med ml-3 mt-1">
+                            <h2>CV. Cahaya Abadi Perkasa</h2>
+                            <?php
+                            $result_adm = mysqli_query($con, "SELECT * FROM admin WHERE ADM_ID = 'ADM000001'");
+                            $data_adm = mysqli_fetch_assoc($result_adm);
+                            $deskripsi_admin = $data_adm['ADM_DESC'];
+                            ?>
+                            <h5 class="text-justify"><?=$deskripsi_admin?></h5>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+    </div>
+    </div>
+</section>
 
 <!-- Modal 1 -->
 <?php

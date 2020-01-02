@@ -62,7 +62,23 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
-          <a class="nav-item nav-link nav-custom" href="index.php#produkbtn">PRODUK <span class="sr-only">(current)</span></a>
+          <div class="dropdown">
+          <!-- FOTO PROFIL -->
+            <button class="btn btn-default dropdown-toggle" type="button" id="menu-profile" data-toggle="dropdown"><span class="nav-custom">
+            PRODUK</span>
+            </button>
+            <!-- BATAS FOTO -->
+            <div class="dropdown-menu text-left">
+              <?php
+              $result_kat = mysqli_query($con, "SELECT * FROM kategori_produk");
+              while($data_kat = mysqli_fetch_assoc($result_kat)){
+              $id_kat = $data_kat['ID_KATEGORI'];
+              $nama_kat = $data_kat['NAMA_KAT_PRODUK']; ?>
+              <a class="dropdown-item" href="index.php#<?=$id_kat?>">KATEGORI <?=$nama_kat?></a>
+              <?php }?>
+              <a href="index.php#produkbtn" class="dropdown-item">SEMUA PRODUK</a>
+            </div>
+          </div>
           <a class="nav-item nav-link nav-custom" href="index.php#carakerjabtn">CARA KERJA</a>
           <a class="nav-item nav-link nav-custom" href="index.php#portfoliobtn">PORTOFOLIO</a>
           <a class="nav-item nav-link nav-custom" href="index.php#testimonibtn">TESTIMONI</a>

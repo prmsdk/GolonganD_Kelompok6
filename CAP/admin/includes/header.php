@@ -91,7 +91,9 @@
                 </form>
               </div>
             </li>
-
+            <?php
+            if(isset($_SESSION['admin_status'])){
+            if($_SESSION['admin_status']==1){?>
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle notif-dropdown" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -148,6 +150,7 @@
                 <a class="dropdown-item text-center small text-gray-500" href="master_pesan.php">Read More Messages</a>
               </div>
             </li>
+            <?php } }?>
 
             <div class="topbar-divider d-none d-sm-block"></div>
             
