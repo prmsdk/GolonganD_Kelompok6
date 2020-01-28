@@ -130,7 +130,8 @@
           <tr>
             <!-- NAMA PRODUK, WARNA, UKURAN, BAHAN -->
             <td style="width: 30%;"><p><?php echo "$nama_produk / $jenis_warna / $nama_bahan / $jenis_ukuran";?></p></td>
-            <td style="width: 150px;"><?= $status_desain?> <?=$upload_desain?></td>
+            <td style="width: 150px;"><?= $status_desain?> <?=$upload_desain?> 
+            <?php if($status_desain == 'ADA'){ ?> <a class="badge badge-success py-2 px-3" href="../pictures/produk_desain/<?=$upload_desain?>" download>Download Desain</a> <?php } ?></td>
             <td><?= $ket_pembayaran?></td>
             <td><?= number_format($quantity, 0,".",".")?></td>
             <td>Rp. <?=number_format($sub_total, 0,".",".")?></td>
@@ -144,7 +145,12 @@
           <tr class="font-weight-bolder">
             <td class="border-0"> </td>
             <td class="text-right ">Status Pesanan : </td>
-            <td colspan="3" class="text-right " ><?=$ket_status?></td>
+            <td colspan="3" class="text-right "><?=$ket_status?></td>
+          <tr>
+          <tr class="font-weight-bolder">
+            <td class="border-0"> </td>
+            <td class="text-right ">Unduh Desain : </td>
+            <td colspan="3" class="text-right "><a href="../pictures/produk_desain/<?=$upload_desain?>" download></a></td>
           <tr>
           <tr class="font-weight-bolder">
             <td class="border-0"> </td>

@@ -5,6 +5,11 @@ $id_produk_gambar = $_GET['id_produk_gambar'];
 
     if(isset($_GET['action'])){
         if($_GET['action']=='delete'){
+        $resultgbr = mysqli_query($con, "SELECT * FROM gambar_produk WHERE GBR_ID = '$id_produk_gambar'");
+        $datagbr = mysqli_fetch_assoc($resultgbr);
+        $namagbr = $datagbr['GBR_FILE_NAME'];
+        unlink('../../pictures/produk_thumb/'.$namagbr);
+
         $result = mysqli_query($con, "DELETE FROM gambar_produk WHERE GBR_ID='$id_produk_gambar'");
         if($result){
                 header("location:../master_produk_gambar.php?pesan=sukses_delete");
@@ -20,6 +25,7 @@ $id_produk_gambar = $_POST['id_gambar'];
 $id_produk = $_POST['id_produk'];
 
 if($_FILES['gambar_produk']['name'] == null){
+        
         $query = mysqli_query ($con, "UPDATE gambar_produk SET ID_TAMPIL_PRODUK='$id_produk' WHERE GBR_ID='$id_produk_gambar'");
         if($query){
             header("location:../master_produk_gambar.php?pesan=sukses_edit");
@@ -37,6 +43,11 @@ $ukuran = $_FILES['gambar_produk']['size']; //untuk mendapatkan ukuran file yang
 $file_temporary = $_FILES['gambar_produk']['tmp_name']; //untuk mendapatkan temporary file yang di upload
     if(in_array($ekstensi,$ekstensi_boleh)===true){
         if($ukuran < 3132210 && $ukuran != 0){ 
+            $resultgbr = mysqli_query($con, "SELECT * FROM gambar_produk WHERE GBR_ID = '$id_produk_gambar'");
+            $datagbr = mysqli_fetch_assoc($resultgbr);
+            $namagbr = $datagbr['GBR_FILE_NAME'];
+            unlink('../../pictures/produk_thumb/'.$namagbr);
+
             $id = rand(0,100);
             $uniq = uniqid($id,true);
             move_uploaded_file($file_temporary, '../../pictures/produk_thumb/'.$uniq.'.'.$ekstensi); //untuk upload file
@@ -44,6 +55,9 @@ $file_temporary = $_FILES['gambar_produk']['tmp_name']; //untuk mendapatkan temp
             $query = mysqli_query ($con, "UPDATE gambar_produk SET ID_TAMPIL_PRODUK='$id_produk', GBR_FILE_NAME='$uniq.$ekstensi' WHERE GBR_ID='$id_produk_gambar'");
                 if($query){
                     header("location:../master_produk_gambar.php?pesan=sukses_edit");
+                    
+                    // $path = "C:\\xampp\htdocs\GolonganD_Kelompok6\CAP\pictures\produk_desain";
+                    // exec("EXPLORER /E,$path");
                 }else{
                     header("location:../master_produk_gambar.php?pesan=gagal_edit");
                 }

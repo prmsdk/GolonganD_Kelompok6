@@ -5,6 +5,11 @@ if(isset($_GET['id_portfolio'])){
   
   if(isset($_GET['action'])){
     if($_GET['action']=='delete'){
+      $resultport = mysqli_query($con, "SELECT * FROM portfolio WHERE ID_PORTFOLIO ='$id_portfolio'");
+      $dataport = mysqli_fetch_assoc($resultport);
+      $namaport = $dataport['GAMBAR'];
+      unlink('../../src/img/portfolio/'.$namaport);
+
       $result = mysqli_query($con, "DELETE FROM portfolio WHERE ID_PORTFOLIO='$id_portfolio'");
       if($result){
         header("location:../master_portfolio.php?pesan=sukses_delete");
@@ -45,6 +50,11 @@ if(isset($_POST['edit_portfolio'])){
     $file_temporary = $_FILES['gambar']['tmp_name']; //untuk mendapatkan temporary file yang di upload
         if(in_array($ekstensi,$ekstensi_boleh)===true){
             if($ukuran < 10132210 && $ukuran != 0){ 
+                $resultport = mysqli_query($con, "SELECT * FROM portfolio WHERE ID_PORTFOLIO ='$id_portfolio'");
+                $dataport = mysqli_fetch_assoc($resultport);
+                $namaport = $dataport['GAMBAR'];
+                unlink('../../src/img/portfolio/'.$namaport);
+
                 $id = rand(0,100);
                 $uniq = uniqid($id,true);
                 move_uploaded_file($file_temporary, '../../src/img/portfolio/'.$uniq.'.'.$ekstensi); //untuk upload file

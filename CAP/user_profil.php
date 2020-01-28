@@ -73,7 +73,7 @@ if(isset($_GET['pesan'])){
 <!-- Cover -->
       <div class="cover">
           <form action="update_cover_user.php" method="POST" enctype="multipart/form-data">
-              <img src="file_upload/<?=$cover?>" alt="background" class="w-100" style="height: 450px;">
+              <img src="pictures/user_cover/<?=$cover?>" alt="background" class="w-100" style="height: 450px;">
               <div class="btn-absolute">   
                   <a class="btn btn-light px-2" data-toggle="modal" data-target="#Modal-Cover" role="button"><i class="fa fa-edit"></i></a>   
               </div> 
@@ -83,7 +83,7 @@ if(isset($_GET['pesan'])){
       <!-- Foto -->
       <div class="foto position-relative ">
           <form action="update_fotoprofil_user.php" method="POST" enctype="multipart/form-data">
-              <img src="file_upload/<?=$profil?>" class="img-fluid" alt="foto">
+              <img src="pictures/user_profile/<?=$profil?>" class="img-fluid" alt="foto">
               <div class="btn-foto">   
                   <a class="btn btn-light px-1" data-toggle="modal" data-target="#Modal-foto-profil" role="button"><i class="fa fa-edit"></i></a>   
               </div> 
@@ -145,7 +145,7 @@ if(isset($_GET['pesan'])){
         </div>
 
         <div class="modal-body">
-        <img src="file_upload/<?=$profil?>" width="200" accept=".jpg, .png, .jpeg" class="rounded mx-auto d-block m-3">
+        <img src="pictures/user_profile/<?=$profil?>" width="200" accept=".jpg, .png, .jpeg" class="rounded mx-auto d-block m-3">
         <p>Format file .jpg/.png/.jpeg</p> <p>Ukuran Maksimum 3mb</p>
         
           <form action="update_fotoprofil_user.php" method="POST" enctype="multipart/form-data">
@@ -173,7 +173,7 @@ if(isset($_GET['pesan'])){
         </div>
 
         <div class="modal-body">
-        <img src="file_upload/<?=$cover?>" width="450" height="200" accept=".jpg, .jpeg, .png" class="rounded mx-auto d-block m-3">
+        <img src="pictures/user_cover/<?=$cover?>" width="450" height="200" accept=".jpg, .jpeg, .png" class="rounded mx-auto d-block m-3">
         <p>Format file .jpg/.png/.jpeg</p> <p>Ukuran Maksimum 3mb</p>
         
           <form action="update_cover_user.php" method="POST" enctype="multipart/form-data">

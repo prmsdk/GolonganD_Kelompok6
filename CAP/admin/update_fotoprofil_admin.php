@@ -11,9 +11,16 @@ if($_POST['post_foto_admin']) {
     $file_temporary = $_FILES['file']['tmp_name']; //untuk mendapatkan temporary file yang di upload
         if(in_array($ekstensi,$ekstensi_boleh)===true){
             if($ukuran < 3132210 && $ukuran != 0){ 
+                $resultadm = mysqli_query($con, "SELECT * FROM admin WHERE ADM_ID = '$id_admin'");
+                $dataadm = mysqli_fetch_assoc($resultadm);
+                $namaadm = $dataadm['ADM_PROFIL'];
+                if($namaadm != 'no_profil.jpg'){
+                    unlink('../pictures/admin_profile/'.$namaadm);
+                }
+
                 $id = rand(0,100);
                 $uniq = uniqid($id,true);
-                move_uploaded_file($file_temporary, 'img/profil/'.$uniq.'.'.$ekstensi); //untuk upload file
+                move_uploaded_file($file_temporary, '../pictures/admin_profile/'.$uniq.'.'.$ekstensi); //untuk upload file
                 $query = mysqli_query ($con, "UPDATE admin SET ADM_PROFIL ='$uniq.$ekstensi' WHERE ADM_ID='$id_admin'");
                     if($query) {
                         header("location:admin_profil.php?pesan=sukses_upload");

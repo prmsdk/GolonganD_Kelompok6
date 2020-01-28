@@ -5,6 +5,11 @@ if(isset($_GET['id_testimonial'])){
   
   if(isset($_GET['action'])){
     if($_GET['action']=='delete'){
+      $resulttesti = mysqli_query($con, "SELECT * FROM testimonial WHERE ID_TESTI ='$id_testimonial'");
+      $datatesti = mysqli_fetch_assoc($resulttesti);
+      $namatesti = $datatesti['TESTI_FOTO'];
+      unlink('../../src/img/testimonial/'.$namatesti);
+      
       $result = mysqli_query($con, "DELETE FROM testimonial WHERE ID_TESTI='$id_testimonial'");
       if($result){
         header("location:../master_testimonial.php?pesan=sukses_delete");
@@ -46,6 +51,11 @@ if(isset($_POST['edit_testimonial'])){
     $file_temporary = $_FILES['gambar']['tmp_name']; //untuk mendapatkan temporary file yang di upload
         if(in_array($ekstensi,$ekstensi_boleh)===true){
             if($ukuran < 3132210 && $ukuran != 0){ 
+                $resulttesti = mysqli_query($con, "SELECT * FROM testimonial WHERE ID_TESTI ='$id_testimonial'");
+                $datatesti = mysqli_fetch_assoc($resulttesti);
+                $namatesti = $datatesti['TESTI_FOTO'];
+                unlink('../../src/img/testimonial/'.$namatesti);
+
                 $id = rand(0,100);
                 $uniq = uniqid($id,true);
                 move_uploaded_file($file_temporary, '../../src/img/testimonial/'.$uniq.'.'.$ekstensi); //untuk upload file

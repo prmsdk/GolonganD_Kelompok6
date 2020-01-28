@@ -23,6 +23,8 @@
   WHEN pesanan.STATUS_PESANAN = 4 THEN 'Telah Selesai Dikerjakan'
   WHEN pesanan.STATUS_PESANAN = 5 THEN 'Sedang Dalam Pengiriman' 
   WHEN pesanan.STATUS_PESANAN = 6 THEN 'Dibatalkan'
+  WHEN pesanan.STATUS_PESANAN = 7 THEN 'Bukti TF Anda Salah'
+  WHEN pesanan.STATUS_PESANAN = 8 THEN 'Nominal Bayar Salah'
   END AS KET_STATUS
   
   FROM user, pesanan, detail_pesanan, produk 

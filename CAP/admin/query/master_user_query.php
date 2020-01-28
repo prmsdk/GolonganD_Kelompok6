@@ -2,9 +2,18 @@
 include '../includes/config.php';
 if(isset($_GET['id_user'])){
   $id_user = $_GET['id_user'];
-  $data = mysqli_query($con, "SELECT * FROM user WHERE USER_ID='$id_user'");
-  $data_user_delete = mysqli_fetch_array($data);
-  $nama_user_delete = $data_user_delete['USER_NAMA_LENGKAP'];
+
+  $resultuser = mysqli_query($con, "SELECT * FROM user WHERE USER_ID = '$id_user'");
+  $datauser = mysqli_fetch_assoc($resultuser);
+  $coveruser = $datauser['USER_COVER'];
+  if($coveruser != 'betak.jpg'){
+      unlink('pictures/user_cover/'.$coveruser);
+  }
+
+  $namauser = $datauser['USER_PROFIL'];
+  if($namauser != 'no_profil.jpg'){
+      unlink('pictures/user_profile/'.$namauser);
+  }
   
   if(isset($_GET['action'])){
     if($_GET['action']=='delete'){

@@ -75,16 +75,27 @@ if(isset($_GET['status']) AND isset($_GET['id_pesanan'])){
     }
   }else if($status == 1){
     if($_GET['param']==7){
+      $resultbuktitf = mysqli_query($con, "SELECT * FROM pesanan WHERE ID_PESANAN ='$id_pesanan'");
+      $databuktitf = mysqli_fetch_assoc($resultbuktitf);
+      $namabuktitf = $databuktitf['BUKTI_TRANSFER'];
+      unlink('../../pictures/bukti_transfer/'.$namabuktitf);
+
       $update = mysqli_query($con, "UPDATE pesanan 
       SET STATUS_PESANAN = 7,
       BUKTI_TRANSFER = NULL,
       USER_NOTIF = 0 
       WHERE ID_PESANAN = '$id_pesanan'");
-
+      
       if($update){
         header("location:../trs_detail_pesanan_admin.php?id_pesanan=$id_pesanan");
       }
+
     }else if($_GET['param']==8){
+      $resultbuktitf = mysqli_query($con, "SELECT * FROM pesanan WHERE ID_PESANAN ='$id_pesanan'");
+      $databuktitf = mysqli_fetch_assoc($resultbuktitf);
+      $namabuktitf = $databuktitf['BUKTI_TRANSFER'];
+      unlink('../../pictures/bukti_transfer/'.$namabuktitf);
+      
       $update = mysqli_query($con, "UPDATE pesanan 
       SET STATUS_PESANAN = 8,
       BUKTI_TRANSFER = NULL,
@@ -104,7 +115,7 @@ if(isset($_POST['masukkan_antrian'])){
   $id_pesanan = $_POST['id_pesanan'];
 
   $result_antrian = mysqli_query($con, "UPDATE pesanan SET
-                    ADM_ID = '$id_admin', ANTRIAN = '$antrian', STATUS_PESANAN = 2 WHERE ID_PESANAN = '$id_pesanan'");
+  ADM_ID = '$id_admin', ANTRIAN = '$antrian', STATUS_PESANAN = 2 WHERE ID_PESANAN = '$id_pesanan'");
 
   if($result_antrian){
     header("location:../trs_history_admin.php");

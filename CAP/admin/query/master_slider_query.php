@@ -5,6 +5,11 @@ $id_slider = $_GET['id_slider'];
 
 if(isset($_GET['action'])){
     if($_GET['action']=='delete'){
+    $resultslider = mysqli_query($con, "SELECT * FROM slider WHERE ID_SLIDER ='$id_slider'");
+    $dataslider = mysqli_fetch_assoc($resultslider);
+    $namaslider = $dataslider['GAMBAR'];
+    unlink('../../src/img/slider/'.$namaslider);
+
     $result = mysqli_query($con, "DELETE FROM slider WHERE ID_SLIDER='$id_slider'");
     header("location:../master_slider.php");
     }
@@ -44,12 +49,14 @@ if($_FILES['gambar']['name'] == null){
     $file_temporary = $_FILES['gambar']['tmp_name']; //untuk mendapatkan temporary file yang di upload
         if(in_array($ekstensi,$ekstensi_boleh)===true){
             if($ukuran < 3132210 && $ukuran != 0){ 
+                $resultslider = mysqli_query($con, "SELECT * FROM slider WHERE ID_SLIDER ='$id_slider'");
+                $dataslider = mysqli_fetch_assoc($resultslider);
+                $namaslider = $dataslider['GAMBAR'];
+                unlink('../../src/img/slider/'.$namaslider);
+
                 $id = rand(0,100);
                 $uniq = uniqid($id,true);
-                $file_name = '../../src/img/slider/'.$nama;
-                $myfile = fopen($file_name , 'a');
-                fclose($myfiles);
-                unlink($file_name);
+                
                 move_uploaded_file($file_temporary, '../../src/img/slider/'.$uniq.'.'.$ekstensi); //untuk upload file
                 $query = mysqli_query ($con, "UPDATE slider 
                 SET GAMBAR = '$uniq.$ekstensi',

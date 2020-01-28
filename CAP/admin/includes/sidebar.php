@@ -7,7 +7,7 @@
         <div class="sidebar-brand-icon">
           <img src="../src/img/icons/cap.png" alt="" width="40px" class="img-fluid">
         </div>
-        <div class="sidebar-brand-text mx-3">Admin CAP</div>
+        <div class="sidebar-brand-text mx-3">Admin ACP</div>
       </a>
 
       <!-- Divider -->

@@ -78,7 +78,7 @@ if(isset($_GET['pesan'])){
 <!-- Cover -->
       <div class="cover">
           <form action="update_cover_admin.php" method="POST" enctype="multipart/form-data">
-              <img src="img/profil/<?=$adm_cover?>" alt="background" class="w-100" style="height: 450px;">
+              <img src="../pictures/admin_cover/<?=$adm_cover?>" alt="background" class="w-100 img-fluid bg-dark" style="height: 450px;">
               
               <div class="btn-absolute">   
                   <a class="btn btn-light text-dark px-2" data-toggle="modal" data-target="#Modal-Cover" role="button"><i class="fa fa-edit"></i></a>   
@@ -89,7 +89,7 @@ if(isset($_GET['pesan'])){
       <!-- Foto -->
       <div class="foto position-relative ">
           <form action="update_fotoprofil_admin.php" method="POST" enctype="multipart/form-data">
-              <img src="img/profil/<?=$adm_profil?>" class="img-fluid" alt="foto">
+              <img src="../pictures/admin_profile/<?=$adm_profil?>" class="img-fluid bg-dark shadow" alt="foto">
               <div class="btn-foto">   
                   <a class="btn btn-light text-dark px-1" data-toggle="modal" data-target="#Modal-foto-profil" role="button"><i class="fa fa-edit"></i></a>   
               </div> 
@@ -149,7 +149,7 @@ if(isset($_GET['pesan'])){
         </div>
 
         <div class="modal-body">
-        <img src="img/profil/<?=$adm_cover?>" width="460" height="200" class="rounded mx-auto d-block m-3">
+        <img src="../pictures/admin_cover/<?=$adm_cover?>" width="460" height="200" class="rounded mx-auto d-block m-3">
         <p>Format file .jpg/.png/.jpeg</p> <p>Ukuran Maksimum 3mb</p>
         
           <form action="update_cover_admin.php" method="POST" enctype="multipart/form-data">
@@ -181,7 +181,7 @@ if(isset($_GET['pesan'])){
         </div>
 
         <div class="modal-body">
-        <img src="img/profil/<?=$adm_profil?>" width="200" class="rounded mx-auto d-block m-3">
+        <img src="../pictures/admin_profile/<?=$adm_profil?>" width="200" class="rounded mx-auto d-block m-3">
         <p>Format file .jpg/.png/.jpeg</p> <p>Ukuran Maksimum 3mb</p>
         
           <form action="update_fotoprofil_admin.php" method="POST" enctype="multipart/form-data">

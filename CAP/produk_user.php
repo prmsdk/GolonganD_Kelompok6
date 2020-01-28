@@ -36,12 +36,22 @@ $mod_jam = $antrian_jam%24;
 ?>
 
 <div class="container pt-2">
-    <div class="alert text-center alert-warning" role="alert">
+    <!-- <div class="alert text-center alert-warning" role="alert">
         <h4 class="alert-heading font-weight-bold">Perhatian!</h4>
-        <p class="w-75 mx-auto">Perhatikan sebelum melakukan pemesanan, kami menginformasikan bahwa transaksi online yang sedang dalam antrian dan sedang diproses saat ini sebanyak <strong><?=$row_pesanan?> Pesanan</strong> Mohon pertimbangkan terlebih dahulu sesuai kebutuhan Anda sebelum melakukan pemesanan, Terimakasih.</p>
+        <p class="w-75 mx-auto">Perhatikan sebelum melakukan pemesanan, kami menginformasikan bahwa transaksi online yang sedang dalam antrian dan sedang diproses saat ini sebanyak <strong><?php //=$row_pesanan?> Pesanan</strong> Mohon pertimbangkan terlebih dahulu sesuai kebutuhan Anda sebelum melakukan pemesanan, Terimakasih.</p>
         <hr>
-        <p class="mb-0 w-50 mx-auto">Jika anda melakukan pemesanan, Pesanan Anda diperkirakan akan dikerjakan <strong><?=intval($int_jam)?> hari <?=$mod_jam?> jam</strong> yang akan datang <strong>(<?=$antrian_jam?> jam dari sekarang)</strong></p>
-    </div>
+        <p class="mb-0 w-50 mx-auto">Jika anda melakukan pemesanan, Pesanan Anda diperkirakan akan dikerjakan <strong><?php //=intval($int_jam)?> hari <?php //=$mod_jam?> jam</strong> yang akan datang <strong>(<?php //=$antrian_jam?> jam dari sekarang)</strong></p>
+    </div> -->
+
+    <div class="alert text-center alert-success" role="alert">
+        <h4 class="alert-heading font-weight-bold">Contact Person!</h4>
+        <p class="w-75 mx-auto"> 
+        Telepon : <i class="fas fa-phone mr-2"></i>(0331) 412990
+        <br>Whatsapp : <i class="fab fa-whatsapp mr-2"></i> 083847008485
+        <br>Silahkan Hubungi Nomor diatas jika ingin melakukan pesanan langsung atau Nego harga.
+        </p>
+    </div> 
+    
     <!-- MENAMPILKAN SLIDE SHOW GAMBAR PRODUK -->
         <div class="row">
             <div class="col-lg-6">

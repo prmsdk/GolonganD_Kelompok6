@@ -32,7 +32,7 @@ if(!isset($_SESSION['admin_login'])){
           </div>
           <div class="form-group">
             <div><label for="ket_produk" class="font-m-med">Keterangan Harga</label></div>
-            <input type="file" id="ket_produk" name="ket_produk" required>
+            <input type="file" accept=".htm" id="ket_produk" name="ket_produk" required>
           </div>
 
           <div id="select_isi" class="">

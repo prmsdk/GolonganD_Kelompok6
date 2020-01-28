@@ -1,4 +1,7 @@
 <?php
+  if(isset($_SESSION['status'])){
+    header("location:../index.php");
+  }
   if(isset($_SESSION['admin_login'])){
     $username = $_SESSION['username'];
   $data = mysqli_query($con, "SELECT * FROM admin WHERE ADM_USERNAME = '$username'");
@@ -20,7 +23,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Admin - CAP</title>
+  <title>Admin - ACP</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
