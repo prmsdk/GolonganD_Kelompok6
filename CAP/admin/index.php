@@ -20,25 +20,25 @@
   $tgl_5hari = date('Y-m-d', $tanggal_5hari);
   $tgl_6hari = date('Y-m-d', $tanggal_6hari);
 
-  $result_today = mysqli_query($con, "SELECT COUNT(*) AS TANGGAL_NOW FROM pesanan WHERE TANGGAL_PESANAN LIKE '$tanggal_now%'");
+  $result_today = mysqli_query($con, "SELECT COUNT(*) AS TANGGAL_NOW FROM pesanan WHERE (STATUS_PESANAN = 3 OR STATUS_PESANAN = 4 OR STATUS_PESANAN = 5) AND TANGGAL_PESANAN LIKE '$tanggal_now%'");
   $data_today = mysqli_fetch_assoc($result_today);
   // ====================== 1hari
-  $result_1hari = mysqli_query($con, "SELECT COUNT(*) AS TANGGAL_1HARI FROM pesanan WHERE TANGGAL_PESANAN LIKE '$tgl_1hari%'");
+  $result_1hari = mysqli_query($con, "SELECT COUNT(*) AS TANGGAL_1HARI FROM pesanan WHERE (STATUS_PESANAN = 3 OR STATUS_PESANAN = 4 OR STATUS_PESANAN = 5) AND TANGGAL_PESANAN LIKE '$tgl_1hari%'");
   $data_1hari = mysqli_fetch_assoc($result_1hari);
   // ====================== 2hari
-  $result_2hari = mysqli_query($con, "SELECT COUNT(*) AS TANGGAL_2HARI FROM pesanan WHERE TANGGAL_PESANAN LIKE '$tgl_2hari%'");
+  $result_2hari = mysqli_query($con, "SELECT COUNT(*) AS TANGGAL_2HARI FROM pesanan WHERE (STATUS_PESANAN = 3 OR STATUS_PESANAN = 4 OR STATUS_PESANAN = 5) AND TANGGAL_PESANAN LIKE '$tgl_2hari%'");
   $data_2hari = mysqli_fetch_assoc($result_2hari);
   // ====================== 3hari
-  $result_3hari = mysqli_query($con, "SELECT COUNT(*) AS TANGGAL_3HARI FROM pesanan WHERE TANGGAL_PESANAN LIKE '$tgl_3hari%'");
+  $result_3hari = mysqli_query($con, "SELECT COUNT(*) AS TANGGAL_3HARI FROM pesanan WHERE (STATUS_PESANAN = 3 OR STATUS_PESANAN = 4 OR STATUS_PESANAN = 5) AND TANGGAL_PESANAN LIKE '$tgl_3hari%'");
   $data_3hari = mysqli_fetch_assoc($result_3hari);
   // ====================== 4hari
-  $result_4hari = mysqli_query($con, "SELECT COUNT(*) AS TANGGAL_4HARI FROM pesanan WHERE TANGGAL_PESANAN LIKE '$tgl_4hari%'");
+  $result_4hari = mysqli_query($con, "SELECT COUNT(*) AS TANGGAL_4HARI FROM pesanan WHERE (STATUS_PESANAN = 3 OR STATUS_PESANAN = 4 OR STATUS_PESANAN = 5) AND TANGGAL_PESANAN LIKE '$tgl_4hari%'");
   $data_4hari = mysqli_fetch_assoc($result_4hari);
   // ====================== 5hari
-  $result_5hari = mysqli_query($con, "SELECT COUNT(*) AS TANGGAL_5HARI FROM pesanan WHERE TANGGAL_PESANAN LIKE '$tgl_5hari%'");
+  $result_5hari = mysqli_query($con, "SELECT COUNT(*) AS TANGGAL_5HARI FROM pesanan WHERE (STATUS_PESANAN = 3 OR STATUS_PESANAN = 4 OR STATUS_PESANAN = 5) AND TANGGAL_PESANAN LIKE '$tgl_5hari%'");
   $data_5hari = mysqli_fetch_assoc($result_5hari);
   // ====================== 6hari
-  $result_6hari = mysqli_query($con, "SELECT COUNT(*) AS TANGGAL_6HARI FROM pesanan WHERE TANGGAL_PESANAN LIKE '$tgl_6hari%'");
+  $result_6hari = mysqli_query($con, "SELECT COUNT(*) AS TANGGAL_6HARI FROM pesanan WHERE (STATUS_PESANAN = 3 OR STATUS_PESANAN = 4 OR STATUS_PESANAN = 5) AND TANGGAL_PESANAN LIKE '$tgl_6hari%'");
   $data_6hari = mysqli_fetch_assoc($result_6hari);
   // AKHIR QUERY CHART BATANG
   
@@ -53,7 +53,7 @@
   $djml_produk_bulan = mysqli_fetch_assoc($rjml_produk_bulan);
 
   // JUMLAH OMSET BULAN INI
-  $romset_bulan = mysqli_query($con, "SELECT SUM(TOTAL_HARGA) as TOT_OMSET FROM pesanan WHERE (STATUS_PESANAN = 4 OR STATUS_PESANAN = 5) AND TANGGAL_PESANAN LIKE '$bulan_now%'");
+  $romset_bulan = mysqli_query($con, "SELECT SUM(TOTAL_HARGA) as TOT_OMSET FROM pesanan WHERE (STATUS_PESANAN = 3 OR STATUS_PESANAN = 4 OR STATUS_PESANAN = 5) AND TANGGAL_PESANAN LIKE '$bulan_now%'");
   $domset_bulan = mysqli_fetch_assoc($romset_bulan);
 
   if(isset($_SESSION['admin_login'])){
@@ -216,7 +216,8 @@
                 <?php
                 $result_produk_populer = mysqli_query($con, "SELECT DISTINCT detail_pesanan.ID_PRODUK, SUM(JUMLAH_PRODUK) as TOT_PEMBELIAN_PRODUK, NAMA_PRODUK
                 FROM detail_pesanan, pesanan, produk
-                WHERE pesanan.TANGGAL_PESANAN LIKE '$bulan_now%' AND
+                WHERE (STATUS_PESANAN = 4 OR STATUS_PESANAN = 5) AND 
+                pesanan.TANGGAL_PESANAN LIKE '$bulan_now%' AND
                 pesanan.ID_PESANAN = detail_pesanan.ID_PESANAN AND
                 produk.ID_PRODUK = detail_pesanan.ID_PRODUK
                 GROUP BY NAMA_PRODUK 
@@ -224,7 +225,8 @@
 
                 $result_jumlah_populer = mysqli_query($con, "SELECT DISTINCT detail_pesanan.ID_PRODUK, SUM(JUMLAH_PRODUK) as TOT_PEMBELIAN_PRODUK, NAMA_PRODUK
                 FROM detail_pesanan, pesanan, produk
-                WHERE pesanan.TANGGAL_PESANAN LIKE '$bulan_now%' AND
+                WHERE (STATUS_PESANAN = 4 OR STATUS_PESANAN = 5) AND 
+                pesanan.TANGGAL_PESANAN LIKE '$bulan_now%' AND
                 pesanan.ID_PESANAN = detail_pesanan.ID_PESANAN AND
                 produk.ID_PRODUK = detail_pesanan.ID_PRODUK
                 GROUP BY NAMA_PRODUK 

@@ -14,9 +14,9 @@ if(isset($_GET['id_pesanan'])){
 $update_notif = mysqli_query($con, "UPDATE pesanan SET USER_NOTIF = 1 WHERE ID_PESANAN = '$id_pesanan'");
 
 $result_pesanan = mysqli_query($con, "SELECT
-user.USER_NAMA_LENGKAP,	
+user.USER_NAMA_LENGKAP, pesanan.BUKTI_TRANSFER,
 cast(pesanan.TANGGAL_PESANAN as date) as TANGGAL_PESANAN, 
-pesanan.TOTAL_HARGA, 
+pesanan.TOTAL_HARGA, pesanan.ID_REKENING,
 
 CASE 
 WHEN pesanan.STATUS_PESANAN = 1 THEN 'Sedang Menunggu Bukti Transfer' 
@@ -25,12 +25,7 @@ WHEN pesanan.STATUS_PESANAN = 3 THEN 'Sedang Dalam Proses'
 WHEN pesanan.STATUS_PESANAN = 4 THEN 'Telah Selesai Dikerjakan'
 WHEN pesanan.STATUS_PESANAN = 5 THEN 'Sedang Dalam Pengiriman' 
 WHEN pesanan.STATUS_PESANAN = 6 THEN 'Dibatalkan'
-END AS KET_STATUS,
-
-CASE 
-WHEN pesanan.KET_PEMBAYARAN = 2 THEN 'Uang Muka'
-WHEN pesanan.KET_PEMBAYARAN = 1 THEN 'Lunas'
-END AS KET_PEMBAYARAN
+END AS KET_STATUS
 
 FROM pesanan,user
 
@@ -44,6 +39,8 @@ $tgl_psn = $data_pesanan['TANGGAL_PESANAN'];
 $total_harga = $data_pesanan['TOTAL_HARGA'];
 $ket_pembayaran = $data_pesanan['KET_PEMBAYARAN'];
 $ket_status = $data_pesanan['KET_STATUS'];
+$bukti_tf = $data_pesanan['BUKTI_TRANSFER'];
+$id_bank = $data_pesanan['ID_REKENING'];
 ?>
 
 <div class="container">
@@ -67,6 +64,7 @@ $ket_status = $data_pesanan['KET_STATUS'];
           <tr>
             <th>Daftar Produk</th>
             <th>Desain</th>
+            <th>Ket Pembayaran</th>
             <th>Jumlah Produk</th>
             <th>Sub Total</th>
           </tr>
@@ -85,7 +83,13 @@ $ket_status = $data_pesanan['KET_STATUS'];
           produk.NAMA_PRODUK, 
           warna.JENIS_WARNA, 
           ukuran.JENIS_UKURAN, 
-          bahan.NAMA_BAHAN
+          bahan.NAMA_BAHAN,
+          detail_pesanan.KET_PEMBAYARAN AS KET_BAYAR,
+
+          CASE 
+          WHEN detail_pesanan.KET_PEMBAYARAN = 2 THEN 'Uang Muka'
+          WHEN detail_pesanan.KET_PEMBAYARAN = 1 THEN 'Lunas'
+          END AS KET_PEMBAYARAN
 
           FROM detail_pesanan, produk, warna, ukuran, bahan
           
@@ -104,11 +108,13 @@ $ket_status = $data_pesanan['KET_STATUS'];
             $jenis_warna = $data_detail['JENIS_WARNA'];
             $jenis_ukuran = $data_detail['JENIS_UKURAN'];
             $nama_bahan = $data_detail['NAMA_BAHAN'];
+            $ket_pembayaran = $data_detail['KET_PEMBAYARAN'];
           ?>
           <tr>
             <!-- NAMA PRODUK, WARNA, UKURAN, BAHAN -->
-            <td><?php echo "$nama_produk / $jenis_warna / $nama_bahan / $jenis_ukuran";?></td>
+            <td style="width: 30%;"><p><?php echo "$nama_produk / $jenis_warna / $nama_bahan / $jenis_ukuran";?></p></td>
             <td><?= $status_desain?></td>
+            <td><?= $ket_pembayaran?></td>
             <td><?= number_format($quantity, 0,".",".")?></td>
             <td>Rp. <?=number_format($sub_total, 0,".",".")?>,-</td>
           </tr>
@@ -116,20 +122,28 @@ $ket_status = $data_pesanan['KET_STATUS'];
           <tr class="font-weight-bolder">
             <td class="border-0"> </td>
             <td class="text-right ">Total Harga : </td>
-            <td colspan="2" class="text-right " >Rp. <?=number_format($total_harga, 0,".",".")?>,-</td>
+            <td colspan="3" class="text-right " >Rp. <?=number_format($total_harga, 0,".",".")?>,-</td>
           <tr>
           <tr class="font-weight-bolder">
             <td class="border-0"> </td>
             <td class="text-right ">Status Pesanan : </td>
-            <td colspan="2" class="text-right " ><?=$ket_status?></td>
+            <td colspan="3" class="text-right " ><?=$ket_status?></td>
           <tr>
           <tr class="font-weight-bolder">
             <td class="border-0"> </td>
-            <td class="text-right ">Ket Bayar : </td>
-            <td colspan="2" class="text-right " ><?=$ket_pembayaran?></td>
+            <td class="text-right ">Bukti TF : </td>
+            <td colspan="3" class="text-right " >
+            <?php 
+            if($bukti_tf != null){ ?>
+            <img src="pictures/bukti_transfer/<?=$bukti_tf?>" alt="">
+            <?php }else{ 
+            echo "<a href='verif_pembayaran.php?id_pesanan=$id_pesanan&id_bank=$id_bank' class='btn btn-primary px-2'>Upload Bukti TF</a>";
+            } ?>
+            </td>
           <tr>
         </tbody>
       </table>
+
     </div>
   </div>
 </div>

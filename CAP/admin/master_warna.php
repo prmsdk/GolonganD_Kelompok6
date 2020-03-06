@@ -132,15 +132,15 @@ if(isset($_GET['pesan'])){
                   <form class="font-m-light col-11 mt-3" action="query/master_warna_query.php" method="post">
                     <div class="form-group">
                       <label for="jenis_warna" class="font-m-med">Jenis Warna</label>
-                      <input type="text" class="form-control" id="jenis_warna" name="jenis_warna" aria-describedby="usernameHelp" placeholder="Masukkan Jenis warna" required>
+                      <input type="text" class="form-control" id="jenis_warna" name="jenis_warna" aria-describedby="usernameHelp" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" placeholder="Masukkan Jenis warna" required>
                     </div>
                     <div class="form-group">
                       <label for="harga_warna" class="font-m-med">Deskripsi Warna</label>
-                      <textarea name="desc_warna" id="desc_warna" class="form-control" placeholder="Masukkan Deskripsi Warna . ." required></textarea>
+                      <textarea name="desc_warna" id="desc_warna" class="form-control" placeholder="Masukkan Deskripsi Warna . ." pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" minlenght="5" required></textarea>
                     </div>
                     <div class="form-group">
                       <label for="harga_warna" class="font-m-med">Harga Warna</label>
-                      <input type="text" class="form-control" id="harga_warna" name="harga_warna" aria-describedby="usernameHelp" placeholder="Masukkan Harga Warna" required>
+                      <input type="number" class="form-control" id="harga_warna" name="harga_warna" aria-describedby="usernameHelp" placeholder="Masukkan Harga Warna" required>
                     </div>
                   </div>
                 <div class="modal-footer text-center">

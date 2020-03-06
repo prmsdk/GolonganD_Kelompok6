@@ -31,10 +31,11 @@
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/sb-admin-2.css">
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet"/>
 
 </head>
 
-<body id="page-top">
+<body id="page-top" class="text-dark">
 
   <script src="vendor/chart.js/Chart.min.js"></script>
 

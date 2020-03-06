@@ -4,8 +4,8 @@
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-file-alt"></i>
+        <div class="sidebar-brand-icon">
+          <img src="../src/img/icons/cap.png" alt="" width="40px" class="img-fluid">
         </div>
         <div class="sidebar-brand-text mx-3">Admin CAP</div>
       </a>
@@ -42,6 +42,7 @@
             <a class="collapse-item" href="trs_antrian.php">Antrian</a>
             <a class="collapse-item" href="trs_history_admin.php">History</a>
             <a class="collapse-item" href="trs_notifikasi_admin.php">Notifikasi</a>
+            <a class="collapse-item" href="master_nego.php">Nego</a>
           </div>
         </div>
       </li>
@@ -88,7 +89,7 @@
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Form Detail:</h6>
             <a class="collapse-item" href="master_produk_gambar.php">Gambar Produk</a>
-            <a class="collapse-item" href="master_bahan_satuan.php">Satuan Bahan</a>
+            <a class="collapse-item" href="master_satuan.php">Satuan Bahan</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Form Kategori:</h6>
             <a class="collapse-item" href="kategori_produk.php">Kategori Produk</a>

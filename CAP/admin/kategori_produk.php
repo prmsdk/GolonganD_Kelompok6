@@ -127,14 +127,7 @@ if(isset($_GET['pesan'])){
                   <form action="query/master_kategori_produk_query.php" method="POST">
                     <div class="form-group">
                       <label>Nama Kategori</label>
-                      <input type="text" name="nama_kategori" class="form-control" placeholder="Masukkan Nama Kategori" required>
-                    </div>
-                    <div class="custom-file">
-                      <label class="d-block">Gambar Kategori</label>
-                      <input type="file" id="customFile">
-                      <label for="customFile"></label><br>
-                      <label>320 x 240px</label><br>
-                      <label>Tidak lebih dari 3mb</label>
+                      <input type="text" name="nama_kategori" class="form-control" pattern="[^()/><\][\\\x22,;|]+" title="Masukkan data yang valid" placeholder="Masukkan Nama Kategori" required>
                     </div>
                 <div class="modal-footer text-center">
                     <input type="submit" class="btn btn-primary" name="tambah_kategori_produk" value="Upload">

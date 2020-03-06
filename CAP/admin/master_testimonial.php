@@ -153,15 +153,15 @@ if(isset($_GET['pesan'])){
               <form action="query/master_testimonial_query.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                   <label for="nama" class="font-m-med">Nama</label>
-                  <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama" required>
+                  <input type="text" class="form-control" id="nama" name="nama" pattern="[^0-9()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" placeholder="Masukkan Nama" required>
                 </div>
                 <div class="form-group">
                   <label for="profesi" class="font-m-med">Profesi</label>
-                  <input type="text" class="form-control" id="profesi" name="profesi" placeholder="Masukkan Profesi" required>
+                  <input type="text" class="form-control" id="profesi" name="profesi" placeholder="Masukkan Profesi" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" required>
                 </div>
                 <div class="form-group">
                   <label for="deskripsi" class="font-m-med">Deskripsi</label>
-                  <textarea type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="Masukkan Deskripsi" required></textarea>
+                  <textarea type="text" class="form-control" id="deskripsi" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" minlenght="10" name="deskripsi" placeholder="Masukkan Deskripsi" required></textarea>
                 </div>
                 <div class="form-group">
                   <div class="custom-file">

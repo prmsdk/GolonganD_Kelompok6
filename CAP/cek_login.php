@@ -1,9 +1,11 @@
 <?php
-
+    // Memulai session
     session_start();
 
+    // Memanggil koneksi (dari folder includes)
     include 'includes/config.php';
 
+    // merekam value dari post modal login
     $username = $_POST['username-user'];
     $password = md5($_POST['password-user']);
     var_dump($username);
@@ -15,7 +17,7 @@
     $row = mysqli_num_rows($data);
 
     if($row > 0){
-        $_SESSION['id_user'] = $id_user;
+         $_SESSION['id_user'] = $id_user;
         $_SESSION['username'] = $username;
         $_SESSION['status'] = 'login';
         header("location:index.php?pesan=loginberhasil");

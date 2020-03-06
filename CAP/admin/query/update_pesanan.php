@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../includes/config.php';
 if(isset($_GET['status']) AND isset($_GET['id_pesanan'])){
   $status = $_GET['status'];
@@ -28,5 +29,18 @@ if(isset($_GET['status']) AND isset($_GET['id_pesanan'])){
     if($update){
       header("location:../trs_detail_pesanan_admin.php?id_pesanan=$id_pesanan");
     }
+  }
+}
+
+if(isset($_POST['masukkan_antrian'])){
+  $antrian = $_POST['antrian'];
+  $id_admin = $_SESSION['id_admin'];
+  $id_pesanan = $_POST['id_pesanan'];
+
+  $result_antrian = mysqli_query($con, "UPDATE pesanan SET
+                    ADM_ID = '$id_admin', ANTRIAN = '$antrian', STATUS_PESANAN = 2 WHERE ID_PESANAN = '$id_pesanan'");
+
+  if($result_antrian){
+    header("location:../trs_history_admin.php");
   }
 }

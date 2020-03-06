@@ -117,9 +117,15 @@ html {
 
 /* ======= CARA KERJA ======= */
 
-#carakerja, #testimoni{
+#carakerja{
     background-color: #25A8E0;
     padding: 40px 0;
+}
+
+#testimoni{
+    padding: 40px 0;
+    background-image: url("../img/icons/testi.jpg");
+    background-size: cover;
 }
 
 #carakerja h2, #testimoni h2{
@@ -335,6 +341,7 @@ iframe{
 .testi .carousel-indicators{
 	top: 320px;
 }
+
 @media (min-width: 320px) and (max-width: 640px) {
 	.testi .carousel-inner .carousel-item p{
 		font-size: 14px;
@@ -348,4 +355,10 @@ iframe{
  	.testi .carousel-indicators{
 		top: 400px;
 	}
+}
+
+#footer li a{
+    list-style: none;
+    color: #fff;
+    text-decoration: none;
 }

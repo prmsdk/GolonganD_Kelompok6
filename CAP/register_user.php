@@ -31,7 +31,7 @@
               <form class="pt-3" method="post" action="register_query.php">
                 <div class="form-group">
                   <label for="nama_user" class="font-m-semi">Nama Lengkap</label>
-                  <input type="text" class="form-control" id="nama_user" name="nama_user" placeholder="Masukkan Nama Lengkap Anda" required pattern="[a-zA-Z]{1,}" title="Masukkan hanya huruf" autofocus>
+                  <input type="text" class="form-control" id="nama_user" name="nama_user" placeholder="Masukkan Nama Lengkap Anda" required pattern="[a-zA-Z -]{1,}" title="Masukkan hanya huruf" autofocus>
                 </div>
                 <div class="form-group">
                   <label for="email_user" class="font-m-semi">Alamat Email</label>

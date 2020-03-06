@@ -150,11 +150,11 @@ if(isset($_GET['pesan'])){
               <form action="query/master_portfolio_query.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                   <label for="judul" class="font-m-med">Judul</label>
-                  <input type="text" class="form-control" id="judul" name="judul" placeholder="Masukkan Judul" required>
+                  <input type="text" class="form-control" id="judul" name="judul" placeholder="Masukkan Judul" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" required>
                 </div>
                 <div class="form-group">
                   <label for="deskripsi" class="font-m-med">Deskripsi</label>
-                  <textarea type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="Masukkan Deskripsi" required></textarea>
+                  <textarea type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="Masukkan Deskripsi" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" minlenght="50" required></textarea>
                 </div>
                 <div class="form-group">
                   <div class="custom-file mt-3">

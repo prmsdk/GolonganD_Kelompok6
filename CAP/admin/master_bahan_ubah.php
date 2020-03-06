@@ -20,7 +20,6 @@ if(isset($_GET['id_bahan'])){
   $data_bahan = mysqli_fetch_assoc($data);
   $nama_bahan = $data_bahan['NAMA_BAHAN']; 
   $id_satuan_bahan = $data_bahan['ID_SATUAN'];
-  $isi_bahan = $data_bahan['ISI_PER_BAHAN'];
   $harga_bahan = $data_bahan['HARGA_BAHAN'];
   $kategori_bahan_id = $data_bahan['ID_KAT_BAHAN'];
   $kategori_bahan = $data_bahan['NAMA_KAT_BAHAN'];
@@ -38,7 +37,7 @@ if(isset($_GET['id_bahan'])){
           <input type="hidden" name="id_bahan" id="id" value="<?=$id_bahan?>">
           <div class="form-group">
             <label for="nama_bahan" class="font-m-med">Nama bahan</label>
-            <input type="text" class="form-control" id="nama_bahan" name="nama_bahan" value="<?=$nama_bahan?>" placeholder="Masukkan Nama Bahan" required>
+            <input type="text" class="form-control" id="nama_bahan" name="nama_bahan" value="<?=$nama_bahan?>" pattern="[^()/><\][\\\x22,;|]+" title="Masukkan data yang valid" placeholder="Masukkan Nama Bahan" required>
           </div>
           <div class="form-group">
             <label for="satuan_bahan">Satuan Bahan</label>
@@ -56,12 +55,8 @@ if(isset($_GET['id_bahan'])){
             </select>
           </div>
           <div class="form-group">
-            <label for="isi_per_bahan" class="font-m-med">Isi per Bahan</label>
-            <input type="text" class="form-control" id="isi_per_bahan" name="isi_per_bahan" value="<?=$isi_bahan?>" placeholder="Masukkan Isi per Bahan" required>
-          </div>
-          <div class="form-group">
             <label for="harga_bahan" class="font-m-med">Harga bahan</label>
-            <input type="text" class="form-control" id="harga_bahan" name="harga_bahan" value="<?=$harga_bahan?>" placeholder="Masukkan Harga bahan" required>
+            <input type="number" class="form-control" id="harga_bahan" name="harga_bahan" value="<?=$harga_bahan?>" pattern="[^()/><\][\\\x22,;|]+" title="Masukkan data yang valid" placeholder="Masukkan Harga bahan" required>
           </div>
           <div class="form-group">
             <label for="kategori_bahan">Kategori bahan</label>

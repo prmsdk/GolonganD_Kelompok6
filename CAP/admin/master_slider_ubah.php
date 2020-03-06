@@ -31,15 +31,15 @@ if(isset($_GET['id_slider'])){
           <input type="hidden" name="id_slider" id="id" value="<?=$id_slider?>">
           <div class="form-group">
             <label>Tombol</label>
-            <input type="text" name="tombol" class="form-control" placeholder="Masukkan Tombol" value="<?=$tombol?>" required>
+            <input type="text" name="tombol" class="form-control" placeholder="Masukkan Tombol" value="<?=$tombol?>" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" required>
           </div>
           <div class="form-group">
             <label>Link</label>
-            <input type="text" name="link" class="form-control" placeholder="Masukkan link" value="<?=$link?>" required>
+            <input type="text" name="link" class="form-control" placeholder="Masukkan link" value="<?=$link?>" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" required>
           </div>
           <div class="form-group">
             <label>Deskripsi</label>
-            <textarea type="text" name="deskripsi" class="form-control" placeholder="Masukkan deskripsi" required><?=$desc?></textarea>
+            <textarea type="text" name="deskripsi" class="form-control" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" minlenght="10" placeholder="Masukkan deskripsi" required><?=$desc?></textarea>
             <label>Tuliskan &lt;br&gt; untuk Enter</label>
           </div>
           <div class="form-group">

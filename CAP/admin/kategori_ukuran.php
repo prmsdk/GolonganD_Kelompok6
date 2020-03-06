@@ -130,7 +130,7 @@ if(isset($_GET['pesan'])){
                   <form action="query/master_kategori_ukuran_query.php" method="POST">
                     <div class="form-group">
                       <label>Nama Kategori</label>
-                      <input type="text" name="nama_kategori_ukuran" class="form-control" placeholder="Masukkan Nama Kategori Ukuran" required>
+                      <input type="text" name="nama_kategori_ukuran" class="form-control" placeholder="Masukkan Nama Kategori Ukuran" pattern="[^()/><\][\\\x22,;|]+" title="Masukkan data yang valid" required>
                     </div>
                 <div class="modal-footer text-center">
                     <input type="submit" class="btn btn-primary" name="tambah_kategori_ukuran" value="Simpan">

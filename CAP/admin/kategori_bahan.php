@@ -129,7 +129,7 @@ if(isset($_GET['pesan'])){
               <form action="query/master_kategori_bahan_query.php" method="POST">
                 <div class="form-group">
                   <label>Nama Kategori Bahan</label>
-                  <input type="text" name="nama_kategori_bahan" class="form-control" placeholder="Masukkan Nama Kategori Bahan" required>
+                  <input type="text" name="nama_kategori_bahan" class="form-control" placeholder="Masukkan Nama Kategori Bahan" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" required>
                 </div>
                 <div class="modal-footer text-center">
                     <input type="submit" class="btn btn-primary" name="tambah_kategori_bahan" value="Simpan">

@@ -23,16 +23,47 @@ if(!isset($_SESSION['admin_login'])){
           <form action="query/master_produk_query.php" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label for="nama_produk" class="font-m-med">Nama produk</label>
-            <input type="text" class="form-control" id="nama_produk" name="nama_produk" aria-describedby="usernameHelp" placeholder="Masukkan Nama produk" required>
+            <input type="text" class="form-control" id="nama_produk" name="nama_produk" aria-describedby="usernameHelp" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" placeholder="Masukkan Nama produk" required>
           </div>
           <div class="form-group">
             <label for="desc_produk" class="font-m-med">Deskripsi produk</label>
-            <textarea name="desc_produk" id="desc_produk" class="form-control" placeholder="Masukkan Deskripsi Produk . ." required></textarea>
+            <textarea name="desc_produk" id="desc_produk" class="form-control" minlenght="50" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" placeholder="Masukkan Deskripsi Produk . ." required></textarea>
           </div>
           <div class="form-group">
             <div><label for="ket_produk" class="font-m-med">Keterangan Harga</label></div>
             <input type="file" id="ket_produk" name="ket_produk" required>
           </div>
+
+          <div id="select_isi" class="">
+            <div class="form-group">
+              <label for="kategori_produk">Isi Produk</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" id="isi_produk1" name="isi_produk" value="0" required checked>
+                <label class="form-check-label" for="isi_produk1">
+                  Tidak Butuh Isi
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" id="isi_produk2" name="isi_produk" value="1" required>
+                <label class="form-check-label" for="isi_produk2">
+                  Butuh Isi Custom
+                </label>
+              </div>
+            </div>
+            <div id="1" class="box_isi">
+              <div class="form-group">
+                <label for="isi_custom" class="font-m-med">Batas Isi produk</label>
+                <input type="text" pattern="[^()><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" class="form-control w-75" id="isi_custom" name="isi_custom" placeholder="Isikan syarat pengisian pengguna terhadap isi produk">
+                <label class="small text-muted">Contoh : 1/2/3/6/12</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="min_pemesanan" class="font-m-med">Minimum Pemesanan</label>
+            <input type="number" min="1" class="form-control w-75" id="min_pemesanan" name="min_pemesanan" placeholder="Masukkan minimum pemesanan produk" required>
+          </div>
+
           <div class="form-group">
             <label for="kategori_produk">Kategori Produk</label>
             <select class="form-control w-50" id="kategori_produk" name="kategori_produk">

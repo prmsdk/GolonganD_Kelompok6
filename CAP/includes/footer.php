@@ -11,27 +11,41 @@
         <div class="col-lg-2 font-m-semi pt-5">
           <h5>Tentang</h5>
           <ul class="list-unstyled font-m-light">
-            <li>Tentang Kami</li>
-            <li>Syarat & Ketentuan</li>
-            <li>Kebijakan Privasi</li>
+            <li><a href="404.php">Tentang Kami</a></li>
+            <li><a href="404.php">Syarat & Ketentuan</a></li>
+            <li><a href="404.php">Kebijakan Privasi</a></li>
           </ul>
         </div>
         <div class="col-lg-3 font-m-semi pt-5">
           <h5>Bantuan</h5>
           <ul class="list-unstyled font-m-light">
-            <li>Pertanyaan Umum</li>
-            <li>Hubungi Kami</li>
+            <li><a href="404.php">Pertanyaan Umum</a></li>
+            <li><a href="index.php#contact">Hubungi Kami</a></li>
           </ul>
         </div>
       </div>
       <div class="row copyright">
         <div class="col-lg text-center">
-          <p>&copy Copyright 2019 ~ <span style="color: #F69322;">Pe</span><span style="color: #25A8E0;">Takon</span></p>
+          <p>&copy Copyright 2020 ~ <span style="color: #F69322;">Pe</span><span style="color: #25A8E0;">Takon</span></p>
         </div>
       </div>
   </footer>
 
   </div>
+
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/5dfd8cf127773e0d8329f4cc/default';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
+  <!--End of Tawk.to Script-->
 
   
   <?php require 'login_user.php';?>

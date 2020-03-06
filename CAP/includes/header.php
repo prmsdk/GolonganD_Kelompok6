@@ -21,6 +21,9 @@
 <body>
   
     <header id="info">
+        <p class="m-0 p-2 pr-3 float-left text-right" style="z-index:19; color:#fff">
+            Buka Senin - Sabtu Jam 09.000 - 20.00 <span style="color: #a1a1a1">(Hari Minggu dan Hari Besar Libur)</span>
+        </p>
         <p class="m-0 p-2 pr-3 text-light text-right">
             <img src="src/img/icons/telepon.png" height="20" alt="telepon">
             (0331) 412990
@@ -89,9 +92,10 @@
                       <label class="dropdown-item bg-primary text-white pb-2"><?=$data_user['USER_USERNAME']?></label>
                       <a class="dropdown-item" href="user_profil.php">Setting Profile</a>
                       <a class="dropdown-item" href="notifikasi_user.php">Notifikasi</a>
+                      <a class="dropdown-item" href="nego_user.php">Nego</a>
                       <a class="dropdown-item" href="history_user.php">History</a>
-                      <a class="dropdown-item" href="#">Bantuan</a>
-                      <a class="dropdown-item" href="#">Keamanan</a>
+                      <a class="dropdown-item" href="404.php">Bantuan</a>
+                      <a class="dropdown-item" href="keamanan_password.php">Keamanan</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="logout.php">Logout</a>
                     </div>

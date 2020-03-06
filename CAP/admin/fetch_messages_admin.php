@@ -7,7 +7,7 @@
   // $con = mysqli_connect("localhost", "root", "", "notif");
 
   $query = "SELECT * FROM messages
-  ORDER BY messages.MSG_TGL DESC LIMIT 6";
+  ORDER BY messages.MSG_TGL DESC LIMIT 4";
   $result = mysqli_query($con, $query);
 
   $output = '';

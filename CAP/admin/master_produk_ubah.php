@@ -22,6 +22,9 @@ if(isset($_GET['id_produk'])){
     $desc_produk = $select_produk['DESC_TAMPIL_PRODUK'];
     $ket_produk = $select_produk['KET_TAMPIL_PRODUK'];
     $status_produk = $select_produk['STATUS_TAMPIL_PRODUK'];
+    $isi_produk = $select_produk['STATUS_ISI'];
+    $isi_custom = $select_produk['BATAS_ISI'];
+    $min_pemesanan = $select_produk['MIN_JUMLAH'];
     $kat_produk = $select_produk['ID_KATEGORI'];
   }
 
@@ -43,17 +46,48 @@ if(isset($_GET['id_produk'])){
           <input type="hidden" name="id_produk" id="id_produk" value="<?=$id_produk?>">
           <div class="form-group">
             <label for="nama_produk" class="font-m-med">Nama produk</label>
-            <input type="text" class="form-control" id="nama_produk" name="nama_produk" aria-describedby="usernameHelp" placeholder="Masukkan Nama produk" value="<?=$nama_produk?>" required>
+            <input type="text" class="form-control" id="nama_produk" name="nama_produk" aria-describedby="usernameHelp" placeholder="Masukkan Nama produk" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" value="<?=$nama_produk?>" required>
           </div>
           <div class="form-group">
             <label for="desc_produk" class="font-m-med">Deskripsi produk</label>
-            <textarea name="desc_produk" id="desc_produk" class="form-control" placeholder="Masukkan Deskripsi Produk . ." required><?=$desc_produk?></textarea>
+            <textarea name="desc_produk" id="desc_produk" class="form-control" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" minlenght="50" placeholder="Masukkan Deskripsi Produk . ." required><?=$desc_produk?></textarea>
           </div>
           <div class="form-group text-center">
             <div><label for="ket_produk" class="font-m-med">Keterangan Harga</label></div>
             <div class="mt-2 mb-3 overflow-auto"><?php include "../src/file/$ket_produk";?></div>
             <input accept=".htm" type="file" id="ket_produk" name="ket_produk">
           </div>
+
+          <div id="select_isi" class="">
+            <div class="form-group">
+              <label for="kategori_produk">Isi Produk</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" id="isi_produk1" name="isi_produk" value="0" required <?php if($isi_produk==0){echo "checked";}?>>
+                <label class="form-check-label" for="isi_produk1">
+                  Tidak Butuh Isi
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" id="isi_produk2" name="isi_produk" value="1" required <?php if($isi_produk==1){echo "checked";}?>>
+                <label class="form-check-label" for="isi_produk2">
+                  Butuh Isi Custom
+                </label>
+              </div>
+            </div>
+            <div id="1" class="box_isi">
+              <div class="form-group">
+                <label for="isi_custom" class="font-m-med">Batas Isi produk</label>
+                <input type="text" class="form-control w-75" id="isi_custom" name="isi_custom" placeholder="Isikan syarat pengisian pengguna terhadap isi produk" pattern="[^()><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" value="<?=$isi_custom?>">
+                <label class="small text-muted">Contoh : 1/2/3/6/12</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="min_pemesanan" class="font-m-med">Minimum Pemesanan</label>
+            <input type="number" min="1" class="form-control w-75" id="min_pemesanan" name="min_pemesanan" value="<?=$min_pemesanan?>" placeholder="Masukkan minimum pemesanan produk" required>
+          </div>
+
           <div class="form-group">
             <label for="kategori_produk">Kategori Produk</label>
             <select class="form-control w-50" id="kategori_produk" name="kategori_produk">

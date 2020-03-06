@@ -33,11 +33,11 @@ if(isset($_GET['id_portfolio'])){
           <input type="hidden" name="id_portfolio" id="id" value="<?=$id_portfolio?>">
           <div class="form-group">
             <label for="judul" class="font-m-med">Judul</label>
-            <input type="text" class="form-control" id="judul" name="judul" value="<?=$judul?>" placeholder="Masukkan Judul" required>
+            <input type="text" class="form-control" id="judul" name="judul" value="<?=$judul?>" placeholder="Masukkan Judul" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" required>
           </div>
           <div class="form-group">
             <label for="deskripsi" class="font-m-med">Deskripsi</label>
-            <textarea type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="Masukkan Deskripsi" required><?=$deskripsi?></textarea>
+            <textarea type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="Masukkan Deskripsi" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" minlenght="50" required><?=$deskripsi?></textarea>
           </div>
           <div class="form-group">
             <img class="img-fluid rounded" src="../src/img/portfolio/<?=$gambar?>" alt="<?=$id_slider?>">

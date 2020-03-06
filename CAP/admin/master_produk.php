@@ -86,7 +86,6 @@ if(isset($_GET['pesan'])){
             <th>No.</th>
             <th>Nama Produk</th>
             <th>Desc Produk</th>
-            <th>Ket Harga</th>
             <th>Nama Kategori</th>
             <th>Detail</th>
             <th>Aksi</th>
@@ -107,7 +106,6 @@ if(isset($_GET['pesan'])){
             <td class="text-center" style="width:50px"><?=$i?></td>
             <td><?=$nama_produk?></td>
             <td class="text-justify"><?=$desc_produk?></td>
-            <td><?=$ket_produk?></td>
             <td><?=$kategori_produk?></td>
             <td style="width: 67px;" class="text-center">
               <a href="master_produk_detail.php?id_produk=<?=$id_produk?>" class="btn btn-success btn-circle btn-sm">

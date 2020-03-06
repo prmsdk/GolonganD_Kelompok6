@@ -10,11 +10,16 @@
     <link rel="stylesheet" href="src/css/fontawesome-all.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
         
+
+    <link rel="icon" type="image/png" href="src/img/icons/cap.png">
     <title>Cahaya Abadi Perkasa</title>
 </head>
 <body>
   
     <header id="info">
+        <p class="m-0 p-2 pr-3 float-left text-right" style="z-index:19; color:#fff">
+            Buka Senin - Sabtu Jam 09.000 - 20.00 <span style="color: #a1a1a1">(Hari Minggu dan Hari Besar Libur)</span>
+        </p>
         <p class="m-0 p-2 pr-3 text-light text-right">
             <img src="src/img/icons/telepon.png" height="20" alt="telepon">
             (0331) 412990
@@ -99,19 +104,24 @@
                       </div>
                   </div>
                   <!-- BATAS BELL -->
-                  <a class="nav-item nav-link icon-custom" style="color:#25A8E0;" type="button" data-toggle="modal" data-target="#cart"><i class="fa fa-shopping-cart fa-1x"></i></a>
+                  <!-- KERANJANG -->
+                  <a class="nav-item nav-link icon-custom" id="cart-modal" style="color:#25A8E0;" type="button" data-toggle="modal" data-target="#cart"><i class="fa fa-shopping-cart fa-1x"></i></a>
+                  <!-- BATAS KERANJANG -->
                   <div class="dropdown">
+                  <!-- FOTO PROFIL -->
                     <button class="btn btn-default dropdown-toggle" type="button" id="menu-profile" data-toggle="dropdown">
                     <img class="rounded-circle img-circle" width="25" src="file_upload/<?=$data_user['USER_PROFIL']?>">
                       <span class="caret"></span>
                     </button>
+                    <!-- BATAS FOTO -->
                     <div class="dropdown-menu dropdown-menu-right text-right">
                       <label class="dropdown-item bg-primary text-white pb-2"><?=$data_user['USER_USERNAME']?></label>
                       <a class="dropdown-item" href="user_profil.php">Setting Profile</a>
                       <a class="dropdown-item" href="notifikasi_user.php">Notifikasi</a>
+                      <a class="dropdown-item" href="nego_user.php">Nego</a>
                       <a class="dropdown-item" href="history_user.php">History</a>
-                      <a class="dropdown-item" href="#">Bantuan</a>
-                      <a class="dropdown-item" href="#">Keamanan</a>
+                      <a class="dropdown-item" href="404.php">Bantuan</a>
+                      <a class="dropdown-item" href="keamanan_password.php">Keamanan</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="logout.php">Logout</a>
                     </div>

@@ -10,8 +10,7 @@ var shoppingCart = (function() {
   
   // Constructor
   function Item(produk, price, var2, var3, var4, banyak, count, idproduk, warna) {
-    this.idproduk = document.getElementById('id_produk').value;;
-    this.produk = document.getElementById('nama_produk').value;;
+    this.produk = document.getElementById('nama_produk').value;
     this.price = Number(document.getElementById('var1').value);
     this.var2 = Number(document.getElementById('var2').value);
     this.var3 = Number(document.getElementById('var3').value);
@@ -23,7 +22,7 @@ var shoppingCart = (function() {
     this.idwarna = $('input[name=pilihwarna]:checked').val();
     this.bahan = $('input[name=pilihbahan]:checked').attr('namabahan');
     this.idbahan = $('input[name=pilihbahan]:checked').val();
-    this.satbahan = $('input[name=pilihbahan]:checked').attr('placeholder');
+    this.isibahan = Number(document.getElementById('isibahan').value);
     this.idukuran = $('input[name=pilihukuran]:checked').val();
     this.ukuran = $('input[name=pilihukuran]:checked').attr('namaukuran');
     this.desain = $('input[name=pilihdesain]:checked').val();
@@ -32,7 +31,17 @@ var shoppingCart = (function() {
     this.namadesain = '';
     }else{
     this.namadesain = document.getElementById('namadesain').value;   
-    } 
+    }
+    
+    this.catatan = '';
+    if(($('input[name=pilihwarna]:checked').val() === 'WRN000002') || ($('input[name=pilihwarna]:checked').val() === 'WRN000004') || ($('input[name=pilihwarna]:checked').val() === 'WRN000005')){
+      this.catatan += document.getElementById('cttwarna1').value;
+    }
+
+    if($('input[name=pilihwarna]:checked').val() === 'WRN000002'){
+      this.catatan += ", ";
+      this.catatan += document.getElementById('cttwarna2').value;
+    }
   }
   
   // Save cart
@@ -55,7 +64,7 @@ var shoppingCart = (function() {
   var obj = {};
   
   // Add to cart
-  obj.addItemToCart = function(produk, price, var2, var3, var4, count, banyak, idproduk, warna, bahan, ukuran, satbahan) {
+  obj.addItemToCart = function(produk, price, var2, var3, var4, count, banyak, idproduk, warna, bahan, ukuran, isibahan, catatan) {
     for(var item in cart) {
       if(cart[item].produk === produk) {
         cart[item].count ++;
@@ -65,7 +74,7 @@ var shoppingCart = (function() {
       }
     }
 
-    var item = new Item(produk, price, var2, var3, var4, count, banyak, idproduk, warna, bahan, ukuran, satbahan);
+    var item = new Item(produk, price, var2, var3, var4, count, banyak, idproduk, warna, bahan, ukuran, isibahan, catatan);
     cart.push(item);
     saveCart();
   }
@@ -85,6 +94,10 @@ var shoppingCart = (function() {
           cart[item].count --;
           if(cart[item].count === 0) {
             cart.splice(item, 1);
+            var jumlah_keranjang = Number($('.total-count').html());
+            if(jumlah_keranjang == 1){
+              $('#bayarba').attr('disabled','disabled');
+            }
           }
           break;
         }
@@ -100,6 +113,10 @@ var shoppingCart = (function() {
         break;
       }
     }
+    var jumlah_keranjang = Number($('.total-count').html());
+    if(jumlah_keranjang == 1){
+      $('#bayarba').attr('disabled','disabled');
+    }
     saveCart();
   }
 
@@ -107,6 +124,7 @@ var shoppingCart = (function() {
   obj.clearCart = function() {
     cart = [];
     saveCart();
+    $('#bayarba').attr('disabled','disabled');
   }
 
   // Count cart 
@@ -162,19 +180,31 @@ var shoppingCart = (function() {
 // Triggers / Events
 // ***************************************** 
 // Add item
-$('#form_pemesanan').on("submit",function(event){
-  event.preventDefault();
-  // var produk = $(this).data('produk');
-  // var price = Number($(this).data('price'));
-  var count = Number($(this).data('count'));
-  // var idproduk = $(this).data('idproduk');
-  // var warna = $(this).data('warna');
-  // var bahan = $(this).data('bahan');
-  // var ukuran = $(this).data('ukuran');
-  // var banyak = Number($(this).data('banyak'));
-  shoppingCart.addItemToCart( var2, var3, var4, count);
-  displayCart();
-  location.href="http://localhost/GolonganD_Kelompok6/CAP/index.php";
+$('.add-to-cart').click(function() {
+  $('#form_pemesanan').on("submit",function(event){
+    event.preventDefault();
+    // var produk = $(this).data('produk');
+    // var price = Number($(this).data('price'));
+    var count = Number($(this).data('count'));
+    // var idproduk = $(this).data('idproduk');
+    // var warna = $(this).data('warna');
+    // var bahan = $(this).data('bahan');
+    // var ukuran = $(this).data('ukuran');
+    // var banyak = Number($(this).data('banyak'));
+    shoppingCart.addItemToCart( var2, var3, var4, count);
+    displayCart();
+    location.href="http://localhost/GolonganD_Kelompok6/CAP/index.php";
+  });
+});
+
+$('.add-to-bayar').click(function() {
+  $('#form_pemesanan').on("submit",function(event){
+    event.preventDefault();
+    var count = Number($(this).data('count'));
+    shoppingCart.addItemToCart( var2, var3, var4, count);
+    displayCart();
+    location.href="http://localhost/GolonganD_Kelompok6/CAP/pembayaran.php";
+  });
 });
 
 // Clear items
@@ -193,7 +223,7 @@ function displayCart() {
       + "</tr>";
   for(var i in cartArray) {
     output += "<tr>"
-      + "<td>" + cartArray[i].produk +  " / " + cartArray[i].warna + " / " + cartArray[i].bahan + " / " + cartArray[i].ukuran + "</td>" 
+      + "<td>" + cartArray[i].produk +  " / " + cartArray[i].warna + " / "  + cartArray[i].bahan + " / " + cartArray[i].ukuran + "</td>" 
       + "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-produk=" + cartArray[i].produk + ">-</button>"
       + "<input type='number' id='jumlah' class='item-count form-control' data-produk='" + cartArray[i].produk + "' value='" + cartArray[i].count + "'>"
       + "<button class='plus-item btn btn-primary input-group-addon' data-produk=" + cartArray[i].produk + ">+</button></div></td>"
@@ -215,9 +245,11 @@ function displayCart() {
       + "<input type='hidden' name='pilihukuran[]' value='" + cartArray[i].idukuran + "'>"
       + "<input type='hidden' name='pilihdesain[]' value='" + cartArray[i].desain + "'>"
       + "<input type='hidden' name='namadesain[]' value='" + cartArray[i].namadesain + "'>"
-      + "<input type='hidden' name='ket_pembayaran' value='" + cartArray[i].ketpembayaran + "'>"
+      + "<input type='hidden' name='isibahan[]' value='" + cartArray[i].isibahan + "'>"
+      + "<input type='hidden' name='ket_pembayaran[]' value='" + cartArray[i].ketpembayaran + "'>"
       + "<input type='hidden' name='jumlah_produk[]' value='" + cartArray[i].count + "'>"
       + "<input type='hidden' name='sub_total[]' value='" + cartArray[i].total + "'>"
+      + "<input type='hidden' name='catatan[]' value='" + cartArray[i].catatan + "'>"
       + "<input type='hidden' name='total' value='" + shoppingCart.totalCart() + "'>";
   }
   $('.show-cart').html(output);
@@ -227,11 +259,15 @@ function displayCart() {
 }
 
 // Disable buttony
-if(cart.lenght === null){
-  $('#bayarba').attr('disabled','disabled');
-}else{
-  $('#bayarba').removeAttr('disabled');
-}
+$('#cart-modal').click(function() {
+  var jumlah_keranjang = Number($('.total-count').html());
+  console.log(jumlah_keranjang);
+  if(jumlah_keranjang == 0){
+    $('#bayarba').attr('disabled','disabled');
+  }else{
+    $('#bayarba').removeAttr('disabled');
+  }
+});
 
 // Delete item button
 

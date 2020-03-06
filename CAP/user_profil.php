@@ -20,6 +20,56 @@ if (isset($_SESSION['id_user'])){
 ?>
 
 <div class="container container-fluid-md pb-4">
+<div class="w-100 justify-content-center">
+<?php
+if(isset($_GET['pesan'])){
+  if($_GET['pesan']=='gagal_upload'){
+      echo '<div id="alert-login" class="alert alert-danger text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert">
+              Upload Foto Anda <strong>Gagal!</strong> 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+  }else if($_GET['pesan']=='ukuran_besar'){
+    echo '<div id="alert-login" class="alert alert-danger text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert">
+              Ukuran Foto Anda <strong>Terlalu Besar!</strong> 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+            
+  }else if($_GET['pesan']=='ekstensi_salah'){
+    echo '<div id="alert-login" class="alert alert-danger text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert">
+              Ekstensi File yang anda masukkan <strong>Salah!</strong> 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+  }else if($_GET['pesan']=='gagal_update'){
+    echo '<div id="alert-login" class="alert alert-danger text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert">
+              Ekstensi File yang anda masukkan <strong>Salah!</strong> 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+  }else if($_GET['pesan']=='sukses_upload'){
+      echo '<div id="alert-login" class="alert alert-success text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert">
+              Anda <strong>Berhasil!</strong> mengunggah foto!.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>';
+  }else if($_GET['pesan']=='sukses_update'){
+    echo '<div id="alert-login" class="alert alert-success text-center alert-dismissible fade show position-absolute alert-login mx-auto" role="alert">
+            Anda <strong>Berhasil!</strong> mengunggah foto!.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>';
+  }
+}
+?>
+</div>
 <!-- Cover -->
       <div class="cover">
           <form action="update_cover_user.php" method="POST" enctype="multipart/form-data">
@@ -92,7 +142,7 @@ if (isset($_SESSION['id_user'])){
         </div>
 
         <div class="modal-body">
-        <img src="file_upload/<?=$profil?>" width="200" class="rounded mx-auto d-block m-3">
+        <img src="file_upload/<?=$profil?>" width="200" accept=".jpg, .png, .jpeg" class="rounded mx-auto d-block m-3">
         <p>Format file .jpg/.png/.jpeg</p> <p>Ukuran Maksimum 3mb</p>
         
           <form action="update_fotoprofil_user.php" method="POST" enctype="multipart/form-data">
@@ -120,7 +170,7 @@ if (isset($_SESSION['id_user'])){
         </div>
 
         <div class="modal-body">
-        <img src="file_upload/<?=$cover?>" width="450" height="200" class="rounded mx-auto d-block m-3">
+        <img src="file_upload/<?=$cover?>" width="450" height="200" accept=".jpg, .jpeg, .png" class="rounded mx-auto d-block m-3">
         <p>Format file .jpg/.png/.jpeg</p> <p>Ukuran Maksimum 3mb</p>
         
           <form action="update_cover_user.php" method="POST" enctype="multipart/form-data">

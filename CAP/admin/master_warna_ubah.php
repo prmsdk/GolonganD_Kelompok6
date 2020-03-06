@@ -30,15 +30,15 @@ if(isset($_GET['id_warna'])){
         <input type="hidden" name="id_warna" id="id" value="<?=$id_warna?>">
         <div class="form-group">
           <label for="jenis_warna" class="font-m-med">Jenis Warna</label>
-          <input type="text" class="form-control" id="jenis_warna" name="jenis_warna" value="<?=$jenis_warna?>" placeholder="Masukkan Jenis warna" required>
+          <input type="text" class="form-control" id="jenis_warna" name="jenis_warna" value="<?=$jenis_warna?>" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" placeholder="Masukkan Jenis warna" required>
         </div>
         <div class="form-group">
           <label for="harga_warna" class="font-m-med">Deskripsi Warna</label>
-          <textarea name="desc_warna" id="desc_warna" class="form-control" placeholder="Masukkan Deskripsi Warna . ." required><?=$desc_warna?></textarea>
+          <textarea name="desc_warna" id="desc_warna" class="form-control" placeholder="Masukkan Deskripsi Warna . ." pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" minlenght="5" required><?=$desc_warna?></textarea>
         </div>
         <div class="form-group">
           <label for="harga_warna" class="font-m-med">Harga Warna</label>
-          <input type="text" class="form-control" id="harga_warna" name="harga_warna" value="<?=$harga_warna?>" placeholder="Masukkan Harga warna" required>
+          <input type="number" class="form-control" id="harga_warna" name="harga_warna" value="<?=$harga_warna?>" placeholder="Masukkan Harga warna" required>
         </div>
         <div class="modal-footer text-center">
           <input type="submit" class="btn btn-primary" name="edit_warna" value="Simpan">

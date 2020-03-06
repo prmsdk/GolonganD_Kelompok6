@@ -136,11 +136,11 @@ if(isset($_GET['pesan'])){
                   <form class="font-m-light col-11 mt-3" action="query/master_ukuran_query.php" method="post">
                     <div class="form-group">
                       <label for="jenis_ukuran" class="font-m-med">Jenis Ukuran</label>
-                      <input type="text" class="form-control" id="jenis_ukuran" name="jenis_ukuran" aria-describedby="usernameHelp" placeholder="Masukkan Jenis Ukuran" required>
+                      <input type="text" class="form-control" id="jenis_ukuran" name="jenis_ukuran" aria-describedby="usernameHelp" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" placeholder="Masukkan Jenis Ukuran" required>
                     </div>
                     <div class="form-group">
                       <label for="harga_ukuran" class="font-m-med">Harga Ukuran</label>
-                      <input type="text" class="form-control" id="harga_ukuran" name="harga_ukuran" aria-describedby="usernameHelp" placeholder="Masukkan Harga Ukuran" required>
+                      <input type="text" class="form-control" id="harga_ukuran" name="harga_ukuran" aria-describedby="usernameHelp" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" placeholder="Masukkan Harga Ukuran" required>
                     </div>
                     <div class="form-group">
                       <label for="kategori_ukuran">Kategori Ukuran</label>

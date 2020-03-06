@@ -34,15 +34,15 @@ if(isset($_GET['id_testimonial'])){
           <input type="hidden" name="id_testi" id="id" value="<?=$id_testi?>">
           <div class="form-group">
             <label for="nama" class="font-m-med">Nama</label>
-            <input type="text" class="form-control" id="nama" name="nama" value="<?=$nama_testi?>" placeholder="Masukkan Nama" required>
+            <input type="text" class="form-control" id="nama" name="nama" value="<?=$nama_testi?>" placeholder="Masukkan Nama" pattern="[^0-9()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" required>
           </div>
           <div class="form-group">
             <label for="profesi" class="font-m-med">Profesi</label>
-            <input type="text" class="form-control" id="profesi" name="profesi" value="<?=$profesi_testi?>" placeholder="Masukkan Profesi" required>
+            <input type="text" class="form-control" id="profesi" name="profesi" value="<?=$profesi_testi?>" placeholder="Masukkan Profesi" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" required>
           </div>
           <div class="form-group">
             <label for="deskripsi" class="font-m-med">Deskripsi</label>
-            <textarea type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="Masukkan Deskripsi" required><?=$deskripsi_testi?></textarea>
+            <textarea type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="Masukkan Deskripsi" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" minlenght="10" required><?=$deskripsi_testi?></textarea>
           </div>
           <div class="form-group">
             <img class="img-fluid rounded" src="../src/img/testimonial/<?=$gambar_testi?>" alt="<?=$id_testi?>">
