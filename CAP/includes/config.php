@@ -1,5 +1,11 @@
 <?php
-    define('DB_HOST', 'localhost');
+//define berfungsi untuk memberikan nilai pada suatu variabel yang akan digunakan pada program yang dibuat
+//define sama dengan variabel, perbedaannya hanya terletak pada penulisan dan cara bacanya
+//variable ditulis dengan $variabel = ...., sedangkan define ditulis dengan cara define('..','..')
+//pada variable jika ada nama yg sama maka yg dibaca yg terakhir
+//pada define jika ada nama yg sama yg dibaca yg pertama
+
+    define('DB_HOST', 'localhost'); 
     define('DB_USER','root');
     define('DB_PASS' ,'');
     define('DB_NAME', 'db_cap');
@@ -25,7 +31,7 @@
     // sehingga menjadi 0006
     $angka_baru = str_repeat("0", $panjang_angka - strlen($angka+1)).($angka+1);
     
-    // menggabungkan kode dengan nilang angka baru
+    // menggabungkan kode dengan nilai angka baru
     $id_baru = $kode.$angka_baru;
     
     return $id_baru;
