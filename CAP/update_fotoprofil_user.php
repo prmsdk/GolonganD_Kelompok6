@@ -11,9 +11,16 @@ if($_POST['post_profile']) {
     $file_temporary = $_FILES['file']['tmp_name']; //untuk mendapatkan temporary file yang di upload
         if(in_array($ekstensi,$ekstensi_boleh)===true){
             if($ukuran < 3132210 && $ukuran != 0){ 
+                $resultuser = mysqli_query($con, "SELECT * FROM user WHERE USER_ID = '$id_user'");
+                $datauser = mysqli_fetch_assoc($resultuser);
+                $namauser = $datauser['USER_PROFIL'];
+                if($namauser != 'no_profil.jpg'){
+                    unlink('pictures/user_profile/'.$namauser);
+                }
+
                 $id = rand(0,100);
                 $uniq = uniqid($id,true);
-                move_uploaded_file($file_temporary, 'file_upload/'.$uniq.'.'.$ekstensi); //untuk upload file
+                move_uploaded_file($file_temporary, 'pictures/user_profile/'.$uniq.'.'.$ekstensi); //untuk upload file
                 // $query = mysqli_query ($con, "SELECT * FROM user");
                 $query = mysqli_query ($con, "UPDATE user SET USER_PROFIL='$uniq.$ekstensi' WHERE USER_ID='$id_user'");
                     if($query) {

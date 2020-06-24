@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(isset($_SESSION['admin_login'])){
+  header("location:admin/index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +18,11 @@
         
 
     <link rel="icon" type="image/png" href="src/img/icons/cap.png">
+
     <title>Cahaya Abadi Perkasa</title>
+
+    <title>Abadi Cahaya Perkasa</title>
+
 </head>
 <body>
   
@@ -56,20 +66,35 @@
   <div class="container-fluid-lg">
   <header id="navbar">
     <nav id="logo" class="m-0 navbar navbar-expand-lg navbar-dark nav-tr">
-      <a class="navbar-brand logo" href="#slidercontainer" style="color:#F69322;">CAHAYA ABADI PERKASA</a>
+      <a class="navbar-brand logo" href="#slidercontainer" style="color:#F69322;">ABADI CAHAYA PERKASA</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
-          <a class="nav-item nav-link nav-custom" href="index.php#produkbtn">PRODUK <span class="sr-only">(current)</span></a>
+          <div class="dropdown">
+          <!-- FOTO PROFIL -->
+            <button class="btn btn-default dropdown-toggle" type="button" id="menu-profile" data-toggle="dropdown"><span class="nav-custom">
+            PRODUK</span>
+            </button>
+            <!-- BATAS FOTO -->
+            <div class="dropdown-menu text-left">
+              <?php
+              $result_kat = mysqli_query($con, "SELECT * FROM kategori_produk");
+              while($data_kat = mysqli_fetch_assoc($result_kat)){
+              $id_kat = $data_kat['ID_KATEGORI'];
+              $nama_kat = $data_kat['NAMA_KAT_PRODUK']; ?>
+              <a class="dropdown-item" href="index.php#<?=$id_kat?>">KATEGORI <?=$nama_kat?></a>
+              <?php }?>
+              <a href="index.php#produkbtn" class="dropdown-item">SEMUA PRODUK</a>
+            </div>
+          </div>
           <a class="nav-item nav-link nav-custom" href="index.php#carakerjabtn">CARA KERJA</a>
           <a class="nav-item nav-link nav-custom" href="index.php#portfoliobtn">PORTOFOLIO</a>
           <a class="nav-item nav-link nav-custom" href="index.php#testimonibtn">TESTIMONI</a>
-          <a class="nav-item nav-link nav-custom" href="index.php#contact">CONTACT US</a>
+          <a class="nav-item nav-link nav-custom" href="index.php#contact">HUBUNGI KAMI</a>
           <?php
               error_reporting(0);
-              session_start();
               if(isset($_SESSION['id_user'])){
                 $id_user = $_SESSION['id_user'];
               
@@ -106,11 +131,14 @@
                   <!-- BATAS BELL -->
                   <!-- KERANJANG -->
                   <a class="nav-item nav-link icon-custom" id="cart-modal" style="color:#25A8E0;" type="button" data-toggle="modal" data-target="#cart"><i class="fa fa-shopping-cart fa-1x"></i></a>
+
+                  <a class="nav-item nav-link icon-custom" id="cart-modal" style="color:#25A8E0;" type="button" data-toggle="modal" data-target="#cart"><i class="fa fa-shopping-cart fa-1x"></i><span id="jumlah_keranjang" class="badge badge-danger badge-counter total-count ml-1"></span></a>
+
                   <!-- BATAS KERANJANG -->
                   <div class="dropdown">
                   <!-- FOTO PROFIL -->
                     <button class="btn btn-default dropdown-toggle" type="button" id="menu-profile" data-toggle="dropdown">
-                    <img class="rounded-circle img-circle" width="25" src="file_upload/<?=$data_user['USER_PROFIL']?>">
+                    <img class="rounded-circle img-circle" width="25" src="pictures/user_profile/<?=$data_user['USER_PROFIL']?>">
                       <span class="caret"></span>
                     </button>
                     <!-- BATAS FOTO -->

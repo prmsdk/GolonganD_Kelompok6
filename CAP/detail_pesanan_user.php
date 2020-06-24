@@ -14,9 +14,15 @@ if(isset($_GET['id_pesanan'])){
 $update_notif = mysqli_query($con, "UPDATE pesanan SET USER_NOTIF = 1 WHERE ID_PESANAN = '$id_pesanan'");
 
 $result_pesanan = mysqli_query($con, "SELECT
+
 user.USER_NAMA_LENGKAP, pesanan.BUKTI_TRANSFER,
 cast(pesanan.TANGGAL_PESANAN as date) as TANGGAL_PESANAN, 
 pesanan.TOTAL_HARGA, pesanan.ID_REKENING,
+
+user.USER_NAMA_LENGKAP, pesanan.BUKTI_TRANSFER, pesanan.ANTRIAN,
+cast(pesanan.TANGGAL_PESANAN as date) as TANGGAL_PESANAN, 
+pesanan.TOTAL_HARGA, pesanan.ID_REKENING, pesanan.STATUS_PESANAN,
+
 
 CASE 
 WHEN pesanan.STATUS_PESANAN = 1 THEN 'Sedang Menunggu Bukti Transfer' 
@@ -25,6 +31,10 @@ WHEN pesanan.STATUS_PESANAN = 3 THEN 'Sedang Dalam Proses'
 WHEN pesanan.STATUS_PESANAN = 4 THEN 'Telah Selesai Dikerjakan'
 WHEN pesanan.STATUS_PESANAN = 5 THEN 'Sedang Dalam Pengiriman' 
 WHEN pesanan.STATUS_PESANAN = 6 THEN 'Dibatalkan'
+
+WHEN pesanan.STATUS_PESANAN = 7 THEN 'Bukti TF Anda Salah'
+WHEN pesanan.STATUS_PESANAN = 8 THEN 'Nominal Bayar Salah'
+
 END AS KET_STATUS
 
 FROM pesanan,user
@@ -37,13 +47,16 @@ $data_pesanan = mysqli_fetch_assoc($result_pesanan);
 $nama_user = $data_pesanan['USER_NAMA_LENGKAP'];
 $tgl_psn = $data_pesanan['TANGGAL_PESANAN'];
 $total_harga = $data_pesanan['TOTAL_HARGA'];
-$ket_pembayaran = $data_pesanan['KET_PEMBAYARAN'];
+$status_pesanan = $data_pesanan['STATUS_PESANAN'];
 $ket_status = $data_pesanan['KET_STATUS'];
 $bukti_tf = $data_pesanan['BUKTI_TRANSFER'];
 $id_bank = $data_pesanan['ID_REKENING'];
+
+$antrian = $data_pesanan['ANTRIAN'];
+
 ?>
 
-<div class="container">
+<div class="container-fluid">
   <form action="transaksi_query.php" method="post">
   <div class="card m-5 shadow">
     <div class="card-header text-center text-light bg-primary">
@@ -74,10 +87,11 @@ $id_bank = $data_pesanan['ID_REKENING'];
           $result_detail = mysqli_query($con, "SELECT 
           detail_pesanan.JUMLAH_PRODUK, 
           detail_pesanan.SUB_TOTAL, 
+          detail_pesanan.UPLOAD_DESAIN,
 
           CASE
-          WHEN detail_pesanan.STATUS_DESAIN = 1 THEN 'ADA'
-          WHEN detail_pesanan.STATUS_DESAIN = 0 THEN 'TIDAK ADA'
+          WHEN detail_pesanan.STATUS_DESAIN = 0 THEN 'ADA'
+          WHEN detail_pesanan.STATUS_DESAIN = 1 THEN 'TIDAK ADA'
           END AS STATUS_DESAIN,
           
           produk.NAMA_PRODUK, 
@@ -104,6 +118,7 @@ $id_bank = $data_pesanan['ID_REKENING'];
             $quantity = $data_detail['JUMLAH_PRODUK'];
             $sub_total = $data_detail['SUB_TOTAL'];
             $status_desain = $data_detail['STATUS_DESAIN'];
+            $upload_desain = $data_detail['UPLOAD_DESAIN'];
             $nama_produk = $data_detail['NAMA_PRODUK'];
             $jenis_warna = $data_detail['JENIS_WARNA'];
             $jenis_ukuran = $data_detail['JENIS_UKURAN'];
@@ -113,7 +128,11 @@ $id_bank = $data_pesanan['ID_REKENING'];
           <tr>
             <!-- NAMA PRODUK, WARNA, UKURAN, BAHAN -->
             <td style="width: 30%;"><p><?php echo "$nama_produk / $jenis_warna / $nama_bahan / $jenis_ukuran";?></p></td>
+
             <td><?= $status_desain?></td>
+
+            <td><?= $status_desain?><br><?=$upload_desain?></td>
+
             <td><?= $ket_pembayaran?></td>
             <td><?= number_format($quantity, 0,".",".")?></td>
             <td>Rp. <?=number_format($sub_total, 0,".",".")?>,-</td>
@@ -128,6 +147,13 @@ $id_bank = $data_pesanan['ID_REKENING'];
             <td class="border-0"> </td>
             <td class="text-right ">Status Pesanan : </td>
             <td colspan="3" class="text-right " ><?=$ket_status?></td>
+
+          <tr>
+          <tr class="font-weight-bolder">
+            <td class="border-0"> </td>
+            <td class="text-right ">Lama Pengerjaan : </td>
+            <td colspan="3" class="text-right " ><?=$antrian?> Jam</td>
+
           <tr>
           <tr class="font-weight-bolder">
             <td class="border-0"> </td>
@@ -135,7 +161,11 @@ $id_bank = $data_pesanan['ID_REKENING'];
             <td colspan="3" class="text-right " >
             <?php 
             if($bukti_tf != null){ ?>
+
             <img src="pictures/bukti_transfer/<?=$bukti_tf?>" alt="">
+
+            <img src="pictures/bukti_transfer/<?=$bukti_tf?>" alt="" class="img-fluid">
+
             <?php }else{ 
             echo "<a href='verif_pembayaran.php?id_pesanan=$id_pesanan&id_bank=$id_bank' class='btn btn-primary px-2'>Upload Bukti TF</a>";
             } ?>
@@ -143,6 +173,15 @@ $id_bank = $data_pesanan['ID_REKENING'];
           <tr>
         </tbody>
       </table>
+
+      
+      <div class="text-center">
+      <?php
+      if($status_pesanan == 1 || $status_pesanan == 2){
+        echo '<a href="verif_pembayaran_query.php?id_pesanan='.$id_pesanan.'&action=batal" class="btn btn-danger px-2" onclick="return confirm('."'".'Apakah anda yakin ingin membatalkan pesanan?'."'".')">Batalkan Pesanan</a>';
+      }
+      ?>
+      </div>
 
     </div>
   </div>

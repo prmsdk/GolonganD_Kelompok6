@@ -182,7 +182,10 @@ if($_SESSION['status']!='login'){
     </div>
     </div>
 </section>
-<?php }?>
+<?php }
+$result_adm = mysqli_query($con, "SELECT * FROM admin WHERE ADM_ID = 'ADM000001'");
+$data_adm = mysqli_fetch_assoc($result_adm);
+?>
 
 <div class="container">
 <section id="contact" class="pt-3 my-5 font-m-light text-center">
@@ -220,7 +223,7 @@ if($_SESSION['status']!='login'){
                 </div>
                 <div class="col-8">
                     <p>
-                    CV. CAHAYA ABADI PERKASAKarang Miuwo, Mangli, Kec. Kaliwates, Kabupaten Jember, Jawa Timur <br>68131
+                    CV. <?=$data_adm['ADM_NAMA_USAHA_ADM']?> <br> <?=$data_adm['ADM_ALAMAT']?>
                     </p>
                 </div>
             </div>
@@ -230,7 +233,7 @@ if($_SESSION['status']!='login'){
                 </div>
                 <div class="col-8">
                     <p>
-                    +62 81 249 882 52 (Hp) <br> (0331) 412990 (Telp)
+                    <?=$data_adm['ADM_NO_HP']?> (Hp) <br> <?=$data_adm['ADM_NO_TELP']?> (Telp)
                     </p>
                 </div>
             </div>
@@ -240,7 +243,7 @@ if($_SESSION['status']!='login'){
                 </div>
                 <div class="col-8">
                     <p>
-                    admin@cahayaabadi.com
+                    <?=$data_adm['ADM_EMAIL']?>
                     </p>
                 </div>
             </div>
@@ -248,6 +251,29 @@ if($_SESSION['status']!='login'){
     </div>
 </section>
 </div>
+<section id="about">
+    <div class="about-gambar">
+    <div class="about-absolute">
+    <div class="container container-fluid-md">
+        <div class="row my-5">
+            <div class="col-lg">
+                <div class="row no-gutters justify-content-center text-light">
+                    <div class="col-lg-10 col-sm-12 my-auto">
+                        <div class="card-body text-center my-auto font-m-med ml-3 mt-1">
+                            <h2>CV. <?=$data_adm['ADM_NAMA_USAHA_ADM']?></h2>
+                            <?php
+                            $deskripsi_admin = $data_adm['ADM_DESC'];
+                            ?>
+                            <h5 class="text-justify"><?=$deskripsi_admin?></h5>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+    </div>
+    </div>
+</section>
 
 <!-- Modal 1 -->
 <?php

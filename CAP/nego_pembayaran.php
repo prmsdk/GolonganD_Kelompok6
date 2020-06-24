@@ -70,8 +70,13 @@
                       <table class="table table-responsive">
                           <thead>
                             <tr class="font-weight-bolder">
+
                               <td style="width:80%;">Daftar Produk</td>
                               <td>Qty</td>
+
+                              <td style="width:75%;">Daftar Produk</td>
+                              <td style="width:auto;">Qty</td>
+
                               <td>Sub Total</td>
                             </tr>
                           </thead>
@@ -79,11 +84,19 @@
                             <tr>
                               <td><?=$produk?> / <?=$nama_warna?> / <?=$nama_bahan?> / <?=$nama_ukuran?></td>
                               <td><?=$jumlah_produk?></td>
+
                               <td><?=$harga_nego?></td>
                             </tr>
                             <tr>
                               <td class="text-right" colspan="2">Total Pembayaran :</td>
                               <td><?=$harga_nego?></td>
+
+                              <td>Rp. <?=number_format($harga_nego, 0,".",".")?></td>
+                            </tr>
+                            <tr>
+                              <td class="text-right" colspan="2">Total Pembayaran :</td>
+                              <td>Rp. <?=number_format($harga_nego, 0,".",".")?></td>
+
                             </tr>
                           </tbody>
                       </table>

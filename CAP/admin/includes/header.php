@@ -1,4 +1,7 @@
 <?php
+  if(isset($_SESSION['status'])){
+    header("location:../index.php");
+  }
   if(isset($_SESSION['admin_login'])){
     $username = $_SESSION['username'];
   $data = mysqli_query($con, "SELECT * FROM admin WHERE ADM_USERNAME = '$username'");
@@ -20,7 +23,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Admin - CAP</title>
+  <title>Admin - ACP</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -91,7 +94,9 @@
                 </form>
               </div>
             </li>
-
+            <?php
+            if(isset($_SESSION['admin_status'])){
+            if($_SESSION['admin_status']==1){?>
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle notif-dropdown" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -148,6 +153,7 @@
                 <a class="dropdown-item text-center small text-gray-500" href="master_pesan.php">Read More Messages</a>
               </div>
             </li>
+            <?php } }?>
 
             <div class="topbar-divider d-none d-sm-block"></div>
             

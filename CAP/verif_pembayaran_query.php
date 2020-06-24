@@ -18,7 +18,7 @@ if(isset($_POST['verif_pembayaran'])){
                 $uniq = uniqid($id,true);
                 move_uploaded_file($file_temporary, 'pictures/bukti_transfer/'.$uniq.'.'.$ekstensi); //untuk upload file
                 // $query = mysqli_query ($con, "SELECT * FROM user");
-                $query = mysqli_query ($con, "UPDATE pesanan SET BUKTI_TRANSFER='$uniq.$ekstensi' WHERE ID_PESANAN='$id_pesanan'");
+                $query = mysqli_query ($con, "UPDATE pesanan SET BUKTI_TRANSFER='$uniq.$ekstensi', STATUS_PESANAN = 1 WHERE ID_PESANAN='$id_pesanan'");
                     if($query) {
                         header("location:history_user.php");
                     }else{
@@ -30,4 +30,14 @@ if(isset($_POST['verif_pembayaran'])){
         }else{
             header("location:verif_pembayaran.php?id_pesanan=$id_pesanan&id_bank=$id_bank");
         }
+}
+
+if((isset($_GET['id_pesanan']))&&(isset($_GET['action']))){
+    $id_pesanan = $_GET['id_pesanan'];
+
+    $update = mysqli_query($con, "UPDATE pesanan SET STATUS_PESANAN = 6 WHERE ID_PESANAN = '$id_pesanan'");
+
+    if($update){
+        header("location:detail_pesanan_user.php?id_pesanan=$id_pesanan");
+    }
 }

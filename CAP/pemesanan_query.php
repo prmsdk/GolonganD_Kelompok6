@@ -175,6 +175,54 @@ if(isset($_POST['pemesanan_produk'])){
       }
                       // END PERULANGAN
 
+
+    date_default_timezone_set('Asia/Jakarta');
+    ini_set('date.timezone', 'Asia/Jakarta');
+
+    // $dotenv = new Dotenv\Dotenv(__DIR__);
+    // $dotenv->load();
+    $for = '';
+    
+    // PERULANGAN DETAIL PESANAN
+    for($j = 0; $j < $number; $j++){
+      $for.= '<tr>
+          <td style="padding: 10px 0 0 0; border-top: 1px dashed #aaaaaa;">
+              <!-- TWO COLUMNS -->
+              <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                  <tr>
+                      <td valign="top" class="mobile-wrapper">
+                          <!-- LEFT COLUMN -->
+                          <table cellpadding="0" cellspacing="0" border="0" width="47%" style="width: 47%;" align="left">
+                              <tr>
+                                  <td style="padding: 0 0 10px 0;">
+                                      <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                          <tr>
+                                              <td align="left" style="font-family: Arial, sans-serif; color: #333333; font-size: 16px;">'.$nama_produk[$j].' ('.$jumlah_produk[$j].')</td>
+                                          </tr>
+                                      </table>
+                                  </td>
+                              </tr>
+                          </table>
+                          <!-- RIGHT COLUMN -->
+                          <table cellpadding="0" cellspacing="0" border="0" width="47%" style="width: 47%;" align="right">
+                              <tr>
+                                  <td style="padding: 0 0 10px 0;">
+                                      <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                          <tr>
+                                              <td align="right" style="font-family: Arial, sans-serif; color: #333333; font-size: 16px;">Rp. '.number_format($sub_total[$j], 0,".",".").'</td>
+                                          </tr>
+                                      </table>
+                                  </td>
+                              </tr>
+                          </table>
+                      </td>
+                  </tr>
+              </table>
+          </td>
+      </tr>';
+      }
+                      // END PERULANGAN
+
     $message = '
     <!DOCTYPE html>
         <html>
@@ -674,6 +722,31 @@ if(isset($_POST['pemesanan_produk'])){
     $email->setSubject('Pesanan Diterima');
     $email->addTo($user_email, $user_nama);
     // $email->addContent("text/plain", "$message");
+    $email->addContent(
+        "text/html", $message
+    );
+    // $sendgrid = new \SendGrid(getenv(SENDGRID_API_KEY));
+    // $apiKey = getenv('SENDGRID_API_KEY');
+    // $sendgrid = new \SendGrid($apiKey);
+    $apiKey = SENDGRID_API_KEY;
+    $sendgrid = new \SendGrid($apiKey);
+    try {
+        $response = $sendgrid->send($email);
+        print $response->statusCode() . "\n";
+        print_r($response->headers());
+        print $response->body() . "\n";
+    } catch (Exception $e) {
+        echo 'Caught exception: '. $e->getMessage() ."\n";
+    }
+
+
+    $email = new \SendGrid\Mail\Mail(); 
+    $email->setFrom($our_email, 'Cahaya Abadi Perkasa');
+    $email->setSubject('Pesanan Diterima');
+    $email->addTo($user_email, $user_nama);
+    // $email->addContent("text/plain", "$message");
+    $message = '';
+    include 'verif_pembayaran_email.php';
     $email->addContent(
         "text/html", $message
     );

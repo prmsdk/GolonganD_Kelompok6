@@ -1,7 +1,10 @@
 <?php
     session_start();
+    if($_SESSION['admin_status']==2){
+      header("location:index.php");
+    }
 
-    $_SESSION['active_link'] = 'master';
+    $_SESSION['active_link'] = 'setting';
     include 'includes/config.php';
     include 'includes/header.php';
 

@@ -1,5 +1,9 @@
 <?php 
 session_start();
+if($_SESSION['admin_status']==2){
+  header("location:index.php");
+}
+$_SESSION['active_link'] = 'pemesanan';
 require 'includes/config.php';
 require 'includes/header.php';
 
@@ -11,6 +15,8 @@ WHEN pesanan.STATUS_PESANAN = 3 THEN 'Dalam Proses'
 WHEN pesanan.STATUS_PESANAN = 4 THEN 'Selesai'
 WHEN pesanan.STATUS_PESANAN = 5 THEN 'Dalam Pengiriman'
 WHEN pesanan.STATUS_PESANAN = 6 THEN 'Dibatalkan'
+WHEN pesanan.STATUS_PESANAN = 7 THEN 'Bukti TF Anda Salah'
+WHEN pesanan.STATUS_PESANAN = 8 THEN 'Nominal Bayar Salah'
 END AS STATUS_KET
 FROM pesanan, user where
 user.USER_ID = pesanan.USER_ID

@@ -1,6 +1,6 @@
 <?php
   session_start();
-  $_SESSION['active_link'] = 'dashboard';
+  $_SESSION['active_link'] = 'laporan';
   include 'includes/config.php';
   require 'includes/header.php';
 
@@ -12,7 +12,7 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between text-center mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Pesanan per Bulan</h1>
+            <h1 class="h3 mr-3 mb-0 d-inline text-gray-800">Pesanan per Bulan</h1>
             <form action="" method="post">
               <input type="text" name="year" id="monthpicker" required>
               <input type="submit" name="cari" value="Cari">
@@ -131,6 +131,9 @@
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Statistik Omset per Bulan</h6>
+
+                  <a class="mr-2 btn btn-outline-success ml-auto" href="laporan/report_bulanan.php?year=<?=$year?>"><i class="fas fa-print fa-1x"></i></a>
+
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">

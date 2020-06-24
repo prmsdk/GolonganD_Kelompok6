@@ -1,6 +1,10 @@
 <?php
   session_start();
+
   $_SESSION['active_link'] = 'dashboard';
+
+  $_SESSION['active_link'] = 'laporan';
+
   include 'includes/config.php';
   require 'includes/header.php';
 
@@ -143,6 +147,9 @@
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Statistik Omset Dari <?=date("d-m-Y", strtotime($day1))?> Hingga <?=date("d-m-Y", strtotime($day2))?></h6>
+
+                  <a class="mr-2 btn btn-outline-success ml-auto" href="laporan/report_rentang.php?awal=<?=$day1?>&akhir=<?=$day2?>"><i class="fas fa-print fa-1x"></i></a>
+
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">

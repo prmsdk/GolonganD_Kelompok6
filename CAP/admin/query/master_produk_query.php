@@ -10,7 +10,7 @@ if(isset($_GET['id_produk'])){
       $data_tampil = mysqli_fetch_assoc($data);
       $nama_produk = $data_tampil['KET_TAMPIL_PRODUK'];
       $nama_file = "../src/file/$nama_produk";
-      unlink($nama_produk);
+      unlink($nama_file);
 
       $result_warna = mysqli_query($con, "DELETE FROM tampil_warna WHERE ID_TAMPIL_PRODUK='$id_produk'");
       $result_bahan = mysqli_query($con, "DELETE FROM tampil_bahan WHERE ID_TAMPIL_PRODUK='$id_produk'");
@@ -18,7 +18,7 @@ if(isset($_GET['id_produk'])){
       
       $result_gambar = mysqli_query($con, "SELECT * from gambar_produk WHERE ID_TAMPIL_PRODUK='$id_produk'");
       while($data_gambar = mysqli_fetch_assoc($result_gambar)){
-      $nama_gambar = $data_tampil['GBR_FILE_NAME'];
+      $nama_gambar = $data_gambar['GBR_FILE_NAME'];
       $nama_gambar = "../../pictures/produk_thumb/$nama_gambar";
       unlink($nama_gambar);
       }
@@ -142,6 +142,11 @@ if(isset($_POST['edit_produk'])){
     
     if(in_array($ekstensi,$ekstensi_boleh)===true){
         if($size < 3132210 && $size != 0){ 
+            $resultprd = mysqli_query($con, "SELECT * FROM tampil_produk WHERE ID_TAMPIL_PRODUK = '$id_produk'");
+            $dataprd = mysqli_fetch_assoc($resultprd);
+            $namaprd = $dataprd['KET_TAMPIL_PRODUK'];
+            unlink('../../src/file/'.$namaprd);
+
             $id = rand(0,100);
             $uniq = uniqid($id,true);
             move_uploaded_file($file_temporary, '../../src/file/'.$uniq.'.'.$ekstensi); //untuk upload file

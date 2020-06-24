@@ -55,7 +55,7 @@ while($data_produk = mysqli_fetch_assoc($result_produk)){
   $pdf->Cell(50,6,$data_produk['NAMA_TAMPIL_PRODUK'],1,0,'C');
   $produk_id = $data_produk['ID_TAMPIL_PRODUK'];
   $result = mysqli_query($con, "SELECT tampil_produk.NAMA_TAMPIL_PRODUK, tampil_produk.ID_TAMPIL_PRODUK,
-  (warna.HARGA_WARNA + ukuran.HARGA_UKURAN) + bahan.ISI_PER_BAHAN * (bahan.HARGA_BAHAN * (1 / satuan_bahan.JUMLAH_SATUAN)) AS HARGA_MIN
+  (warna.HARGA_WARNA + ukuran.HARGA_UKURAN) + 1 * (bahan.HARGA_BAHAN * (1 / satuan_bahan.JUMLAH_SATUAN)) AS HARGA_MIN
   FROM
   tampil_produk, warna, bahan, ukuran, tampil_warna, tampil_ukuran, tampil_bahan, satuan_bahan
   WHERE

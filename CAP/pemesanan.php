@@ -16,6 +16,7 @@
         $batas_isi = $data_produk['BATAS_ISI'];
         $min_jumlah = $data_produk['MIN_JUMLAH'];
 
+
 ?>
 <!-- MENAMPILKAN WARNING ESTIMASI ANTRIAN -->
 <?php
@@ -27,11 +28,13 @@ $antrian_jam = $data_jam['JAM'];
 
 $int_jam = $antrian_jam/24;
 $mod_jam = $antrian_jam%24;
+
 ?>
 <div class="container container-fluid-md">
     
     
     <div class="row justify-content-center mt-0">
+
         <div class="col-lg-9 pt-3">
         <div class="alert text-center alert-warning" role="alert">
             <h4 class="alert-heading font-weight-bold">Perhatian!</h4>
@@ -40,10 +43,13 @@ $mod_jam = $antrian_jam%24;
             <p class="mb-0 w-50 mx-auto">Jika anda melakukan pemesanan, Pesanan Anda diperkirakan akan dikerjakan <strong><?=intval($int_jam)?> hari <?=$mod_jam?> jam</strong> yang akan datang <strong>(<?=$antrian_jam?> jam dari sekarang)</strong></p>
         </div>
 
+        <div class="col-lg-9 pt-5">
+
+
         <!-- UPLOAD DESAIN PRODUK -->
             <div class="card shadow p-5">
             <div class="border-bottom text-center border-warning font-m-semi">
-            <h2><?=$nama_produk?></h2>
+            <h2><?php echo str_replace("_"," ",$nama_produk);?></h2>
             </div>
 
             <p class="font-m-semi mt-3">Upload Desain</p>
@@ -76,7 +82,7 @@ $mod_jam = $antrian_jam%24;
             <!-- <div id="desaindiv"><input type="hidden" class="namadesain" id="namadesain" name="namadesain" value=""></div> -->
             <div id="targetLayer" class="text-center mt-2" style="display:none; width:100%;"></div>
             <div id="loader-icon" class="text-center mt-2" style="display:none; width:100%;"><h5 class="text-gray-500 pt-0">Mohon Tunggu . .</h5></div>
-            <label for="uploadfile">Unggah file anda dalam format .zip .rar .pdf (max ukuran file 30mb) Jika ukuran file anda melebihi batas silahkan kirim file melalui <a href="mailto:aldion819@gmail.com">email ini.</a></label>
+            <label for="uploadfile">Unggah file anda dalam format .zip .rar .pdf (max ukuran file 30mb) Jika ukuran file anda melebihi batas silahkan kirim file melalui <a href="mailto:cahayaabadiperkasa@gmail.com">email ini.</a></label>
 
             <!-- BATAS UPLOAD DESAIN -->
 
@@ -202,15 +208,25 @@ $mod_jam = $antrian_jam%24;
             
 
 
+
             <p class="font-m-semi mt-3">Jumlah</p>
             <input id="jumlah_produk" type="number" class="form-control mb-4 w-50" placeholder="Masukkan Jumlah Cetak" name="jumlah_produk" required min="<?=$min_jumlah?>">
+
+            <p class="font-m-semi mt-3 mb-1">Jumlah</p>
+            <input id="jumlah_produk" type="number" class="form-control w-50" placeholder="Masukkan Jumlah Cetak" name="jumlah_produk" required min="<?=$min_jumlah?>">
+            <label for="jumlah_produk" class="small mb-3 text-muted">Minimum Pemesanan <?=$nama_produk?> : <?=$min_jumlah?></label><br>
+
 
             <?php
             if($status_isi==1){
             ?>
             <div class="form-group">
                 <label for="isibahan" class="font-m-semi" >Isi Produk</label>
+
                 <input type="text" id="isibahan" name="isibahan" class="form-control w-50" aria-describedby="isiInline">
+
+                <input type="number" id="isibahan" name="isibahan" class="form-control w-50" aria-describedby="isiInline">
+
                 <small id="isiInline" class="text-muted">
                 Isilah dengan memilih salah satu diantara <?=$batas_isi?>.
                 </small>
@@ -223,9 +239,15 @@ $mod_jam = $antrian_jam%24;
             }
             ?>
             
+
             <p class="font-m-semi">TOTAL</p>
 
             <!-- Value Desain Untuk Nego -->
+
+
+            <!-- Value Desain Untuk Nego -->
+            <label class="font-m-semi">Pembayaran</label>
+
             <input type="hidden" id="statusdesain" name="statusdesain" value="1">
             <div id="targetUpload" class="text-center mt-2" style="display:none; width:100%;"></div>
 
@@ -241,7 +263,11 @@ $mod_jam = $antrian_jam%24;
                     <label class="custom-control-label" for="total2">Lunas</label>
                 </div>
             </div>
-            <input type="number" id="sub_total" class="form-control mb-4 w-50" placeholder="Total Pembayaran" name="sub_total" pattern="(^\d+(\.|\,)\d{2}$)" readonly>
+
+            
+            <label class="font-m-semi">TOTAL</label>
+            <input type="text" id="sub_total" class="form-control mb-4 w-50" placeholder="Total Pembayaran" pattern="(^\d+(\.|\,)\d{2}$)" readonly>
+            <input type="hidden" id="sub_total_form" class="form-control mb-4 w-50" placeholder="Total Pembayaran" name="sub_total" pattern="(^\d+(\.|\,)\d{2}$)" readonly>
 
             <!-- <input type="number" id="modal_total" class="form-control mb-4 w-50" placeholder="Modal Pembayaran" name="modal_total" pattern="(^\d+(\.|\,)\d{2}$)" readonly> -->
             

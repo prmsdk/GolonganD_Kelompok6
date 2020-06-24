@@ -1,7 +1,15 @@
 <?php
     session_start();
 
+
     $_SESSION['active_link'] = 'master';
+
+    if($_SESSION['admin_status']==2){
+      header("location:index.php");
+    }
+
+    $_SESSION['active_link'] = 'pemesanan';
+
     include 'includes/config.php';
     include 'includes/header.php';
 
@@ -10,7 +18,11 @@
     }
 
     //SELECT KATEGORI BAHAN
+
     $result = mysqli_query($con, "SELECT * FROM nego");
+
+    $result = mysqli_query($con, "SELECT * FROM nego ORDER BY NEGO_TGL DESC");
+
 ?>
 
 <!-- Begin Page Content -->

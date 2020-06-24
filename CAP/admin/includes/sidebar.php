@@ -7,7 +7,7 @@
         <div class="sidebar-brand-icon">
           <img src="../src/img/icons/cap.png" alt="" width="40px" class="img-fluid">
         </div>
-        <div class="sidebar-brand-text mx-3">Admin CAP</div>
+        <div class="sidebar-brand-text mx-3">Admin ACP</div>
       </a>
 
       <!-- Divider -->
@@ -24,12 +24,14 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider">
-
+      
+      <?php 
+      if(isset($_SESSION['admin_status'])){
+        if($_SESSION['admin_status']==1){?>
       <!-- Heading -->
       <div class="sidebar-heading">
         Transaksi & Profile
       </div>
-
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item <?php if($_SESSION['active_link']==='pemesanan'){echo "active";}?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -46,6 +48,7 @@
           </div>
         </div>
       </li>
+      <?php } } ?>
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item <?php if($_SESSION['active_link']==='setting'){echo "active";}?>">
@@ -57,10 +60,14 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Setting Profile:</h6>
             <a class="collapse-item" href="admin_profil.php">Profile</a>
+            <?php
+            if(isset($_SESSION['admin_status'])){
+            if($_SESSION['admin_status']==1){?>
             <a class="collapse-item" href="master_slider.php">Promo / Slider</a>
             <a class="collapse-item" href="master_pesan.php">Pesan</a>
             <a class="collapse-item" href="master_portfolio.php">Portofolio</a>
             <a class="collapse-item" href="master_testimonial.php">Testimonial</a>
+            <?php } } ?>
           </div>
         </div>
       </li>

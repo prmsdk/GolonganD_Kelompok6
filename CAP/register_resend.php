@@ -18,6 +18,7 @@
     }
 
     $our_email = 'dickayunia1@gmail.com';
+
     
         date_default_timezone_set('Asia/Jakarta');
         ini_set('date.timezone', 'Asia/Jakarta');
@@ -47,6 +48,28 @@
         $email->addContent("text/plain", "$message");
         $email->addContent(
             "text/html", "<p>$message<p>"
+
+    
+        date_default_timezone_set('Asia/Jakarta');
+        ini_set('date.timezone', 'Asia/Jakarta');
+    
+        // $dotenv = new Dotenv\Dotenv(__DIR__);
+        // $dotenv->load();
+        $subject = 'Pendaftaran | Verifikasi';
+        $pesan = 'Terimakasih telah mendaftar dan bergabung dengan kami!<br>
+        Silahkan cocokkan data diri yang kamu daftarkan dengan data yang kami terima dibawah,<br> 
+        Mohon aktivasi akun anda untuk memaksimalkan fitur dari aplikasi kami.';
+        $link = 'http://localhost/GolonganD_Kelompok6/CAP/register_verify.php?email='.$email_user.'&hash='.$hash;
+      
+        $email = new \SendGrid\Mail\Mail(); 
+        $email->setFrom($our_email, 'Cahaya Abadi Perkasa');
+        $email->setSubject($subject);
+        $email->addTo($email_user, $nama_user);
+        $message = '';
+        include 'register_activation_email.php';
+        $email->addContent(
+            "text/html", $message
+
         );
         // $sendgrid = new \SendGrid(getenv(SENDGRID_API_KEY));
         // $apiKey = getenv('SENDGRID_API_KEY');

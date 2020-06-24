@@ -1,5 +1,5 @@
 <?php
-
+  include 'includes/config.php';
   require 'includes/header.php';
   if(isset($_GET['pesan'])){
   $msg = $_GET['pesan'];

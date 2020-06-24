@@ -2,6 +2,18 @@
 include '../includes/config.php';
 if(isset($_GET['id_admin'])){
   $id_admin = $_GET['id_admin'];
+
+  $resultadm = mysqli_query($con, "SELECT * FROM admin WHERE ADM_ID = '$id_admin'");
+  $dataadm = mysqli_fetch_assoc($resultadm);
+  $coveradm = $dataadm['ADM_COVER'];
+  if($coveradm != 'betak.jpg'){
+      unlink('../pictures/admin_cover/'.$coveradm);
+  }
+
+  $namaadm = $dataadm['ADM_PROFIL'];
+  if($namaadm != 'no_profil.jpg'){
+      unlink('../pictures/admin_cover/'.$namaadm);
+  }
   
   if(isset($_GET['action'])){
     if($_GET['action']=='delete'){

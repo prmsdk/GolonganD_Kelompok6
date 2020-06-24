@@ -50,16 +50,20 @@ $(document).ready(function () {
   // Kondisi saat Form di-load
   if ($('input[id="pilihdesain1"]:radio:checked').val() == "Y") {
     $('#uploadfile').removeAttr('disabled');
+    $('#uploadSubmit').removeAttr('disabled');
   } else {
     $('#uploadfile').attr('disabled', 'disabled');
+    $('#uploadSubmit').attr('disabled', 'disabled');
   }
   // Kondisi saat Radio Button diklik
   // $('input[type="radio"]').click(function(){
   $('input[id="pilihdesain1"]:radio').click(function () {
     if ($(this).attr("value") == "N") {
       $('#uploadfile').attr('disabled', 'disabled');
+      $('#uploadSubmit').attr('disabled', 'disabled');
     } else {
       $('#uploadfile').removeAttr('disabled');
+      $('#uploadSubmit').removeAttr('disabled');
       $('#uploadfile').focus();
     }
   });
@@ -69,18 +73,22 @@ $(document).ready(function () {
   // Kondisi saat Form di-load
   if ($('input[id="pilihdesain2"]:radio:checked').val() == "Y") {
     $('#uploadfile').attr('disabled', 'disabled');
+    $('#uploadSubmit').attr('disabled', 'disabled');
     $("#targetLayer").append('<input type="hidden" id="namadesain" name="namadesain" value="">');
   } else {
     $('#uploadfile').attr('disabled', 'disabled');
+    $('#uploadSubmit').attr('disabled', 'disabled');
   }
   // Kondisi saat Radio Button diklik
   // $('input[type="radio"]').click(function(){
   $('input[id="pilihdesain2"]:radio').click(function () {
     if ($(this).attr("value") == "N") {
       $('#uploadfile').attr('disabled', 'disabled');
+      $('#uploadSubmit').attr('disabled', 'disabled');
     } else {
       $("#targetLayer").append('<input type="hidden" id="namadesain" name="namadesain" value="">');
       $('#uploadfile').attr('disabled', 'disabled');
+      $('#uploadSubmit').attr('disabled', 'disabled');
       $('#uploadfile').focus();
     }
   });
@@ -98,9 +106,9 @@ $("#select_warna").change(function () {
       $(".box_warna").hide();
     }
   });
-}); 
+});
 
-$(document).ready(function(){
+$(document).ready(function () {
   var button = document.getElementById('clear-cart');
   button.click();
 
@@ -169,7 +177,7 @@ $(document).on('click', 'body *', function () {
 
 
   TotHarga = ((HrgDesain * ValDesain) + (HrgWarna + HrgUkuran) + IsiBahan * (HrgBahan * (JmlCetak / SatBahan))) / ValPembayaran;
-  $("#sub_total").prop('value', TotHarga);
+
   // ModalHarga = ((HrgDesain * ValDesain) + (HrgWarna + HrgUkuran) + IsiBahan * (HrgBahan * (1 / 500))) / ValPembayaran;
   // $("#modal_total").prop('value', ModalHarga);
 
@@ -181,6 +189,15 @@ $(document).on('click', 'body *', function () {
   $("#var4").prop('value', ValPembayaran);
 
 
+  function rubah(angka) {
+    var reverse = angka.toString().split('').reverse().join(''),
+      ribuan = reverse.match(/\d{1,3}/g);
+    ribuan = ribuan.join('.').split('').reverse().join('');
+    return ribuan;
+  }
+
+  $("#sub_total").prop('value', 'Rp. ' + rubah(TotHarga));
+  $("#sub_total_form").prop('value', TotHarga);
   // var jumlah = parseInt(document.getElementById("jumlah").value);
 
   // if(jumlah < 1){
@@ -196,16 +213,16 @@ function validate(evt) {
   // Handle paste
   if (theEvent.type === 'paste') {
 
-      key = event.clipboardData.getData('text/plain');
+    key = event.clipboardData.getData('text/plain');
   } else {
-  // Handle key press
-      var key = theEvent.keyCode || theEvent.which;
-      key = String.fromCharCode(key);
+    // Handle key press
+    var key = theEvent.keyCode || theEvent.which;
+    key = String.fromCharCode(key);
   }
   var regex = /[0-9]|\./;
-  if( !regex.test(key) ) {
+  if (!regex.test(key)) {
     theEvent.returnValue = false;
-    if(theEvent.preventDefault) theEvent.preventDefault();
+    if (theEvent.preventDefault) theEvent.preventDefault();
 
   }
 }
@@ -213,43 +230,41 @@ function validate(evt) {
 // Upload gambar
 
 
-$('.custom-file-input').on('change',function(){
+$('.custom-file-input').on('change', function () {
 
   let fileName = $(this).val().split('\\').pop();
   $(this).next('.custom-file-label').addClass("custom-file").html(fileName);
 });
 
-$(document).ready(function(){
-	$('#uploadImage').submit(function(event){
-		if($('#uploadfile').val())
-		{
+$(document).ready(function () {
+  $('#uploadImage').submit(function (event) {
+    if ($('#uploadfile').val()) {
       event.preventDefault();
       $('.progress').show();
-			$('#loader-icon').show();
+      $('#loader-icon').show();
       $('#targetLayer').hide();
       $('#targetUpload').hide();
-			$(this).ajaxSubmit({
-				target: '#targetLayer, #targetUpload',
-				beforeSubmit:function(){
-					$('.progress-bar').width('50%');
-				},
-				uploadProgress: function(event, position, total, percentageComplete)
-				{
-					$('.progress-bar').animate({
-						width: percentageComplete + '%'
-					}, {
-						duration: 1000
-					});
-				},
-				success:function(){
-					$('#loader-icon').hide();
+      $(this).ajaxSubmit({
+        target: '#targetLayer, #targetUpload',
+        beforeSubmit: function () {
+          $('.progress-bar').width('50%');
+        },
+        uploadProgress: function (event, position, total, percentageComplete) {
+          $('.progress-bar').animate({
+            width: percentageComplete + '%'
+          }, {
+            duration: 1000
+          });
+        },
+        success: function () {
+          $('#loader-icon').hide();
           $('#targetLayer').show();
           // $('#targetUpload').show();
-          $('#pilihdesain2').prop('disabled','true');
-				},
-				resetForm: true
-			});
-		}
-		return false;
-	});
+          $('#pilihdesain2').prop('disabled', 'true');
+        },
+        resetForm: true
+      });
+    }
+    return false;
+  });
 });

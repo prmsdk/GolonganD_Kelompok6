@@ -213,6 +213,12 @@ $('.clear-cart').click(function() {
   displayCart();
 });
 
+function rubah(angka){
+  var reverse = angka.toString().split('').reverse().join(''),
+  ribuan = reverse.match(/\d{1,3}/g);
+  ribuan = ribuan.join('.').split('').reverse().join('');
+  return ribuan;
+}
 
 function displayCart() {
   var cartArray = shoppingCart.listCart();
@@ -229,7 +235,7 @@ function displayCart() {
       + "<button class='plus-item btn btn-primary input-group-addon' data-produk=" + cartArray[i].produk + ">+</button></div></td>"
       + "<td><button class='delete-item btn btn-danger' data-produk=" + cartArray[i].produk + ">X</button></td>"
       + " = " 
-      + "<td>" + cartArray[i].total + "</td>" 
+      + "<td>Rp." + rubah(cartArray[i].total) + "</td>" 
       +  "</tr>";
 
       outputbayar += "<tr>"
@@ -254,7 +260,7 @@ function displayCart() {
   }
   $('.show-cart').html(output);
   $('.show-cart-bayar').html(outputbayar);
-  $('.total-cart').html(shoppingCart.totalCart());
+  $('.total-cart').html(rubah(shoppingCart.totalCart()));
   $('.total-count').html(shoppingCart.totalCount());
 }
 

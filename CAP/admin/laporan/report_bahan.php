@@ -39,7 +39,6 @@ $pdf->Cell(10,6,'NO',1,0,'C');
 $pdf->Cell(25,6,'ID BAHAN',1,0,'C');
 $pdf->Cell(40,6,'NAMA BAHAN',1,0,'C');
 $pdf->Cell(20,6,'SATUAN',1,0,'C');
-$pdf->Cell(20,6,'ISI',1,0,'C');
 $pdf->Cell(30,6,'HARGA BAHAN',1,0,'C');
 $pdf->Cell(25,6,'KATEGORI',1,1,'C');
 
@@ -55,7 +54,6 @@ while($data_bahan = mysqli_fetch_assoc($result_bahan)){
   $pdf->Cell(25,6,$data_bahan['ID_BAHAN'],1,0,'C');
   $pdf->Cell(40,6,$data_bahan['NAMA_BAHAN'],1,0,'C');
   $pdf->Cell(20,6,$data_bahan['SATUAN'],1,0,'C');
-  $pdf->Cell(20,6,$data_bahan['ISI_PER_BAHAN'],1,0,'C');
   $pdf->Cell(30,6,'Rp. '. number_format($data_bahan['HARGA_BAHAN'], 0,".","."),1,0,'C');
   $pdf->Cell(25,6,$data_bahan['NAMA_KAT_BAHAN'],1,1,'C');
 }

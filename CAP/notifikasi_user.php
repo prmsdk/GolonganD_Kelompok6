@@ -22,6 +22,8 @@ WHEN pesanan.STATUS_PESANAN = 3 THEN 'Sedang Dalam Proses'
 WHEN pesanan.STATUS_PESANAN = 4 THEN 'Telah Selesai Dikerjakan'
 WHEN pesanan.STATUS_PESANAN = 5 THEN 'Sedang Dalam Pengiriman' 
 WHEN pesanan.STATUS_PESANAN = 6 THEN 'Dibatalkan'
+WHEN pesanan.STATUS_PESANAN = 7 THEN 'Bukti TF Anda Salah'
+WHEN pesanan.STATUS_PESANAN = 8 THEN 'Nominal Bayar Salah'
 END AS KET_STATUS
 
 FROM user, pesanan, detail_pesanan, produk 
@@ -76,7 +78,7 @@ WHERE
             <?php
             if($data_notif['STATUS_PESANAN'] == 4){
               echo "badge-success";
-            }else if($data_notif['STATUS_PESANAN'] == 6){
+            }else if(($data_notif['STATUS_PESANAN'] == 6) OR ($data_notif['STATUS_PESANAN'] == 7) OR ($data_notif['STATUS_PESANAN']== 8)){
               echo "badge-danger";
             }else{
               echo "badge-primary";

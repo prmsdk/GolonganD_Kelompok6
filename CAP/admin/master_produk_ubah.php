@@ -46,7 +46,12 @@ if(isset($_GET['id_produk'])){
           <input type="hidden" name="id_produk" id="id_produk" value="<?=$id_produk?>">
           <div class="form-group">
             <label for="nama_produk" class="font-m-med">Nama produk</label>
+
             <input type="text" class="form-control" id="nama_produk" name="nama_produk" aria-describedby="usernameHelp" placeholder="Masukkan Nama produk" pattern="[^()/><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" value="<?=$nama_produk?>" required>
+
+            <input type="text" class="form-control" id="nama_produk" name="nama_produk" aria-describedby="usernameHelp" placeholder="Masukkan Nama produk" pattern="[^() /><\][\\\x22,;|]+" title="Tidak boleh memasukkan simbol karakter" value="<?=$nama_produk?>" required>
+            <label for="nama_produk" class="small text-muted">Tulis nama produk tanpa Spasi</label>
+
           </div>
           <div class="form-group">
             <label for="desc_produk" class="font-m-med">Deskripsi produk</label>

@@ -1,5 +1,8 @@
 <?php
   session_start();
+  if($_SESSION['admin_status']==2){
+    header("location:index.php");
+  }
 
   $_SESSION['active_link'] = 'pemesanan';
   include 'includes/config.php';
@@ -25,6 +28,11 @@
     WHEN pesanan.STATUS_PESANAN = 4 THEN 'Telah Selesai Dikerjakan'
     WHEN pesanan.STATUS_PESANAN = 5 THEN 'Sedang Dalam Pengiriman' 
     WHEN pesanan.STATUS_PESANAN = 6 THEN 'Dibatalkan'
+
+    WHEN pesanan.STATUS_PESANAN = 7 THEN 'Bukti TF Anda Salah'
+    WHEN pesanan.STATUS_PESANAN = 8 THEN 'Nominal Bayar Salah'
+    
+
     END AS KET_STATUS
 
     FROM pesanan,user
@@ -46,7 +54,7 @@
 ?>
 
 <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid text-black">
 
   <div class="row justify-content-center">
     <div class="col">
@@ -83,11 +91,16 @@
           $result_detail = mysqli_query($con, "SELECT 
           detail_pesanan.JUMLAH_PRODUK, 
           detail_pesanan.SUB_TOTAL,
+
           detail_pesanan.KET_PEMBAYARAN, 
 
+          detail_pesanan.KET_PEMBAYARAN,
+          detail_pesanan.UPLOAD_DESAIN, 
+
+
           CASE
-          WHEN detail_pesanan.STATUS_DESAIN = 1 THEN 'ADA'
-          WHEN detail_pesanan.STATUS_DESAIN = 0 THEN 'TIDAK ADA'
+          WHEN detail_pesanan.STATUS_DESAIN = 0 THEN 'ADA'
+          WHEN detail_pesanan.STATUS_DESAIN = 1 THEN 'TIDAK ADA'
           END AS STATUS_DESAIN,
 
           CASE 
@@ -113,6 +126,7 @@
             $quantity = $data_detail['JUMLAH_PRODUK'];
             $sub_total = $data_detail['SUB_TOTAL'];
             $status_desain = $data_detail['STATUS_DESAIN'];
+            $upload_desain = $data_detail['UPLOAD_DESAIN'];
             $nama_produk = $data_detail['NAMA_PRODUK'];
             $jenis_warna = $data_detail['JENIS_WARNA'];
             $jenis_ukuran = $data_detail['JENIS_UKURAN'];
@@ -122,7 +136,12 @@
           <tr>
             <!-- NAMA PRODUK, WARNA, UKURAN, BAHAN -->
             <td style="width: 30%;"><p><?php echo "$nama_produk / $jenis_warna / $nama_bahan / $jenis_ukuran";?></p></td>
+
             <td><?= $status_desain?></td>
+
+            <td style="width: 150px;"><?= $status_desain?> <?=$upload_desain?> 
+            <?php if($status_desain == 'ADA'){ ?> <a class="badge badge-success py-2 px-3" href="../pictures/produk_desain/<?=$upload_desain?>" download>Download Desain</a> <?php } ?></td>
+
             <td><?= $ket_pembayaran?></td>
             <td><?= number_format($quantity, 0,".",".")?></td>
             <td>Rp. <?=number_format($sub_total, 0,".",".")?></td>
@@ -136,23 +155,51 @@
           <tr class="font-weight-bolder">
             <td class="border-0"> </td>
             <td class="text-right ">Status Pesanan : </td>
+
             <td colspan="3" class="text-right " ><?=$ket_status?></td>
+
+            <td colspan="3" class="text-right "><?=$ket_status?></td>
+          <tr>
+          <tr class="font-weight-bolder">
+            <td class="border-0"> </td>
+            <td class="text-right ">Unduh Desain : </td>
+            <td colspan="3" class="text-right "><a href="../pictures/produk_desain/<?=$upload_desain?>" download></a></td>
+
           <tr>
           <tr class="font-weight-bolder">
             <td class="border-0"> </td>
             <td class="text-right ">Bukti Transfer : </td>
+
             <td colspan="3" class="text-right"><img src="../pictures/bukti_transfer/<?=$bukti_transfer?>" class="img-fluid" alt=""></td>
+
+            <td colspan="3" class="text-right">
+            <?php if($bukti_transfer != null){ ?>
+            <img src="../pictures/bukti_transfer/<?=$bukti_transfer?>" class="img-fluid" alt="">
+            <?php }else{ ?>
+            <label class="text-muted">Belum Ada Bukti Transfer</label>
+            <?php }?>
+            </td>
+
           <tr>
         </tbody>
       </table>
       <div class="text-center">
       <?php
+
       if($status_notif==1){
+
+      if(($status_notif==1) && ($bukti_transfer != null)){
+
       echo '<form action="query/update_pesanan.php" method="post">';
       echo '<input type="hidden" name="id_pesanan" value="'.$id_pesanan.'">';
       echo '<div class="form-group"><input type="number" name="antrian" id="antrian" required min="1" placeholder="Berapa jam pengerjaan untuk pesanan ini?" class="form-control mb-3 w-50 mx-auto"></div>';
       echo '<div class="text-center justify-content-center"><button type="submit" name="masukkan_antrian" class="btn btn-primary px-4">Masukkan Antrian</button>';
+
       echo '<a href="query/update_pesanan.php?status='.$status_notif.'&id_pesanan='.$id_pesanan.'" class="btn btn-danger px-4 ml-2" disabled>Dibatalkan</a></div>';
+
+      echo '<a href="query/update_pesanan.php?status='.$status_notif.'&id_pesanan='.$id_pesanan.'&param=7" class="btn btn-danger ml-2 px-4" >Bukti TF Salah</a>';
+      echo '<a href="query/update_pesanan.php?status='.$status_notif.'&id_pesanan='.$id_pesanan.'&param=8" class="btn btn-danger ml-2 px-4" >Nominal Bayar Salah</a>';
+
       echo '</form>';
       }else if($status_notif==2){
       echo '<a href="query/update_pesanan.php?status='.$status_notif.'&id_pesanan='.$id_pesanan.'" class="btn btn-primary px-4" >Proses Pesanan</a>';
@@ -166,6 +213,7 @@
       echo '<button class="btn btn-danger px-4" disabled>Dibatalkan</button>';
       }
       ?>
+      <button onclick="window.history.back();" class="btn ml-1 btn-secondary"><i class="fas fa-arrow-left"></i></button>
       </div>
         </div>
       </div>
